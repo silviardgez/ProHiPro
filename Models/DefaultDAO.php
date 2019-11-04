@@ -59,7 +59,7 @@ class DefaultDAO
                 $this->mysqli->query($sql);
                 return 'Inserción realizada con éxito';
             } else {
-                return 'Ya existe en la base de datos';
+                return 'Error: Ya existe en la base de datos';
             }
         }
     }
@@ -109,7 +109,7 @@ class DefaultDAO
                 $this->mysqli->query($sql_edit);
                 return 'Edición realizada con éxito';
             } else {
-                return 'No existe en la base de datos';
+                return 'Error: No existe en la base de datos';
             }
         }
     }

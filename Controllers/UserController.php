@@ -6,6 +6,7 @@ include '../Views/User/UserAddView.php';
 include '../Views/User/UserShowView.php';
 include '../Views/User/UserEditView.php';
 include '../Functions/Redirect.php';
+
 switch($_REQUEST['action']) {
     case "add":
         if (!isset($_POST["submit"])){
@@ -23,16 +24,16 @@ switch($_REQUEST['action']) {
             $user->setTelephone($_POST["telephone"]);
 
             $userDAO = new UserDAO();
-            $userDAO->add($user);
-            redirect("UserController.php");
+            $response = $userDAO->add($user);
+            redirect("UserController.php?response=$response");
         }
         break;
     case "delete":
         $key = "login";
         $value = $_REQUEST[$key];
         $userDAO = new UserDAO();
-        $userDAO->delete($key, $value);
-        redirect("UserController.php");
+        $response = $userDAO->delete($key, $value);
+        redirect("UserController.php?response=$response");
         break;
     case "show":
         $key = "login";
@@ -60,8 +61,8 @@ switch($_REQUEST['action']) {
             $user->setTelephone($_POST["telephone"]);
 
             $userDAO = new UserDAO();
-            $userDAO->edit($user);
-            redirect("UserController.php");
+            $response = $userDAO->edit($user);
+            redirect("UserController.php?response=$response");
         }
         break;
     default:
