@@ -15,8 +15,7 @@ class DefaultDAO
 
     function showAll($className)
     {
-        $sql = "SELECT * FROM" . strtoupper($className);
-
+        $sql = "SELECT * FROM " . strtoupper($className);
         if (!($result = $this->mysqli->query($sql))) {
             return 'Error en la consulta sobre la base de datos';
         } else {
