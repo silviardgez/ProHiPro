@@ -20,11 +20,11 @@ class UserDAO
     }
 
     function add($user) {
-        $this->defaultDAO->insert($user, "login");
+        return $this->defaultDAO->insert($user, "login");
     }
 
     function delete($key, $value) {
-        $this->defaultDAO->delete("user", $key, $value);
+        return $this->defaultDAO->delete("user", $key, $value);
     }
 
     function show($key, $value) {
@@ -34,7 +34,7 @@ class UserDAO
     }
 
     function edit($user) {
-        $this->defaultDAO->edit($user, "login");
+        return $this->defaultDAO->edit($user, "login");
     }
 
 }

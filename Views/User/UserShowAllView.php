@@ -1,4 +1,5 @@
 <?php
+
 class UserShowAllView {
 private $users;
 
@@ -46,6 +47,18 @@ function render(){
             </tbody>
         </table>
 </main>
+    <?php if(isset($_REQUEST["response"])) {
+        include '../Views/InfoToast.php';
+        ?>
+        <script>
+            $('#message-toast').text("<?php echo $_REQUEST["response"] ?>");
+            $('.toast').toast('show');
+            $('.toast').on('hidden.bs.toast', function () {
+                $('#toast-body').textContent = "<?php echo $_REQUEST["response"] ?>";
+            })
+        </script>
+    <?php } ?>
+
 <!-- Icons -->
 <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
 <script>

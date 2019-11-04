@@ -1,5 +1,11 @@
 body {
     font-size: .875rem;
+    height: 100%;
+}
+
+
+html {
+    height: 100%;
 }
 
 .feather {
