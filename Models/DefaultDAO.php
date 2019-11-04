@@ -105,7 +105,7 @@ class DefaultDAO
         }
         else {
             if ($result->num_rows != 0){
-                $sql_edit = "UPDATE " . get_class($entity) . " SET " . $sql . " WHERE " . $primary_key . "= '". $entity->$primary_key_function() . "'";
+                $sql_edit = "UPDATE " . strtoupper(get_class($entity)) . " SET " . $sql . " WHERE " . $primary_key . "= '". $entity->$primary_key_function() . "'";
                 $this->mysqli->query($sql_edit);
                 return 'Edición realizada con éxito';
             } else {
