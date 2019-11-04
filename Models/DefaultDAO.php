@@ -6,7 +6,7 @@ class DefaultDAO
 
     function __construct()
     {
-        $this->mysqli = new mysqli("localhost", "userTEC", "passTEC", "TEC");
+        $this->mysqli = new mysqli("127.0.0.1", "userTEC", "passTEC", "TEC");
 
         if ($this->mysqli->connect_errno) {
             echo "Fallo al conectar a MySQL: (" . $this->mysqli->connect_errno . ") " . $this->mysqli->connect_error;
@@ -15,7 +15,7 @@ class DefaultDAO
 
     function showAll($className)
     {
-        $sql = "SELECT * FROM $className";
+        $sql = "SELECT * FROM" . strtoupper($className);
 
         if (!($result = $this->mysqli->query($sql))) {
             return 'Error en la consulta sobre la base de datos';
@@ -49,13 +49,13 @@ class DefaultDAO
             }
         }
         $primary_key_function = "get" . ucfirst($primary_key);
-        $sql = "SELECT * FROM " . get_class($entity) . " WHERE " . $primary_key . "= '". $entity->$primary_key_function() . "'";
+        $sql = "SELECT * FROM " . strtoupper(get_class($entity)) . " WHERE " . $primary_key . "='". $entity->$primary_key_function() . "';";
         if (!$result = $this->mysqli->query($sql)){
             return 'No se ha podido conectar con la base de datos';
         }
         else {
             if ($result->num_rows == 0){
-                $sql = "INSERT INTO " . get_class($entity) . $sql_keys . ") VALUES " . $sql_values . ")";
+                $sql = "INSERT INTO " . strtoupper(get_class($entity)) . $sql_keys . ") VALUES " . $sql_values . ")";
                 $this->mysqli->query($sql);
                 return 'Inserción realizada con éxito';
             } else {
@@ -66,7 +66,7 @@ class DefaultDAO
 
     function delete($entityName, $key, $value)
     {
-        $sql = "DELETE FROM " . $entityName . " WHERE " . $key . "= '". $value . "'";
+        $sql = "DELETE FROM " . strtoupper($entityName) . " WHERE " . $key . "= '". $value . "'";
         if (!$result = $this->mysqli->query($sql)) {
             return 'Error en la consulta sobre la base de datos';
         } else {
@@ -75,7 +75,7 @@ class DefaultDAO
     }
 
     function show($entityName, $key, $value){
-        $sql = "SELECT * FROM " . $entityName . " WHERE " . $key . " ='" . $value ."'";
+        $sql = "SELECT * FROM " . strtoupper($entityName) . " WHERE " . $key . " ='" . $value ."'";
         if (!$result = $this->mysqli->query($sql)) {
             return 'Error en la consulta sobre la base de datos';
         } else {
@@ -99,7 +99,7 @@ class DefaultDAO
 
         }
         $primary_key_function = "get" . ucfirst($primary_key);
-        $sql_query = "SELECT * FROM " . get_class($entity) . " WHERE " . $primary_key . "= '". $entity->$primary_key_function() . "'";
+        $sql_query = "SELECT * FROM " . strtoupper(get_class($entity)) . " WHERE " . $primary_key . "= '". $entity->$primary_key_function() . "'";
         if (!$result = $this->mysqli->query($sql_query)){
             return 'No se ha podido conectar con la base de datos';
         }

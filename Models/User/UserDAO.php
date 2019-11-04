@@ -1,6 +1,6 @@
 <?php
-include '../Models/DefaultDAO.php';
-include 'User.php';
+include_once '../Models/DefaultDAO.php';
+include_once 'User.php';
 
 class UserDAO
 {
