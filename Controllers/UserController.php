@@ -5,7 +5,7 @@ include '../Views/User/UserShowAllView.php';
 include '../Views/User/UserAddView.php';
 include '../Views/User/UserShowView.php';
 include '../Views/User/UserEditView.php';
-
+include '../Functions/Redirect.php';
 switch($_REQUEST['action']) {
     case "add":
         if (!isset($_POST["submit"])){
@@ -24,6 +24,7 @@ switch($_REQUEST['action']) {
 
             $userDAO = new UserDAO();
             $userDAO->add($user);
+            redirect("UserController.php");
         }
         break;
     case "delete":
@@ -31,6 +32,7 @@ switch($_REQUEST['action']) {
         $value = $_REQUEST[$key];
         $userDAO = new UserDAO();
         $userDAO->delete($key, $value);
+        redirect("UserController.php");
         break;
     case "show":
         $key = "login";
@@ -59,6 +61,7 @@ switch($_REQUEST['action']) {
 
             $userDAO = new UserDAO();
             $userDAO->edit($user);
+            redirect("UserController.php");
         }
         break;
     default:

@@ -21,7 +21,7 @@ class UserEditView {
                 <div class="form-group">
                     <label for="login">Login</label>
                     <input type="text" class="form-control" id="login" name="login"
-                           value="<?php echo $this->user->getLogin() ?>">
+                           value="<?php echo $this->user->getLogin() ?>" readonly>
                 </div>
                 <div class="form-group">
                     <label for="password1">Contraseña</label>
