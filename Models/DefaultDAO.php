@@ -13,6 +13,18 @@ class DefaultDAO
         }
     }
 
+    public static function testConstruct()
+    {
+        $instance = new self();
+        $instance->mysqli = new mysqli("127.0.0.1", "userTEC", "passTEC", "testTEC");
+
+        if ($instance->mysqli->connect_errno) {
+            echo "Fallo al conectar a MySQL: (" . $instance->mysqli->connect_errno . ") " . $instance->mysqli->connect_error;
+        }
+
+        return $instance;
+    }
+
     function showAll($className)
     {
         $sql = "SELECT * FROM " . strtoupper($className);
@@ -110,6 +122,14 @@ class DefaultDAO
             } else {
                 return 'Error: No existe en la base de datos';
             }
+        }
+    }
+    public function truncateTable($entityName){
+        $sql = "DELETE FROM ". strtoupper($entityName);
+        if (!$result = $this->mysqli->query($sql)) {
+            return 'Error en la consulta sobre la base de datos';
+        } else {
+            return 'Eliminado correctamente';
         }
     }
 }
