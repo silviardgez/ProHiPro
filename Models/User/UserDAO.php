@@ -9,11 +9,6 @@ class UserDAO
         $this->defaultDAO = new DefaultDAO();
     }
 
-    public function testConstruct() {
-        $this->defaultDAO = DefaultDAO::testConstruct();
-        return $this->defaultDAO;
-    }
-
     function showAll() {
         $users_db = $this->defaultDAO->showAll("user");
         $users = array();
@@ -48,6 +43,10 @@ class UserDAO
 
     function edit($user) {
         return $this->defaultDAO->edit($user, "login");
+    }
+
+    function truncateTable() {
+        return $this->defaultDAO->truncateTable("user");
     }
 
 }

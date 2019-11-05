@@ -6,23 +6,17 @@ class DefaultDAO
 
     function __construct()
     {
-        $this->mysqli = new mysqli("127.0.0.1", "userTEC", "passTEC", "TEC");
+        if ($_SESSION['env'] == 'test') {
+            $this->mysqli = new mysqli("127.0.0.1", "userTEC", "passTEC", "testTEC");
+
+        } else {
+            $this->mysqli = new mysqli("127.0.0.1", "userTEC", "passTEC", "TEC");
+
+        }
 
         if ($this->mysqli->connect_errno) {
             echo "Fallo al conectar a MySQL: (" . $this->mysqli->connect_errno . ") " . $this->mysqli->connect_error;
         }
-    }
-
-    public static function testConstruct()
-    {
-        $instance = new self();
-        $instance->mysqli = new mysqli("127.0.0.1", "userTEC", "passTEC", "testTEC");
-
-        if ($instance->mysqli->connect_errno) {
-            echo "Fallo al conectar a MySQL: (" . $instance->mysqli->connect_errno . ") " . $instance->mysqli->connect_error;
-        }
-
-        return $instance;
     }
 
     function showAll($className)
@@ -41,31 +35,31 @@ class DefaultDAO
         }
     }
 
-    function insert($entity, $primary_key) {
+    function insert($entity, $primary_key)
+    {
         $attributes = array_keys($entity->expose());
         $sql_keys = "";
         $sql_values = "";
         foreach ($attributes as $attribute) {
-            if($sql_keys == "") {
+            if ($sql_keys == "") {
                 $sql_keys = "(" . $attribute;
             } else {
                 $sql_keys = $sql_keys . "," . $attribute;
             }
             $function_name = "get" . ucfirst($attribute);
             $value = $entity->$function_name();
-            if($sql_values == "") {
+            if ($sql_values == "") {
                 $sql_values = "('" . $value . "'";
             } else {
                 $sql_values = $sql_values . ", '" . $value . "'";
             }
         }
         $primary_key_function = "get" . ucfirst($primary_key);
-        $sql = "SELECT * FROM " . strtoupper(get_class($entity)) . " WHERE " . $primary_key . "='". $entity->$primary_key_function() . "';";
-        if (!$result = $this->mysqli->query($sql)){
+        $sql = "SELECT * FROM " . strtoupper(get_class($entity)) . " WHERE " . $primary_key . "='" . $entity->$primary_key_function() . "';";
+        if (!$result = $this->mysqli->query($sql)) {
             return 'No se ha podido conectar con la base de datos';
-        }
-        else {
-            if ($result->num_rows == 0){
+        } else {
+            if ($result->num_rows == 0) {
                 $sql = "INSERT INTO " . strtoupper(get_class($entity)) . $sql_keys . ") VALUES " . $sql_values . ")";
                 $this->mysqli->query($sql);
                 return 'Inserción realizada con éxito';
@@ -77,7 +71,7 @@ class DefaultDAO
 
     function delete($entityName, $key, $value)
     {
-        $sql = "DELETE FROM " . strtoupper($entityName) . " WHERE " . $key . "= '". $value . "'";
+        $sql = "DELETE FROM " . strtoupper($entityName) . " WHERE " . $key . "= '" . $value . "'";
         if (!$result = $this->mysqli->query($sql)) {
             return 'Error en la consulta sobre la base de datos';
         } else {
@@ -85,8 +79,9 @@ class DefaultDAO
         }
     }
 
-    function show($entityName, $key, $value){
-        $sql = "SELECT * FROM " . strtoupper($entityName) . " WHERE " . $key . " ='" . $value ."'";
+    function show($entityName, $key, $value)
+    {
+        $sql = "SELECT * FROM " . strtoupper($entityName) . " WHERE " . $key . " ='" . $value . "'";
         if (!$result = $this->mysqli->query($sql)) {
             return 'Error en la consulta sobre la base de datos';
         } else {
@@ -94,13 +89,14 @@ class DefaultDAO
         }
     }
 
-    function edit($entity, $primary_key) {
+    function edit($entity, $primary_key)
+    {
         $attributes = array_keys($entity->expose());
         $sql = "";
         foreach ($attributes as $attribute) {
             $function_name = "get" . ucfirst($attribute);
             $value = $entity->$function_name();
-            if($attribute != $primary_key) {
+            if ($attribute != $primary_key) {
                 if ($sql == "") {
                     $sql = $attribute . " = '" . $value . "'";
                 } else {
@@ -110,13 +106,12 @@ class DefaultDAO
 
         }
         $primary_key_function = "get" . ucfirst($primary_key);
-        $sql_query = "SELECT * FROM " . strtoupper(get_class($entity)) . " WHERE " . $primary_key . "= '". $entity->$primary_key_function() . "'";
-        if (!$result = $this->mysqli->query($sql_query)){
+        $sql_query = "SELECT * FROM " . strtoupper(get_class($entity)) . " WHERE " . $primary_key . "= '" . $entity->$primary_key_function() . "'";
+        if (!$result = $this->mysqli->query($sql_query)) {
             return 'No se ha podido conectar con la base de datos';
-        }
-        else {
-            if ($result->num_rows != 0){
-                $sql_edit = "UPDATE " . strtoupper(get_class($entity)) . " SET " . $sql . " WHERE " . $primary_key . "= '". $entity->$primary_key_function() . "'";
+        } else {
+            if ($result->num_rows != 0) {
+                $sql_edit = "UPDATE " . strtoupper(get_class($entity)) . " SET " . $sql . " WHERE " . $primary_key . "= '" . $entity->$primary_key_function() . "'";
                 $this->mysqli->query($sql_edit);
                 return 'Edición realizada con éxito';
             } else {
@@ -124,8 +119,10 @@ class DefaultDAO
             }
         }
     }
-    public function truncateTable($entityName){
-        $sql = "DELETE FROM ". strtoupper($entityName);
+
+    public function truncateTable($entityName)
+    {
+        $sql = "DELETE FROM " . strtoupper($entityName);
         if (!$result = $this->mysqli->query($sql)) {
             return 'Error en la consulta sobre la base de datos';
         } else {
