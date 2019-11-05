@@ -14,9 +14,10 @@ private $user;
         <main role="main" class="margin-main ml-sm-auto px-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-3
             border-bottom">
-                <h1 class="h2">Usuario <?php echo $this->user->getLogin() ?></h1>
+                <h1 class="h2">Usuario <?php echo $_REQUEST['login'] ?></h1>
                 <a class="btn btn-primary" role="button" href="../Controllers/UserController.php">Volver</a>
             </div>
+            <?php if(!is_null($this->user)): ?>
             <form>
                 <div class="form-group">
                     <label for="login">Login</label>
@@ -64,6 +65,9 @@ private $user;
                            value="<?php echo $this->user->getTelephone() ?>" readonly>
                 </div>
             </form>
+            <?php else: ?>
+            El usuario no existe.
+            <?php endif; ?>
         </main>
         <?php
     }
