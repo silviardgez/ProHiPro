@@ -9,6 +9,11 @@ class UserDAO
         $this->defaultDAO = new DefaultDAO();
     }
 
+    public function testConstruct() {
+        $this->defaultDAO = DefaultDAO::testConstruct();
+        return $this->defaultDAO;
+    }
+
     function showAll() {
         $users_db = $this->defaultDAO->showAll("user");
         $users = array();
