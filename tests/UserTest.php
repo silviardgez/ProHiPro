@@ -4,7 +4,7 @@ declare (strict_types=1);
 use PHPUnit\Framework\TestCase;
 
 include_once '../Models/User/User.php';
-include_once './UserTestDAO.php';
+include_once '../Models/User/UserDAO.php';
 
 final class UserTest extends TestCase
 {
@@ -12,12 +12,14 @@ final class UserTest extends TestCase
 
     public static function setUpBeforeClass(): void
     {
-        self::$userDAO = new UserTestDAO();
+        $_SESSION['env'] = 'test';
+        self::$userDAO = new UserDAO();
     }
 
     public static function tearDownAfterClass(): void
     {
         self::$userDAO->truncateTable();
+        $_SESSION['env'] = 'dev';
     }
 
     public function testCanBeCreated()
