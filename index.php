@@ -8,3 +8,4 @@ if (!IsAuthenticated()) {
 } else {
     header('Location:./Controllers/IndexController.php');
 }
+
