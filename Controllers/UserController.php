@@ -1,4 +1,11 @@
 <?php
+
+session_start();
+include '../Functions/Authentication.php'; 
+
+if (!IsAuthenticated()){
+ 	header('Location:../index.php');
+}
 include '../Models/User/UserDAO.php';
 include '../Models/Common/MessageType.php';
 include '../Models/Common/DAOException.php';
@@ -10,9 +17,7 @@ include '../Views/User/UserShowView.php';
 include '../Views/User/UserEditView.php';
 include '../Functions/ShowToast.php';
 include '../Functions/OpenDeletionModal.php';
-include '../Functions/Authentication.php';
 include '../Functions/Redirect.php';
-
 $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "";
 switch($action) {
     case "add":
