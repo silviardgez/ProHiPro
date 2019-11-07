@@ -5,6 +5,7 @@ use PHPUnit\Framework\TestCase;
 
 include_once '../Models/User/User.php';
 include_once '../Models/User/UserDAO.php';
+include_once '../Models/Common/DAOException.php';
 
 final class UserTest extends TestCase
 {
@@ -20,9 +21,10 @@ final class UserTest extends TestCase
         self::$userTestDAO = new UserDAO();
     }
 
-    public static function tearDownAfterClass(): void
+    protected function tearDown(): void
     {
         self::$userTestDAO->truncateTable();
+        self::$userDAO->truncateTable();
     }
 
     public function testCanBeCreated()
@@ -72,9 +74,9 @@ final class UserTest extends TestCase
 
         self::$userTestDAO->delete("login", "roi");
 
-        $userCreated = self::$userTestDAO->show("login", "roi");
+        $this->expectException(DAOException::class);
 
-        $this->assertEmpty($userCreated);
+        $userCreated = self::$userTestDAO->show("login", "roi");
     }
 
     public function testCanShowNone()
@@ -182,14 +184,18 @@ final class UserTest extends TestCase
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_URL, "http://localhost/Controllers/UserController.php?action=delete&login=roi");
+        curl_setopt(
+            $ch,
+            CURLOPT_URL,
+            "http://localhost/Controllers/UserController.php?action=delete&login=roi&confirm=true"
+        );
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
         curl_exec($ch);
         curl_close($ch);
 
-        $userCreated = self::$userDAO->show("login", "roi");
+        $this->expectException(DAOException::class);
 
-        $this->assertEmpty($userCreated);
+        $userCreated = self::$userDAO->show("login", "roi");
     }
 }
