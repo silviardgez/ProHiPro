@@ -282,6 +282,14 @@ CREATE TABLE `SCHEDULE` (
 	REFERENCES `SUBJECT_GROUP`(`IdSubjectGroup`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
-  
+ 
+INSERT INTO `ACTION` (`IdAction`, `name`, `description`) VALUES
+('0', 'ONLYADMIN', 'ONLYADMIN'),
+('1', 'ADD', 'ADD'),
+('2', 'DELETE', 'DELETE'),
+('3', 'EDIT', 'EDIT'),
+('4', 'SEARCH', 'SEARCH'),
+('5', 'SHOWCURRENT', 'SHOWCURRENT'),
+('6', 'SHOWALL', 'SHOWALL');
 
   

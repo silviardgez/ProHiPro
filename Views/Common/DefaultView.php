@@ -50,6 +50,11 @@
                                         Permisos
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="../Controllers/ActionController.php">
+                                        Accion
+                                    </a>
+                                </li>
                                 </ul>
                             </li>
                             <li class="nav-item">
