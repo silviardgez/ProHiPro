@@ -87,6 +87,7 @@ class DefaultDAO
     function show($entityName, $key, $value)
     {
         $sql = "SELECT * FROM " . strtoupper($entityName) . " WHERE " . $key . " ='" . $value . "'";
+
         if (!$result = $this->mysqli->query($sql)) {
             throw new DAOException('Error de conexión con la base de datos.');
         } else {

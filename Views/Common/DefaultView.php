@@ -55,6 +55,11 @@
                                         Accion
                                     </a>
                                 </li>
+								<li class="nav-item">
+                                    <a class="nav-link" href="../Controllers/FunctionalityController.php">
+                                        Funcionalidad
+                                    </a>
+                                </li>
                                 </ul>
                             </li>
                             <li class="nav-item">

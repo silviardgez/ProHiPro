@@ -71,8 +71,8 @@ CREATE TABLE `USER_GROUP` (
 -- --------------------------------------------------------
 CREATE TABLE `FUNCTIONALITY` (
   `IdFunctionality` varchar(6) COLLATE latin1_spanish_ci NOT NULL,
-  `Name` varchar(60) COLLATE latin1_spanish_ci NOT NULL,
-  `Description` varchar(100) NOT NULL,
+  `name` varchar(60) COLLATE latin1_spanish_ci NOT NULL,
+  `description` varchar(100) NOT NULL,
   PRIMARY KEY(`IdFunctionality`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 -- --------------------------------------------------------
@@ -282,7 +282,7 @@ CREATE TABLE `SCHEDULE` (
 	REFERENCES `SUBJECT_GROUP`(`IdSubjectGroup`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
- 
+
 INSERT INTO `ACTION` (`IdAction`, `name`, `description`) VALUES
 ('0', 'ONLYADMIN', 'ONLYADMIN'),
 ('1', 'ADD', 'ADD'),
@@ -291,5 +291,12 @@ INSERT INTO `ACTION` (`IdAction`, `name`, `description`) VALUES
 ('4', 'SEARCH', 'SEARCH'),
 ('5', 'SHOWCURRENT', 'SHOWCURRENT'),
 ('6', 'SHOWALL', 'SHOWALL');
+
+INSERT INTO `FUNCTIONALITY` (`IdFunctionality`, `name`, `Ddescription`) VALUES
+('1', 'UsersManagement', 'UsersManagement'),
+('2', 'RolesManagement', 'RolesManagement'),
+('3', 'FunctionalityManagement', 'FunctionalityManagement'),
+('4', 'ActionManagement', 'ActionManagement'),
+('5', 'PermissionManagement', 'PermissionManagement');
 
   
