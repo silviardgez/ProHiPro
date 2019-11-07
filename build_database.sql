@@ -44,25 +44,25 @@ CREATE TABLE `USER` (
 -- TABLE STRUCTURE FOR TABLE `GROUP`
 -- --------------------------------------------------------
 -- --------------------------------------------------------
-CREATE TABLE `GROUP` (
-  `IdGroup` varchar(6) COLLATE latin1_spanish_ci NOT NULL,
-  `NameGroup` varchar(60) COLLATE latin1_spanish_ci NOT NULL,
-  `DescripGroup` varchar(100) COLLATE latin1_spanish_ci NOT NULL,
-  PRIMARY KEY(`IdGroup`)
+CREATE TABLE `ROLE` (
+  `IdRole` varchar(6) COLLATE latin1_spanish_ci NOT NULL,
+  `name` varchar(60) COLLATE latin1_spanish_ci NOT NULL,
+  `description` varchar(100) COLLATE latin1_spanish_ci NOT NULL,
+  PRIMARY KEY(`IdRole`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 -- TABLE STRUCTURE FOR TABLE `USER_GROUP`
 -- --------------------------------------------------------
 -- --------------------------------------------------------
-CREATE TABLE `USER_GROUP` (
+CREATE TABLE `USER_ROLE` (
   `login` varchar(9) COLLATE latin1_spanish_ci NOT NULL,
-  `IdGroup` varchar(6) COLLATE latin1_spanish_ci NOT NULL,
-  PRIMARY KEY(`login`, `IdGroup`),
+  `IdRole` varchar(6) COLLATE latin1_spanish_ci NOT NULL,
+  PRIMARY KEY(`login`, `IdRole`),
   FOREIGN KEY (`login`) 
 	REFERENCES `USER`(`login`),
-  FOREIGN KEY (`IdGroup`) 
-	REFERENCES `GROUP`(`IdGroup`)
+  FOREIGN KEY (`IdRole`) 
+	REFERENCES `ROLE`(`IdRole`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 -- --------------------------------------------------------
 -- --------------------------------------------------------
@@ -106,12 +106,12 @@ CREATE TABLE `FUNC_ACTION` (
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 CREATE TABLE `PERMISSION` (
-  `IdGroup` varchar(6) COLLATE latin1_spanish_ci NOT NULL,  
+  `IdRole` varchar(6) COLLATE latin1_spanish_ci NOT NULL,  
   `IdFunctionality` varchar(6) COLLATE latin1_spanish_ci NOT NULL,
   `IdAction` varchar(6) COLLATE latin1_spanish_ci NOT NULL,
-  PRIMARY KEY(`IdGroup`, `IdFunctionality`, `IdAction`),
-  FOREIGN KEY (`IdGroup`) 
-	REFERENCES `GROUP`(`IdGroup`),
+  PRIMARY KEY(`IdRole`, `IdFunctionality`, `IdAction`),
+  FOREIGN KEY (`IdRole`) 
+	REFERENCES `ROLE`(`IdRole`),
   FOREIGN KEY (`IdFunctionality`) 
 	REFERENCES `FUNCTIONALITY`(`IdFunctionality`),
   FOREIGN KEY (`IdAction`) 
@@ -282,7 +282,6 @@ CREATE TABLE `SCHEDULE` (
 	REFERENCES `SUBJECT_GROUP`(`IdSubjectGroup`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
-
 INSERT INTO `ACTION` (`IdAction`, `name`, `description`) VALUES
 ('0', 'ONLYADMIN', 'ONLYADMIN'),
 ('1', 'ADD', 'ADD'),
@@ -299,4 +298,8 @@ INSERT INTO `FUNCTIONALITY` (`IdFunctionality`, `name`, `Ddescription`) VALUES
 ('4', 'ActionManagement', 'ActionManagement'),
 ('5', 'PermissionManagement', 'PermissionManagement');
 
+INSERT INTO `ROLE` (`IdRole`, `name`, `description`) VALUES
+('00000A', 'Admin', 'Role with all permissions'),
+('00001A', 'BasicUser', 'Role with the basic permissions'),
+('00002A', 'Test', 'Role to test');
   

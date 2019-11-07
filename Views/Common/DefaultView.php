@@ -50,7 +50,7 @@
                                         Permisos
                                     </a>
                                 </li>
-                                <li class="nav-item">
+								<li class="nav-item">
                                     <a class="nav-link" href="../Controllers/ActionController.php">
                                         Accion
                                     </a>
@@ -58,6 +58,11 @@
 								<li class="nav-item">
                                     <a class="nav-link" href="../Controllers/FunctionalityController.php">
                                         Funcionalidad
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="../Controllers/RoleController.php">
+                                        Roles
                                     </a>
                                 </li>
                                 </ul>
