@@ -7,7 +7,7 @@ if (!IsAuthenticated()) {
     header('Location:../index.php');
 }
 
-include_once '../Models/Subject/SubjectDAO.php';
+include_once '../Models/Subject/Subject.php';
 include_once '../Models/Department/DepartmentDAO.php';
 include_once '../Models/Degree/DegreeDAO.php';
 include_once '../Models/Subject/SubjectDAO.php';
@@ -26,10 +26,6 @@ include_once '../Functions/Redirect.php';
 include_once '../Functions/Messages.php';
 include_once '../Functions/Pagination.php';
 
-//DAOS
-$degreeDAO = new DegreeDAO();
-$departmentDAO = new DepartmentDAO();
-$subjectDAO = new SubjectDAO();
 
 $subjectPrimaryKey = "id";
 $value = $_REQUEST[$subjectPrimaryKey];
@@ -55,7 +51,7 @@ switch ($action) {
 
                     loadPDA($dir_subida);
 
-//                    rrmdir($dir_subida);
+                    rrmdir($dir_subida);
 
                     goToShowAllAndShowSuccess("PDA añadido correctamente.");
                 } catch (DAOException $e) {
@@ -118,7 +114,6 @@ function rrmdir($dir)
 }
 
 
-
 function loadPDA($dir)
 {
     $objects = scandir($dir);
@@ -131,18 +126,11 @@ function loadPDA($dir)
     }
     $source_pdf = preg_replace('/\s/', '\ ', $source_pdf);
 
-    $cmd = "pdftohtml -enc UTF-8 $source_pdf $dir" . "pda_output 2>&1";
-    echo $cmd;
+    $cmd = "pdftohtml -enc UTF-8 $source_pdf $dir" . "pda-output";
 
     exec($cmd);
 
-    shell_exec($cmd);
-    proc_open($cmd);
-
-    $a= passthru($cmd, $b);
-    var_dump($a);
-
-    $htmlContent = file_get_contents($dir . "/pda-outputs.html");
+    $htmlContent = file_get_contents($dir . "pda-outputs.html");
     $DOM = new DOMDocument('1.0', 'UTF-8');
     $DOM->loadHTML(mb_convert_encoding($htmlContent, 'HTML-ENTITIES', 'UTF-8'));
 
@@ -173,8 +161,14 @@ function loadPDA($dir)
 
 function loadCourse($subjects, $course, $degree)
 {
+    $degreeDAO = new DegreeDAO();
+    $departmentDAO = new DepartmentDAO();
+    $subjectDAO = new SubjectDAO();
+
     foreach ($subjects as $subject_data) {
         $subject_data = preg_split('/\n/', trim($subject_data));
+        print_r($subject_data);
+
 
         $code = substr($subject_data[0], 0, 7);
         $content = substr($subject_data[0], 9);
@@ -189,6 +183,7 @@ function loadCourse($subjects, $course, $degree)
         }
 
         $reindex = 0;
+        $department = NULL;
 
         if ($subject_data[1][0] != 'D') {
             $reindex = 1;
@@ -215,10 +210,13 @@ function loadCourse($subjects, $course, $degree)
 
         try {
             $subject = new Subject();
+            $department = $departmentDAO->show("code", $department);
+            $degree = $degreeDAO->show("name", $degree);
+
             $subject->setCode($code);
             $subject->setContent($content);
             $subject->setType($type);
-            $subject->setDepartment($departmentDAO->show("code", $department));
+            $subject->setDepartment($department);
             $subject->setArea($area);
             $subject->setCourse($course);
             $subject->setQuarter($quarter);
@@ -230,7 +228,7 @@ function loadCourse($subjects, $course, $degree)
             $subject->setTaughtHours($taughtHours);
             $subject->setHours($hours);
             $subject->setStudents($students);
-            $subject->setDegree($degreeDAO->show("name", $degree));
+            $subject->setDegree($degree);
             $subject->setTeacher(NULL);
 
             $subjectDAO->add($subject);
