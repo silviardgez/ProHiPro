@@ -139,6 +139,7 @@ html {
 
 .btn-logout {
     margin: 5px;
+    min-width: 8.2rem;
 }
 
 .margin-right {
@@ -226,7 +227,5 @@ a p {
 .flag {
     max-width: 2.2rem;
     margin-left: .5rem;
-    border-radius: 100%;
+    border-radius: 5px;
 }
-
-    

@@ -10,8 +10,6 @@ function translatePage(language = "es") {
         translate=texts;
         // Translate all the element with data-translate
         translateElement("data-translate", translate, lang);
-        // Translate all placeholders
-        translateElement("placeholder", translate, lang);
     });
 }
 
@@ -36,8 +34,9 @@ function translateElement(elementName, translate, lang) {
             if (numbers != null && numbers>1)
                 postHTML= postHTML.replace('%n', numbers);
 
-            if (elementName === "placeholder") {
-                $('[' + elementName + '="'+text+'"]').attr("placeholder",postHTML);
+            // Set placeholders
+            if (($(this)[0].tagName === "INPUT")) {
+                $('[' + elementName + '="'+text+'"]').attr("placeholder", postHTML);
             } else {
                 element.html(postHTML);
             }

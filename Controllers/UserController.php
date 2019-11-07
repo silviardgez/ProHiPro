@@ -23,13 +23,13 @@ $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "";
 switch($action) {
     case "add":
         if (!isset($_POST["submit"])){
-            new UserAddView();
+            new UserAddView(false);
         }
         else {
             try {
                 $user = new User();
                 $user->setLogin($_POST["login"]);
-                $user->setPassword($_POST["password"]);
+                $user->setPassword($user->encryptPassword($_POST["password"]));
                 $user->setDni($_POST["dni"]);
                 $user->setName($_POST["name"]);
                 $user->setSurname($_POST["surname"]);
@@ -96,7 +96,9 @@ switch($action) {
                 new UserEditView($user);
             } else {
                 try {
-                    $user->setPassword($_POST["password"]);
+                    if (!empty($_POST["password"])) {
+                        $user->setPassword($user->encryptPassword($_POST["password"]));
+                    }
                     $user->setDni($_POST["dni"]);
                     $user->setName($_POST["name"]);
                     $user->setSurname($_POST["surname"]);
@@ -121,16 +123,63 @@ switch($action) {
             showToast($message, $e->getMessage());
         }
         break;
+    case "search":
+        if (!isset($_POST["submit"])){
+            new UserAddView(true);
+        } else {
+            try {
+                $user = new User();
+                $user->setLogin($_POST["login"]);
+                $user->setDni($_POST["dni"]);
+                $user->setName($_POST["name"]);
+                $user->setSurname($_POST["surname"]);
+                $user->setEmail($_POST["email"]);
+                $user->setAddress($_POST["address"]);
+                $user->setTelephone($_POST["telephone"]);
+
+                showAllSearch($user);
+            } catch (DAOException $e) {
+                $message = MessageType::ERROR;
+                showAll();
+                showToast($message, $e->getMessage());
+            }
+        }
+        break;
     default:
         showAll();
         break;
 }
 
 function showAll() {
+    showAllSearch(NULL);
+}
+
+function showAllSearch($search) {
     try {
         $userDAO = new UserDAO();
-        $usersData = $userDAO->showAll();
-        new UserShowAllView($usersData);
+
+        if(!empty($_REQUEST['currentPage'])) {
+            $currentPage = $_REQUEST['currentPage'];
+        } else {
+            $currentPage = 1;
+        }
+
+        if(!empty($_REQUEST['itemsPerPage'])) {
+            $itemsPerPage = $_REQUEST['itemsPerPage'];
+        } else {
+            $itemsPerPage = 10;
+        }
+        if(!empty($_REQUEST['search'])) {
+            $toSearch = $_REQUEST['search'];
+        } elseif(!is_null($search)) {
+            $toSearch = $search;
+        } else {
+            $toSearch = NULL;
+        }
+
+        $totalUsers = $userDAO->countTotalUsers($toSearch);
+        $usersData = $userDAO->showAllPaged($currentPage, $itemsPerPage, $toSearch);
+        new UserShowAllView($usersData, $itemsPerPage, $currentPage, $totalUsers, $toSearch);
     } catch (DAOException $e) {
         $message = MessageType::ERROR;
         new UserShowAllView(array());
