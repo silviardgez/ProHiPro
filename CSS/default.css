@@ -16,6 +16,21 @@ html {
 /*
  * Sidebar
  */
+@media(max-width: 768px) {
+    .dropdown-content {
+        display: block;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+    
+    .sidebar {
+        display: none; 
+    }
+
+}
 
 .sidebar {
     position: fixed;
@@ -50,17 +65,32 @@ html {
     color: #333;
 }
 
-.sidebar .nav-link .feather {
+.sidebar .nav-link .fas {
     margin-right: 4px;
+    width: 1.2rem;
     color: #999;
+    text-align: center;
 }
+
+.sidebar .nav-link .far {
+    margin-right: 4px;
+    width: 1.2rem;
+    color: #999;
+    text-align: center;
+}
+
 
 .sidebar .nav-link.active {
     color: #007bff;
 }
 
-.sidebar .nav-link:hover .feather,
-.sidebar .nav-link.active .feather {
+.sidebar .nav-link:hover .fas,
+.sidebar .nav-link.active .fas {
+    color: inherit;
+}
+
+.sidebar .nav-link:hover .far,
+.sidebar .nav-link.active .far {
     color: inherit;
 }
 
@@ -74,7 +104,7 @@ html {
  */
 
 [role="main"] {
-    padding-top: 48px; /* Space for fixed navbar */
+    padding-top: 35px;
 }
 
 /*
@@ -141,6 +171,17 @@ a .feather-24 {
     .margin-main {
         margin-left: 280px !important;
     }
+    
+    .navbar-toggler {
+        display: none;
+    }
+}
+
+.navbar-toggler {
+    font-size: 1rem;
+    vertical-align: middle;
+    margin-top: -2%;
+    margin-right: .7rem;
 }
 
 main .row {

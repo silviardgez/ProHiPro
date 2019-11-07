@@ -2,11 +2,14 @@
 <html
 <head>
     <link rel="stylesheet" href="../CSS/default.css" />
+    <script src="../JS/SidebarToggler.js"></script>
 </head>
 <body>
         <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-                <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">
-                    <span class="feather-24" data-feather="home"></span>
+                <a id="button-sidebar" class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">
+                <button id="button-show-sidebar" class="navbar-toggler" type="button" onclick="showSidebar()">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                     TEC
                 </a>
                 <ul class="navbar-nav px-1">
@@ -26,13 +29,14 @@
 
         <div class="container-fluid">
             <div class="row">
-                <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-                    <div class="sidebar-sticky" id="navbarTogglerDemo01">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <nav id="sidebar-menu" class="d-md-block bg-light sidebar sidebar-expanded">
+                    <div id="sidebar-contents" class="sidebar-sticky">
                         <ul class="nav flex-column">
                             <li class="nav-item">
                                 <a class="nav-link nav-collapse" data-toggle="collapse" aria-expanded="false"
                                    aria-controls="collapseUsers" href="#collapseUsers">
-                                    <span data-feather="users"></span>
+                                    <span class="fas fa-users"></span>
                                     Gestión de usuarios
                                 </a>
                                 <ul class="flex-column collapse items-collapsed" id="collapseUsers">
@@ -50,14 +54,14 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
-                                    <span data-feather="calendar"></span>
+                                    <span class="far fa-calendar"></span>
                                     Gestión de horarios
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link nav-collapse" data-toggle="collapse" aria-expanded="false"
                                    aria-controls="collapseDegree" href="#collapseDegree">
-                                    <span data-feather="book-open"></span>
+                                    <span class="fas fa-graduation-cap"></span>
                                     Gestión de titulaciones
                                 </a>
                                 <ul class="flex-column collapse items-collapsed" id="collapseDegree">
@@ -81,7 +85,7 @@
                             <li class="nav-item">
                                 <a class="nav-link nav-collapse" data-toggle="collapse" aria-expanded="false"
                                    aria-controls="collapseDepartment" href="#collapseDepartment">
-                                    <span data-feather="box"></span>
+                                    <span class="fas fa-sitemap"></span>
                                     Gestión de departamentos
                                 </a>
                                 <ul class="flex-column collapse items-collapsed" id="collapseDepartment">
@@ -105,7 +109,7 @@
                             <li class="nav-item">
                                 <a class="nav-link nav-collapse" data-toggle="collapse" aria-expanded="false"
                                    aria-controls="collapseUniversity" href="#collapseUniversity">
-                                    <span data-feather="globe"></span>
+                                    <span class="fas fa-university"></span>
                                     Gestión de universidades
                                 </a>
                                 <ul class="flex-column collapse items-collapsed" id="collapseUniversity">
@@ -133,7 +137,7 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
-                                    <span data-feather="archive"></span>
+                                    <span class="fas fa-book"></span>
                                     Gestión de cursos académicos
                                 </a>
                             </li>
@@ -145,19 +149,19 @@
                         <ul class="nav flex-column mb-2">
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
-                                    <span data-feather="file-text"></span>
+                                    <span class="fas fa-file-alt"></span>
                                     PDA
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
-                                    <span data-feather="file-text"></span>
+                                    <span class="fas fa-file-alt"></span>
                                     POD
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
-                                    <span data-feather="file-text"></span>
+                                    <span class="fas fa-file-alt"></span>
                                     Informes
                                 </a>
                             </li>
