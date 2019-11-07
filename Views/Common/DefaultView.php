@@ -6,7 +6,7 @@
 <body>
         <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
                 <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">
-                    <span class="feather-24 profile-margin" data-feather="home"></span>
+                    <span class="feather-24" data-feather="home"></span>
                     TEC
                 </a>
                 <ul class="navbar-nav px-1">
@@ -30,7 +30,7 @@
                     <div class="sidebar-sticky">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="collapse" aria-expanded="false"
+                                <a class="nav-link nav-collapse" data-toggle="collapse" aria-expanded="false"
                                    aria-controls="collapseUsers" href="#collapseUsers">
                                     <span data-feather="users"></span>
                                     Gestión de usuarios
@@ -55,7 +55,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="collapse" aria-expanded="false"
+                                <a class="nav-link nav-collapse" data-toggle="collapse" aria-expanded="false"
                                    aria-controls="collapseDegree" href="#collapseDegree">
                                     <span data-feather="book-open"></span>
                                     Gestión de titulaciones
@@ -79,7 +79,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="collapse" aria-expanded="false"
+                                <a class="nav-link nav-collapse" data-toggle="collapse" aria-expanded="false"
                                    aria-controls="collapseDepartment" href="#collapseDepartment">
                                     <span data-feather="box"></span>
                                     Gestión de departamentos
@@ -103,7 +103,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="collapse" aria-expanded="false"
+                                <a class="nav-link nav-collapse" data-toggle="collapse" aria-expanded="false"
                                    aria-controls="collapseUniversity" href="#collapseUniversity">
                                     <span data-feather="globe"></span>
                                     Gestión de universidades
