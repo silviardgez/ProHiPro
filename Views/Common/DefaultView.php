@@ -27,7 +27,7 @@
         <div class="container-fluid">
             <div class="row">
                 <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-                    <div class="sidebar-sticky">
+                    <div class="sidebar-sticky" id="navbarTogglerDemo01">
                         <ul class="nav flex-column">
                             <li class="nav-item">
                                 <a class="nav-link nav-collapse" data-toggle="collapse" aria-expanded="false"

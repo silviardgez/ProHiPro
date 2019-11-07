@@ -153,14 +153,15 @@ main .row {
 }
   
 .nav-collapse::after {
+    font-family: "FontAwesome";
 	content: "\f107";
-	color: #333;
-	margin-left: 4px;
-    font-family: "FontAwesome"
+    font-size: .8rem;
+	margin-left: 3px;
+    color: #555;
 }
 
 .nav-collapse[aria-expanded="true"]::after {
-	content: "\f106";
+    content: "\f106";
 }
 
 td a {

@@ -1,4 +1,4 @@
-@media(min-width: 1440px) {
+@media(min-width: 1540px) {
     .actions-row {
         width: 8%;
     }
@@ -10,7 +10,7 @@
     }
 } 
 
-@media(min-width: 1200px) and (max-width: 1440px) {
+@media(min-width: 1200px) and (max-width: 1540px) {
     .actions-row {
         width: 15%;
     }
