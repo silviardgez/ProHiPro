@@ -5,33 +5,28 @@ body {
 .main-head{
     height: 150px;
     background: #FFF;
-
 }
 
 .sidenav {
     height: 100%;
     background-color: #000;
     overflow-x: hidden;
-    padding-top: 20px;
+    display: flex;
+    align-items: center;
 }
 
-.main {
-    padding: 0px 10px;
-}
-
-@media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-}
-
-@media screen and (max-width: 450px) {
-    .login-form{
-        margin-top: 15%;
+@media screen and (max-width: 768px){
+    .main {
+        margin-top: 5%;
     }
 }
 
 @media screen and (min-width: 768px){
-    .main{
+    .main {
         margin-left: 44%;
+        align-items: center;
+        height: 100%;
+        display: flex;
     }
 
     .sidenav{
@@ -43,14 +38,13 @@ body {
     }
 
     .login-form{
-        margin-top: 16rem;
+        max-width: 35rem;
         min-width: 25rem;
     }
 
 }
 
 .login-main-text{
-    margin-top: 14.5rem;
     padding: 60px;
     color: #fff;
 }
