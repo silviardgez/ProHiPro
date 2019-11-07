@@ -6,16 +6,15 @@ class DefaultDAO
 
     function __construct()
     {
-        if ($_SESSION['env'] == 'test') {
+        error_reporting(0);
+        if (isset($_SESSION['env']) && $_SESSION['env'] == 'test') {
             $this->mysqli = new mysqli("127.0.0.1", "userTEC", "passTEC", "testTEC");
-
         } else {
             $this->mysqli = new mysqli("127.0.0.1", "userTEC", "passTEC", "TEC");
-
         }
 
         if ($this->mysqli->connect_errno) {
-            echo "Fallo al conectar a MySQL: (" . $this->mysqli->connect_errno . ") " . $this->mysqli->connect_error;
+            throw new DAOException("Fallo al conectar a MySQL: (ERROR " . $this->mysqli->connect_errno . ")");
         }
     }
 
@@ -23,7 +22,7 @@ class DefaultDAO
     {
         $sql = "SELECT * FROM " . strtoupper($className);
         if (!($result = $this->mysqli->query($sql))) {
-            return 'Error en la consulta sobre la base de datos';
+            throw new DAOException('Error de conexión con la base de datos.');
         } else {
             $arrayData = array();
             $i = 0;
@@ -55,27 +54,33 @@ class DefaultDAO
             }
         }
         $primary_key_function = "get" . ucfirst($primary_key);
-        $sql = "SELECT * FROM " . strtoupper(get_class($entity)) . " WHERE " . $primary_key . "='" . $entity->$primary_key_function() . "';";
-        if (!$result = $this->mysqli->query($sql)) {
-            return 'No se ha podido conectar con la base de datos';
-        } else {
-            if ($result->num_rows == 0) {
+        $sql = "SELECT * FROM " . strtoupper(get_class($entity)) . " WHERE " . $primary_key . "='".
+            $entity->$primary_key_function() . "'";
+        if (!$result = $this->mysqli->query($sql)){
+            throw new DAOException('Error de conexión con la base de datos.');
+        }
+        else {
+            if ($result->num_rows == 0){
                 $sql = "INSERT INTO " . strtoupper(get_class($entity)) . $sql_keys . ") VALUES " . $sql_values . ")";
                 $this->mysqli->query($sql);
-                return 'Inserción realizada con éxito';
             } else {
-                return 'Error: Ya existe en la base de datos';
+               throw new DAOException('Entidad duplicada. Ya existe en la base de datos.');
             }
         }
     }
 
     function delete($entityName, $key, $value)
     {
-        $sql = "DELETE FROM " . strtoupper($entityName) . " WHERE " . $key . "= '" . $value . "'";
+        $sql = "SELECT * FROM " . strtoupper($entityName) . " WHERE " . $key . "='". $value . "'";
         if (!$result = $this->mysqli->query($sql)) {
-            return 'Error en la consulta sobre la base de datos';
+            throw new DAOException('Error de conexión con la base de datos.');
         } else {
-            return 'Eliminado correctamente';
+            if ($result->num_rows != 0) {
+                $sql = "DELETE FROM " . strtoupper($entityName) . " WHERE " . $key . "= '" . $value . "'";
+                $this->mysqli->query($sql);
+            } else {
+                throw new DAOException('La entidad que se intenta eliminar no existe.');
+            }
         }
     }
 
@@ -83,9 +88,13 @@ class DefaultDAO
     {
         $sql = "SELECT * FROM " . strtoupper($entityName) . " WHERE " . $key . " ='" . $value . "'";
         if (!$result = $this->mysqli->query($sql)) {
-            return 'Error en la consulta sobre la base de datos';
+            throw new DAOException('Error de conexión con la base de datos.');
         } else {
-            return $result->fetch_array();
+            if($result->num_rows > 0) {
+                return $result->fetch_array();
+            } else {
+                throw new DAOException('La entidad consultada no existe.');
+            }
         }
     }
 
@@ -106,16 +115,17 @@ class DefaultDAO
 
         }
         $primary_key_function = "get" . ucfirst($primary_key);
-        $sql_query = "SELECT * FROM " . strtoupper(get_class($entity)) . " WHERE " . $primary_key . "= '" . $entity->$primary_key_function() . "'";
+        $sql_query = "SELECT * FROM " . strtoupper(get_class($entity)) . " WHERE " . $primary_key . "= '" .
+            $entity->$primary_key_function() . "'";
         if (!$result = $this->mysqli->query($sql_query)) {
-            return 'No se ha podido conectar con la base de datos';
+            throw new DAOException('Error de conexión con la base de datos.');
         } else {
             if ($result->num_rows != 0) {
-                $sql_edit = "UPDATE " . strtoupper(get_class($entity)) . " SET " . $sql . " WHERE " . $primary_key . "= '" . $entity->$primary_key_function() . "'";
+                $sql_edit = "UPDATE " . strtoupper(get_class($entity)) . " SET " . $sql . " WHERE " .
+                    $primary_key . "= '" . $entity->$primary_key_function() . "'";
                 $this->mysqli->query($sql_edit);
-                return 'Edición realizada con éxito';
             } else {
-                return 'Error: No existe en la base de datos';
+                throw new DAOException('La entidad a editar no existe en la base de datos.');
             }
         }
     }
@@ -124,9 +134,7 @@ class DefaultDAO
     {
         $sql = "DELETE FROM " . strtoupper($entityName);
         if (!$result = $this->mysqli->query($sql)) {
-            return 'Error en la consulta sobre la base de datos';
-        } else {
-            return 'Eliminado correctamente';
+            throw new DAOException('Error en la consulta sobre la base de datos');
         }
     }
 }
