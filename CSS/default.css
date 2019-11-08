@@ -212,4 +212,10 @@ td a {
 td a:hover {
     color: #111111;
 }
+
+a p {
+    display: inline-block;
+    margin: 0;
+}
+
     
