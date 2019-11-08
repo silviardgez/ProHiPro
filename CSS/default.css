@@ -212,4 +212,21 @@ td a {
 td a:hover {
     color: #111111;
 }
+
+a p {
+    display: inline-block;
+    margin: 0;
+}
+
+.flags {
+    margin-top: .7rem;
+    margin-right: 1rem;
+}
+
+.flag {
+    max-width: 2.2rem;
+    margin-left: .5rem;
+    border-radius: 100%;
+}
+
     

@@ -14,13 +14,20 @@
                 </a>
                 <ul class="navbar-nav px-1">
                     <div class="row margin-right">
+                    <li class="nav-item text-nowrap row flags">
+                        <a href="javascript:translatePage('gl')"><img class="flag" src="../Images/gl.png"></a>
+                        <a href="javascript:translatePage('es')"><img class="flag" src="../Images/es.jpg"></a>
+                        <a href="javascript:translatePage('en')"><img class="flag" src="../Images/en.jpg"></a>
+                    </li>
                     <li class="nav-item text-nowrap">
                         <a class="nav-link" href="#" name="Profile">
                             <span class="feather-32 profile-margin" data-feather="user"></span>
                         </a>
                     </li>
                     <li class="nav-item text-nowrap">
-                        <a class="btn btn-light btn-logout" href="../Functions/Logout.php">Cerrar sesión</a>
+                        <a class="btn btn-light btn-logout" href="../Functions/Logout.php">
+                            <p data-translate="Cerrar sesión"></p>
+                        </a>
                     </li>
                     </div>
                 </ul>
@@ -37,17 +44,32 @@
                                 <a class="nav-link nav-collapse" data-toggle="collapse" aria-expanded="false"
                                    aria-controls="collapseUsers" href="#collapseUsers">
                                     <span class="fas fa-users"></span>
-                                    Gestión de usuarios
+                                    <p data-translate="Gestión de usuarios"></p>
                                 </a>
                                 <ul class="flex-column collapse items-collapsed" id="collapseUsers">
                                 <li class="nav-item">
                                 <a class="nav-link" href="../Controllers/UserController.php">
-                                    Usuarios
+                                    <p data-translate="Usuarios"></p>
                                 </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">
-                                        Permisos
+                                        <p data-translate="Permisos"></p>
+                                    </a>
+                                </li>
+								<li class="nav-item">
+                                    <a class="nav-link" href="../Controllers/ActionController.php">
+                                        <p data-translate="Acciones"></p>
+                                    </a>
+                                </li>
+								<li class="nav-item">
+                                    <a class="nav-link" href="../Controllers/FunctionalityController.php">
+                                        <p data-translate="Funcionalidades"></p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="../Controllers/RoleController.php">
+                                        <p data-translate="Roles"></p>
                                     </a>
                                 </li>
                                 </ul>
@@ -55,29 +77,29 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
                                     <span class="far fa-calendar"></span>
-                                    Gestión de horarios
+                                    <p data-translate="Gestión de horarios"></p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link nav-collapse" data-toggle="collapse" aria-expanded="false"
                                    aria-controls="collapseDegree" href="#collapseDegree">
                                     <span class="fas fa-graduation-cap"></span>
-                                    Gestión de titulaciones
+                                    <p data-translate="Gestión de titulaciones"></p>
                                 </a>
                                 <ul class="flex-column collapse items-collapsed" id="collapseDegree">
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">
-                                            Titulaciones
+                                            <p data-translate="Titulaciones"></p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">
-                                            Asignaturas
+                                            <p data-translate="Asignaturas"></p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">
-                                            Grupos
+                                            <p data-translate="Grupos"></p>
                                         </a>
                                     </li>
                                 </ul>
@@ -86,22 +108,22 @@
                                 <a class="nav-link nav-collapse" data-toggle="collapse" aria-expanded="false"
                                    aria-controls="collapseDepartment" href="#collapseDepartment">
                                     <span class="fas fa-sitemap"></span>
-                                    Gestión de departamentos
+                                    <p data-translate="Gestión de departamentos"></p>
                                 </a>
                                 <ul class="flex-column collapse items-collapsed" id="collapseDepartment">
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">
-                                            Departamentos
+                                            <p data-translate="Departamentos"></p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">
-                                            Profesores
+                                            <p data-translate="Profesores"></p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">
-                                            Tutorías
+                                            <p data-translate="Tutorías"></p>
                                         </a>
                                     </li>
                                 </ul>
@@ -110,27 +132,27 @@
                                 <a class="nav-link nav-collapse" data-toggle="collapse" aria-expanded="false"
                                    aria-controls="collapseUniversity" href="#collapseUniversity">
                                     <span class="fas fa-university"></span>
-                                    Gestión de universidades
+                                    <p data-translate="Gestión de universidades"></p>
                                 </a>
                                 <ul class="flex-column collapse items-collapsed" id="collapseUniversity">
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">
-                                            Universidades
+                                            <p data-translate="Universidades"></p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">
-                                            Centros
+                                            <p data-translate="Centros"></p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">
-                                            Edificios
+                                            <p data-translate="Edificios"></p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">
-                                            Espacios
+                                            <p data-translate="Espacios"></p>
                                         </a>
                                     </li>
                                 </ul>
@@ -138,13 +160,13 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
                                     <span class="fas fa-book"></span>
-                                    Gestión de cursos académicos
+                                    <p data-translate="Gestión de cursos académicos"></p>
                                 </a>
                             </li>
                         </ul>
 
                         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                            <span>Importar/Exportar</span>
+                            <span data-translate="Importar/Exportar"></span>
                         </h6>
                         <ul class="nav flex-column mb-2">
                             <li class="nav-item">
@@ -162,7 +184,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
                                     <span class="fas fa-file-alt"></span>
-                                    Informes
+                                    <p data-translate="Informes"></p>
                                 </a>
                             </li>
                         </ul>
@@ -176,5 +198,6 @@
 <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
 <script>
     feather.replace();
+    translatePage(getCookie("language-selected"));
 </script>
 </html>

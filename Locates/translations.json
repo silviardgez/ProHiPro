@@ -1,0 +1,117 @@
+{
+    "Gestión de usuarios": {
+        "en": "User management",
+        "gl": "Xestión de usuarios" 
+    },
+    "Usuarios": {
+        "en": "Users",
+        "gl": "Usuarios" 
+    },
+    "Permisos":{
+	"en": "Permissions",
+        "gl": "Permisos"
+    },
+    "Acciones": {
+        "en": "Actions",
+        "gl": "Accións" 
+    },
+    "Funcionalidades": {
+        "en": "Functionalities",
+        "gl": "Funcionalidades"
+    },
+    "Roles": {
+        "en": "Roles",
+        "gl": "Roles" 
+    },
+    "Gestión de horarios":{
+	"en": "Schedule management",
+        "gl": "Xestión de horarios"
+    },
+    "Gestión de titulaciones": {
+        "en": "Degree management",
+        "gl": "Xestión de titulacións"
+    },
+    "Titulaciones": {
+        "en": "Degrees",
+        "gl": "Titulacións"
+    },
+    "Asignaturas": {
+        "en": "Subjects",
+        "gl": "Materias" 
+    },
+    "Grupos":{
+	"en": "Groups",
+        "gl": "Grupos"
+    },
+    "Gestión de departamentos": {
+        "en": "Department management",
+        "gl": "Xestión de departamentos" 
+    },
+    "Departamentos": {
+        "en": "Departments",
+        "gl": "Departamentos"
+    },
+    "Profesores": {
+        "en": "Teachers",
+        "gl": "Profesores" 
+    },
+    "Tutorías":{
+	"en": "Tutorials",
+        "gl": "Titorías"
+    },
+    "Gestión de universidades": {
+        "en": "University management",
+        "gl": "Xestión de universidades" 
+    },
+    "Universidades": {
+        "en": "Universities",
+        "gl": "Universidades"
+    },
+    "Edificios": {
+        "en": "Buildings",
+        "gl": "Edificios"
+    },
+    "Centros": {
+        "en": "Centers",
+        "gl": "Centros"
+    },
+    "Espacios": {
+        "en": "Spaces",
+        "gl": "Espacios"
+    },
+    "Gestión de cursos académicos": {
+        "en": "Academic courses management",
+        "gl": "Xestión de cursos académicos"
+    },
+    "Importar/Exportar": {
+        "en": "Import/Export",
+        "gl": "Importar/Exportar"
+    },
+    "Informes": {
+        "en": "Reports",
+        "gl": "Informes"
+    },
+    "Cerrar sesión": {
+        "en": "Log out",
+        "gl": "Pechar sesión"
+    },
+    "Listado de usuarios": {
+        "en": "User list",
+        "gl": "Listado de usuarios"
+    },
+    "Nombre de usuario": {
+        "en": "Username",
+        "gl": "Nome de usuario"
+    },
+    "Iniciar sesión": {
+        "en": "Log in",
+        "gl": "Iniciar sesión"
+    },
+    "Contraseña": {
+        "en": "Password",
+        "gl": "Contrasinal"
+    },
+    "Introducir nombre de usuario": {
+        "en": "Enter username"
+    }
+}
