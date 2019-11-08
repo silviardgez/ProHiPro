@@ -16,7 +16,7 @@ function loginUser()
         include '../Models/Common/MessageType.php';
         include '../Functions/ShowToast.php';
         $message = MessageType::ERROR;
-        showToast($message, $e);
+        showToast($message, $e->getMessage());
     }
 }
 
