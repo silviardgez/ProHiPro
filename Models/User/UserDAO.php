@@ -20,6 +20,7 @@ class UserDAO
     }
 
     function add($user) {
+        $user->setPassword(md5($user->getPassword()));
         return $this->defaultDAO->insert($user, "login");
     }
 
@@ -34,6 +35,7 @@ class UserDAO
     }
 
     function edit($user) {
+        $user->setPassword(md5($user->getPassword()));
         return $this->defaultDAO->edit($user, "login");
     }
 
@@ -43,8 +45,9 @@ class UserDAO
 
     function canBeLogged($login, $password) {
         $result = $this->show("login", $login);
+        
         if (!is_null($result)){
-            if ($result->getPassword() != $password){
+            if ($result->getPassword() != md5($password)){
                 throw new DAOException('Contraseña incorrecta.');
             }
         } else {

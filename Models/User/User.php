@@ -12,14 +12,14 @@ class User
 
     public function __construct($login=NULL, $password=NULL, $dni=NULL, $name=NULL, $surname=NULL, $email=NULL,
                                 $address=NULL, $telephone=NULL){
-        $this->login = $login;
-        $this->password = $password;
-        $this->dni = $dni;
-        $this->name = $name;
-        $this->surname = $surname;
-        $this->email = $email;
-        $this->address = $address;
-        $this->telephone = $telephone;
+        $this->setLogin($login);
+        $this->setPassword($password);
+        $this->setDni($dni);
+        $this->setName($name);
+        $this->setSurname($surname);
+        $this->setEmail($email);
+        $this->setAddress($address);
+        $this->setTelephone($telephone);
     }
 
     public function getLogin()
