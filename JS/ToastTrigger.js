@@ -1,6 +1,8 @@
 function showToast(title, titleColor, text) {
-    document.getElementById('message-toast').textContent = text;
+    var messageContent = "<p data-translate='" + text + "'></p>";
+    $('#toast-body').append(messageContent);
     document.getElementById('header-toast').style.backgroundColor = titleColor;
-    document.getElementById('title-name').textContent = title;
+    var titleContent = "<strong class='mr-auto' data-translate='" + title + "'></strong>";
+    $('#button-header').before(titleContent);
     $('.toast').toast('show');
 }

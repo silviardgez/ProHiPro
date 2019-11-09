@@ -47,10 +47,15 @@ class DefaultDAO
             }
             $function_name = "get" . ucfirst($attribute);
             $value = $entity->$function_name();
+            if (empty($value)) {
+                $value = "NULL";
+            } elseif (!is_int($value)) {
+                $value = "'" . $value . "'";
+            }
             if ($sql_values == "") {
-                $sql_values = "('" . $value . "'";
+                $sql_values = "(" . $value;
             } else {
-                $sql_values = $sql_values . ", '" . $value . "'";
+                $sql_values = $sql_values . ", " . $value;
             }
         }
         $primary_key_function = "get" . ucfirst($primary_key);
@@ -62,7 +67,9 @@ class DefaultDAO
         else {
             if ($result->num_rows == 0){
                 $sql = "INSERT INTO " . strtoupper(get_class($entity)) . $sql_keys . ") VALUES " . $sql_values . ")";
-                $this->mysqli->query($sql);
+                if(!$resultInsertion = $this->mysqli->query($sql)) {
+                    throw new DAOException($this->mysqli->error);
+                }
             } else {
                throw new DAOException('Entidad duplicada. Ya existe en la base de datos.');
             }
@@ -105,14 +112,18 @@ class DefaultDAO
         foreach ($attributes as $attribute) {
             $function_name = "get" . ucfirst($attribute);
             $value = $entity->$function_name();
+            if (empty($value)) {
+                $value = "NULL";
+            } elseif (!is_int($value)) {
+                $value = "'" . $value . "'";
+            }
             if ($attribute != $primary_key) {
                 if ($sql == "") {
-                    $sql = $attribute . " = '" . $value . "'";
+                    $sql = $attribute . " = " . $value;
                 } else {
-                    $sql = $sql . "," . $attribute . " = '" . $value . "'";
+                    $sql = $sql . ", " . $attribute . " = " . $value;
                 }
             }
-
         }
         $primary_key_function = "get" . ucfirst($primary_key);
         $sql_query = "SELECT * FROM " . strtoupper(get_class($entity)) . " WHERE " . $primary_key . "= '" .
@@ -123,7 +134,9 @@ class DefaultDAO
             if ($result->num_rows != 0) {
                 $sql_edit = "UPDATE " . strtoupper(get_class($entity)) . " SET " . $sql . " WHERE " .
                     $primary_key . "= '" . $entity->$primary_key_function() . "'";
-                $this->mysqli->query($sql_edit);
+                if(!$resultEdit = $this->mysqli->query($sql_edit)) {
+                    throw new DAOException($this->mysqli->error);
+                }
             } else {
                 throw new DAOException('La entidad a editar no existe en la base de datos.');
             }
