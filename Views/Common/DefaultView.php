@@ -158,7 +158,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="../Controllers/AcademicCourseController.php">
                                     <span class="fas fa-book"></span>
                                     <p data-translate="Gestión de cursos académicos"></p>
                                 </a>

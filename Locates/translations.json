@@ -95,6 +95,7 @@
         "en": "Log out",
         "gl": "Pechar sesión"
     },
+<<<<<<< HEAD
     "Listado de usuarios": {
         "en": "User list",
         "gl": "Listado de usuarios"
@@ -112,6 +113,60 @@
         "gl": "Contrasinal"
     },
     "Introducir nombre de usuario": {
-        "en": "Enter username"
+        "en": "Enter username",
+        "gl": "Introducir nome de usuario"
+    },
+    "Listado de cursos académicos": {
+        "en": "Academic courses list",
+        "gl": "Listado de cursos académicos"
+    },
+    "Añadir curso académico": {
+        "en": "Add academic course",
+        "gl": "Engadir curso académico"
+    },
+    "Identificador": {
+        "en": "Id",
+        "gl": "Identificador"
+    },
+    "Año de inicio": {
+        "en": "Start year",
+        "gl": "Ano de inicio"
+    },
+    "Año de fin": {
+        "en": "End year",
+        "gl": "Ano de fin"
+    },
+    "No se ha obtenido ningún curso académico": {
+        "en": "No academic course has been obtained",
+        "gl": "Non se obtuvo ningún curso académico"
+    },
+    "Volver": {
+        "en": "Back",
+        "gl": "Volver"
+    },
+    "Insertar curso académico": {
+        "en": "Add academic course",
+        "gl": "Engadir curso académico"
+    },
+    "Enviar": {
+        "en": "Send",
+        "gl": "Enviar"
+    },
+    "El curso académico no existe": {
+        "en": "Academic course does not exist",
+        "gl": "O curso académico non existe"
+    },
+    "Introducir año de inicio": {
+        "en": "Add start year",
+        "gl": "Engadir ano de inicio"
+    },
+    "Introducir año de fin": {
+        "en": "Add end year",
+        "gl": "Engadir ano de fin"
+    },
+    "Curso académico": {
+        "en": "Academic course",
+        "gl": "Curso académico"
     }
+
 }
