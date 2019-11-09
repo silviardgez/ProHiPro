@@ -18,6 +18,7 @@ include '../Views/User/UserEditView.php';
 include '../Functions/ShowToast.php';
 include '../Functions/OpenDeletionModal.php';
 include '../Functions/Redirect.php';
+
 $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "";
 switch($action) {
     case "add":
