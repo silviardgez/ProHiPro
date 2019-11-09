@@ -41,7 +41,7 @@ CREATE TABLE `USER` (
   ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 -- --------------------------------------------------------
 -- --------------------------------------------------------
--- TABLE STRUCTURE FOR TABLE `GROUP`
+-- TABLE STRUCTURE FOR TABLE `ROLE`
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 CREATE TABLE `ROLE` (
@@ -123,10 +123,11 @@ CREATE TABLE `PERMISSION` (
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 CREATE TABLE `ACADEMICCOURSE` (
-  `IdAcademicCourse` varchar(6) COLLATE latin1_spanish_ci NOT NULL,
+  `id_academic_course` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
+  `academic_course_abbr` varchar(6) COLLATE latin1_spanish_ci NOT NULL UNIQUE,
   `start_year` int(4) COLLATE latin1_spanish_ci NOT NULL,
   `end_year` int(4) COLLATE latin1_spanish_ci NOT NULL,
-  PRIMARY KEY(`IdAcademicCourse`)  
+  PRIMARY KEY(`id_academic_course`)  
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 -- --------------------------------------------------------
 -- --------------------------------------------------------
@@ -134,12 +135,12 @@ CREATE TABLE `ACADEMICCOURSE` (
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 CREATE TABLE `UNIVERSITY` (
-  `IdUniversity` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,  
-  `IdAcademicCourse` varchar(6) COLLATE latin1_spanish_ci NOT NULL,
+  `IdUniversity` int(8) COLLATE latin1_spanish_ci NOT NULL,  
+  `id_academic_course` int(8) COLLATE latin1_spanish_ci NOT NULL,
   `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
-  PRIMARY KEY(`IdUniversity`, `IdAcademicCourse`),
-  FOREIGN KEY (`IdAcademicCourse`) 
-	REFERENCES `ACADEMICCOURSE`(`IdAcademicCourse`)
+  PRIMARY KEY(`IdUniversity`, `id_academic_course`),
+  FOREIGN KEY (`id_academic_course`) 
+	REFERENCES `ACADEMICCOURSE`(`id_academic_course`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 -- --------------------------------------------------------
 -- --------------------------------------------------------
@@ -291,12 +292,12 @@ INSERT INTO `ACTION` (`IdAction`, `name`, `description`) VALUES
 ('5', 'SHOWCURRENT', 'SHOWCURRENT'),
 ('6', 'SHOWALL', 'SHOWALL');
 
-INSERT INTO `FUNCTIONALITY` (`IdFunctionality`, `name`, `Description`) VALUES
-('0', 'UsersManagement', 'UsersManagement'),
-('1', 'RolesManagement', 'RolesManagement'),
-('2', 'FunctionalityManagement', 'FunctionalityManagement'),
-('3', 'ActionManagement', 'ActionManagement'),
-('4', 'PermissionManagement', 'PermissionManagement');
+INSERT INTO `FUNCTIONALITY` (`IdFunctionality`, `name`, `description`) VALUES
+('1', 'UsersManagement', 'UsersManagement'),
+('2', 'RolesManagement', 'RolesManagement'),
+('3', 'FunctionalityManagement', 'FunctionalityManagement'),
+('4', 'ActionManagement', 'ActionManagement'),
+('5', 'PermissionManagement', 'PermissionManagement');
 
 INSERT INTO `ROLE` (`IdRole`, `name`, `description`) VALUES
 ('0', 'Admin', 'Role with all permissions'),

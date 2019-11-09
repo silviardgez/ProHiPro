@@ -14,4 +14,8 @@
     .actions-row {
         width: 15%;
     }
-} 
+}
+
+th label {
+    margin-bottom: 0;
+}

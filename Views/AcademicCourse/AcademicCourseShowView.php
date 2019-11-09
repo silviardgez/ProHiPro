@@ -14,15 +14,15 @@ private $academicCourse;
         <main role="main" class="margin-main ml-sm-auto px-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-3
             border-bottom">
-                <h1 class="h2"><label data-translate="Curso académico"></label> <?php echo $this->academicCourse->getIdAcademicCourse() ?> </h1>
+                <h1 class="h2"><label data-translate="Curso académico"></label> <?php echo $this->academicCourse->getAcademicCourseAbbr() ?> </h1>
                 <a class="btn btn-primary" role="button" href="../Controllers/AcademicCourseController.php"><p data-translate="Volver"></p></a>
             </div>
             <?php if(!is_null($this->academicCourse)): ?>
             <form>
                 <div class="form-group">
                     <label for="IdAcademicCourse" data-translate="Identificador"></label>
-                    <input type="text" class="form-control" id="IdAcademicCourse" name="IdAcademicCourse"
-                           value="<?php echo $this->academicCourse->getIdAcademicCourse() ?>" readonly>
+                    <input type="text" class="form-control" id="academicCourseAbbr" name="academicCourseAbbr"
+                           value="<?php echo $this->academicCourse->getAcademicCourseAbbr() ?>" readonly>
                 </div>
                 <div class="form-group">
                     <label for="start_year" data-translate="Año de inicio"></label>

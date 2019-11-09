@@ -26,10 +26,7 @@ switch($action) {
         }
         else {
             try {
-                $academicCourse = new AcademicCourse();
-                //$academicCourse->setIdAcademicCourse($_POST["idAcademicCourse"]);
-                $academicCourse->setStartYear($_POST["start_year"]);
-                $academicCourse->setEndYear($_POST["end_year"]);
+                $academicCourse = new AcademicCourse(NULL,NULL, $_POST["start_year"], $_POST["end_year"]);
                 $academicCourseDAO = new AcademicCourseDAO();
                 $academicCourseDAO->add($academicCourse);
                 $message = MessageType::SUCCESS;
@@ -46,7 +43,7 @@ switch($action) {
     case "delete":
         if (isset($_REQUEST["confirm"])) {
             try {
-                $key = "IdAcademicCourse";
+                $key = "id_academic_course";
                 $value = $_REQUEST[$key];
                 $academicCourseDAO = new AcademicCourseDAO();
                 $response = $academicCourseDAO->delete($key, $value);
@@ -60,17 +57,25 @@ switch($action) {
             }
         } else {
             showAll();
-            $key = "IdAcademicCourse";
+            $key = "id_academic_course";
             $value = $_REQUEST[$key];
-            openDeletionModal("Eliminar año académico " . $value, "¿Está seguro de que desea eliminar " .
-                "el año académico <b>" . $value . "</b>? Esta acción es permanente y no se puede recuperar.",
-            "../Controllers/AcademicCourseController.php?action=delete&login=" . $value . "&confirm=true");
+            try {
+                $academicCourseDAO = new AcademicCourseDAO();
+                $academicCourse = $academicCourseDAO->show($key, $value);
+                openDeletionModal("Eliminar año académico " .  $academicCourse->getAcademicCourseAbbr() , "¿Está seguro de que desea eliminar " .
+                    "el año académico <b>" . $academicCourse->getAcademicCourseAbbr() . "</b>? Esta acción es permanente y no se puede recuperar.",
+                "../Controllers/AcademicCourseController.php?action=delete&id_academic_course=" . $value . "&confirm=true");
+            } catch (DAOException $e) {
+                $message = MessageType::ERROR;
+                showAll();
+                showToast($message, $e->getMessage());
+            }
         }
         break;
 
     case "show":
         try {
-            $key = "IdAcademicCourse";
+            $key = "id_academic_course";
             $value = $_REQUEST[$key];
             $academicCourseDAO = new AcademicCourseDAO();
             $academicCourseData = $academicCourseDAO->show($key, $value);
@@ -82,7 +87,7 @@ switch($action) {
         }
         break;
     case "edit":
-        $key = "IdAcademicCourse";
+        $key = "id_academic_course";
         $value = $_REQUEST[$key];
         $academicCourseDAO = new AcademicCourseDAO();
         try {
@@ -91,7 +96,7 @@ switch($action) {
                 new AcademicCourseEditView($academicCourse);
             } else {
                 try {
-                    //$academicCourse->setIdAcademicCourse($_POST["IdAcademicCourse"]);
+                    $academicCourse->setAcademicCourseAbbr($academicCourse->formatAbbr($_POST["start_year"],$_POST["end_year"]));
                     $academicCourse->setStartYear($_POST["start_year"]);
                     $academicCourse->setEndYear($_POST["end_year"]);
 

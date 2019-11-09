@@ -45,20 +45,19 @@ class DefaultDAO
             } else {
                 $sql_keys = $sql_keys . "," . $attribute;
             }
-            $function_name = "get" . ucfirst($attribute);
+            $function_name = $this->changeFunctionName($attribute);
             $value = $entity->$function_name();
-            if (empty($value)) {
-                $value = "NULL";
-            } elseif (!is_int($value)) {
-                $value = "'" . $value . "'";
-            }
+            $value = $this->checkValueType($value);
+
             if ($sql_values == "") {
                 $sql_values = "(" . $value;
             } else {
                 $sql_values = $sql_values . ", " . $value;
             }
         }
-        $primary_key_function = "get" . ucfirst($primary_key);
+
+        $primary_key_function = $this->changeFunctionName($primary_key);
+
         $sql = "SELECT * FROM " . strtoupper(get_class($entity)) . " WHERE " . $primary_key . "='".
             $entity->$primary_key_function() . "'";
         if (!$result = $this->mysqli->query($sql)){
@@ -111,13 +110,10 @@ class DefaultDAO
         $attributes = array_keys($entity->expose());
         $sql = "";
         foreach ($attributes as $attribute) {
-            $function_name = "get" . ucfirst($attribute);
+            $function_name = $this->changeFunctionName($attribute);
             $value = $entity->$function_name();
-            if (empty($value)) {
-                $value = "NULL";
-            } elseif (!is_int($value)) {
-                $value = "'" . $value . "'";
-            }
+            $value = $this->checkValueType($value);
+
             if ($attribute != $primary_key) {
                 if ($sql == "") {
                     $sql = $attribute . " = " . $value;
@@ -126,7 +122,7 @@ class DefaultDAO
                 }
             }
         }
-        $primary_key_function = "get" . ucfirst($primary_key);
+        $primary_key_function = $this->changeFunctionName($primary_key);
         $sql_query = "SELECT * FROM " . strtoupper(get_class($entity)) . " WHERE " . $primary_key . "= '" .
             $entity->$primary_key_function() . "'";
         if (!$result = $this->mysqli->query($sql_query)) {
@@ -150,5 +146,30 @@ class DefaultDAO
         if (!$result = $this->mysqli->query($sql)) {
             throw new DAOException('Error en la consulta sobre la base de datos');
         }
+    }
+
+    private function changeFunctionName($attribute)
+    {
+        if(strpos($attribute, "_") !== FALSE) {
+            $splitted = explode("_", $attribute);
+            $function_name = "get";
+            foreach ($splitted as $split) {
+                $function_name .= ucfirst($split);
+            }
+        } else {
+            $function_name = "get" . ucfirst($attribute);
+        }
+        return $function_name;
+    }
+
+    private function checkValueType($value)
+    {
+        $valueToReturn = $value;
+        if (empty($value)) {
+            $valueToReturn = "NULL";
+        } elseif (!is_int($value)) {
+            $valueToReturn = "'" . $value . "'";
+        }
+        return $valueToReturn;
     }
 }
