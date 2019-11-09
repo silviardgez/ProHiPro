@@ -45,7 +45,7 @@ CREATE TABLE `USER` (
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 CREATE TABLE `ROLE` (
-  `IdRole` varchar(6) COLLATE latin1_spanish_ci NOT NULL,
+  `IdRole` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
   `name` varchar(60) COLLATE latin1_spanish_ci NOT NULL,
   `description` varchar(100) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY(`IdRole`)
@@ -57,7 +57,7 @@ CREATE TABLE `ROLE` (
 -- --------------------------------------------------------
 CREATE TABLE `USER_ROLE` (
   `login` varchar(9) COLLATE latin1_spanish_ci NOT NULL,
-  `IdRole` varchar(6) COLLATE latin1_spanish_ci NOT NULL,
+  `IdRole` int(8) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY(`login`, `IdRole`),
   FOREIGN KEY (`login`) 
 	REFERENCES `USER`(`login`),
@@ -70,7 +70,7 @@ CREATE TABLE `USER_ROLE` (
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 CREATE TABLE `FUNCTIONALITY` (
-  `IdFunctionality` varchar(6) COLLATE latin1_spanish_ci NOT NULL,
+  `IdFunctionality` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
   `name` varchar(60) COLLATE latin1_spanish_ci NOT NULL,
   `description` varchar(100) NOT NULL,
   PRIMARY KEY(`IdFunctionality`)
@@ -81,7 +81,7 @@ CREATE TABLE `FUNCTIONALITY` (
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 CREATE TABLE `ACTION` (
-  `IdAction` varchar(6) COLLATE latin1_spanish_ci NOT NULL,
+  `IdAction` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
   `name` varchar(60) COLLATE latin1_spanish_ci NOT NULL,
   `description` varchar(100) NOT NULL,
   PRIMARY KEY(`IdAction`)
@@ -92,8 +92,8 @@ CREATE TABLE `ACTION` (
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 CREATE TABLE `FUNC_ACTION` (
-  `IdFunctionality` varchar(6) COLLATE latin1_spanish_ci NOT NULL,
-  `IdAction` varchar(6) COLLATE latin1_spanish_ci NOT NULL,
+  `IdFunctionality` int(8) COLLATE latin1_spanish_ci NOT NULL,
+  `IdAction` int(8) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY(`IdFunctionality`, `IdAction`),
   FOREIGN KEY (`IdFunctionality`) 
 	REFERENCES `FUNCTIONALITY`(`IdFunctionality`),
@@ -106,9 +106,9 @@ CREATE TABLE `FUNC_ACTION` (
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 CREATE TABLE `PERMISSION` (
-  `IdRole` varchar(6) COLLATE latin1_spanish_ci NOT NULL,  
-  `IdFunctionality` varchar(6) COLLATE latin1_spanish_ci NOT NULL,
-  `IdAction` varchar(6) COLLATE latin1_spanish_ci NOT NULL,
+  `IdRole` int(8) COLLATE latin1_spanish_ci NOT NULL,  
+  `IdFunctionality` int(8) COLLATE latin1_spanish_ci NOT NULL,
+  `IdAction` int(8) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY(`IdRole`, `IdFunctionality`, `IdAction`),
   FOREIGN KEY (`IdRole`) 
 	REFERENCES `ROLE`(`IdRole`),
@@ -134,7 +134,7 @@ CREATE TABLE `ACADEMICCOURSE` (
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 CREATE TABLE `UNIVERSITY` (
-  `IdUniversity` varchar(6) COLLATE latin1_spanish_ci NOT NULL,  
+  `IdUniversity` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,  
   `IdAcademicCourse` varchar(6) COLLATE latin1_spanish_ci NOT NULL,
   `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY(`IdUniversity`, `IdAcademicCourse`),
@@ -147,8 +147,8 @@ CREATE TABLE `UNIVERSITY` (
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 CREATE TABLE `CENTER` (
-  `IdCenter` varchar(6) COLLATE latin1_spanish_ci NOT NULL,  
-  `IdUniversity` varchar(6) COLLATE latin1_spanish_ci NOT NULL,
+  `IdCenter` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,  
+  `IdUniversity` int(8) COLLATE latin1_spanish_ci NOT NULL,
   `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
   `location` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY(`IdCenter`, `IdUniversity`),
@@ -161,8 +161,8 @@ CREATE TABLE `CENTER` (
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 CREATE TABLE `BUILDING` (
-  `IdBuilding` varchar(6) COLLATE latin1_spanish_ci NOT NULL,  
-  `IdCenter` varchar(6) COLLATE latin1_spanish_ci NOT NULL,
+  `IdBuilding` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,  
+  `IdCenter` int(8) COLLATE latin1_spanish_ci NOT NULL,
   `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY(`IdBuilding`, `IdCenter`),
   FOREIGN KEY (`IdCenter`) 
@@ -174,8 +174,8 @@ CREATE TABLE `BUILDING` (
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 CREATE TABLE `SPACE` (
-  `IdSpace` varchar(6) COLLATE latin1_spanish_ci NOT NULL,  
-  `IdBuilding` varchar(6) COLLATE latin1_spanish_ci NOT NULL,
+  `IdSpace` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,  
+  `IdBuilding` int(8) COLLATE latin1_spanish_ci NOT NULL,
   `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY(`IdSpace`, `IdBuilding`),
   FOREIGN KEY (`IdBuilding`) 
@@ -187,8 +187,8 @@ CREATE TABLE `SPACE` (
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 CREATE TABLE `DEGREE` (
-  `IdDegree` varchar(6) COLLATE latin1_spanish_ci NOT NULL,  
-  `IdCenter` varchar(6) COLLATE latin1_spanish_ci NOT NULL,
+  `IdDegree` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,  
+  `IdCenter` int(8) COLLATE latin1_spanish_ci NOT NULL,
   `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY(`IdDegree`, `IdCenter`),
   FOREIGN KEY (`IdCenter`) 
@@ -200,8 +200,8 @@ CREATE TABLE `DEGREE` (
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 CREATE TABLE `SUBJECT` (
-  `IdSubject` varchar(6) COLLATE latin1_spanish_ci NOT NULL,  
-  `IdDegree` varchar(6) COLLATE latin1_spanish_ci NOT NULL,
+  `IdSubject` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,  
+  `IdDegree` int(8) COLLATE latin1_spanish_ci NOT NULL,
   `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
   `description` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY(`IdSubject`, `IdDegree`),
@@ -214,8 +214,8 @@ CREATE TABLE `SUBJECT` (
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 CREATE TABLE `SUBJECT_GROUP` (
-  `IdSubjectGroup` varchar(6) COLLATE latin1_spanish_ci NOT NULL,  
-  `IdSubject` varchar(6) COLLATE latin1_spanish_ci NOT NULL,
+  `IdSubjectGroup` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,  
+  `IdSubject` int(8) COLLATE latin1_spanish_ci NOT NULL,
   `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY(`IdSubjectGroup`, `IdSubject`),
   FOREIGN KEY (`IdSubject`) 
@@ -227,7 +227,7 @@ CREATE TABLE `SUBJECT_GROUP` (
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 CREATE TABLE `TEACHER` (
-  `IdTeacher` varchar(6) COLLATE latin1_spanish_ci NOT NULL,
+  `IdTeacher` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
   `dni` varchar(9) COLLATE latin1_spanish_ci NOT NULL,
   `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
   `surname` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
@@ -242,8 +242,8 @@ CREATE TABLE `TEACHER` (
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 CREATE TABLE `TUTORIAL` (
-  `IdTutorial` varchar(6) COLLATE latin1_spanish_ci NOT NULL,
-  `IdTeacher` varchar(6) COLLATE latin1_spanish_ci NOT NULL,
+  `IdTutorial` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
+  `IdTeacher` int(8) COLLATE latin1_spanish_ci NOT NULL,
   `start_date` datetime COLLATE latin1_spanish_ci NOT NULL,
   `end_date` datetime COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY(`IdTutorial`, `IdTeacher`),
@@ -256,8 +256,8 @@ CREATE TABLE `TUTORIAL` (
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 CREATE TABLE `DEPARTMENT` (
-  `IdDepartment` varchar(6) COLLATE latin1_spanish_ci NOT NULL,  
-  `IdResponsable` varchar(6) COLLATE latin1_spanish_ci NOT NULL,
+  `IdDepartment` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,  
+  `IdResponsable` int(8) COLLATE latin1_spanish_ci NOT NULL,
   `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY(`IdDepartment`, `IdResponsable`),
   FOREIGN KEY (`IdResponsable`) 
@@ -269,10 +269,10 @@ CREATE TABLE `DEPARTMENT` (
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 CREATE TABLE `SCHEDULE` (
-  `IdSchedule` varchar(6) COLLATE latin1_spanish_ci NOT NULL,  
-  `IdSpace` varchar(6) COLLATE latin1_spanish_ci NOT NULL,  
-  `IdTeacher` varchar(6) COLLATE latin1_spanish_ci NOT NULL,  
-  `IdSubjectGroup` varchar(6) COLLATE latin1_spanish_ci NOT NULL,
+  `IdSchedule` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,  
+  `IdSpace` int(8) COLLATE latin1_spanish_ci NOT NULL,  
+  `IdTeacher` int(8) COLLATE latin1_spanish_ci NOT NULL,  
+  `IdSubjectGroup` int(8) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY(`IdSchedule`, `IdSpace`, `IdTeacher`, `IdSubjectGroup`),
   FOREIGN KEY (`IdSpace`) 
 	REFERENCES `SPACE`(`IdSpace`),
@@ -291,15 +291,15 @@ INSERT INTO `ACTION` (`IdAction`, `name`, `description`) VALUES
 ('5', 'SHOWCURRENT', 'SHOWCURRENT'),
 ('6', 'SHOWALL', 'SHOWALL');
 
-INSERT INTO `FUNCTIONALITY` (`IdFunctionality`, `name`, `Ddescription`) VALUES
-('1', 'UsersManagement', 'UsersManagement'),
-('2', 'RolesManagement', 'RolesManagement'),
-('3', 'FunctionalityManagement', 'FunctionalityManagement'),
-('4', 'ActionManagement', 'ActionManagement'),
-('5', 'PermissionManagement', 'PermissionManagement');
+INSERT INTO `FUNCTIONALITY` (`IdFunctionality`, `name`, `Description`) VALUES
+('0', 'UsersManagement', 'UsersManagement'),
+('1', 'RolesManagement', 'RolesManagement'),
+('2', 'FunctionalityManagement', 'FunctionalityManagement'),
+('3', 'ActionManagement', 'ActionManagement'),
+('4', 'PermissionManagement', 'PermissionManagement');
 
 INSERT INTO `ROLE` (`IdRole`, `name`, `description`) VALUES
-('00000A', 'Admin', 'Role with all permissions'),
-('00001A', 'BasicUser', 'Role with the basic permissions'),
-('00002A', 'Test', 'Role to test');
+('0', 'Admin', 'Role with all permissions'),
+('1', 'BasicUser', 'Role with the basic permissions'),
+('2', 'Test', 'Role to test');
   
