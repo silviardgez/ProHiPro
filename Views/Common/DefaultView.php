@@ -3,8 +3,6 @@
 <head>
     <link rel="stylesheet" href="../CSS/default.css" />
     <script src="../JS/SidebarToggler.js"></script>
-    <!-- Translate -->
-    <script src="../JS/Translate.js"></script>
 </head>
 <body>
         <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
@@ -16,6 +14,11 @@
                 </a>
                 <ul class="navbar-nav px-1">
                     <div class="row margin-right">
+                    <li class="nav-item text-nowrap row flags">
+                        <a href="javascript:translatePage('gl')"><img class="flag" src="../Images/gl.png"></a>
+                        <a href="javascript:translatePage('es')"><img class="flag" src="../Images/es.jpg"></a>
+                        <a href="javascript:translatePage('en')"><img class="flag" src="../Images/en.jpg"></a>
+                    </li>
                     <li class="nav-item text-nowrap">
                         <a class="nav-link" href="#" name="Profile">
                             <span class="feather-32 profile-margin" data-feather="user"></span>
@@ -195,5 +198,6 @@
 <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
 <script>
     feather.replace();
+    translatePage(getCookie("language-selected"));
 </script>
 </html>

@@ -18,7 +18,7 @@ function render(){
         <form action='../Controllers/UserController.php?action=add' method='POST'>
             <div class="form-group">
                 <label for="login">Login</label>
-                <input type="text" class="form-control" id="login" name="login" placeholder="Introducir login">
+                <input type="text" class="form-control" id="login" name="login" placeholder="Introducir nombre de usuario">
             </div>
             <div class="form-group">
                 <label for="password1">Contraseña</label>
