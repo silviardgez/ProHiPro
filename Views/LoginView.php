@@ -7,14 +7,14 @@
       <div class="main">
          <div class="col-md-7 col-sm-12">
             <div class="login-form">
-               <form action='../Controllers/LoginController.php' method="post">
+               <form name="formLogin" action='../Controllers/LoginController.php' method="post">
                   <div class="form-group">
                      <label data-translate="Nombre de usuario"></label>
-                     <input type="text" class="form-control" name="login" data-translate="Nombre de usuario">
+                     <input type="text" class="form-control" id="login" name="login" maxlength="9" size ="9" data-translate="Nombre de usuario">
                   </div>
                   <div class="form-group">
                      <label data-translate="Contraseña"></label>
-                     <input type="password" class="form-control" name="password" data-translate="Contraseña">
+                     <input type="password" class="form-control" id="password" name="password" maxlength="20" size ="20" data-translate="Contraseña">
                   </div>
                   <button type="submit" name="action" value="login-user" class="btn btn-black">
                       <p data-translate="Iniciar sesión"></p></button>
@@ -22,11 +22,8 @@
             </div>
          </div>
           <li class="nav-item row flags">
-              <a href="javascript:translatePage('gl')"><img class="flag" src="../Images/gl.png"></a>
-              <a href="javascript:translatePage('es')"><img class="flag" src="../Images/es.jpg"></a>
-              <a href="javascript:translatePage('en')"><img class="flag" src="../Images/en.jpg"></a>
+              <a href="javascript:setCookie('language-selected', 'gl'); translatePage();"><img class="flag" src="../Images/gl.png"></a>
+              <a href="javascript:setCookie('language-selected', 'es'); translatePage();"><img class="flag" src="../Images/es.jpg"></a>
+              <a href="javascript:setCookie('language-selected', 'en'); translatePage();"><img class="flag" src="../Images/en.jpg"></a>
           </li>
       </div>
-<script>
-    translatePage(getCookie("language-selected"));
-</script>

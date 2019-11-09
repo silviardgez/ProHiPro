@@ -29,36 +29,44 @@ class DefaultDAO
         $attributes = array_keys($entity->expose());
         $sql_keys = "";
         $sql_values = "";
+
         foreach ($attributes as $attribute) {
+            $function_name = $this->changeFunctionName($attribute);
+            $value = $entity->$function_name();
+
+            if(is_object($value)) {
+                $attribute = $attribute . "_id";
+                $value = $value->getId();
+            }
+
             if ($sql_keys == "") {
                 $sql_keys = "(" . $attribute;
             } else {
                 $sql_keys = $sql_keys . "," . $attribute;
             }
-            $function_name = "get" . ucfirst($attribute);
-            $value = $entity->$function_name();
-            if (empty($value)) {
-                $value = "NULL";
-            } elseif (!is_int($value)) {
-                $value = "'" . $value . "'";
-            }
+
+            $value = $this->checkValueType($value);
+
             if ($sql_values == "") {
                 $sql_values = "(" . $value;
             } else {
                 $sql_values = $sql_values . ", " . $value;
             }
         }
-        $primary_key_function = "get" . ucfirst($primary_key);
-        $sql = "SELECT * FROM " . strtoupper(get_class($entity)) . " WHERE " . $primary_key . "='".
+
+        $primary_key_function = $this->changeFunctionName($primary_key);
+
+        $sql = "SELECT * FROM " . $this->getTableName($entity) . " WHERE " . $primary_key . "='".
             $entity->$primary_key_function() . "'";
         if (!$result = $this->mysqli->query($sql)){
             throw new DAOException('Error de conexión con la base de datos.');
         }
         else {
             if ($result->num_rows == 0){
-                $sql = "INSERT INTO " . strtoupper(get_class($entity)) . $sql_keys . ") VALUES " . $sql_values . ")";
+                $sql = "INSERT INTO " . $this->getTableName($entity) . $sql_keys . ") VALUES " . $sql_values . ")";
                 if(!$resultInsertion = $this->mysqli->query($sql)) {
-                    throw new DAOException($this->mysqli->error);
+                    throw new DAOException('Error de la base de datos: %' .
+                        str_replace("\'", "", addslashes($this->mysqli->error)) . '%');
                 }
             } else {
                throw new DAOException('Entidad duplicada. Ya existe en la base de datos.');
@@ -84,7 +92,6 @@ class DefaultDAO
     function show($entityName, $key, $value)
     {
         $sql = "SELECT * FROM " . strtoupper($entityName) . " WHERE " . $key . " ='" . $value . "'";
-
         if (!$result = $this->mysqli->query($sql)) {
             throw new DAOException('Error de conexión con la base de datos.');
         } else {
@@ -101,13 +108,16 @@ class DefaultDAO
         $attributes = array_keys($entity->expose());
         $sql = "";
         foreach ($attributes as $attribute) {
-            $function_name = "get" . ucfirst($attribute);
+            $function_name = $this->changeFunctionName($attribute);
             $value = $entity->$function_name();
-            if (empty($value)) {
-                $value = "NULL";
-            } elseif (!is_int($value)) {
-                $value = "'" . $value . "'";
+
+            if(is_object($value)) {
+                $attribute = $attribute . "_id";
+                $value = $value->getId();
             }
+
+            $value = $this->checkValueType($value);
+
             if ($attribute != $primary_key) {
                 if ($sql == "") {
                     $sql = $attribute . " = " . $value;
@@ -116,17 +126,20 @@ class DefaultDAO
                 }
             }
         }
-        $primary_key_function = "get" . ucfirst($primary_key);
-        $sql_query = "SELECT * FROM " . strtoupper(get_class($entity)) . " WHERE " . $primary_key . "= '" .
+
+        $primary_key_function = $this->changeFunctionName($primary_key);
+        $sql_query = "SELECT * FROM " . $this->getTableName($entity) . " WHERE " . $primary_key . "= '" .
             $entity->$primary_key_function() . "'";
+
         if (!$result = $this->mysqli->query($sql_query)) {
             throw new DAOException('Error de conexión con la base de datos.');
         } else {
             if ($result->num_rows != 0) {
-                $sql_edit = "UPDATE " . strtoupper(get_class($entity)) . " SET " . $sql . " WHERE " .
+                $sql_edit = "UPDATE " . $this->getTableName($entity) . " SET " . $sql . " WHERE " .
                     $primary_key . "= '" . $entity->$primary_key_function() . "'";
                 if(!$resultEdit = $this->mysqli->query($sql_edit)) {
-                    throw new DAOException($this->mysqli->error);
+                    throw new DAOException('Error de la base de datos: %' .
+                        str_replace("\'", "", addslashes($this->mysqli->error)) . '%');
                 }
             } else {
                 throw new DAOException('La entidad a editar no existe en la base de datos.');
@@ -143,7 +156,11 @@ class DefaultDAO
     }
 
     function countTotalEntries($entity, $stringToSearch) {
+<<<<<<< HEAD
         $sql = "SELECT COUNT(*) FROM " . strtoupper(get_class($entity));
+=======
+        $sql = "SELECT COUNT(*) FROM " . $this->getTableName($entity);
+>>>>>>> Adds IT1_F2_A2 - Academic courses management
         $sql .= $this->obtainWhereClauseToSearch($entity, $stringToSearch);
         if (!($result = $this->mysqli->query($sql))) {
             throw new DAOException('Error de conexión con la base de datos.');
@@ -152,9 +169,42 @@ class DefaultDAO
         }
     }
 
+<<<<<<< HEAD
     function showAllPaged($currentPage, $itemsPerPage, $entity, $stringToSearch) {
         $startBlock = ($currentPage - 1) * $itemsPerPage;
         $sql = "SELECT * FROM " . strtoupper(get_class($entity));
+=======
+    function checkDependencies($tableName, $value) {
+        $sql = "SELECT TABLE_NAME, COLUMN_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE 
+                WHERE REFERENCED_TABLE_NAME = '" . strtoupper($tableName) . "'";
+        $dependencies = $this->getArrayFromSqlQuery($sql);
+        $stringToShow = "";
+
+        foreach ($dependencies as $dependency) {
+            $tableDependency = $dependency["TABLE_NAME"];
+            $columnDependency = $dependency["COLUMN_NAME"];
+            $sql_dependencies = "SELECT * FROM " . $tableDependency . " WHERE " . $columnDependency . " = '" . $value . "'";
+            $dependency_array = $this->getArrayFromSqlQuery($sql_dependencies);
+            if(!empty($dependency_array)) {
+                if($stringToShow == "") {
+                    $stringToShow .= "No se puede borrar por que hay %" . count($dependency_array) . "% elementos en %" . $tableDependency .
+                        "%";
+                } else {
+                    $stringToShow .= " y %" . count($dependency_array) . "% elementos en %" . $tableDependency .
+                        "%";
+                }
+
+                $stringToShow .= " que dependen de esta entidad.";
+
+                throw new DAOException($stringToShow);
+            }
+        }
+    }
+
+    function showAllPaged($currentPage, $itemsPerPage, $entity, $stringToSearch) {
+        $startBlock = ($currentPage - 1) * $itemsPerPage;
+        $sql = "SELECT * FROM " . $this->getTableName($entity);
+>>>>>>> Adds IT1_F2_A2 - Academic courses management
         $sql .= $this->obtainWhereClauseToSearch($entity, $stringToSearch);
         $sql .= " LIMIT " . $startBlock . "," . $itemsPerPage;
         return $this->getArrayFromSqlQuery($sql);
@@ -199,6 +249,23 @@ class DefaultDAO
         }
     }
 
+<<<<<<< HEAD
+=======
+    private function obtainWhereClauseToSearch($entity, $stringToSearch) {
+        $sql = "";
+        if(get_class($stringToSearch) == "DefaultDAO" || empty(get_class($stringToSearch))) {
+            if (!is_null($stringToSearch)) {
+                $sqlWhere = $this->getSearchConsult($entity, $stringToSearch);
+                $sql = " WHERE " . $sqlWhere;
+            }
+        } else {
+            $sqlWhere = $this->getSearchConsultWithEntity($stringToSearch);
+            $sql = " WHERE " . $sqlWhere;
+        }
+        return $sql;
+    }
+
+>>>>>>> Adds IT1_F2_A2 - Academic courses management
     private function getSearchConsult($entity, $stringToSearch) {
         $attributes = array_keys($entity->expose());
         $sql = "";
@@ -219,16 +286,33 @@ class DefaultDAO
             $functionName = $this->changeFunctionName($attribute);
             $value = $stringToSearch->$functionName();
             if (!empty($value)) {
+<<<<<<< HEAD
                 if ($sql == "") {
                     $sql = "(" . $attribute . " LIKE '%" . $stringToSearch->$functionName() . "%')";
                 } else {
                     $sql = $sql . " AND (" . $attribute . " LIKE '%" . $stringToSearch->$functionName() . "%')";
+=======
+                if(!is_object($value)) {
+                    if ($sql == "") {
+                        $sql = "(" . $attribute . " LIKE '%" . $value . "%')";
+                    } else {
+                        $sql = $sql . " AND (" . $attribute . " LIKE '%" . $value . "%')";
+                    }
+                } else {
+                    $attribute = $attribute . "_id";
+                    if ($sql == "") {
+                        $sql = "(" . $attribute . " = '" . $value->getId() . "')";
+                    } else {
+                        $sql = $sql . " AND (" . $attribute . " = '" . $value->getId() . "')";
+                    }
+>>>>>>> Adds IT1_F2_A2 - Academic courses management
                 }
             }
         }
         return $sql;
     }
 
+<<<<<<< HEAD
     private function obtainWhereClauseToSearch($entity, $stringToSearch) {
         $sql = "";
         if(get_class($stringToSearch) == "DefaultDAO" || empty(get_class($stringToSearch))) {
@@ -241,5 +325,9 @@ class DefaultDAO
             $sql = " WHERE " . $sqlWhere;
         }
         return $sql;
+=======
+    private function getTableName($entity) {
+        return strtoupper(preg_replace('/\B([A-Z])/', '_$1', get_class($entity)));
+>>>>>>> Adds IT1_F2_A2 - Academic courses management
     }
 }

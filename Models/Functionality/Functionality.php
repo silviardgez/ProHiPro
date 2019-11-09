@@ -1,25 +1,32 @@
 <?php
 class Functionality
 {
-    private $IdFunctionality;
+    private $id;
     private $name;
     private $description;
 
 
-    public function __construct($IdFunctionality=NULL, $name=NULL, $description=NULL){
-        $this->IdFunctionality = $IdFunctionality;
-        $this->name = $name;
-        $this->description = $description;
+    public function __construct($id=NULL, $name=NULL, $description=NULL){
+        if (!empty($name) && !empty($description)) {
+            $this->constructEntity($id, $name, $description);
+        }
     }
 
-    public function getIdFunctionality()
-    {
-        return $this->IdFunctionality;
+    private function constructEntity($id=NULL, $name=NULL, $description=NULL){
+        $this->setId($id);
+        $this->setName($name);
+        $this->setDescription($description);
+
     }
 
-    public function setIdFunctionality($IdFunctionality)
+    public function getId()
     {
-        $this->IdFunctionality = $IdFunctionality;
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     public function getName()
@@ -29,7 +36,11 @@ class Functionality
 
     public function setName($name)
     {
-        $this->name = $name;
+        if (strlen($name)>60 || empty($name)) {
+            throw new ValidationException('Error de validación.');
+        } else {
+            $this->name = $name;
+        }
     }
 
     public function getDescription()
@@ -39,9 +50,12 @@ class Functionality
 
     public function setDescription($description)
     {
-        $this->description = $description;
+        if (strlen($description)>100 || empty($description)) {
+            throw new ValidationException('Error de validación.');
+        } else {
+            $this->description = $description;
+        }
     }
-
 
     public static function expose()
     {

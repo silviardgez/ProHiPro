@@ -8,7 +8,7 @@
     .actions-row {
         width: 20%;
     }
-} 
+}
 
 @media(min-width: 1200px) and (max-width: 1540px) {
     .actions-row {
@@ -22,6 +22,7 @@ th label {
 
 .pagination {
     justify-content: flex-end;
+    margin-left: 1rem;
 }
 
 .active {
@@ -47,7 +48,6 @@ form button {
 
 .items-page {
     max-width: 4.4rem;
-    margin-right: 1rem;
 }
 
 .label-pagination {

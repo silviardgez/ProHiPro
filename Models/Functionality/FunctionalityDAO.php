@@ -10,32 +10,50 @@ class FunctionalityDAO
     }
 
     function showAll() {
-        $functionalitys_db = $this->defaultDAO->showAll("functionality");
-        $functionalitys = array();
-        foreach ($functionalitys_db as $functionality) {
-            array_push($functionalitys, new Functionality($functionality["IdFunctionality"], $functionality["name"], $functionality["description"]));
-        }
-        return $functionalitys;
+        $functionalities_db = $this->defaultDAO->showAll("functionality");
+        return $this->getFunctionalitiesFromDB($functionalities_db);
     }
 
     function add($functionality) {
-        return $this->defaultDAO->insert($functionality, "IdFunctionality");
+        $this->defaultDAO->insert($functionality, "id");
     }
 
     function delete($key, $value) {
-        return $this->defaultDAO->delete("functionality", $key, $value);
+        $this->defaultDAO->delete("functionality", $key, $value);
     }
 
     function show($key, $value) {
         $functionality_db = $this->defaultDAO->show("functionality", $key, $value);
-        return new Functionality($functionality_db["IdFunctionality"], $functionality_db["name"], $functionality_db["description"]);
+        return new Functionality($functionality_db["id"], $functionality_db["name"], $functionality_db["description"]);
     }
 
     function edit($functionality) {
-        return $this->defaultDAO->edit($functionality, "IdFunctionality");
+        $this->defaultDAO->edit($functionality, "id");
     }
 
     function truncateTable() {
-        return $this->defaultDAO->truncateTable("functionality");
+        $this->defaultDAO->truncateTable("functionality");
+    }
+
+    function showAllPaged($currentPage, $itemsPerPage, $stringToSearch) {
+        $functionalitiesDB = $this->defaultDAO->showAllPaged($currentPage, $itemsPerPage, new Functionality(), $stringToSearch);
+        return $this->getFunctionalitiesFromDB($functionalitiesDB);
+    }
+
+    function countTotalFunctionalities($stringToSearch) {
+        return $this->defaultDAO->countTotalEntries(new Functionality(), $stringToSearch);
+    }
+
+    function checkDependencies($value) {
+        $this->defaultDAO->checkDependencies("functionality", $value);
+    }
+
+    private function getFunctionalitiesFromDB($functionalities_db) {
+        $functionalities = array();
+        foreach ($functionalities_db as $functionality) {
+            array_push($functionalities, new Functionality($functionality["id"],
+                $functionality["name"], $functionality["description"]));
+        }
+        return $functionalities;
     }
 }

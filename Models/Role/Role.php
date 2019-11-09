@@ -1,24 +1,29 @@
 <?php
 class Role
 {
-    private $IdRole;
+    private $id;
     private $name;
     private $description;
 
-    public function __construct($IdRole=NULL, $name=NULL, $description=NULL){
-        $this->IdRole = $IdRole;
-        $this->name = $name;
-        $this->description = $description;
+    public function __construct($id=NULL, $name=NULL, $description=NULL){
+        if (!empty($name) && !empty($description)) {
+            $this->constructEntity($id, $name, $description);
+        }
     }
 
-    public function getIdRole()
+    private function constructEntity($id=NULL, $name=NULL, $description=NULL){
+        $this->setId($id);
+        $this->setName($name);
+        $this->setDescription($description);
+    }
+    public function getId()
     {
-        return $this->IdRole;
+        return $this->id;
     }
 
-    public function setIdRole($IdRole)
+    public function setId($id)
     {
-        $this->IdRole = $IdRole;
+        $this->id = $id;
     }
 
     public function getName()
@@ -28,7 +33,11 @@ class Role
 
     public function setName($name)
     {
-        $this->name = $name;
+        if(strlen($name)>60 || empty($name)){
+            throw new ValidationException('Error de validación. Nombre incorrecto.');
+        }else{
+            $this->name = $name;
+        }
     }
 
     public function getDescription()
@@ -38,7 +47,11 @@ class Role
 
     public function setDescription($description)
     {
-        $this->description = $description;
+        if(strlen($description)>100 || empty($description)){
+            throw new ValidationException('Error de validación. Descripción incorrecta.');
+        }else{
+            $this->description = $description;
+        }
     }
 
     public static function expose()
