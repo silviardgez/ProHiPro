@@ -56,9 +56,10 @@ CREATE TABLE `ROLE` (
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 CREATE TABLE `USER_ROLE` (
+  `IdUserRole` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
   `login` varchar(9) COLLATE latin1_spanish_ci NOT NULL,
   `IdRole` int(8) COLLATE latin1_spanish_ci NOT NULL,
-  PRIMARY KEY(`login`, `IdRole`),
+  PRIMARY KEY(`IdUserRole`),
   FOREIGN KEY (`login`) 
 	REFERENCES `USER`(`login`),
   FOREIGN KEY (`IdRole`) 
@@ -92,9 +93,10 @@ CREATE TABLE `ACTION` (
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 CREATE TABLE `FUNC_ACTION` (
+  `IdFuncAction` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
   `IdFunctionality` int(8) COLLATE latin1_spanish_ci NOT NULL,
   `IdAction` int(8) COLLATE latin1_spanish_ci NOT NULL,
-  PRIMARY KEY(`IdFunctionality`, `IdAction`),
+  PRIMARY KEY(`IdFuncAction`),
   FOREIGN KEY (`IdFunctionality`) 
 	REFERENCES `FUNCTIONALITY`(`IdFunctionality`),
   FOREIGN KEY (`IdAction`) 
@@ -106,16 +108,14 @@ CREATE TABLE `FUNC_ACTION` (
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 CREATE TABLE `PERMISSION` (
+  `IdPermission` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
   `IdRole` int(8) COLLATE latin1_spanish_ci NOT NULL,  
-  `IdFunctionality` int(8) COLLATE latin1_spanish_ci NOT NULL,
-  `IdAction` int(8) COLLATE latin1_spanish_ci NOT NULL,
-  PRIMARY KEY(`IdRole`, `IdFunctionality`, `IdAction`),
+  `IdFuncAction` int(8) COLLATE latin1_spanish_ci NOT NULL,
+  PRIMARY KEY(`IdPermission`),
   FOREIGN KEY (`IdRole`) 
 	REFERENCES `ROLE`(`IdRole`),
-  FOREIGN KEY (`IdFunctionality`) 
-	REFERENCES `FUNCTIONALITY`(`IdFunctionality`),
-  FOREIGN KEY (`IdAction`) 
-	REFERENCES `ACTION`(`IdAction`)
+  FOREIGN KEY (`IdFuncAction`) 
+	REFERENCES `FUNC_ACTION`(`IdFuncAction`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 -- --------------------------------------------------------
 -- --------------------------------------------------------
@@ -284,13 +284,13 @@ CREATE TABLE `SCHEDULE` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 INSERT INTO `ACTION` (`IdAction`, `name`, `description`) VALUES
-('0', 'ONLYADMIN', 'ONLYADMIN'),
-('1', 'ADD', 'ADD'),
-('2', 'DELETE', 'DELETE'),
-('3', 'EDIT', 'EDIT'),
-('4', 'SEARCH', 'SEARCH'),
-('5', 'SHOWCURRENT', 'SHOWCURRENT'),
-('6', 'SHOWALL', 'SHOWALL');
+('1', 'ONLYADMIN', 'ONLYADMIN'),
+('2', 'ADD', 'ADD'),
+('3', 'DELETE', 'DELETE'),
+('4', 'EDIT', 'EDIT'),
+('5', 'SEARCH', 'SEARCH'),
+('6', 'SHOWCURRENT', 'SHOWCURRENT'),
+('7', 'SHOWALL', 'SHOWALL');
 
 INSERT INTO `FUNCTIONALITY` (`IdFunctionality`, `name`, `description`) VALUES
 ('1', 'UsersManagement', 'UsersManagement'),
@@ -300,7 +300,6 @@ INSERT INTO `FUNCTIONALITY` (`IdFunctionality`, `name`, `description`) VALUES
 ('5', 'PermissionManagement', 'PermissionManagement');
 
 INSERT INTO `ROLE` (`IdRole`, `name`, `description`) VALUES
-('0', 'Admin', 'Role with all permissions'),
-('1', 'BasicUser', 'Role with the basic permissions'),
-('2', 'Test', 'Role to test');
-  
+('1', 'Admin', 'Role with all permissions'),
+('2', 'BasicUser', 'Role with the basic permissions'),
+('3', 'Test', 'Role to test');

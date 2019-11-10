@@ -53,8 +53,13 @@
                                 </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">
+                                    <a class="nav-link" href="../Controllers/FuncActionController.php">
                                         <p data-translate="Permisos"></p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="../Controllers/PermissionController.php">
+                                        <p data-translate="Asignacion de Permisos"></p>
                                     </a>
                                 </li>
 								<li class="nav-item">
@@ -70,6 +75,11 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="../Controllers/RoleController.php">
                                         <p data-translate="Roles"></p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="../Controllers/UserRoleController.php">
+                                        <p data-translate="Asignación de Roles"></p>
                                     </a>
                                 </li>
                                 </ul>
