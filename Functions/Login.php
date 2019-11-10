@@ -1,12 +1,11 @@
 <?php
-include '../Models/User/UserDAO.php';
-include '../Models/Common/DAOException.php';
+include_once '../Models/User/UserDAO.php';
+include_once '../Models/Common/DAOException.php';
 
-function loginUser()
+function loginUser($login, $password)
 {
     $userDAO = new UserDAO();
-    $login = $_REQUEST['login'];
-    $password = $_REQUEST['password'];
+
     try {
         $userDAO->canBeLogged($login, $password);
         session_start();
