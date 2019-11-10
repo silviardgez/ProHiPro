@@ -73,6 +73,11 @@ function render(){
             <?php endif; ?>
     </div>
 
+    <div class="row">
+    <!-- Search -->
+    <a class="btn btn-primary button-specific-search" role="button" href="../Controllers/UserController.php?action=search">
+        <span data-feather="search"></span><p data-translate="Búsqueda específica"></p></a>
+
     <!-- Pagination -->
     <?php if ($this->totalPages > 1): ?>
     <nav aria-label="...">
@@ -108,6 +113,7 @@ function render(){
         </ul>
     </nav>
     <?php endif; ?>
+    </div>
 </main>
 
 <!-- Icons -->

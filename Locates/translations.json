@@ -563,6 +563,14 @@
     "Asignación de Roles": {
         "en": "Roles asgnation",
         "gl": "Asignación de roles"
+    },
+    "Búsqueda específica": {
+        "en": "Specific search",
+        "gl": "Búsqueda específica"
+    },
+    "Búsqueda de usuarios": {
+        "en": "Users search",
+        "gl": "Búsqueda de usuarios"
     }
 }
 

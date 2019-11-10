@@ -1,7 +1,15 @@
 <?php
 class UserAddView {
+private $searching;
+private $action;
 
-function __construct(){
+function __construct($searching){
+    $this->searching = $searching;
+    if($searching) {
+        $this->action = "../Controllers/UserController.php?action=search";
+    } else {
+        $this->action = "../Controllers/UserController.php?action=add";
+    }
     $this->render();
 }
 function render(){
@@ -12,14 +20,19 @@ function render(){
 </head>
     <main role="main" class="margin-main ml-sm-auto px-4">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-3 border-bottom">
+            <?php if(!$this->searching): ?>
             <h1 class="h2" data-translate="Añadir usuario"></h1>
+            <?php else: ?>
+            <h1 class="h2" data-translate="Búsqueda de usuarios"></h1>
+            <?php endif; ?>
             <a class="btn btn-primary" role="button" href="../Controllers/UserController.php" data-translate="Volver"></a>
         </div>
-        <form action='../Controllers/UserController.php?action=add' method='POST'>
+        <form action='<?php echo $this->action ?>' method='POST'>
             <div class="form-group">
                 <label for="login" data-translate="Login"></label>
                 <input type="text" class="form-control" id="login" name="login" data-translate="Introducir nombre de usuario">
             </div>
+            <?php if(!$this->searching): ?>
             <div class="form-group">
                 <label for="password1" data-translate="Contraseña"></label>
                 <input type="password" class="form-control" id="password1" name="password" data-translate="Introducir contraseña">
@@ -28,6 +41,7 @@ function render(){
                 <label for="password2" data-translate="Confirmar contraseña"></label>
                 <input type="password" class="form-control" id="password2" data-translate="Confirmar contraseña">
             </div>
+            <?php endif; ?>
             <div class="form-group">
                 <label for="dni" data-translate="DNI"></label>
                 <input type="text" class="form-control" id="dni" name="dni" data-translate="Introducir DNI">

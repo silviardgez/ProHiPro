@@ -36,3 +36,7 @@ form {
 form button {
     margin-left: .5rem;
 }
+
+.button-specific-search {
+    max-height: 2.5rem !important;
+}

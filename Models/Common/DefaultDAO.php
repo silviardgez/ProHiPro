@@ -140,8 +140,13 @@ class DefaultDAO
 
     function countTotalEntries($entity, $stringToSearch) {
         $sql = "SELECT COUNT(*) FROM " . strtoupper(get_class($entity));
-        if (!is_null($stringToSearch)) {
-            $sqlWhere = $this->getSearchConsult($entity, $stringToSearch);
+        if(empty(get_class($stringToSearch))) {
+            if (!is_null($stringToSearch)) {
+                $sqlWhere = $this->getSearchConsult($entity, $stringToSearch);
+                $sql .= " WHERE " . $sqlWhere;
+            }
+        } else {
+            $sqlWhere = $this->getSearchConsultWithEntity($stringToSearch);
             $sql .= " WHERE " . $sqlWhere;
         }
         if (!($result = $this->mysqli->query($sql))) {
@@ -154,8 +159,13 @@ class DefaultDAO
     function showAllPaged($currentPage, $itemsPerPage, $entity, $stringToSearch) {
         $startBlock = ($currentPage - 1) * $itemsPerPage;
         $sql = "SELECT * FROM " . strtoupper(get_class($entity));
-        if (!is_null($stringToSearch)) {
-            $sqlWhere = $this->getSearchConsult($entity, $stringToSearch);
+        if(empty(get_class($stringToSearch))) {
+            if (!is_null($stringToSearch)) {
+                $sqlWhere = $this->getSearchConsult($entity, $stringToSearch);
+                $sql .= " WHERE " . $sqlWhere;
+            }
+        } else {
+            $sqlWhere = $this->getSearchConsultWithEntity($stringToSearch);
             $sql .= " WHERE " . $sqlWhere;
         }
         $sql .= " LIMIT " . $startBlock . "," . $itemsPerPage;
@@ -209,6 +219,23 @@ class DefaultDAO
                 $sql = "(" . $attribute . " LIKE '%" . $stringToSearch . "%')";
             } else {
                 $sql = $sql . " OR (" . $attribute . " LIKE '%" . $stringToSearch . "%')";
+            }
+        }
+        return $sql;
+    }
+
+    private function getSearchConsultWithEntity($stringToSearch) {
+        $attributes = array_keys($stringToSearch->expose());
+        $sql = "";
+        foreach ($attributes as $attribute) {
+            $functionName = $this->changeFunctionName($attribute);
+            $value = $stringToSearch->$functionName();
+            if (!empty($value)) {
+                if ($sql == "") {
+                    $sql = "(" . $attribute . " LIKE '%" . $stringToSearch->$functionName() . "%')";
+                } else {
+                    $sql = $sql . " AND (" . $attribute . " LIKE '%" . $stringToSearch->$functionName() . "%')";
+                }
             }
         }
         return $sql;
