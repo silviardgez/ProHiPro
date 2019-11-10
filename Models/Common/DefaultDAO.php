@@ -140,7 +140,7 @@ class DefaultDAO
 
     function countTotalEntries($entity, $stringToSearch) {
         $sql = "SELECT COUNT(*) FROM " . strtoupper(get_class($entity));
-        if(empty(get_class($stringToSearch))) {
+        if(get_class($stringToSearch) == "DefaultDAO") {
             if (!is_null($stringToSearch)) {
                 $sqlWhere = $this->getSearchConsult($entity, $stringToSearch);
                 $sql .= " WHERE " . $sqlWhere;
@@ -159,7 +159,7 @@ class DefaultDAO
     function showAllPaged($currentPage, $itemsPerPage, $entity, $stringToSearch) {
         $startBlock = ($currentPage - 1) * $itemsPerPage;
         $sql = "SELECT * FROM " . strtoupper(get_class($entity));
-        if(empty(get_class($stringToSearch))) {
+        if(get_class($stringToSearch) == "DefaultDAO") {
             if (!is_null($stringToSearch)) {
                 $sqlWhere = $this->getSearchConsult($entity, $stringToSearch);
                 $sql .= " WHERE " . $sqlWhere;
