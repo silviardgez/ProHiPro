@@ -49,7 +49,6 @@ switch($action) {
                 $key = "IdFunctionality";
                 $value = $_REQUEST[$key];
                 $functionalityDAO = new FunctionalityDAO();
-				echo "a";
                 $response = $functionalityDAO->delete($key, $value);
                 $message = MessageType::SUCCESS;
                 showAll();
