@@ -28,7 +28,11 @@ class Action
 
     public function setName($name)
     {
-        $this->name = $name;
+        if(!is_string($name) || strlen($name)>60 || $name == NULL){
+            throw new DAOException('Error de validación.');
+        }else{
+            $this->name = $name;
+        }
     }
 
     public function getDescription()
@@ -38,7 +42,11 @@ class Action
 
     public function setDescription($description)
     {
-        $this->description = $description;
+        if(!is_string($description) || strlen($description)>100 || $description == NULL){
+            throw new DAOException('Error de validación.');
+        }else{
+            $this->description = $description;
+        }
     }
 
     public static function expose()

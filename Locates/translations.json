@@ -591,6 +591,14 @@
     "Eliminar año académico": {
         "en": "Users search",
         "gl": "Búsqueda de usuarios"
+    },
+    "Año fuera de rango.": {
+        "en": "Year out of range",
+        "gl": "Ano fora de rango"
+    },
+    "Error de validación.": {
+        "en": "Validation error.",
+        "gl": "Error de validación."
     }
 }
 
