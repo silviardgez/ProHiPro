@@ -8,6 +8,7 @@ function render(){
 <head>
     <link rel="stylesheet" href="../CSS/default.css" />
     <link rel="stylesheet" href="../CSS/forms.css" />
+    <script src="../JS/Validations/UserValidations.js"></script>
 </head>
     <main role="main" class="margin-main ml-sm-auto px-4">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-3 border-bottom">
@@ -17,11 +18,13 @@ function render(){
         <form action='../Controllers/UserController.php?action=add' method='POST'>
             <div class="form-group">
                 <label for="login" data-translate="Login"></label>
-                <input type="text" class="form-control" id="login" name="login" data-translate="Introducir nombre de usuario">
+                <input type="text" class="form-control" id="login" name="login" data-translate="Introducir nombre de usuario"
+                required>
             </div>
             <div class="form-group">
                 <label for="password1" data-translate="Contraseña"></label>
-                <input type="password" class="form-control" id="password1" name="password" data-translate="Introducir contraseña">
+                <input type="password" class="form-control" id="password1" name="password" data-translate="Introducir contraseña"
+                required>
             </div>
             <div class="form-group">
                 <label for="password2" data-translate="Confirmar contraseña"></label>
