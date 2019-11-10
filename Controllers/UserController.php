@@ -15,6 +15,7 @@ include '../Views/User/UserShowAllView.php';
 include '../Views/User/UserAddView.php';
 include '../Views/User/UserShowView.php';
 include '../Views/User/UserEditView.php';
+include '../Views/User/UserSearchView.php';
 include '../Functions/ShowToast.php';
 include '../Functions/OpenDeletionModal.php';
 include '../Functions/Redirect.php';
@@ -23,7 +24,7 @@ $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "";
 switch($action) {
     case "add":
         if (!isset($_POST["submit"])){
-            new UserAddView(false);
+            new UserAddView();
         }
         else {
             try {
@@ -125,7 +126,7 @@ switch($action) {
         break;
     case "search":
         if (!isset($_POST["submit"])){
-            new UserAddView(true);
+            new UserSearchView();
         } else {
             try {
                 $user = new User();
