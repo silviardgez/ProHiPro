@@ -1,19 +1,20 @@
+
 {
     "Gestión de usuarios": {
         "en": "User management",
-        "gl": "Xestión de usuarios" 
+        "gl": "Xestión de usuarios"
     },
     "Usuarios": {
         "en": "Users",
-        "gl": "Usuarios" 
+        "gl": "Usuarios"
     },
     "Permisos":{
-	"en": "Permissions",
+        "en": "Permissions",
         "gl": "Permisos"
     },
     "Acciones": {
         "en": "Actions",
-        "gl": "Accións" 
+        "gl": "Accións"
     },
     "Funcionalidades": {
         "en": "Functionalities",
@@ -21,10 +22,10 @@
     },
     "Roles": {
         "en": "Roles",
-        "gl": "Roles" 
+        "gl": "Roles"
     },
     "Gestión de horarios":{
-	"en": "Schedule management",
+        "en": "Schedule management",
         "gl": "Xestión de horarios"
     },
     "Gestión de titulaciones": {
@@ -37,15 +38,15 @@
     },
     "Asignaturas": {
         "en": "Subjects",
-        "gl": "Materias" 
+        "gl": "Materias"
     },
     "Grupos":{
-	"en": "Groups",
+        "en": "Groups",
         "gl": "Grupos"
     },
     "Gestión de departamentos": {
         "en": "Department management",
-        "gl": "Xestión de departamentos" 
+        "gl": "Xestión de departamentos"
     },
     "Departamentos": {
         "en": "Departments",
@@ -53,15 +54,15 @@
     },
     "Profesores": {
         "en": "Teachers",
-        "gl": "Profesores" 
+        "gl": "Profesores"
     },
     "Tutorías":{
-	"en": "Tutorials",
+        "en": "Tutorials",
         "gl": "Titorías"
     },
     "Gestión de universidades": {
         "en": "University management",
-        "gl": "Xestión de universidades" 
+        "gl": "Xestión de universidades"
     },
     "Universidades": {
         "en": "Universities",
@@ -166,6 +167,27 @@
     "Curso académico": {
         "en": "Academic course",
         "gl": "Curso académico"
+    },
+    "Usuario añadido correctamente.": {
+        "en": "User added successfully.",
+        "gl": "Usuario engadido correctamente."
+    },
+    "INFORMACIÓN": {
+        "en": "INFO",
+        "gl": "INFORMACIÓN"
+    },
+    "ADVERTENCIA": {
+        "en": "WARNING",
+        "gl": "ADVERTENCIA"
+    },
+    "ÉXITO": {
+        "en": "SUCCESS",
+        "gl": "ÉXITO"
+    },
+    "ERROR": {
+        "en": "ERROR",
+        "gl": "ERROR"
     }
 
 }
+
