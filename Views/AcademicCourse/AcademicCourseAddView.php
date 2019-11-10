@@ -18,11 +18,13 @@ function render(){
         <form action='../Controllers/AcademicCourseController.php?action=add' method='POST'>
             <div class="form-group">
                 <label for="start_year" data-translate="Año de inicio"></label>
-                <input type="number" min="2000" max="9999" class="form-control" id="start_year" name="start_year" placeholder="Introducir año de inicio">
+                <input type="number" min="2000" max="9999" class="form-control" id="start_year" name="start_year"
+                       data-translate="Introducir año de inicio">
             </div>
             <div class="form-group">
                 <label for="end_year" data-translate="Año de fin"></label>
-                <input type="number"  min="2000" max="9999" class="form-control" id="end_year" name="end_year" placeholder="Introducir año de fin">
+                <input type="number"  min="2000" max="9999" class="form-control" id="end_year" name="end_year"
+                       data-translate="Introducir año de fin">
             </div>
             <button name="submit" type="submit" class="btn btn-primary" data-translate="Enviar"></button>
         </form>

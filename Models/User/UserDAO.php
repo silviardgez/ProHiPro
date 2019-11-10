@@ -38,7 +38,6 @@ class UserDAO
 
     function canBeLogged($login, $password) {
         $result = $this->show("login", $login);
-        
         if (!is_null($result)){
             if ($result->getPassword() != md5($password)){
                 throw new DAOException('Contraseña incorrecta.');
