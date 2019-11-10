@@ -48,14 +48,13 @@ class UserDAO
         }
     }
 
-    function showAllPaged($currentPage, $itemsPerPage) {
-        $usersDB = $this->defaultDAO->showAllPaged($currentPage, $itemsPerPage, "user");
-
+    function showAllPaged($currentPage, $itemsPerPage, $stringToSearch) {
+        $usersDB = $this->defaultDAO->showAllPaged($currentPage, $itemsPerPage, new User(), $stringToSearch);
         return $this->getUsersFromDB($usersDB);
     }
 
-    function countTotalUsers() {
-        return $this->defaultDAO->countTotalEntries("user");
+    function countTotalUsers($stringToSearch) {
+        return $this->defaultDAO->countTotalEntries(new User(), $stringToSearch);
     }
 
     private function getUsersFromDB($usersDB) {
