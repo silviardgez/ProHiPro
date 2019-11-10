@@ -11,18 +11,18 @@ function render(){
 <head><link rel="stylesheet" href="../CSS/default.css" /></head>
 <main role="main" class="margin-main ml-sm-auto px-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-3">
-        <h1 class="h2">Listado de funcionalidades</h1>
+        <h1 class="h2" data-translate="Listado de funcionalidades"></h1>
         <a class="btn btn-success" role="button" href="../Controllers/FunctionalityController.php?action=add">
-            <span data-feather="plus"></span> Añadir funcionalidad</a>
+            <span data-feather="plus"></span> <p data-translate="Añadir funcionalidad"></p></a>
     </div>
     <div class="table-responsive">
         <table class="table table-striped table-sm">
             <thead>
             <tr>
-                <th>IdFunctionality</th>
-                <th>Nombre</th>
-                <th>Descripción</th>
-				<th class="actions-row">Acciones</th>
+                <th data-translate="Id funcionalidad">IdFunctionality</th>
+                <th data-translate="Nombre"></th>
+                <th data-translate="Descripción"></th>
+				<th class="actions-row" data-translate="Acciones"></th>
             </tr>
             </thead>
             <?php if(!empty($this->functionalities)):?>

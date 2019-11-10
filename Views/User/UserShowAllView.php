@@ -28,23 +28,23 @@ function render(){
 
         <!-- Search -->
         <form class="row" action='../Controllers/UserController.php' method='POST'>
-            <input type="text" class="form-control" id="search" name="search" placeholder="Texto a buscar">
-            <button name="submit" type="submit" class="btn btn-primary">Buscar</button>
+            <input type="text" class="form-control" id="search" name="search" data-translate="Texto a buscar">
+            <button name="submit" type="submit" class="btn btn-primary" data-translate="Buscar"></button>
         </form>
 
         <a class="btn btn-success" role="button" href="../Controllers/UserController.php?action=add">
-            <span data-feather="plus"></span> Añadir usuario</a>
+            <span data-feather="plus"></span> <p data-translate="Añadir usuario"></p></a>
     </div>
 
     <div class="table-responsive">
         <table class="table table-striped table-sm">
             <thead>
             <tr>
-                <th>Login</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Email</th>
-                <th class="actions-row">Acciones</th>
+                <th data-translate="Login"></th>
+                <th data-translate="Nombre"></th>
+                <th data-translate="Apellido"></th>
+                <th data-translate="Email"></th>
+                <th class="actions-row" data-translate="Acciones"></th>
             </tr>
             </thead>
             <?php if(!empty($this->users)):?>
@@ -69,7 +69,7 @@ function render(){
         </table>
             <?php else: ?>
             </table>
-            <p> No se ha obtenido ningún usuario. </p>
+            <p data-translate="No se ha obtenido ningún usuario">.</p>
             <?php endif; ?>
     </div>
 

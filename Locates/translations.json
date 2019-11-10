@@ -100,6 +100,14 @@
         "en": "User list",
         "gl": "Listado de usuarios"
     },
+    "Listado de acciones": {
+        "en": "Actions list",
+        "gl": "Listado de acciones"
+    },
+    "Listado de funcionalidades": {
+        "en": "Functionalities list",
+        "gl": "Listado de funcionalidades"
+    },
     "Nombre de usuario": {
         "en": "Username",
         "gl": "Nome de usuario"
@@ -112,6 +120,10 @@
         "en": "Password",
         "gl": "Contrasinal"
     },
+    "Confirmar contraseña": {
+        "en": "Repeat password",
+        "gl": "Confirmar contraseña"
+    },
     "Introducir nombre de usuario": {
         "en": "Enter username",
         "gl": "Introducir nome de usuario"
@@ -123,6 +135,14 @@
     "Añadir curso académico": {
         "en": "Add academic course",
         "gl": "Engadir curso académico"
+    },
+    "Añadir acción": {
+        "en": "Add action",
+        "gl": "Engadir acción"
+    },
+    "Añadir funcionalidad": {
+        "en": "Add functionality",
+        "gl": "Engadir funcionalidade"
     },
     "Identificador": {
         "en": "Id",
@@ -140,6 +160,14 @@
         "en": "No academic course has been obtained",
         "gl": "Non se obtuvo ningún curso académico"
     },
+    "No se ha obtenido ningún usuario": {
+        "en": "No user has been obtained",
+        "gl": "Non se obtuvo ningún usuario"
+    },
+    "No se ha obtenido ningúna acción": {
+        "en": "No action has been obtained",
+        "gl": "Non se obtuvo ningunha acción"
+    },
     "Volver": {
         "en": "Back",
         "gl": "Volver"
@@ -148,6 +176,14 @@
         "en": "Add academic course",
         "gl": "Engadir curso académico"
     },
+    "Insertar acción": {
+        "en": "Add action",
+        "gl": "Engadir acción"
+    },
+    "Insertar funcionalidad": {
+        "en": "Add functionality",
+        "gl": "Insertar funcionalidade"
+    },
     "Enviar": {
         "en": "Send",
         "gl": "Enviar"
@@ -155,6 +191,10 @@
     "El curso académico no existe": {
         "en": "Academic course does not exist",
         "gl": "O curso académico non existe"
+    },
+    "El usuario no existe": {
+        "en": "User does not exist",
+        "gl": "O usuario non existe"
     },
     "Introducir año de inicio": {
         "en": "Add start year",
@@ -187,7 +227,214 @@
     "ERROR": {
         "en": "ERROR",
         "gl": "ERROR"
+    },
+    "Texto a buscar": {
+        "en": "Search text",
+        "gl": "Texto a buscar"
+    },
+    "Buscar": {
+        "en": "Search",
+        "gl": "Buscar"
+    },
+    "Añadir usuario": {
+        "en": "Add user",
+        "gl": "Engadir usuario"
+    },
+    "Login": {
+        "en": "Login",
+        "gl": "Login"
+    },
+    "Nombre": {
+        "en": "Name",
+        "gl": "Nome"
+    },
+    "Apellido": {
+        "en": "First name",
+        "gl": "Apelido"
+    },
+    "Email": {
+        "en": "Email",
+        "gl": "Email"
+    },
+    "Acciones": {
+    "en": "Actions",
+    "gl": "Accións"
+    },
+    "DNI": {
+        "en": "DNI",
+        "gl": "DNI"
+    },
+    "Dirección": {
+        "en": "Address",
+        "gl": "Dirección"
+    },
+    "Teléfono": {
+        "en": "Phone",
+        "gl": "Teléfono"
+    },
+    "Tirafondos": {
+        "en": "Screw",
+        "gl": "Parafuso"
+    },
+    "Introducir nombre de usuario": {
+        "en": "Add user name",
+        "gl": "Introducir nome de usuario"
+    },
+    "Introducir contraseña": {
+        "en": "Add passwords",
+        "gl": "Introducir contraseña"
+    },
+    "Introducir DNI": {
+        "en": "Add DNI",
+        "gl": "Introducir DNI"
+    },
+    "Introducir nombre": {
+        "en": "Add name",
+        "gl": "Introducir nome"
+    },
+    "Introducir apellido": {
+        "en": "Add first name",
+        "gl": "Introducir primer apelido"
+    },
+    "Introducir email": {
+        "en": "Add email",
+        "gl": "Introducir email"
+    },
+    "Introducir nombre de usuario": {
+        "en": "Add user name",
+        "gl": "Introducir nome de usuario"
+    },
+    "Introducir dirección": {
+        "en": "Add address",
+        "gl": "Introducir dirección"
+    },
+    "Introducir teléfono": {
+        "en": "Add phone",
+        "gl": "Introducir teléfono"
+    },
+    "Id acción": {
+        "en": "Action Id",
+        "gl": "Id acción"
+    },
+    "Descripción": {
+        "en": "Description",
+        "gl": "Descrición"
+    },
+    "Introducir Id de accion": {
+        "en": "Add action Id",
+        "gl": "Introducir Id de acción"
+    },
+    "Introducir descripción": {
+        "en": "Add description",
+        "gl": "Introducir descrición"
+    },
+    "Id funcionalidad": {
+        "en": "Functionality id",
+        "gl": "Id funcionalidade"
+    },
+    "Introducir id de funcionalidad": {
+        "en": "Add functionality id",
+        "gl": "Introducir id de funcionalidade"
+    },
+    "Acción": {
+        "en": "Action",
+        "gl": "Acción"
+    },
+    "Funcionalidad": {
+        "en": "Functionality",
+        "gl": "Funcionalidade"
+    },
+    "Insertar acción-funcionalidad": {
+        "en": "Insert action-functionality",
+        "gl": "Insertar acción-funcionalidade"
+    },
+    "Listado de acciones-funcionalidades": {
+        "en": "Actions-functionalities list",
+        "gl": "Listado de acciones-funcionalidades"
+    },
+    "Añadir acción-funcionalidad": {
+        "en": "Add action-functionality",
+        "gl": "Engadir acción-funcionalidade"
+    },
+    "Funcionalidad": {
+        "en": "Functionality",
+        "gl": "Funcionalidade"
+    },
+    "No se ha obtenido ninguna acción-Funcionalidad": {
+        "en": "No action-functionality has been obtained",
+        "gl": "Non se obtuvo ninguna acción-funcionalidade"
+    },
+    "Acción Funcionalidad": {
+        "en": "Action Functionality",
+        "gl": "Acción Funcionalidade"
+    },
+    "Insertar permiso": {
+        "en": "Add permission",
+        "gl": "Insertar permiso"
+    },
+    "Rol": {
+        "en": "Role",
+        "gl": "Rol"
+    },
+    "Permiso": {
+        "en": "Permission",
+        "gl": "Permiso"
+    },
+    "Listado de Permisos": {
+        "en": "Permission list",
+        "gl": "Listado de Permisos"
+    },
+    "Añadir permiso": {
+        "en": "Add permission",
+        "gl": "Engadir permiso"
+    },
+    "No se ha obtenido ningún permiso": {
+        "en": "No permission has been obtained",
+        "gl": "Non se obtuvo ningún permiso"
+    },
+    "El permiso no existe": {
+        "en": "Permission does not exist",
+        "gl": "O permiso non existe"
+    },
+    "Insertar Rol": {
+        "en": "Add rol",
+        "gl": "Insertar Rol"
+    },
+    "Listado de Roles": {
+        "en": "Roles list",
+        "gl": "Listado de Roles"
+    },
+    "Usuario": {
+        "en": "User",
+        "gl": "Usuario"
+    },
+    "Añadir Rol a Usuario": {
+        "en": "Add role to user",
+        "gl": "Engadir rol a usuario"
+    },
+    "No se ha obtenido ningún rol": {
+        "en": "No role has been obtained",
+        "gl": "Non se obtuvo ningún rol"
+    },
+    "El rol no existe": {
+        "en": "Role does not exist",
+        "gl": "O rol non existe"
+    },
+    "La funcionalidad no existe": {
+        "en": "Functionality does not exist",
+        "gl": "A funcionalidade non existe"
+    },
+    "Añadir rol": {
+        "en": "Add role",
+        "gl": "Engadir rol"
+    },
+    "Id rol": {
+        "en": "Role id",
+        "gl": "Id rol"
+    },
+    "Introducir id de rol": {
+        "en": "Add role id",
+        "gl": "Introducir id de rol"
     }
-
 }
 

@@ -12,23 +12,23 @@ function render(){
 </head>
     <main role="main" class="margin-main ml-sm-auto px-4">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Insertar acción</h1>
-            <a class="btn btn-primary" role="button" href="../Controllers/ActionController.php">Volver</a>
+            <h1 class="h2" data-translate="Insertar acción"></h1>
+            <a class="btn btn-primary" role="button" href="../Controllers/ActionController.php" data-translate="Volver"></a>
         </div>
         <form action='../Controllers/ActionController.php?action=add' method='POST'>
             <div class="form-group">
-                <label for="IdAction">IdAccion</label>
-                <input type="text" class="form-control" id="IdAction" name="IdAction" placeholder="Introducir IdAccion">
+                <label for="IdAction" data-translate="Id acción"></label>
+                <input type="text" class="form-control" id="IdAction" name="IdAction" data-translate="Introducir Id de accion">
             </div>
             <div class="form-group">
-                <label for="name">Nombre</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Introducir nombre">
+                <label for="name" data-translate="Nombre"></label>
+                <input type="text" class="form-control" id="name" name="name" data-translate="Introducir nombre">
             </div>
             <div class="form-group">
-                <label for="description">Descripción</label>
-                <input type="text" class="form-control" id="description" name="description" placeholder="Introducir descripción">
+                <label for="description" data-translate="Descripción"></label>
+                <input type="text" class="form-control" id="description" name="description" data-translate="Introducir descripción">
             </div>
-            <button name="submit" type="submit" class="btn btn-primary">Enviar</button>
+            <button name="submit" type="submit" class="btn btn-primary" data-translate="Enviar"></button>
         </form>
     </main>
 <?php
