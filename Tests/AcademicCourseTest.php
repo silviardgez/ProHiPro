@@ -3,9 +3,9 @@ declare (strict_types=1);
 
 use PHPUnit\Framework\TestCase;
 
-include_once '../Models/AcademicCourse/AcademicCourse.php';
-include_once '../Models/AcademicCourse/AcademicCourseDAO.php';
-include_once '../Models/Common/DAOException.php';
+require_once '../Models/AcademicCourse/AcademicCourse.php';
+require_once '../Models/AcademicCourse/AcademicCourseDAO.php';
+require_once '../Models/Common/DAOException.php';
 
 final class AcademicCourseTest extends TestCase
 {
@@ -16,20 +16,20 @@ final class AcademicCourseTest extends TestCase
     public static function setUpBeforeClass(): void
     {
         self::$academicCourseDAO = new AcademicCourseDAO();
-        self::$exampleAcademicCourse = new AcademicCourse(NULL, '18/19',2018, 2019);
+        self::$exampleAcademicCourse = new AcademicCourse(1, '50/51', 2050, 2051);
         self::$exampleAcademicCourseArray = array(
             'submit' => true,
             'id_academic_course' => 1,
-            'academic_course_abbr' => '18/19',
-            'start_year' => 2018,
-            'end_year' => 2019,
+            'academic_course_abbr' => '50/51',
+            'start_year' => 2050,
+            'end_year' => 2051,
         );
     }
 
     protected function tearDown(): void
     {
         try {
-            self::$academicCourseDAO->delete('id_academic_course', 1);
+            self::$academicCourseDAO->delete('academic_course_abbr', '50/51');
         } catch (Exception $e) {
         }
     }
@@ -47,7 +47,7 @@ final class AcademicCourseTest extends TestCase
     {
         $academicCourse = clone self::$exampleAcademicCourse;
         self::$academicCourseDAO->add($academicCourse);
-        $academicCourseCreated = self::$academicCourseDAO->show('id_academic_course', 1);
+        $academicCourseCreated = self::$academicCourseDAO->show('academic_course_abbr', '50/51');
         $this->assertInstanceOf(AcademicCourse::class, $academicCourseCreated);
     }
 
@@ -55,27 +55,28 @@ final class AcademicCourseTest extends TestCase
     {
         $academicCourse = clone self::$exampleAcademicCourse;
         self::$academicCourseDAO->add($academicCourse);
-        $academicCourse->setAcademicCourseAbbr($academicCourse->formatAbbr(2011,2012));
-        $academicCourse->setStartYear(2011);
-        $academicCourse->setEndYear(2012);
+        $academicCourse->setAcademicCourseAbbr($academicCourse->formatAbbr(2051, 2052));
+        $academicCourse->setStartYear(2051);
+        $academicCourse->setEndYear(2052);
         self::$academicCourseDAO->edit($academicCourse);
-        $academicCourseCreated = self::$academicCourseDAO->show('id_academic_course', 1);
-        $this->assertEquals($academicCourseCreated->getStartYear(), 2011);
+        $academicCourseCreated = self::$academicCourseDAO->show('academic_course_abbr', '51/52');
+        $this->assertEquals($academicCourseCreated->getStartYear(), 2051);
+        self::$academicCourseDAO->delete('academic_course_abbr', '51/52');
     }
 
     public function testCanBeDeleted()
     {
         $academicCourse = clone self::$exampleAcademicCourse;
         self::$academicCourseDAO->add($academicCourse);
-        self::$academicCourseDAO->delete('id_academic_course', 1);
+        self::$academicCourseDAO->delete('academic_course_abbr', '50/51');
 
         $this->expectException(DAOException::class);
-        $academicCourseCreated = self::$academicCourseDAO->show('id_academic_course', 1);
+        $academicCourseCreated = self::$academicCourseDAO->show('academic_course_abbr', '50/51');
     }
 
     public function testCanShowNone()
     {
-        $academicCourseCreated = self::$academicCourseDAO->showAll('id_academic_course', '_test');
+        $academicCourseCreated = self::$academicCourseDAO->showAll('academic_course_abbr', '50/51');
         $this->assertEmpty($academicCourseCreated);
     }
 
@@ -83,31 +84,34 @@ final class AcademicCourseTest extends TestCase
     {
         $academicCourse1 = clone self::$exampleAcademicCourse;
         $academicCourse1->setIdAcademicCourse(1);
+        $academicCourse1->setAcademicCourseAbbr($academicCourse1->formatAbbr(2051, 2052));
         $academicCourse2 = clone self::$exampleAcademicCourse;
         $academicCourse2->setIdAcademicCourse(2);
+        $academicCourse2->setAcademicCourseAbbr($academicCourse2->formatAbbr(2052, 2053));
         $academicCourse3 = clone self::$exampleAcademicCourse;
         $academicCourse3->setIdAcademicCourse(3);
+        $academicCourse3->setAcademicCourseAbbr($academicCourse3->formatAbbr(2053, 2054));
 
         self::$academicCourseDAO->add($academicCourse1);
         self::$academicCourseDAO->add($academicCourse2);
         self::$academicCourseDAO->add($academicCourse3);
 
-        $academicCoursesCreated = self::$academicCourseDAO->showAll("start_year", 2018);
+        $academicCoursesCreated = self::$academicCourseDAO->showAll('academic_course_abbr', '50/51');
 
         $this->assertTrue($academicCoursesCreated[0]->getIdAcademicCourse() == 1);
         $this->assertTrue($academicCoursesCreated[1]->getIdAcademicCourse() == 2);
         $this->assertTrue($academicCoursesCreated[2]->getIdAcademicCourse() == 3);
 
-        self::$academicCourseDAO->delete('id_academic_course', 'test1');
-        self::$academicCourseDAO->delete('id_academic_course', 'test2');
-        self::$academicCourseDAO->delete('id_academic_course', 'test3');
+        self::$academicCourseDAO->delete('academic_course_abbr', '51/52');
+        self::$academicCourseDAO->delete('academic_course_abbr', '52/53');
+        self::$academicCourseDAO->delete('academic_course_abbr', '53/54');
     }
 
     public function testIntCanBeCreated()
     {
         $postData = self::$exampleAcademicCourseArray;
         self::curlPost($postData, 'add');
-        $academicCourseCreated = self::$academicCourseDAO->show('id_academic_course', 1);
+        $academicCourseCreated = self::$academicCourseDAO->show('academic_course_abbr', '50/51');
         $this->assertInstanceOf(AcademicCourse::class, $academicCourseCreated);
     }
 
@@ -116,10 +120,12 @@ final class AcademicCourseTest extends TestCase
         $academicCourse = clone self::$exampleAcademicCourse;
         self::$academicCourseDAO->add($academicCourse);
         $postData = self::$exampleAcademicCourseArray;
-        $postData['start_year'] = 2011;
+        $postData['start_year'] = 2051;
+        $postData['end_year'] = 2052;
         self::curlPost($postData, "edit");
-        $academicCourseCreated = self::$academicCourseDAO->show('id_academic_course', 1);
-        $this->assertEquals(2011, $academicCourseCreated->getStartYear());
+        $academicCourseCreated = self::$academicCourseDAO->show('academic_course_abbr', '51/52');
+        $this->assertEquals(2051, $academicCourseCreated->getStartYear());
+        self::$academicCourseDAO->delete('academic_course_abbr', '51/52');
     }
 
     public function testIntCanBeDeleted()
@@ -138,7 +144,7 @@ final class AcademicCourseTest extends TestCase
         curl_close($ch);
 
         $this->expectException(DAOException::class);
-        $academicCourseCreated = self::$academicCourseDAO->show('id_academic_course', 1);
+        $academicCourseCreated = self::$academicCourseDAO->show('academic_course_abbr', '50/51');
     }
 
     private function curlPost($postData, $action)
