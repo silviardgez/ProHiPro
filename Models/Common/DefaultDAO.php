@@ -57,7 +57,7 @@ class DefaultDAO
             if ($result->num_rows == 0){
                 $sql = "INSERT INTO " . strtoupper(get_class($entity)) . $sql_keys . ") VALUES " . $sql_values . ")";
                 if(!$resultInsertion = $this->mysqli->query($sql)) {
-                    throw new DAOException($this->mysqli->error);
+                    throw new DAOException('Entidad duplicada. Ya existe en la base de datos.');
                 }
             } else {
                throw new DAOException('Entidad duplicada. Ya existe en la base de datos.');
