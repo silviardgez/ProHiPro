@@ -1,3 +1,11 @@
+function withOutWhiteSpaces(field) {
+    if (/[\s]/.test(field.value)) {
+        msgError('El atributo ' + field.name + ' no puede tener espacios');
+        field.focus();
+        return false;
+    }
+    return true; 
+}
 
 function checkEmpty(field) {
 
@@ -124,15 +132,12 @@ function msgError(msg) {
 
     var miDiv = document.getElementById("miDiv");
     var html = "";
-
     miDiv.innerHTML = "";
     html = msg;
     miDiv.innerHTML = html;
     abrirVentana();
     return true;
 }
-
-
 
 function checkLogin() {
 
@@ -164,6 +169,435 @@ function checkLogin() {
             }
         }
 
+    }
+
+    return true;
+}
+
+function checkAddUser() {
+
+    var login; 
+    var pwd;
+    var pwd2;
+    var dni; 
+    var nameuser;
+    var surnameuser;
+    var email;
+    var address
+    var telf;
+
+    login = document.forms['ADD'].elements[0];
+    pwd = document.forms['ADD'].elements[1];
+    pwd2 = document.forms['ADD'].elements[1];
+    dni = document.forms['ADD'].elements[2];
+    nameuser = document.forms['ADD'].elements[3];
+    surnameuser = document.forms['ADD'].elements[4];
+    email = document.forms['ADD'].elements[5];
+    address = document.forms['ADD'].elements[6];
+    telf = document.forms['ADD'].elements[7];
+
+    if (!checkEmpty(login)) {
+        return false;
+    } else {
+        if (!withOutWhiteSpaces(login)) {
+            return false;
+        } else {
+            if (!checkLength(login, 9)) {
+                return false;
+            } else {
+                if (!checkText(login, 9)) {
+                    return false;
+                }
+            }
+        }
+    }
+    if (!checkEmpty(pwd)) {
+        return false;
+    } else {
+        if (!withOutWhiteSpaces(pwd)) {
+            return false;
+        } else {
+            if (!checkLength(pwd, 20)) {
+                return false;
+            } else {
+                if (!checkText(pwd, 20)) {
+                    return false;
+                }
+            }
+        }
+    }
+    if (!checkEmpty(pwd2)) {
+        return false;
+    } else {
+        if (!withOutWhiteSpaces(pwd2)) {
+            return false;
+        } else {
+            if (!checkLength(pwd2, 20)) {
+                return false;
+            } else {
+                if (!checkText(pwd2, 20)) {
+                    return false;
+                }
+            }
+        }
+    }
+    if (!checkEmpty(dni)) {
+        return false;
+    } else {
+        if (!checkLength(dni, 9)) {
+            return false;
+        } else {
+            if (!checkText(dni, 9)) {
+                return false;
+            } else {
+                if (!checkDni(dni)) {
+                    return false;
+                }
+            }
+        }
+    }
+    if (!checkEmpty(nameuser)) {
+        return false;
+    } else {
+        if (!checkLength(nameuser, 30)) {
+            return false;
+        } else {
+            if (!checkText(nameuser, 30)) {
+                return false;
+            } else {
+                if (!checkAlphabetical(nameuser, 30)) {
+                    return false;
+                }
+            }
+        }
+    }
+    if (!checkEmpty(surnameuser)) {
+        return false;
+    } else {
+        if (!checkLength(surnameuser, 50)) {
+            return false;
+        } else {
+            if (!checkText(surnameuser, 50)) {
+                return false;
+            } else {
+                if (!checkAlphabetical(surnameuser, 50)) {
+                    return false;
+                }
+            }
+        }
+    }
+    if (!checkEmpty(email)) {
+        return false;
+    } else {
+        if (!checkLength(email, 40)) {
+            return false;
+        } else {
+            if (!checkText(email, 40)) {
+                return false;
+            } else {
+                if (!checkEmail(email)) {
+                    return false;
+                }
+            }
+        }
+    }
+    if (!checkEmpty(address)) {
+        return false;
+    } else {
+        if (!checkLength(address, 60)) {
+            return false;
+        } else {
+            if (!checkText(address, 60)) {
+                return false;
+            }
+        }
+    }
+    if (!checkEmpty(telf)) {
+        return false;
+    } else {
+        if (!checkLength(telf, 11)) {
+            return false;
+        } else {
+            if (!checkText(telf, 11)) {
+                return false;
+            } else {
+                if (!checkTelf(telf)) {
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
+}
+
+function checkEditUser() {
+
+    var login;
+    var pwd;
+    var pwd2;
+    var dni;
+    var nameuser;
+    var surnameuser;
+    var email;
+    var address
+    var telf;
+
+    login = document.forms['EDIT'].elements[0];
+    pwd = document.forms['EDIT'].elements[1];
+    pwd2 = document.forms['EDIT'].elements[2];
+    dni = document.forms['EDIT'].elements[3];
+    nameuser = document.forms['EDIT'].elements[4];
+    surnameuser = document.forms['EDIT'].elements[5];
+    email = document.forms['EDIT'].elements[6];
+    address = document.forms['EDIT'].elements[7];
+    telf = document.forms['EDIT'].elements[8];
+
+    if (!checkEmpty(login)) {
+        return false;
+    } else {
+        if (!withOutWhiteSpaces(login)) {
+            return false;
+        } else {
+            if (!checkLength(login, 9)) {
+                return false;
+            } else {
+                if (!checkText(login, 9)) {
+                    return false;
+                }
+            }
+        }
+    }
+
+    if (!checkEmpty(pwd)) {
+        return false;
+    } else {
+        if (!withOutWhiteSpaces(pwd)) {
+            return false;
+        } else {
+            if (!checkLength(pwd, 20)) {
+                return false;
+            } else {
+                if (!checkText(pwd, 20)) {
+                    return false;
+                }
+            }
+        }
+    }
+
+    if (!checkEmpty(pwd2)) {
+        return false;
+    } else {
+        if (!withOutWhiteSpaces(pwd2)) {
+            return false;
+        } else {
+            if (!checkLength(pwd2, 20)) {
+                return false;
+            } else {
+                if (!checkText(pwd2, 20)) {
+                    return false;
+                }
+            }
+        }
+    }
+
+    if (!checkEmpty(dni)) {
+        return false;
+    } else {
+        if (!checkLength(dni, 9)) {
+            return false;
+        } else {
+            if (!checkText(dni, 9)) {
+                return false;
+            } else {
+                if (!checkDni(dni)) {
+                    return false;
+                }
+            }
+        }
+    }
+
+    if (!checkEmpty(nameuser)) {
+        return false;
+    } else {
+        if (!checkLength(nameuser, 30)) {
+            return false;
+        } else {
+            if (!checkText(nameuser, 30)) {
+                return false;
+            } else {
+                if (!checkAlphabetical(nameuser, 30)) {
+                    return false;
+                }
+            }
+        }
+    }
+
+    if (!checkEmpty(surnameuser)) {
+        return false;
+    } else {
+        if (!checkLength(surnameuser, 50)) {
+            return false;
+        } else {
+            if (!checkText(surnameuser, 50)) {
+                return false;
+            } else {
+                if (!checkAlphabetical(surnameuser, 50)) {
+                    return false;
+                }
+            }
+        }
+    }
+
+    if (!checkEmpty(email)) {
+        return false;
+    } else {
+        if (!checkLength(email, 40)) {
+            return false;
+        } else {
+            if (!checkText(email, 40)) {
+                return false;
+            } else {
+                if (!checkEmail(email)) {
+                    return false;
+                }
+            }
+        }
+    }
+    if (!checkEmpty(address)) {
+        return false;
+    } else {
+        if (!checkLength(address, 60)) {
+            return false;
+        } else {
+            if (!checkText(address, 60)) {
+                return false;
+            }
+        }
+    }
+
+    if (!checkEmpty(telf)) {
+        return false;
+    } else {
+        if (!checkLength(telf, 11)) {
+            return false;
+        } else {
+            if (!checkText(telf, 11)) {
+                return false;
+            } else {
+                if (!checkTelf(telf)) {
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
+}
+
+function checkSearchUser() {
+
+    var login;
+    var pwd;
+    var dni;
+    var nameuser;
+    var surnameuser;
+    var email;
+    var address
+    var telf;
+
+    login = document.forms['SEARCH'].elements[0];
+    dni = document.forms['SEARCH'].elements[1];
+    nameuser = document.forms['SEARCH'].elements[2];
+    surnameuser = document.forms['SEARCH'].elements[3];
+    email = document.forms['SEARCH'].elements[4];
+    address = document.forms['SEARCH'].elements[5];
+    telf = document.forms['SEARCH'].elements[6];
+
+    if (!checkLength(login, 9)) {
+        return false;
+    } else {
+        if (!checkText(login, 9)) {
+            return false;
+        }
+    }
+
+    if (!checkLength(pwd, 20)) {
+        return false;
+    } else {
+        if (!checkText(pwd, 20)) {
+            return false;
+        }
+    }
+
+
+
+    if (!checkLength(dni, 9)) {
+        return false;
+    } else {
+        if (!checkText(dni, 9)) {
+            return false;
+        } else {
+            if (!checkDni(dni)) {
+                return false;
+            }
+        }
+    }
+
+    if (!checkLength(nameuser, 30)) {
+        return false;
+    } else {
+        if (!checkText(nameuser, 30)) {
+            return false;
+        } else {
+            if (!checkAlphabetical(nameuser, 30)) {
+                return false;
+            }
+        }
+    }
+
+    if (!checkLength(surnameuser, 50)) {
+        return false;
+    } else {
+        if (!checkText(surnameuser, 50)) {
+            return false;
+        } else {
+            if (!checkAlphabetical(surnameuser, 50)) {
+                return false;
+            }
+        }
+    }
+
+
+    if (!checkLength(email, 40)) {
+        return false;
+    } else {
+        if (!checkText(email, 40)) {
+            return false;
+        } else {
+            if (!checkEmail(email)) {
+                return false;
+            }
+        }
+    }
+
+    if (!checkLength(address, 60)) {
+        return false;
+    } else {
+        if (!checkText(address, 60)) {
+            return false;
+        }
+    }
+
+
+    if (!checkLength(telf, 11)) {
+        return false;
+    } else {
+        if (!checkText(telf, 11)) {
+            return false;
+        } else {
+            if (!checkTelf(telf)) {
+                return false;
+            }
+        }
     }
 
     return true;
