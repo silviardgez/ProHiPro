@@ -5,13 +5,15 @@ private $itemsPerPage;
 private $currentPage;
 private $totalUsers;
 private $totalPages;
+private $stringToSearch;
 
-function __construct($usersData, $itemsPerPage, $currentPage, $totalUsers){
+function __construct($usersData, $itemsPerPage, $currentPage, $totalUsers, $stringToSearch){
     $this->users = $usersData;
     $this->itemsPerPage = $itemsPerPage;
     $this->currentPage = $currentPage;
     $this->totalUsers = $totalUsers;
     $this->totalPages = ceil($totalUsers/$itemsPerPage);
+    $this->stringToSearch = $stringToSearch;
     $this->render();
 }
 function render(){
@@ -23,9 +25,17 @@ function render(){
 <main role="main" class="margin-main ml-sm-auto px-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-3">
         <h1 class="h2" data-translate="Listado de usuarios"></h1>
+
+        <!-- Search -->
+        <form class="row" action='../Controllers/UserController.php' method='POST'>
+            <input type="text" class="form-control" id="search" name="search" placeholder="Texto a buscar">
+            <button name="submit" type="submit" class="btn btn-primary">Buscar</button>
+        </form>
+
         <a class="btn btn-success" role="button" href="../Controllers/UserController.php?action=add">
             <span data-feather="plus"></span> Añadir usuario</a>
     </div>
+
     <div class="table-responsive">
         <table class="table table-striped table-sm">
             <thead>
@@ -62,6 +72,8 @@ function render(){
             <p> No se ha obtenido ningún usuario. </p>
             <?php endif; ?>
     </div>
+
+    <!-- Pagination -->
     <?php if ($this->totalPages > 1): ?>
     <nav aria-label="...">
         <ul class="pagination">

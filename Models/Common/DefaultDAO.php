@@ -138,8 +138,12 @@ class DefaultDAO
         }
     }
 
-    function countTotalEntries($className) {
-        $sql = "SELECT COUNT(*) FROM " . strtoupper($className);
+    function countTotalEntries($entity, $stringToSearch) {
+        $sql = "SELECT COUNT(*) FROM " . strtoupper(get_class($entity));
+        if (!is_null($stringToSearch)) {
+            $sqlWhere = $this->getSearchConsult($entity, $stringToSearch);
+            $sql .= " WHERE " . $sqlWhere;
+        }
         if (!($result = $this->mysqli->query($sql))) {
             throw new DAOException('Error de conexión con la base de datos.');
         } else {
@@ -147,9 +151,14 @@ class DefaultDAO
         }
     }
 
-    function showAllPaged($currentPage, $itemsPerPage, $className) {
+    function showAllPaged($currentPage, $itemsPerPage, $entity, $stringToSearch) {
         $startBlock = ($currentPage - 1) * $itemsPerPage;
-        $sql = "SELECT * FROM " . strtoupper($className) . " LIMIT " . $startBlock . "," . $itemsPerPage;
+        $sql = "SELECT * FROM " . strtoupper(get_class($entity));
+        if (!is_null($stringToSearch)) {
+            $sqlWhere = $this->getSearchConsult($entity, $stringToSearch);
+            $sql .= " WHERE " . $sqlWhere;
+        }
+        $sql .= " LIMIT " . $startBlock . "," . $itemsPerPage;
         return $this->getArrayFromSqlQuery($sql);
     }
 
@@ -190,5 +199,18 @@ class DefaultDAO
             }
             return $arrayData;
         }
+    }
+
+    private function getSearchConsult($entity, $stringToSearch) {
+        $attributes = array_keys($entity->expose());
+        $sql = "";
+        foreach ($attributes as $attribute) {
+            if ($sql == "") {
+                $sql = "(" . $attribute . " LIKE '%" . $stringToSearch . "%')";
+            } else {
+                $sql = $sql . " OR (" . $attribute . " LIKE '%" . $stringToSearch . "%')";
+            }
+        }
+        return $sql;
     }
 }

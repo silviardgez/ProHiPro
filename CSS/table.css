@@ -27,3 +27,12 @@ th label {
 .active {
     background-color: grey;
 }
+
+form {
+    flex-wrap: nowrap !important;
+    margin-right: 2rem !important;
+}
+
+form button {
+    margin-left: .5rem;
+}
