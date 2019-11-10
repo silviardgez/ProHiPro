@@ -54,6 +54,14 @@ class Role
         }
     }
 
+    function isCorrect($name, $description){
+        if($name == NULL || $description == NULL){
+            throw new ValidationException('Error de validación');
+        }else{
+            return true;
+        }
+    }
+
     public static function expose()
     {
         return get_class_vars(__CLASS__);

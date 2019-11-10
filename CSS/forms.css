@@ -15,3 +15,8 @@ h1 label {
     border-width: 1px;
     border-style: solid;
 }
+
+.message-error p {
+    margin-bottom: 0;
+}
+

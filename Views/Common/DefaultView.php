@@ -3,6 +3,7 @@
 <head>
     <link rel="stylesheet" href="../CSS/default.css" />
     <script src="../JS/SidebarToggler.js"></script>
+    <script src="../JS/Validations.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
@@ -60,7 +61,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="../Controllers/PermissionController.php">
-                                        <p data-translate="Asignación de Permisos"></p>
+                                        <p data-translate="Asignación de permisos"></p>
                                     </a>
                                 </li>
                                 <li class="nav-item">

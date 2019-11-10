@@ -23,4 +23,5 @@
     <script src="../JS/CookieManager.js"></script>
     <script src="../JS/Translate.js"></script>
     <script src="../JS/PageSelectChange.js"></script>
+    <script src="../JS/Validations.js"></script>
 </head>

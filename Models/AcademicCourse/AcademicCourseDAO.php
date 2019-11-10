@@ -10,7 +10,7 @@ class AcademicCourseDAO
     }
 
     function showAll() {
-        $academicCourses_db = $this->defaultDAO->showAll("academicCourse");
+        $academicCourses_db = $this->defaultDAO->showAll("academic_course");
         return $this->getAcademicCoursesFromDB($academicCourses_db);
     }
 
@@ -19,11 +19,11 @@ class AcademicCourseDAO
     }
 
     function delete($key, $value) {
-        $this->defaultDAO->delete("academicCourse", $key, $value);
+        $this->defaultDAO->delete("academic_course", $key, $value);
     }
 
     function show($key, $value) {
-        $academicCourse_db = $this->defaultDAO->show("academicCourse", $key, $value);
+        $academicCourse_db = $this->defaultDAO->show("academic_course", $key, $value);
         return new AcademicCourse($academicCourse_db["id"], $academicCourse_db["academic_course_abbr"],
             $academicCourse_db["start_year"], $academicCourse_db["end_year"]);
     }
@@ -33,7 +33,7 @@ class AcademicCourseDAO
     }
 
     function truncateTable() {
-        $this->defaultDAO->truncateTable("academicCourse");
+        $this->defaultDAO->truncateTable("academic_course");
     }
 
     function showAllPaged($currentPage, $itemsPerPage, $stringToSearch) {
@@ -47,7 +47,7 @@ class AcademicCourseDAO
     }
 
     function checkDependencies($value) {
-        $this->defaultDAO->checkDependencies("academicCourse", $value);
+        $this->defaultDAO->checkDependencies("academic_course", $value);
     }
 
     private function getAcademicCoursesFromDB($academicCourses_db) {

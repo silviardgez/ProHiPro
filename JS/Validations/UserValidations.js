@@ -1,32 +1,7 @@
-<<<<<<< HEAD
-
-function validateUserForm() {
-    var x = document.forms["userForm"];
-    console.log(x);
-    email = document.getElementsByName("email")[0].value;
-    if(!is_email(email)) {
-        var invalidDiv = document.createElement("div");
-        invalidDiv.style.backgroundColor = "#F08080";
-        invalidDiv.style.borderRadius = ".3rem";
-        invalidDiv.style.borderColor = "red";
-        invalidDiv.style.marginTop = ".5rem";
-        var newContent = document.createTextNode("Email inválido");
-        invalidDiv.appendChild(newContent);
-        $("#email").after(invalidDiv);
-    }
-    return false;
-}
-
-function is_email(email){
-    var emailReg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    return emailReg.test(email);
-}
-=======
- 
 function checkDniUser(field) {
     const name = "dni";
     if ((toret = checkEmpty(field, name)) === "" && (toret = withOutWhiteSpaces(field, name)) === ""
-        && (toret = checkLength(field,'9', name)) === "" && (toret = checkText(field,'9', name)) === "" && 
+        && (toret = checkLength(field,'9', name)) === "" && (toret = checkText(field,'9', name)) === "" &&
         (toret = checkDni(field, name)) === "") {
         deleteMessage(name);
         return true;
@@ -112,7 +87,7 @@ function checkConfirmPasswordEmptyUser(field) {
 
 function checkNameUser(field) {
     const name = "nombre";
-    if ((toret = checkEmpty(field, name)) === "" && (toret = checkLength(field,'30', name)) === "" 
+    if ((toret = checkEmpty(field, name)) === "" && (toret = checkLength(field,'30', name)) === ""
         && (toret = checkText(field,'30', name)) === "" && (toret = checkAlphabetical(field,'30', name)) === "") {
         deleteMessage(name);
         return true;
@@ -132,7 +107,7 @@ function checkNameEmptyUser(field) {
 
 function checkSurnameUser(field) {
     const name = "apellido";
-    if ((toret = checkEmpty(field, name)) === "" && (toret = checkLength(field,'50', name)) === "" 
+    if ((toret = checkEmpty(field, name)) === "" && (toret = checkLength(field,'50', name)) === ""
         && (toret = checkText(field,'50', name)) === "" && (toret = checkAlphabetical(field,'50', name)) === "") {
         deleteMessage(name);
         return true;
@@ -152,7 +127,7 @@ function checkSurnameEmptyUser(field) {
 
 function checkEmailUser(field) {
     const name = "email";
-    if ((toret = checkEmpty(field, name)) === "" && (toret = checkLength(field,'40', name)) === "" 
+    if ((toret = checkEmpty(field, name)) === "" && (toret = checkLength(field,'40', name)) === ""
         && (toret = checkText(field,'40', name)) === "" && (toret = checkEmail(field, name)) === "") {
         deleteMessage(name);
         return true;
@@ -173,7 +148,7 @@ function checkEmailEmptyUser(field) {
 function checkAddressUser(field) {
     const name = "dirección";
     nameDiv = "direction";
-    if ((toret = checkEmpty(field, name)) === "" && (toret = checkLength(field,'60', name)) === "" 
+    if ((toret = checkEmpty(field, name)) === "" && (toret = checkLength(field,'60', name)) === ""
         && (toret = checkText(field,'60', name)) === "") {
         deleteMessage(nameDiv);
         return true;
@@ -194,7 +169,7 @@ function checkAddressEmptyUser(field) {
 function checkTelephoneUser(field) {
     const name = "teléfono";
     nameDiv = "telephone";
-    if ((toret = checkEmpty(field, name)) === "" && (toret = checkLength(field,'11', name)) === "" 
+    if ((toret = checkEmpty(field, name)) === "" && (toret = checkLength(field,'11', name)) === ""
         && (toret = checkTelf(field, name)) === "") {
         deleteMessage(nameDiv);
         return true;
@@ -213,12 +188,12 @@ function checkTelephoneEmptyUser(field) {
 }
 
 function areUserFieldsCorrect() {
-    form = $('#userForm')[0];
+    const form = $('#userForm')[0];
     if(checkLoginUser(form.elements[0]) && checkPasswordUser(form.elements[1]) &&
-    checkConfirmPasswordUser(form.elements[2]) && checkDniUser(form.elements[3]) &&
-    checkNameUser(form.elements[4]) && checkSurnameUser(form.elements[5]) &&
-    checkEmailUser(form.elements[6]) && checkAddressUser(form.elements[7]) &&
-    checkTelephoneUser(form.elements[8])) {
+        checkConfirmPasswordUser(form.elements[2]) && checkDniUser(form.elements[3]) &&
+        checkNameUser(form.elements[4]) && checkSurnameUser(form.elements[5]) &&
+        checkEmailUser(form.elements[6]) && checkAddressUser(form.elements[7]) &&
+        checkTelephoneUser(form.elements[8])) {
         return true;
     } else {
         return false;
@@ -226,12 +201,12 @@ function areUserFieldsCorrect() {
 }
 
 function areUserEditFieldsCorrect() {
-    form = $('#userEditForm')[0];
+    const form = $('#userEditForm')[0];
     if(checkLoginUser(form.elements[0]) && checkPasswordEmptyUser(form.elements[1]) &&
-    checkConfirmPasswordEmptyUser(form.elements[2]) && checkDniUser(form.elements[3]) &&
-    checkNameUser(form.elements[4]) && checkSurnameUser(form.elements[5]) &&
-    checkEmailUser(form.elements[6]) && checkAddressUser(form.elements[7]) &&
-    checkTelephoneUser(form.elements[8])) {
+        checkConfirmPasswordEmptyUser(form.elements[2]) && checkDniUser(form.elements[3]) &&
+        checkNameUser(form.elements[4]) && checkSurnameUser(form.elements[5]) &&
+        checkEmailUser(form.elements[6]) && checkAddressUser(form.elements[7]) &&
+        checkTelephoneUser(form.elements[8])) {
         return true;
     } else {
         return false;
@@ -239,7 +214,7 @@ function areUserEditFieldsCorrect() {
 }
 
 function areUserSearchFieldsCorrect() {
-    form = $('#userSearchForm')[0];
+    const form = $('#userSearchForm')[0];
     if(checkLoginEmptyUser(form.elements[0]) && checkDniEmptyUser(form.elements[1]) &&
         checkNameEmptyUser(form.elements[2]) && checkSurnameEmptyUser(form.elements[3]) &&
         checkEmailEmptyUser(form.elements[4]) && checkAddressEmptyUser(form.elements[5]) &&
@@ -250,6 +225,11 @@ function areUserSearchFieldsCorrect() {
     }
 }
 
-
-
->>>>>>> Adds IT1_F2_A2 - Academic courses management
+function areLoginFieldsCorrect() {
+    const form = $('#loginForm')[0];
+    if(checkLoginUser(form.elements[0]) && checkPasswordUser(form.elements[1])) {
+        return true;
+    } else {
+        return false;
+    }
+}

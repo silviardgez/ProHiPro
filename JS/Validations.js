@@ -98,9 +98,11 @@ function showMessage(parentNode, name, message, field) {
     node = '#message-error-' + name;
     if($(node).length)
     {
-        $(node).text(message);
+        $(node).html("<p data-translate='" + message + "'></p>");
+        translatePage();
     } else {
-        $('<div id="message-error-' + name + '" class="message-error">' + message + '</div>').appendTo(parentNode);
+        $('<div id="message-error-' + name + '" class="message-error"><p data-translate="' + message + '"></p></div>').appendTo(parentNode);
+        translatePage();
     }
 }
 
