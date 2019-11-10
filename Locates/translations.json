@@ -360,9 +360,13 @@
         "en": "Functionality",
         "gl": "Funcionalidade"
     },
-    "No se ha obtenido ninguna acción-funcionalidad": {
-        "en": "No action-functionality has been obtained",
-        "gl": "Non se obtuvo ninguna acción-funcionalidade"
+    "No se ha obtenido ninguna funcionalidad.": {
+        "en": "No functionality has been obtained.",
+        "gl": "Funcionalidade"
+    },
+    "No se ha obtenido ninguna acción-funcionalidad.": {
+        "en": "No action-functionality has been obtained.",
+        "gl": "Non se obtuvo ninguna acción-funcionalidade."
     },
     "Acción Funcionalidad": {
         "en": "Action Functionality",
@@ -511,6 +515,14 @@
     "Rol editado correctamente.": {
         "en": "Role editted succesfully.",
         "gl": "Rol editado correctamente."
+    },
+    "Rol duplicado.": {
+        "en": "Duplicated role.",
+        "gl": "Rol duplicado."
+    },
+    "Rol no añadido correctamente.": {
+        "en": "Rol not added succesfully",
+        "gl": "Rol non añadido correctamente."
     },
     "Usuario añadido correctamente.": {
         "en": "User added succesfully.",

@@ -49,7 +49,7 @@ function render(){
         </table>
             <?php else: ?>
             </table>
-            <p> No se ha obtenido ninguna funcionalidad. </p>
+                <p data-translate="No se ha obtenido ninguna funcionalidad."> </p>
             <?php endif; ?>
     </div>
 </main>
