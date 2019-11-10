@@ -20,7 +20,6 @@ class UserDAO
     }
 
     function add($user) {
-        $user->setPassword(md5($user->getPassword()));
         return $this->defaultDAO->insert($user, "login");
     }
 
@@ -35,7 +34,6 @@ class UserDAO
     }
 
     function edit($user) {
-        $user->setPassword(md5($user->getPassword()));
         return $this->defaultDAO->edit($user, "login");
     }
 

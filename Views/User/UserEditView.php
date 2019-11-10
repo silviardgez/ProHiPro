@@ -25,13 +25,11 @@ class UserEditView {
                 </div>
                 <div class="form-group">
                     <label for="password1">Contraseña</label>
-                    <input type="password" class="form-control" id="password1" name="password"
-                           value="<?php echo $this->user->getPassword() ?>">
+                    <input type="password" class="form-control" id="password1" name="password">
                 </div>
                 <div class="form-group">
                     <label for="password2">Confirmar contraseña</label>
-                    <input type="password" class="form-control" id="password2"
-                           value="<?php echo $this->user->getPassword() ?>">
+                    <input type="password" class="form-control" id="password2">
                 </div>
                 <div class="form-group">
                     <label for="dni">DNI</label>

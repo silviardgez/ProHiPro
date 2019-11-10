@@ -25,16 +25,6 @@ private $user;
                            value="<?php echo $this->user->getLogin() ?>" readonly>
                 </div>
                 <div class="form-group">
-                    <label for="password1">Contraseña</label>
-                    <input type="password" class="form-control" id="password1" name="password"
-                           value="<?php echo $this->user->getPassword() ?>" readonly>
-                </div>
-                <div class="form-group">
-                    <label for="password2">Confirmar contraseña</label>
-                    <input type="password" class="form-control" id="password2"
-                           value="<?php echo $this->user->getPassword() ?>" readonly>
-                </div>
-                <div class="form-group">
                     <label for="dni">DNI</label>
                     <input type="text" class="form-control" id="dni" name="dni"
                            value="<?php echo $this->user->getDni() ?>" readonly>

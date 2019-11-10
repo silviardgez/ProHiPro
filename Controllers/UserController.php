@@ -29,7 +29,7 @@ switch($action) {
             try {
                 $user = new User();
                 $user->setLogin($_POST["login"]);
-                $user->setPassword($_POST["password"]);
+                $user->setPassword($user->encryptPassword($_POST["password"]));
                 $user->setDni($_POST["dni"]);
                 $user->setName($_POST["name"]);
                 $user->setSurname($_POST["surname"]);
@@ -96,7 +96,9 @@ switch($action) {
                 new UserEditView($user);
             } else {
                 try {
-                    $user->setPassword($_POST["password"]);
+                    if (!empty($_POST["password"])) {
+                        $user->setPassword($user->encryptPassword($_POST["password"]));
+                    }
                     $user->setDni($_POST["dni"]);
                     $user->setName($_POST["name"]);
                     $user->setSurname($_POST["surname"]);

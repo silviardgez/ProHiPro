@@ -42,6 +42,11 @@ class User
         $this->password = $password;
     }
 
+    public function encryptPassword($password)
+    {
+        return md5($password);
+    }
+
     public function getDni()
     {
         return $this->dni;
