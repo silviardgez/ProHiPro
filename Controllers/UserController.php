@@ -131,8 +131,21 @@ switch($action) {
 function showAll() {
     try {
         $userDAO = new UserDAO();
-        $usersData = $userDAO->showAll();
-        new UserShowAllView($usersData);
+        $totalUsers = $userDAO->countTotalUsers();
+
+        if(!empty($_REQUEST['currentPage'])) {
+            $currentPage = $_REQUEST['currentPage'];
+        } else {
+            $currentPage = 1;
+        }
+
+        if(!empty($_REQUEST['itemsPerPage'])) {
+            $itemsPerPage = $_REQUEST['itemsPerPage'];
+        } else {
+            $itemsPerPage = 10;
+        }
+        $usersData = $userDAO->showAllPaged($currentPage, $itemsPerPage);
+        new UserShowAllView($usersData, $itemsPerPage, $currentPage, $totalUsers);
     } catch (DAOException $e) {
         $message = MessageType::ERROR;
         new UserShowAllView(array());

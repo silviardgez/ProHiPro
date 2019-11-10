@@ -19,3 +19,11 @@
 th label {
     margin-bottom: 0;
 }
+
+.pagination {
+    justify-content: flex-end;
+}
+
+.active {
+    background-color: grey;
+}

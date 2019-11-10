@@ -21,17 +21,7 @@ class DefaultDAO
     function showAll($className)
     {
         $sql = "SELECT * FROM " . strtoupper($className);
-        if (!($result = $this->mysqli->query($sql))) {
-            throw new DAOException('Error de conexión con la base de datos.');
-        } else {
-            $arrayData = array();
-            $i = 0;
-            while ($data = $result->fetch_array()) {
-                $arrayData[$i] = $data;
-                $i++;
-            }
-            return $arrayData;
-        }
+        return $this->getArrayFromSqlQuery($sql);
     }
 
     function insert($entity, $primary_key)
@@ -148,6 +138,21 @@ class DefaultDAO
         }
     }
 
+    function countTotalEntries($className) {
+        $sql = "SELECT COUNT(*) FROM " . strtoupper($className);
+        if (!($result = $this->mysqli->query($sql))) {
+            throw new DAOException('Error de conexión con la base de datos.');
+        } else {
+            return $result->fetch_row()[0];
+        }
+    }
+
+    function showAllPaged($currentPage, $itemsPerPage, $className) {
+        $startBlock = ($currentPage - 1) * $itemsPerPage;
+        $sql = "SELECT * FROM " . strtoupper($className) . " LIMIT " . $startBlock . "," . $itemsPerPage;
+        return $this->getArrayFromSqlQuery($sql);
+    }
+
     private function changeFunctionName($attribute)
     {
         if(strpos($attribute, "_") !== FALSE) {
@@ -171,5 +176,19 @@ class DefaultDAO
             $valueToReturn = "'" . $value . "'";
         }
         return $valueToReturn;
+    }
+
+    private function getArrayFromSqlQuery($sql) {
+        if (!($result = $this->mysqli->query($sql))) {
+            throw new DAOException('Error de conexión con la base de datos.');
+        } else {
+            $arrayData = array();
+            $i = 0;
+            while ($data = $result->fetch_array()) {
+                $arrayData[$i] = $data;
+                $i++;
+            }
+            return $arrayData;
+        }
     }
 }

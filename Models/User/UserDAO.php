@@ -10,13 +10,8 @@ class UserDAO
     }
 
     function showAll() {
-        $users_db = $this->defaultDAO->showAll("user");
-        $users = array();
-        foreach ($users_db as $user) {
-            array_push($users, new User($user["login"], $user["password"], $user["dni"], $user["name"],
-                $user["surname"], $user["email"], $user["address"], $user["telephone"]));
-        }
-        return $users;
+        $usersDB = $this->defaultDAO->showAll("user");
+        return $this->getUsersFromDB($usersDB);
     }
 
     function add($user) {
@@ -51,6 +46,25 @@ class UserDAO
         } else {
             throw new DAOException("El usuario no existe.");
         }
+    }
+
+    function showAllPaged($currentPage, $itemsPerPage) {
+        $usersDB = $this->defaultDAO->showAllPaged($currentPage, $itemsPerPage, "user");
+
+        return $this->getUsersFromDB($usersDB);
+    }
+
+    function countTotalUsers() {
+        return $this->defaultDAO->countTotalEntries("user");
+    }
+
+    private function getUsersFromDB($usersDB) {
+        $users = array();
+        foreach ($usersDB as $user) {
+            array_push($users, new User($user["login"], $user["password"], $user["dni"], $user["name"],
+                $user["surname"], $user["email"], $user["address"], $user["telephone"]));
+        }
+        return $users;
     }
 
 }

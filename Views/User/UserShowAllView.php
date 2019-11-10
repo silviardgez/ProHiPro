@@ -1,9 +1,17 @@
 <?php
 class UserShowAllView {
 private $users;
+private $itemsPerPage;
+private $currentPage;
+private $totalUsers;
+private $totalPages;
 
-function __construct($usersData){
+function __construct($usersData, $itemsPerPage, $currentPage, $totalUsers){
     $this->users = $usersData;
+    $this->itemsPerPage = $itemsPerPage;
+    $this->currentPage = $currentPage;
+    $this->totalUsers = $totalUsers;
+    $this->totalPages = ceil($totalUsers/$itemsPerPage);
     $this->render();
 }
 function render(){
@@ -54,6 +62,40 @@ function render(){
             <p> No se ha obtenido ningún usuario. </p>
             <?php endif; ?>
     </div>
+    <?php if ($this->totalPages > 1): ?>
+    <nav aria-label="...">
+        <ul class="pagination">
+            <?php if ($this->currentPage == 1): ?>
+            <li class="page-item disabled">
+            <?php else: ?>
+            <li class="page-item">
+            <?php endif; ?>
+                <a class="page-link" href="../Controllers/UserController.php?currentPage=<?php echo $this->currentPage-1?>">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <?php for ($i = 1; $i <= $this->totalPages; $i++): ?>
+                <?php if ($this->currentPage == $i): ?>
+                <li class="page-item active">
+                <?php else: ?>
+                <li class="page-item">
+                <?php endif; ?>
+                        <a class="page-link"
+                        href="../Controllers/UserController.php?currentPage=<?php echo $i ?>"><?php echo $i?></a>
+                </li>
+            <?php endfor; ?>
+            <?php if ($this->currentPage == $this->totalPages): ?>
+            <li class="page-item disabled">
+            <?php else: ?>
+            <li class="page-item">
+            <?php endif; ?>
+                <a class="page-link" href="../Controllers/UserController.php?currentPage=<?php echo $this->currentPage+1?>">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <?php endif; ?>
 </main>
 
 <!-- Icons -->
