@@ -179,7 +179,6 @@ function showAllSearch($search) {
         }
 
         $totalUsers = $userDAO->countTotalUsers($toSearch);
-        echo "HOLAAAA";
         $usersData = $userDAO->showAllPaged($currentPage, $itemsPerPage, $toSearch);
         new UserShowAllView($usersData, $itemsPerPage, $currentPage, $totalUsers, $toSearch);
     } catch (DAOException $e) {
