@@ -43,7 +43,7 @@ switch($funcAction) {
                 $allFuncActions = $funcActionDAO->showAll();
                 foreach ($allFuncActions as $funAct) {
                     if ($funAct->getIdAction() == $funcAction->getIdAction() and $funAct->getIdFunctionality() == $funcAction->getIdFunctionality()) {
-                        throw new DAOException('Accion-funcionalidad duplicado.');
+                        throw new DAOException('Accion-funcionalidad duplicada.');
                     }
                 }
 
@@ -122,7 +122,7 @@ switch($funcAction) {
                     $allFuncActions = $funcActionDAO->showAll();
                     foreach ($allFuncActions as $funAct) {
                         if ($funAct->getIdAction() == $funcAction->getIdAction() and $funAct->getIdFunctionality() == $funcAction->getIdFunctionality()) {
-                            throw new DAOException('Accion-funcionalidad duplicado.');
+                            throw new DAOException('Accion-funcionalidad duplicada.');
                         }
                     }
 

@@ -31,7 +31,7 @@ switch($action) {
                 $academicCourseDAO->add($academicCourse);
                 $message = MessageType::SUCCESS;
                 showAll();
-                showToast($message, "Año académico añadido correctamente.");
+                showToast($message, "Curso académico añadido correctamente.");
             } catch (DAOException $e) {
                 $message = MessageType::ERROR;
                 showAll();
@@ -49,7 +49,7 @@ switch($action) {
                 $response = $academicCourseDAO->delete($key, $value);
                 $message = MessageType::SUCCESS;
                 showAll();
-                showToast($message, "Año académico eliminado correctamente.");
+                showToast($message, "Curso académico eliminado correctamente.");
             } catch (DAOException $e) {
                 $message = MessageType::ERROR;
                 showAll();
@@ -104,7 +104,7 @@ switch($action) {
                     $response = $academicCourseDAO->edit($academicCourse);
                     $message = MessageType::SUCCESS;
                     showAll();
-                    showToast($message, "Año académico editado correctamente.");
+                    showToast($message, "Curso académico editado correctamente.");
                 } catch (DAOException $e) {
                     $message = MessageType::ERROR;
                     showAll();

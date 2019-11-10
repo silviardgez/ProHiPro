@@ -34,7 +34,7 @@ switch($action) {
                 $roleDAO->add($role);
                 $message = MessageType::SUCCESS;
                 showAll();
-                showToast($message, "Role añadido correctamente.");
+                showToast($message, "Rol añadido correctamente.");
             } catch (DAOException $e) {
                 $message = MessageType::ERROR;
                 showAll();
@@ -51,7 +51,7 @@ switch($action) {
                 $response = $roleDAO->delete($key, $value);
                 $message = MessageType::SUCCESS;
                 showAll();
-                showToast($message, "Role eliminado correctamente.");
+                showToast($message, "Rol eliminado correctamente.");
             } catch (DAOException $e) {
                 $message = MessageType::ERROR;
                 showAll();
@@ -97,7 +97,7 @@ switch($action) {
                     $response = $roleDAO->edit($role);
                     $message = MessageType::SUCCESS;
                     showAll();
-                    showToast($message, "Role editado correctamente.");
+                    showToast($message, "Rol editado correctamente.");
                 } catch (DAOException $e) {
                     $message = MessageType::ERROR;
                     showAll();

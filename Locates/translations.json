@@ -360,7 +360,7 @@
         "en": "Functionality",
         "gl": "Funcionalidade"
     },
-    "No se ha obtenido ninguna acción-Funcionalidad": {
+    "No se ha obtenido ninguna acción-funcionalidad": {
         "en": "No action-functionality has been obtained",
         "gl": "Non se obtuvo ninguna acción-funcionalidade"
     },
@@ -368,7 +368,7 @@
         "en": "Action Functionality",
         "gl": "Acción Funcionalidade"
     },
-    "Insertar permiso": {
+    "Insertar Permiso": {
         "en": "Add permission",
         "gl": "Insertar permiso"
     },
@@ -384,7 +384,7 @@
         "en": "Permission list",
         "gl": "Listado de Permisos"
     },
-    "Añadir permiso": {
+    "Añadir Permiso": {
         "en": "Add permission",
         "gl": "Engadir permiso"
     },
@@ -435,6 +435,134 @@
     "Introducir id de rol": {
         "en": "Add role id",
         "gl": "Introducir id de rol"
+    },
+    "Curso académico añadido correctamente.": {
+        "en": "Academic course added succesfully.",
+        "gl": "Curso académico engadido correctamente."
+    },
+    "Curso académico eliminado correctamente.": {
+        "en": "Academic course deleted succesfully.",
+        "gl": "Curso académico eliminado correctamente."
+    },
+    "Curso académico editado correctamente.": {
+        "en": "Academic course editted succesfully.",
+        "gl": "Curso académico editado correctamente."
+    },
+    "Acción añadida correctamente.": {
+        "en": "Action added succesfully.",
+        "gl": "Acción engadida correctamente."
+    },
+    "Acción eliminada correctamente.": {
+        "en": "Action deleted succesfully.",
+        "gl": "Acción eliminada correctamente."
+    },
+    "Acción editada correctamente.": {
+        "en": "Action editted succesfully.",
+        "gl": "Acción editada correctamente."
+    },
+    "Funcionalidad añadida correctamente.": {
+        "en": "Functionality added succesfully.",
+        "gl": "Fubncionalidade engadida correctamente."
+    },
+    "Funcionalidad eliminada correctamente.": {
+        "en": "Functionality deleted succesfully.",
+        "gl": "Fubncionalidade eliminada correctamente."
+    },
+    "Funcionalidad editada correctamente.": {
+        "en": "Functionality editted succesfully.",
+        "gl": "Fubncionalidade editada correctamente."
+    },
+    "Acción-funcionalidad añadida correctamente.": {
+        "en": "Action-functionality added succesfully.",
+        "gl": "Acción-funcionalidade engadida correctamente."
+    },
+    "Acción-funcionalidad eliminada correctamente.": {
+        "en": "Action-functionality deleted succesfully.",
+        "gl": "Acción-funcionalidade eliminada correctamente."
+    },
+    "Acción-funcionalidad editada correctamente.": {
+        "en": "Action-functionality editted succesfully.",
+        "gl": "Acción-funcionalidade editada correctamente."
+    },
+    "Accion-funcionalidad duplicada.": {
+        "en": "Action-functionality editted succesfully.",
+        "gl": "Acción-funcionalidade editada correctamente."
+    },
+    "Permiso añadido correctamente.": {
+        "en": "Permission added succesfully.",
+        "gl": "Permiso engadido correctamente."
+    },
+    "Permiso eliminado correctamente.": {
+        "en": "Permission deleted succesfully.",
+        "gl": "Permiso eliminado correctamente."
+    },
+    "Permiso editado correctamente.": {
+        "en": "Permission editted succesfully.",
+        "gl": "Permiso editado correctamente."
+    },
+    "Rol añadido correctamente.": {
+        "en": "Role added succesfully.",
+        "gl": "Rol engadido correctamente."
+    },
+    "Rol eliminado correctamente.": {
+        "en": "Role deleted succesfully.",
+        "gl": "Rol eliminado correctamente."
+    },
+    "Rol editado correctamente.": {
+        "en": "Role editted succesfully.",
+        "gl": "Rol editado correctamente."
+    },
+    "Usuario añadido correctamente.": {
+        "en": "User added succesfully.",
+        "gl": "Usuario engadido correctamente."
+    },
+    "Usuario eliminado correctamente.": {
+        "en": "User deleted succesfully.",
+        "gl": "Usuario eliminado correctamente."
+    },
+    "Usuario editado correctamente.": {
+        "en": "User editted succesfully.",
+        "gl": "Usuario editado correctamente."
+    },
+    "Año de inicio mayor o igual que año fin.": {
+        "en": "Start year greater or equal than end year.",
+        "gl": "Ano de inicio maior ou igual que ano fin."
+    },
+    "No puede existir una diferencia de más de 1 año entre cursos.": {
+        "en": "Difference between courses must not be greater than 1 year.",
+        "gl": "Non pode existir unha diferencia de máis de 1 ano entre cursos."
+    },
+    "Error de conexión con la base de datos.": {
+        "en": "Data Base connection error.",
+        "gl": "Error de conexión coa base de datos."
+    },
+    "Entidad duplicada. Ya existe en la base de datos.": {
+        "en": "Duplicate entity. It does already exist in data base.",
+        "gl": "Entidad duplicada. Xa existe na base de datos."
+    },
+    "La entidad que se intenta eliminar no existe.": {
+        "en": "The entity you are trying to delete does not exist",
+        "gl": "A entidade que intenta eliminar non existe."
+    },
+    "La entidad consultada no existe.": {
+        "en": "Consulted entity does not exist.",
+        "gl": "A entidade consultada non existe."
+    },
+    "Constraseña incorrecta.": {
+        "en": "Incorrect password.",
+        "gl": "Contraseña incorrecta."
+    },
+    "El usuario no existe.": {
+        "en": "User does not exist.",
+        "gl": "O usuario non existe."
+    },
+    "Asignación de Permisos": {
+        "en": "Permission asignation",
+        "gl": "Asignación de permisos"
+    },
+    "Asignación de Roles": {
+        "en": "Roles asgnation",
+        "gl": "Asignación de roles"
     }
 }
 

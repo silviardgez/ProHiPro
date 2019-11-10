@@ -55,7 +55,7 @@ function render(){
         </table>
             <?php else: ?>
             </table>
-            <p data-translate="No se ha obtenido ningun rol">. </p>
+            <p data-translate="No se ha obtenido ningún rol">. </p>
             <?php endif; ?>
     </div>
 </main>

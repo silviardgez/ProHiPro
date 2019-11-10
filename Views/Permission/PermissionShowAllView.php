@@ -84,7 +84,7 @@ class PermissionShowAllView
                 </table>
                 <?php else: ?>
                     </table>
-                    <p data-translate="No se ha obtenido ningun permiso">. </p>
+                    <p data-translate="No se ha obtenido ningún permiso">. </p>
                 <?php endif; ?>
             </div>
         </main>
