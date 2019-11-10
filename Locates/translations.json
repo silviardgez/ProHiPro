@@ -164,7 +164,7 @@
         "en": "No user has been obtained",
         "gl": "Non se obtuvo ningún usuario"
     },
-    "No se ha obtenido ningúna acción": {
+    "No se ha obtenido ninguna acción": {
         "en": "No action has been obtained",
         "gl": "Non se obtuvo ningunha acción"
     },
@@ -396,6 +396,10 @@
         "en": "Permission does not exist",
         "gl": "O permiso non existe"
     },
+    "Permiso duplicado.": {
+        "en": "Duplicate permission.",
+        "gl": "Permiso duplicado."
+    },
     "Insertar Rol": {
         "en": "Add rol",
         "gl": "Insertar Rol"
@@ -484,7 +488,7 @@
         "en": "Action-functionality editted succesfully.",
         "gl": "Acción-funcionalidade editada correctamente."
     },
-    "Accion-funcionalidad duplicada.": {
+    "Acción-funcionalidad duplicada.": {
         "en": "Action-functionality editted succesfully.",
         "gl": "Acción-funcionalidade editada correctamente."
     },
@@ -511,6 +515,10 @@
     "Rol editado correctamente.": {
         "en": "Role editted succesfully.",
         "gl": "Rol editado correctamente."
+    },
+    "Rol duplicado.": {
+        "en": "Duplicated role.",
+        "gl": "Rol duplicado."
     },
     "Usuario añadido correctamente.": {
         "en": "User added succesfully.",
@@ -569,6 +577,10 @@
         "gl": "Búsqueda específica"
     },
     "Búsqueda de usuarios": {
+        "en": "Users search",
+        "gl": "Búsqueda de usuarios"
+    },
+    "Eliminar año académico": {
         "en": "Users search",
         "gl": "Búsqueda de usuarios"
     }

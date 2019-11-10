@@ -26,12 +26,12 @@ class AcademicCourseEditView {
                 </div>
                 <div class="form-group">
                     <label for="start_year" data-translate="Año de inicio"></label>
-                    <input type="number" class="form-control" id="start_year" name="start_year"
+                    <input type="number" min="2000" max="9999" class="form-control" id="start_year" name="start_year"
                            value="<?php echo $this->academicCourse->getStartYear() ?>">
                 </div>
                 <div class="form-group">
                     <label for="end_year" data-translate="Año de fin"></label>
-                    <input type="number" class="form-control" id="end_year" name="end_year"
+                    <input type="number" min="2000" max="9999" class="form-control" id="end_year" name="end_year"
                            value="<?php echo $this->academicCourse->getEndYear() ?>">
                 </div>
 
