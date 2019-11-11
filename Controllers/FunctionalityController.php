@@ -43,6 +43,9 @@ switch ($action) {
                     showToast($message, $e->getMessage());
                 }
             }
+        } else{
+            $message = MessageType::ERROR;
+            showToast($message, "No tienes permiso para acceder");
         }
         break;
     case "delete":
@@ -69,6 +72,9 @@ switch ($action) {
                     "la funcionalidad <b>" . $value . "</b>? Esta acción es permanente y no se puede recuperar.",
                     "../Controllers/FunctionalityController.php?action=delete&IdFunctionality=" . $value . "&confirm=true");
             }
+        } else{
+            $message = MessageType::ERROR;
+            showToast($message, "No tienes permiso para acceder");
         }
         break;
     case "show":
@@ -84,6 +90,9 @@ switch ($action) {
                 showAll();
                 showToast($message, $e->getMessage());
             }
+        } else{
+            $message = MessageType::ERROR;
+            showToast($message, "No tienes permiso para acceder");
         }
         break;
     case "edit":
@@ -117,28 +126,31 @@ switch ($action) {
                 showAll();
                 showToast($message, $e->getMessage());
             }
+        } else{
+            $message = MessageType::ERROR;
+            showToast($message, "No tienes permiso para acceder");
         }
         break;
     default:
-        if (HavePermission("Functionality", "SHOWALL")) {
-            showAll();
-        } else {
-            $message = MessageType::ERROR;
-            showToast($message, "Access Denied");
-            redirect("./IndexController.php");
-        }
+        showAll();
         break;
 }
 
 function showAll()
 {
-    try {
-        $functionalityDAO = new FunctionalityDAO();
-        $functionalitiesData = $functionalityDAO->showAll();
-        new FunctionalityShowAllView($functionalitiesData);
-    } catch (DAOException $e) {
+    if (HavePermission("Functionality", "SHOWALL")) {
+        try {
+            $functionalityDAO = new FunctionalityDAO();
+            $functionalitiesData = $functionalityDAO->showAll();
+            new FunctionalityShowAllView($functionalitiesData);
+        } catch (DAOException $e) {
+            $message = MessageType::ERROR;
+            new FunctionalityShowAllView(array());
+            showToast($message, $e->getMessage());
+        }
+    }  else{
         $message = MessageType::ERROR;
-        new FunctionalityShowAllView(array());
-        showToast($message, $e->getMessage());
+        showToast($message, "No tienes permiso para acceder");
     }
+
 }

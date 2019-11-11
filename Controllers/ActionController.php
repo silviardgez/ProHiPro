@@ -44,6 +44,9 @@ switch ($action) {
                     showToast($message, $e->getMessage());
                 }
             }
+        } else{
+            $message = MessageType::ERROR;
+            showToast($message, "No tienes permiso para acceder");
         }
         break;
     case "delete":
@@ -70,6 +73,9 @@ switch ($action) {
                     "la acción <b>" . $value . "</b>? Esta acción es permanente y no se puede recuperar.",
                     "../Controllers/ActionController.php?action=delete&IdAction=" . $value . "&confirm=true");
             }
+        } else{
+            $message = MessageType::ERROR;
+            showToast($message, "No tienes permiso para acceder");
         }
         break;
     case "show":
@@ -85,6 +91,9 @@ switch ($action) {
                 showAll();
                 showToast($message, $e->getMessage());
             }
+        } else{
+            $message = MessageType::ERROR;
+            showToast($message, "No tienes permiso para acceder");
         }
         break;
     case "edit":
@@ -118,28 +127,31 @@ switch ($action) {
                 showAll();
                 showToast($message, $e->getMessage());
             }
+        } else{
+            $message = MessageType::ERROR;
+            showToast($message, "No tienes permiso para acceder");
         }
         break;
     default:
-        if (HavePermission("Action", "SHOWALL")) {
-            showAll();
-        } else {
-            $message = MessageType::ERROR;
-            showToast($message, "Access Denied");
-            redirect("./IndexController.php");
-        }
+        showAll();
         break;
 }
 
 function showAll()
 {
-    try {
-        $actionDAO = new ActionDAO();
-        $actionsData = $actionDAO->showAll();
-        new ActionShowAllView($actionsData);
-    } catch (DAOException $e) {
+    if (HavePermission("Action", "SHOWALL")) {
+        try {
+            $actionDAO = new ActionDAO();
+            $actionsData = $actionDAO->showAll();
+            new ActionShowAllView($actionsData);
+        } catch (DAOException $e) {
+            $message = MessageType::ERROR;
+            new ActionShowAllView(array());
+            showToast($message, $e->getMessage());
+        }
+    } else{
         $message = MessageType::ERROR;
-        new ActionShowAllView(array());
-        showToast($message, $e->getMessage());
+        showToast($message, "No tienes permiso para acceder");
     }
+
 }
