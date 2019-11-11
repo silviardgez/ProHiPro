@@ -5,14 +5,23 @@ use PHPUnit\Framework\TestCase;
 
 require_once '../Models/Permission/Permission.php';
 require_once '../Models/FuncAction/Func_Action.php';
+require_once '../Models/Action/Action.php';
+require_once '../Models/Functionality/Functionality.php';
+require_once '../Models/Role/Role.php';
 require_once '../Models/Permission/PermissionDAO.php';
 require_once '../Models/FuncAction/FuncActionDAO.php';
+require_once '../Models/Action/ActionDAO.php';
+require_once '../Models/Functionality/FunctionalityDAO.php';
+require_once '../Models/Role/RoleDAO.php';
 require_once '../Models/Common/DAOException.php';
 
 final class PermissionTest extends TestCase
 {
     protected static $permissionDAO;
     protected static $funcActionDAO;
+    protected static $actionDAO;
+    protected static $functionalityDAO;
+    protected static $roleDAO;
     protected static $examplePermission;
     protected static $exampleFuncAction;
     protected static $examplePermissionArray;
@@ -23,6 +32,16 @@ final class PermissionTest extends TestCase
     {
         self::$permissionDAO = new PermissionDAO();
         self::$funcActionDAO = new FuncActionDAO();
+        self::$actionDAO = new ActionDAO();
+        self::$functionalityDAO = new FunctionalityDAO();
+        self::$roleDAO = new RoleDAO();
+
+        self::$actionDAO->add(new Action('2', 'Test', 'ADD'));
+
+        self::$functionalityDAO->add(new Functionality('1', 'Test', 'UsersManagement'));
+        self::$functionalityDAO->add(new Functionality('2', 'Test', 'RolesManagement'));
+
+        self::$roleDAO->add(new Role('3', 'Test', 'Role to test'));
 
         self::$funcActionDAO->add(new Func_Action(1, 2, 1));
         self::$funcActionDAO->add(new Func_Action(2, 2, 2));
@@ -54,6 +73,11 @@ final class PermissionTest extends TestCase
             self::$funcActionDAO->delete('IdFuncAction', 2);
             self::$funcActionDAO->delete('IdFuncAction', 3);
             self::$funcActionDAO->delete('IdFuncAction', 4);
+
+            self::$roleDAO->delete('name', 'Test');
+            self::$functionalityDAO->delete('name', 'Test');
+            self::$actionDAO->delete('name', 'Test');
+
         } catch (Exception $e) {
         }
     }
