@@ -169,8 +169,10 @@ function showAllSearch($search) {
         } else {
             $itemsPerPage = 10;
         }
-        if(!empty($_REQUEST['search'])) {
-            $toSearch = $_REQUEST['search'];
+
+        $searchRequested = $_REQUEST['search'];
+        if(!empty($searchRequested)) {
+            $toSearch = $searchRequested;
         } elseif(!is_null($search)) {
             $toSearch = $search;
         } else {

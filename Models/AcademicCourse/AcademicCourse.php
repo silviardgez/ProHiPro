@@ -6,8 +6,14 @@ class AcademicCourse
     private $start_year;
     private $end_year;
 
-    public function __construct($id_academic_course=NULL,$academic_course_abbr=NULL , $start_year=NULL, $end_year=NULL)
+    public function __construct($id_academic_course=NULL,$academic_course_abbr=NULL, $start_year=NULL, $end_year=NULL)
     {
+        if (!empty($start_year) && !empty($end_year)) {
+            $this->constructEntity($id_academic_course,$academic_course_abbr, $start_year, $end_year);
+        }
+    }
+
+    private function constructEntity($id_academic_course=NULL,$academic_course_abbr=NULL , $start_year=NULL, $end_year=NULL) {
         if ($this->isCorrectAcademicCourse($start_year, $end_year)) {
             if($academic_course_abbr === NULL) {
                 $academic_course_abbr = $this->formatAbbr($start_year, $end_year);

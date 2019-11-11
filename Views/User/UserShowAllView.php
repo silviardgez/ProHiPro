@@ -82,7 +82,7 @@ function render(){
     <!-- Pagination -->
     <label class="label-pagination" data-translate="Usuarios por página"></label>
     <select class="form-control items-page" id="items-page-select"
-            onchange="selectChange(this)">
+            onchange="selectChange(this, 'User')">
         <option value="5" <?php if ($this->itemsPerPage == 5) echo "selected" ?>>5</option>
         <option value="10" <?php if ($this->itemsPerPage == 10) echo "selected" ?>>10</option>
         <option value="15" <?php if ($this->itemsPerPage == 15) echo "selected" ?>>15</option>
@@ -96,7 +96,7 @@ function render(){
             <?php else: ?>
             <li class="page-item">
             <?php endif; ?>
-                <a class="page-link" href="../Controllers/UserController.php?currentPage=<?php echo $this->currentPage-1?>">
+                <a class="page-link" href="../Controllers/UserController.php?currentPage=<?php echo $this->currentPage-1?>&itemsPerPage=<?php echo $this->itemsPerPage ?>">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
             </li>
@@ -116,7 +116,7 @@ function render(){
             <?php else: ?>
             <li class="page-item">
             <?php endif; ?>
-                <a class="page-link" href="../Controllers/UserController.php?currentPage=<?php echo $this->currentPage+1?>">
+                <a class="page-link" href="../Controllers/UserController.php?currentPage=<?php echo $this->currentPage+1?>&itemsPerPage=<?php echo $this->itemsPerPage ?>">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>

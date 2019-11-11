@@ -14,8 +14,8 @@ class AcademicCourseEditView {
         <main role="main" class="margin-main ml-sm-auto px-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-3
             border-bottom">
-                <h1 class="h2"><label data-translate="Curso académico"></label><?php echo $this->academicCourse->getAcademicCourseAbbr() ?> </h1>
-                <a class="btn btn-primary" role="button" href="../Controllers/UserController.php">Volver</a>
+                <h1 class="h2"><label data-translate="Curso académico"></label><?php echo " " . $this->academicCourse->getAcademicCourseAbbr() ?> </h1>
+                <a class="btn btn-primary" role="button" href="../Controllers/AcademicCourseController.php">Volver</a>
             </div>
             <form action='../Controllers/AcademicCourseController.php?action=edit' method='POST'>
                 <div class="form-group">
