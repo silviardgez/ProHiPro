@@ -29,13 +29,15 @@ final class UserTest extends TestCase
             'address' => 'calle falsa 123',
             'telephone' => '666444666',
         );
+        $_SESSION['login'] = 'admin';
     }
 
     protected function tearDown(): void
     {
         try {
             self::$userDAO->delete('login', '_test_');
-        } catch (Exception $e) {}
+        } catch (Exception $e) {
+        }
     }
 
     public function testCanBeCreated()
@@ -46,6 +48,7 @@ final class UserTest extends TestCase
             $user
         );
     }
+
 
     public function testCanBeAdded()
     {
@@ -77,8 +80,8 @@ final class UserTest extends TestCase
 
     public function testCanShowNone()
     {
-        $userCreated = self::$userDAO->showAll("login", "_test_");
-        $this->assertEmpty($userCreated);
+        $this->expectException(DAOException::class);
+        $userCreated = self::$userDAO->show("login", "_test_");
     }
 
     public function testCanShowSeveral()
@@ -94,13 +97,13 @@ final class UserTest extends TestCase
         self::$userDAO->add($user2);
         self::$userDAO->add($user3);
 
-        $usersCreated = self::$userDAO->showAll("name", "test");
+        $usersCreated = self::$userDAO->showAll();
 
-        $this->assertTrue($usersCreated[0]->getLogin() == '_test_1');
-        $this->assertTrue($usersCreated[1]->getLogin() == '_test_2');
-        $this->assertTrue($usersCreated[2]->getLogin() == '_test_3');
+        $this->assertTrue(count($usersCreated) >= 3);
 
-        self::$userDAO->delete('name', 'test');
+        self::$userDAO->delete('login', '_test_1');
+        self::$userDAO->delete('login', '_test_2');
+        self::$userDAO->delete('login', '_test_3');
     }
 
     public function testIntCanBeCreated()
@@ -141,10 +144,11 @@ final class UserTest extends TestCase
         $userCreated = self::$userDAO->show("login", "_test_");
     }
 
-    private function curlPost($postData, $action) {
+    private function curlPost($postData, $action)
+    {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_URL, "http://localhost/Controllers/UserController.php?action=".$action."&login=_test_");
+        curl_setopt($ch, CURLOPT_URL, "http://localhost/Controllers/UserController.php?action=" . $action . "&login=_test_");
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);

@@ -126,8 +126,8 @@ final class PermissionTest extends TestCase
     public
     function testCanShowNone()
     {
-        $permissionCreated = self::$permissionDAO->showAll('IdPermission', 1);
-        $this->assertEmpty($permissionCreated);
+        $this->expectException(DAOException::class);
+        $permissionCreated = self::$permissionDAO->show('IdPermission', 1);
     }
 
     public
@@ -144,11 +144,9 @@ final class PermissionTest extends TestCase
         self::$permissionDAO->add($permission2);
         self::$permissionDAO->add($permission3);
 
-        $permissionCreated = self::$permissionDAO->showAll('IdFuncAction', 1);
+        $permissionCreated = self::$permissionDAO->showAll();
 
-        $this->assertTrue($permissionCreated[0]->getIdPermission() == 2);
-        $this->assertTrue($permissionCreated[1]->getIdPermission() == 3);
-        $this->assertTrue($permissionCreated[2]->getIdPermission() == 4);
+        $this->assertTrue(count($permissionCreated) >= 3);
 
         self::$permissionDAO->delete('IdFuncAction', 1);
     }

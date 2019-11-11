@@ -76,8 +76,8 @@ final class AcademicCourseTest extends TestCase
 
     public function testCanShowNone()
     {
-        $academicCourseCreated = self::$academicCourseDAO->showAll('academic_course_abbr', '50/51');
-        $this->assertEmpty($academicCourseCreated);
+        $this->expectException(DAOException::class);
+        $academicCourseCreated = self::$academicCourseDAO->show('academic_course_abbr', '50/51');
     }
 
     public function testCanShowSeveral()
@@ -96,11 +96,9 @@ final class AcademicCourseTest extends TestCase
         self::$academicCourseDAO->add($academicCourse2);
         self::$academicCourseDAO->add($academicCourse3);
 
-        $academicCoursesCreated = self::$academicCourseDAO->showAll('academic_course_abbr', '50/51');
+        $academicCoursesCreated = self::$academicCourseDAO->showAll();
 
-        $this->assertTrue($academicCoursesCreated[0]->getIdAcademicCourse() == 1);
-        $this->assertTrue($academicCoursesCreated[1]->getIdAcademicCourse() == 2);
-        $this->assertTrue($academicCoursesCreated[2]->getIdAcademicCourse() == 3);
+        $this->assertTrue(count($academicCoursesCreated) >= 3);
 
         self::$academicCourseDAO->delete('academic_course_abbr', '51/52');
         self::$academicCourseDAO->delete('academic_course_abbr', '52/53');
