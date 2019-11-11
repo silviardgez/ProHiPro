@@ -18,6 +18,7 @@ include_once '../Views/Permission/PermissionShowAllView.php';
 include_once '../Views/Permission/PermissionAddView.php';
 include_once '../Views/Permission/PermissionShowView.php';
 include_once '../Views/Permission/PermissionEditView.php';
+include_once '../Views/Permission/PermissionSearchView.php';
 include_once '../Functions/ShowToast.php';
 include_once '../Functions/OpenDeletionModal.php';
 include_once '../Functions/Redirect.php';
@@ -166,30 +167,88 @@ switch($permission) {
             showToast($message, "No tienes permiso para acceder");
         }
         break;
+    case "search":
+        if(HavePermission("Permission", "SHOWALL")) {
+            if (!isset($_POST["submit"])) {
+                $actionDAO = new ActionDAO();
+                $funcDAO = new FunctionalityDAO();
+                $actionsData = $actionDAO->showAll();
+                $functionalitiesData = $funcDAO->showAll();
+                $funcActionDAO = new FuncActionDAO();
+                $funcActionData = $funcActionDAO->showAll();
+                $roleDAO = new RoleDAO();
+                $roleData = $roleDAO->showAll();
+                new PermissionSearchView($roleData, $funcActionData, $actionsData, $functionalitiesData);
+            } else {
+                try {
+                    $permission = new Permission();
+                    $permission->setIdRole($_POST["idRole"]);
+                    $permission->setIdFuncAction($_POST["idFuncAction"]);
+                    $permissionDAO = new PermissionDAO();
+                    showAllSearch($permission);
+                } catch (DAOException $e) {
+                    $message = MessageType::ERROR;
+                    showAll();
+                    showToast($message, $e->getMessage());
+                } catch (ValidationException $ve) {
+                    $message = MessageType::ERROR;
+                    showAll();
+                    showToast($message, $ve->getMessage());
+                }
+            }
+        }
+        break;
     default:
         showAll();
         break;
 }
+
 function showAll() {
+    showAllSearch(NULL);
+}
+
+function showAllSearch($search) {
     if(HavePermission("Permission", "SHOWALL")) {
-        try {
-            $funcActionDAO = new FuncActionDAO();
-            $actionDAO = new ActionDAO();
-            $funcDAO = new FunctionalityDAO();
-            $funcActionsData = $funcActionDAO->showAll();
-            $actionsData = $actionDAO->showAll();
-            $functionalitiesData = $funcDAO->showAll();
-            $permissionDAO = new PermissionDAO();
-            $permissionData = $permissionDAO->showAll();
-            $roleDAO = new RoleDAO();
-            $roleData = $roleDAO->showAll();
-            new PermissionShowAllView($permissionData, $roleData, $funcActionsData, $actionsData, $functionalitiesData);
-        } catch (DAOException $e) {
-            $message = MessageType::ERROR;
-            new UserRoleShowAllView(array());
-            showToast($message, $e->getMessage());
-        }
-    }  else{
+            try {
+                if (!empty($_REQUEST['currentPage'])) {
+                    $currentPage = $_REQUEST['currentPage'];
+                } else {
+                    $currentPage = 1;
+                }
+                if (!empty($_REQUEST['itemsPerPage'])) {
+                    $itemsPerPage = $_REQUEST['itemsPerPage'];
+                } else {
+                    $itemsPerPage = 10;
+                }
+                $searchRequested = $_REQUEST['search'];
+                if (!empty($searchRequested)) {
+                    $toSearch = $searchRequested;
+                } elseif (!is_null($search)) {
+                    $toSearch = $search;
+                } else {
+                    $toSearch = NULL;
+                }
+
+                $funcActionDAO = new FuncActionDAO();
+                $actionDAO = new ActionDAO();
+                $funcDAO = new FunctionalityDAO();
+                $funcActionsData = $funcActionDAO->showAll();
+                $actionsData = $actionDAO->showAll();
+                $functionalitiesData = $funcDAO->showAll();
+                $permissionDAO = new PermissionDAO();
+                $roleDAO = new RoleDAO();
+                $roleData = $roleDAO->showAll();
+
+                $totalPermissions = $permissionDAO->countTotalPermissions($toSearch);
+                $permissionData = $permissionDAO->showAllPaged($currentPage, $itemsPerPage, $toSearch);
+                new PermissionShowAllView($permissionData, $roleData, $funcActionsData, $actionsData,
+                    $functionalitiesData, $itemsPerPage, $currentPage, $totalPermissions, $toSearch);
+            } catch (DAOException $e) {
+                $message = MessageType::ERROR;
+                new UserRoleShowAllView(array());
+                showToast($message, $e->getMessage());
+            }
+        } else{
         $message = MessageType::ERROR;
         showToast($message, "No tienes permiso para acceder");
     }

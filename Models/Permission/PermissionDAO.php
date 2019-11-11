@@ -11,11 +11,7 @@ class PermissionDAO
 
     function showAll() {
         $permission_db = $this->defaultDAO->showAll("permission");
-        $permissions = array();
-        foreach ($permission_db as $permission) {
-            array_push($permissions, new Permission($permission["IdPermission"], $permission["IdRole"], $permission["IdFuncAction"]));
-        }
-        return $permissions;
+        return $this->getPermissionFromDB($permission_db);
     }
 
     function add($permission) {
@@ -33,6 +29,23 @@ class PermissionDAO
 
     function edit($permission) {
         return $this->defaultDAO->edit($permission, "IdPermission");
+    }
+
+    function showAllPaged($currentPage, $itemsPerPage, $stringToSearch) {
+        $permissionDB = $this->defaultDAO->showAllPaged($currentPage, $itemsPerPage, new Permission(), $stringToSearch);
+        return $this->getPermissionFromDB($permissionDB);
+    }
+
+    function countTotalPermissions($stringToSearch) {
+        return $this->defaultDAO->countTotalEntries(new Permission(), $stringToSearch);
+    }
+
+    private function getPermissionFromDB($permissions_db) {
+        $permissions = array();
+        foreach ($permissions_db as $permission) {
+            array_push($permissions, new Permission($permission["IdPermission"], $permission["IdRole"], $permission["IdFuncAction"]));
+        }
+        return $permissions;
     }
 
     function truncateTable() {
