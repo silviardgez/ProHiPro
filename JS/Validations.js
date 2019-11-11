@@ -183,18 +183,18 @@ function checkAddUser() {
     var nameuser;
     var surnameuser;
     var email;
-    var address
+    var address;
     var telf;
 
     login = document.forms['ADD'].elements[0];
     pwd = document.forms['ADD'].elements[1];
-    pwd2 = document.forms['ADD'].elements[1];
-    dni = document.forms['ADD'].elements[2];
-    nameuser = document.forms['ADD'].elements[3];
-    surnameuser = document.forms['ADD'].elements[4];
-    email = document.forms['ADD'].elements[5];
-    address = document.forms['ADD'].elements[6];
-    telf = document.forms['ADD'].elements[7];
+    pwd2 = document.forms['ADD'].elements[2];
+    dni = document.forms['ADD'].elements[3];
+    nameuser = document.forms['ADD'].elements[4];
+    surnameuser = document.forms['ADD'].elements[5];
+    email = document.forms['ADD'].elements[6];
+    address = document.forms['ADD'].elements[7];
+    telf = document.forms['ADD'].elements[8];
 
     if (!checkEmpty(login)) {
         return false;
@@ -339,7 +339,7 @@ function checkEditUser() {
     var nameuser;
     var surnameuser;
     var email;
-    var address
+    var address;
     var telf;
 
     login = document.forms['EDIT'].elements[0];
@@ -501,7 +501,7 @@ function checkSearchUser() {
     var nameuser;
     var surnameuser;
     var email;
-    var address
+    var address;
     var telf;
 
     login = document.forms['SEARCH'].elements[0];
@@ -631,9 +631,8 @@ function checkEditAcademicCourse() {
     var start_year;
     var end_year;
 
-    start_year = document.forms['EDIT'].elements[0];
-    end_year = document.forms['EDIT'].elements[1];
-    //document.write('<div>Print this after the script tag</div>'+start_year.value+'--'+end_year.value);
+    start_year = document.forms['EDIT'].elements[2];
+    end_year = document.forms['EDIT'].elements[3];
     if(start_year.value>=end_year.value){
         msgError('El atributo ' + start_year.name + ' es mayor o igual que '+ end_year.name);
         start_year.focus();
