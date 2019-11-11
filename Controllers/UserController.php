@@ -50,6 +50,9 @@ switch ($action) {
                     showToast($message, $e->getMessage());
                 }
             }
+        } else{
+            $message = MessageType::ERROR;
+            showToast($message, "No tienes permiso para acceder");
         }
         break;
     case "delete":
@@ -76,6 +79,9 @@ switch ($action) {
                     "el usuario <b>" . $value . "</b>? Esta acción es permanente y no se puede recuperar.",
                     "../Controllers/UserController.php?action=delete&login=" . $value . "&confirm=true");
             }
+        } else{
+            $message = MessageType::ERROR;
+            showToast($message, "No tienes permiso para acceder");
         }
         break;
     case "show":
@@ -91,6 +97,9 @@ switch ($action) {
                 showAll();
                 showToast($message, $e->getMessage());
             }
+        } else{
+            $message = MessageType::ERROR;
+            showToast($message, "No tienes permiso para acceder");
         }
         break;
     case "edit":
@@ -130,6 +139,9 @@ switch ($action) {
                 showAll();
                 showToast($message, $e->getMessage());
             }
+        } else{
+            $message = MessageType::ERROR;
+            showToast($message, "No tienes permiso para acceder");
         }
         break;
     case "search":
@@ -154,16 +166,13 @@ switch ($action) {
                     showToast($message, $e->getMessage());
                 }
             }
+        } else{
+            $message = MessageType::ERROR;
+            showToast($message, "No tienes permiso para acceder");
         }
         break;
     default:
-        if (HavePermission("User", "SHOWALL")) {
-            showAll();
-        } else {
-            $message = MessageType::ERROR;
-            showToast($message, "Access Denied");
-            redirect("./IndexController.php");
-        }
+        showAll();
         break;
 }
 
@@ -207,5 +216,8 @@ function showAllSearch($search)
             new UserShowAllView(array());
             showToast($message, $e->getMessage());
         }
+    } else{
+        $message = MessageType::ERROR;
+        showToast($message, "No tienes permiso para acceder");
     }
 }

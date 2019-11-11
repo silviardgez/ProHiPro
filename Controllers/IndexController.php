@@ -2,6 +2,7 @@
 
 session_start();
 include '../Functions/Authentication.php';
+include_once '../Functions/ShowToast.php';
 if (!IsAuthenticated()){
  	header('Location:../index.php');
 } else {

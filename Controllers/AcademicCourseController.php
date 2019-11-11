@@ -48,6 +48,9 @@ switch($action) {
                     showToast($message, $ve->getMessage());
                 }
             }
+        } else{
+            $message = MessageType::ERROR;
+            showToast($message, "No tienes permiso para acceder");
         }
         break;
     case "delete":
@@ -91,10 +94,13 @@ switch($action) {
                     showToast($message, $ve->getMessage());
                 }
             }
+        } else{
+            $message = MessageType::ERROR;
+            showToast($message, "No tienes permiso para acceder");
         }
         break;
     case "show":
-        if(HavePermission("AcademicCourse", "SHOW")) {
+        if(HavePermission("AcademicCourse", "SHOWCURRENT")) {
             try {
                 $key = "id_academic_course";
                 $value = $_REQUEST[$key];
@@ -110,6 +116,9 @@ switch($action) {
                 showAll();
                 showToast($message, $ve->getMessage());
             }
+        } else{
+            $message = MessageType::ERROR;
+            showToast($message, "No tienes permiso para acceder");
         }
         break;
     case "edit":
@@ -151,10 +160,13 @@ switch($action) {
                 showAll();
                 showToast($message, $ve->getMessage());
             }
+        } else{
+            $message = MessageType::ERROR;
+            showToast($message, "No tienes permiso para acceder");
         }
         break;
     case "search":
-        if(HavePermission("Permission", "SEARCH")) {
+        if(HavePermission("Permission", "SHOWALL")) {
             if (!isset($_POST["submit"])) {
                 new AcademicCourseSearchView();
             } else {
@@ -183,6 +195,9 @@ switch($action) {
                     showToast($message, $ve->getMessage());
                 }
             }
+        } else{
+            $message = MessageType::ERROR;
+            showToast($message, "No tienes permiso para acceder");
         }
         break;
     default:
@@ -222,5 +237,8 @@ function showAllSearch($search) {
             new AcademicCourseShowAllView(array());
             showToast($message, $e->getMessage());
         }
+    } else{
+        $message = MessageType::ERROR;
+        showToast($message, "No tienes permiso para acceder");
     }
 }

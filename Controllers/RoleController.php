@@ -43,6 +43,9 @@ switch ($action) {
                     showToast($message, $e->getMessage());
                 }
             }
+        } else{
+            $message = MessageType::ERROR;
+            showToast($message, "No tienes permiso para acceder");
         }
         break;
     case "delete":
@@ -69,6 +72,9 @@ switch ($action) {
                     "el role <b>" . $value . "</b>? Esta acción es permanente y no se puede recuperar.",
                     "../Controllers/RoleController.php?action=delete&IdRole=" . $value . "&confirm=true");
             }
+        } else{
+            $message = MessageType::ERROR;
+            showToast($message, "No tienes permiso para acceder");
         }
         break;
     case "show":
@@ -84,6 +90,9 @@ switch ($action) {
                 showAll();
                 showToast($message, $e->getMessage());
             }
+        } else{
+            $message = MessageType::ERROR;
+            showToast($message, "No tienes permiso para acceder");
         }
         break;
     case "edit":
@@ -117,28 +126,31 @@ switch ($action) {
                 showAll();
                 showToast($message, $e->getMessage());
             }
+        } else{
+            $message = MessageType::ERROR;
+            showToast($message, "No tienes permiso para acceder");
         }
         break;
     default:
-        if (HavePermission("Role", "SHOWALL")) {
-            showAll();
-        } else {
-            $message = MessageType::ERROR;
-            showToast($message, "Access Denied");
-            redirect("./IndexController.php");
-        }
+        showAll();
         break;
 }
 
 function showAll()
 {
-    try {
-        $roleDAO = new RoleDAO();
-        $rolesData = $roleDAO->showAll();
-        new RoleShowAllView($rolesData);
-    } catch (DAOException $e) {
+    if (HavePermission("Role", "SHOWALL")) {
+        try {
+            $roleDAO = new RoleDAO();
+            $rolesData = $roleDAO->showAll();
+            new RoleShowAllView($rolesData);
+        } catch (DAOException $e) {
+            $message = MessageType::ERROR;
+            new RoleShowAllView(array());
+            showToast($message, $e->getMessage());
+        }
+    }else {
         $message = MessageType::ERROR;
-        new RoleShowAllView(array());
-        showToast($message, $e->getMessage());
+        showToast($message, "No tienes permiso para acceder");
     }
+
 }

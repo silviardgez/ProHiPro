@@ -57,6 +57,9 @@ switch($permission) {
                     showToast($message, $e->getMessage());
                 }
             }
+        } else{
+            $message = MessageType::ERROR;
+            showToast($message, "No tienes permiso para acceder");
         }
         break;
     case "delete":
@@ -83,6 +86,9 @@ switch($permission) {
                     "el permiso <b>" . $value . "</b>? Esta acción es permanente y no se puede recuperar.",
                     "../Controllers/PermissionController.php?action=delete&IdPermission=" . $value . "&confirm=true");
             }
+        } else{
+            $message = MessageType::ERROR;
+            showToast($message, "No tienes permiso para acceder");
         }
         break;
     case "show":
@@ -106,6 +112,9 @@ switch($permission) {
                 showAll();
                 showToast($message, $e->getMessage());
             }
+        } else{
+            $message = MessageType::ERROR;
+            showToast($message, "No tienes permiso para acceder");
         }
         break;
     case "edit":
@@ -152,6 +161,9 @@ switch($permission) {
                 showAll();
                 showToast($message, $e->getMessage());
             }
+        } else{
+            $message = MessageType::ERROR;
+            showToast($message, "No tienes permiso para acceder");
         }
         break;
     default:
@@ -177,9 +189,8 @@ function showAll() {
             new UserRoleShowAllView(array());
             showToast($message, $e->getMessage());
         }
-    } else{
+    }  else{
         $message = MessageType::ERROR;
-        showToast($message,"Access Denied");
-        redirect("./IndexController.php");
+        showToast($message, "No tienes permiso para acceder");
     }
 }
