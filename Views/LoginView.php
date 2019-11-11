@@ -10,17 +10,22 @@
                <form action='../Controllers/LoginController.php' method="post">
                   <div class="form-group">
                      <label data-translate="Nombre de usuario"></label>
-                     <input type="text" class="form-control" name="login" placeholder="Nombre de usuario">
+                     <input type="text" class="form-control" name="login" data-translate="Nombre de usuario">
                   </div>
                   <div class="form-group">
                      <label data-translate="Contraseña"></label>
-                     <input type="password" class="form-control" name="password" placeholder="Contraseña">
+                     <input type="password" class="form-control" name="password" data-translate="Contraseña">
                   </div>
                   <button type="submit" name="action" value="login-user" class="btn btn-black">
                       <p data-translate="Iniciar sesión"></p></button>
                </form>
             </div>
          </div>
+          <li class="nav-item row flags">
+              <a href="javascript:translatePage('gl')"><img class="flag" src="../Images/gl.png"></a>
+              <a href="javascript:translatePage('es')"><img class="flag" src="../Images/es.jpg"></a>
+              <a href="javascript:translatePage('en')"><img class="flag" src="../Images/en.jpg"></a>
+          </li>
       </div>
 <script>
     translatePage(getCookie("language-selected"));

@@ -230,11 +230,11 @@
     },
     "Texto a buscar": {
         "en": "Search text",
-        "gl": "Texto a buscar"
+        "gl": "Texto a procurar"
     },
     "Buscar": {
         "en": "Search",
-        "gl": "Buscar"
+        "gl": "Procurar"
     },
     "Añadir usuario": {
         "en": "Add user",
@@ -360,9 +360,13 @@
         "en": "Functionality",
         "gl": "Funcionalidade"
     },
-    "No se ha obtenido ninguna acción-funcionalidad": {
-        "en": "No action-functionality has been obtained",
-        "gl": "Non se obtuvo ninguna acción-funcionalidade"
+    "No se ha obtenido ninguna funcionalidad.": {
+        "en": "No functionality has been obtained.",
+        "gl": "Funcionalidade"
+    },
+    "No se ha obtenido ninguna acción-funcionalidad.": {
+        "en": "No action-functionality has been obtained.",
+        "gl": "Non se obtuvo ninguna acción-funcionalidade."
     },
     "Acción Funcionalidad": {
         "en": "Action Functionality",
@@ -520,6 +524,10 @@
         "en": "Duplicated role.",
         "gl": "Rol duplicado."
     },
+    "Rol no añadido correctamente.": {
+        "en": "Rol not added succesfully",
+        "gl": "Rol non añadido correctamente."
+    },
     "Usuario añadido correctamente.": {
         "en": "User added succesfully.",
         "gl": "Usuario engadido correctamente."
@@ -574,15 +582,43 @@
     },
     "Búsqueda específica": {
         "en": "Specific search",
-        "gl": "Búsqueda específica"
+        "gl": "Procura específica"
     },
     "Búsqueda de usuarios": {
         "en": "Users search",
-        "gl": "Búsqueda de usuarios"
+        "gl": "Procura de usuarios"
     },
     "Eliminar año académico": {
-        "en": "Users search",
-        "gl": "Búsqueda de usuarios"
+        "en": "Delete academic course",
+        "gl": "Eliminar ano académico"
+    },
+    "Año fuera de rango.": {
+        "en": "Year out of range",
+        "gl": "Ano fora de rango"
+    },
+    "Error de validación.": {
+        "en": "Validation error.",
+        "gl": "Error de validación."
+    },
+    "Usuarios por página": {
+        "en": "Users per page",
+        "gl": "Usuarios por páxina"
+    },
+    "Cursos académicos por página": {
+        "en": "Academic courses per page",
+        "gl": "Cursos académicos por páxina"
+    },
+    "Abreviatura de curso académico": {
+        "en": "Abbreviation for academic year",
+        "gl": "Abreviatura de curso académico"
+    },
+    "Introducir abreviatura de curso académico": {
+        "en": "Enter abbreviation of academic year",
+        "gl": "Engadir abreviatura de curso académico"
+    },
+    "Búsqueda de cursos académicos": {
+        "en": "Search for academic courses",
+        "gl": "Procura de cursos académicos"
     }
 }
 

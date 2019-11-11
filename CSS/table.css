@@ -40,3 +40,18 @@ form button {
 .button-specific-search {
     max-height: 2.5rem !important;
 }
+
+.btn-show-view {
+    margin-left: .4rem;
+}
+
+.items-page {
+    max-width: 4.4rem;
+    margin-right: 1rem;
+}
+
+.label-pagination {
+    margin-left: auto;
+    margin-right: .5rem;
+    margin-top: .5rem;
+}

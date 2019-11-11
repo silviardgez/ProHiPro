@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html
+<html id="principal-page"
 <head>
     <link rel="stylesheet" href="../CSS/default.css" />
     <script src="../JS/SidebarToggler.js"></script>
@@ -20,7 +20,8 @@
                         <a href="javascript:translatePage('en')"><img class="flag" src="../Images/en.jpg"></a>
                     </li>
                     <li class="nav-item text-nowrap">
-                        <a class="nav-link" href="#" name="Profile">
+                        <a class="nav-link" href="../Controllers/UserController.php?action=show&login=<?php echo $_SESSION['login'] ?>"
+                           name="Profile">
                             <span class="feather-32 profile-margin" data-feather="user"></span>
                         </a>
                     </li>

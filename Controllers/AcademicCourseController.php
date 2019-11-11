@@ -15,6 +15,7 @@ include '../Views/AcademicCourse/AcademicCourseShowAllView.php';
 include '../Views/AcademicCourse/AcademicCourseAddView.php';
 include '../Views/AcademicCourse/AcademicCourseShowView.php';
 include '../Views/AcademicCourse/AcademicCourseEditView.php';
+include '../Views/AcademicCourse/AcademicCourseSearchView.php';
 include '../Functions/ShowToast.php';
 include '../Functions/OpenDeletionModal.php';
 include '../Functions/Redirect.php';
@@ -62,8 +63,9 @@ switch($action) {
             try {
                 $academicCourseDAO = new AcademicCourseDAO();
                 $academicCourse = $academicCourseDAO->show($key, $value);
-                openDeletionModal("Eliminar año académico " .  $academicCourse->getAcademicCourseAbbr() , "¿Está seguro de que desea eliminar " .
-                    "el año académico <b>" . $academicCourse->getAcademicCourseAbbr() . "</b>? Esta acción es permanente y no se puede recuperar.",
+                openDeletionModal("Eliminar año académico " .  $academicCourse->getAcademicCourseAbbr() ,
+                    "¿Está seguro de que desea eliminar el año académico <b>" . $academicCourse->getAcademicCourseAbbr() .
+                    "</b>? Esta acción es permanente y no se puede recuperar.",
                 "../Controllers/AcademicCourseController.php?action=delete&id_academic_course=" . $value . "&confirm=true");
             } catch (DAOException $e) {
                 $message = MessageType::ERROR;
@@ -117,16 +119,67 @@ switch($action) {
             showToast($message, $e->getMessage());
         }
         break;
+    case "search":
+        if (!isset($_POST["submit"])){
+            new AcademicCourseSearchView();
+        }
+        else {
+            try {
+                $academicCourse = new AcademicCourse();
+                if(!empty($_POST["academic_course_abbr"])) {
+                    $academicCourse->setAcademicCourseAbbr($_POST["academic_course_abbr"]);
+                }
+                if(!empty($_POST["start_year"])) {
+                    $academicCourse->setStartYear($_POST["start_year"]);
+                }
+                if(!empty($_POST["end_year"])) {
+                    $academicCourse->setEndYear($_POST["end_year"]);
+                }
+                showAllSearch($academicCourse);
+            } catch (DAOException $e) {
+                $message = MessageType::ERROR;
+                showAll();
+                showToast($message, $e->getMessage());
+            }
+        }
+        break;
     default:
         showAll();
         break;
 }
 
 function showAll() {
+    showAllSearch(NULL);
+}
+
+function showAllSearch($search) {
     try {
         $academicCourseDAO = new AcademicCourseDAO();
-        $academicCoursesData = $academicCourseDAO->showAll();
-        new AcademicCourseShowAllView($academicCoursesData);
+
+        if(!empty($_REQUEST['currentPage'])) {
+            $currentPage = $_REQUEST['currentPage'];
+        } else {
+            $currentPage = 1;
+        }
+
+        if(!empty($_REQUEST['itemsPerPage'])) {
+            $itemsPerPage = $_REQUEST['itemsPerPage'];
+        } else {
+            $itemsPerPage = 10;
+        }
+
+        $searchRequested = $_REQUEST['search'];
+        if(!empty($searchRequested)) {
+            $toSearch = $searchRequested;
+        } elseif(!is_null($search)) {
+            $toSearch = $search;
+        } else {
+            $toSearch = NULL;
+        }
+
+        $totalAcademicCourses = $academicCourseDAO->countTotalAcademicCourses($toSearch);
+        $academicCoursesData = $academicCourseDAO->showAllPaged($currentPage, $itemsPerPage, $toSearch);
+        new AcademicCourseShowAllView($academicCoursesData, $itemsPerPage, $currentPage, $totalAcademicCourses, $toSearch);
     } catch (DAOException $e) {
         $message = MessageType::ERROR;
         new AcademicCourseShowAllView(array());

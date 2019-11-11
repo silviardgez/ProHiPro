@@ -6,8 +6,14 @@ class AcademicCourse
     private $start_year;
     private $end_year;
 
-    public function __construct($id_academic_course=NULL,$academic_course_abbr=NULL , $start_year=NULL, $end_year=NULL)
+    public function __construct($id_academic_course=NULL,$academic_course_abbr=NULL, $start_year=NULL, $end_year=NULL)
     {
+        if (!empty($start_year) && !empty($end_year)) {
+            $this->constructEntity($id_academic_course,$academic_course_abbr, $start_year, $end_year);
+        }
+    }
+
+    private function constructEntity($id_academic_course=NULL,$academic_course_abbr=NULL , $start_year=NULL, $end_year=NULL) {
         if ($this->isCorrectAcademicCourse($start_year, $end_year)) {
             if($academic_course_abbr === NULL) {
                 $academic_course_abbr = $this->formatAbbr($start_year, $end_year);
@@ -36,7 +42,11 @@ class AcademicCourse
 
     public function setStartYear($start_year)
     {
-        $this->start_year = intval($start_year);
+        if($start_year<2000 || $start_year>9999 || !is_numeric($start_year)){
+            throw new DAOException('Año fuera de rango.');
+        }else{
+            $this->start_year = intval($start_year);
+        }
     }
 
     public function getEndYear()
@@ -46,7 +56,12 @@ class AcademicCourse
 
     public function setEndYear($end_year)
     {
-        $this->end_year = intval($end_year);
+        if($end_year<2000 || $end_year>9999 || !is_numeric($end_year)){
+            throw new DAOException('Año fuera de rango.');
+        }else{
+            $this->end_year = intval($end_year);
+        }
+
     }
 
     public function getAcademicCourseAbbr()

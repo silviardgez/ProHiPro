@@ -60,6 +60,16 @@ body {
     margin-top: 1rem;
 }
 
+.flags {
+    margin: 2rem 2.5rem auto auto;
+}
+
+.flag{
+    margin-left: .4rem;
+    border:1px solid #021a40;
+    border-radius: 5px;
+}
+
 p {
     margin: 0;
 }
