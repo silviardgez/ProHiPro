@@ -8,6 +8,7 @@ if (!IsAuthenticated()) {
     header('Location:../index.php');
 }
 include_once '../Models/FuncAction/FuncActionDAO.php';
+include_once '../Models/Permission/PermissionDAO.php';
 include_once '../Models/Action/ActionDAO.php';
 include_once '../Models/Functionality/FunctionalityDAO.php';
 include_once '../Models/Common/MessageType.php';
@@ -20,6 +21,7 @@ include_once '../Views/FuncAction/FuncActionShowView.php';
 include_once '../Views/FuncAction/FuncActionEditView.php';
 include_once '../Functions/ShowToast.php';
 include_once '../Functions/OpenDeletionModal.php';
+include_once '../Functions/OpenDependenciesModal.php';
 include_once '../Functions/Redirect.php';
 $funcAction = isset($_REQUEST['action']) ? $_REQUEST['action'] : "";
 switch ($funcAction) {
@@ -59,7 +61,7 @@ switch ($funcAction) {
                     showToast($message, $e->getMessage());
                 }
             }
-        } else{
+        } else {
             $message = MessageType::ERROR;
             showToast($message, "No tienes permiso para acceder");
         }
@@ -84,11 +86,20 @@ switch ($funcAction) {
                 showAll();
                 $key = "IdFuncAction";
                 $value = $_REQUEST[$key];
-                openDeletionModal("Eliminar acción-función " . $value, "¿Está seguro de que desea eliminar " .
-                    "la acción-funcionalidad <b>" . $value . "</b>? Esta acción es permanente y no se puede recuperar.",
-                    "../Controllers/FuncActionController.php?action=delete&IdFuncAction=" . $value . "&confirm=true");
+                $deletionDependencies = checkIfAbleToDelete($value);
+                if (count($deletionDependencies) == 0) {
+                    openDeletionModal("Eliminar acción-función " . $value, "¿Está seguro de que desea eliminar " .
+                        "la acción-funcionalidad <b>" . $value . "</b>? Esta acción es permanente y no se puede recuperar.",
+                        "../Controllers/FuncActionController.php?action=delete&IdFuncAction=" . $value . "&confirm=true");
+                } else {
+                    $dependecies = "";
+                    foreach ($deletionDependencies as $entity => $id) {
+                        $dependecies = $dependecies . "\t" . $entity . " (Id: " . $id . ")";
+                    }
+                    openDependenciesModal("No se puede borrar el elemento por las siguientes dependencias", $dependecies);
+                }
             }
-        } else{
+        } else {
             $message = MessageType::ERROR;
             showToast($message, "No tienes permiso para acceder");
         }
@@ -110,7 +121,7 @@ switch ($funcAction) {
                 showAll();
                 showToast($message, $e->getMessage());
             }
-        } else{
+        } else {
             $message = MessageType::ERROR;
             showToast($message, "No tienes permiso para acceder");
         }
@@ -158,7 +169,7 @@ switch ($funcAction) {
                 showAll();
                 showToast($message, $e->getMessage());
             }
-        } else{
+        } else {
             $message = MessageType::ERROR;
             showToast($message, "No tienes permiso para acceder");
         }
@@ -167,6 +178,21 @@ switch ($funcAction) {
         showAll();
         break;
 }
+
+
+function checkIfAbleToDelete($id)
+{
+    $dependencies = array();
+
+    try {
+        $permissionDAO = new PermissionDAO();
+        $permission = $permissionDAO->show('IdFuncAction', $id);
+        $dependencies["Permission"] = $permission->getIdPermission();
+    } catch (DAOException $e) {
+    }
+    return $dependencies;
+}
+
 
 function showAll()
 {
@@ -221,7 +247,7 @@ function showAll()
             new UserRoleShowAllView(array());
             showToast($message, $e->getMessage());
         }
-    } else{
+    } else {
         $message = MessageType::ERROR;
         showToast($message, "No tienes permiso para acceder");
     }
