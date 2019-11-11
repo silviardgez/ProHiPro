@@ -62,6 +62,8 @@ class Action
     function isCorrect($name, $description){
         if($name == NULL || $description == NULL){
             throw new ValidationException('Error de validación');
+        }else{
+            return true;
         }
     }
 
