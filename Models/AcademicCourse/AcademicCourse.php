@@ -43,8 +43,8 @@ class AcademicCourse
     public function setStartYear($start_year)
     {
         if($start_year<2000 || $start_year>9999 || !is_numeric($start_year)){
-            throw new DAOException('Año fuera de rango.');
-        }else{
+            throw new ValidationException('Año fuera de rango.');
+        } else {
             $this->start_year = intval($start_year);
         }
     }
@@ -57,8 +57,8 @@ class AcademicCourse
     public function setEndYear($end_year)
     {
         if($end_year<2000 || $end_year>9999 || !is_numeric($end_year)){
-            throw new DAOException('Año fuera de rango.');
-        }else{
+            throw new ValidationException('Año fuera de rango.');
+        } else {
             $this->end_year = intval($end_year);
         }
 
@@ -75,12 +75,11 @@ class AcademicCourse
     }
 
 
-
     function isCorrectAcademicCourse($startYear, $endYear){
         if ($startYear >= $endYear) {
-            throw new DAOException('Año de inicio mayor o igual que año fin.');
+            throw new ValidationException('Año de inicio mayor o igual que año fin.');
         } elseif ($startYear != ($endYear - 1)) {
-            throw new DAOException('No puede existir una diferencia de más de 1 año entre cursos.');
+            throw new ValidationException('No puede existir una diferencia de más de 1 año entre cursos.');
         } else {
             return true;
         }
@@ -89,6 +88,7 @@ class AcademicCourse
     function formatAbbr($start_year, $end_year){
         return substr($start_year,-2) . "/" . substr($end_year,-2);
     }
+
     public static function expose()
     {
         return get_class_vars(__CLASS__);
