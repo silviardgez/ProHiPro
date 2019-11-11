@@ -7,9 +7,19 @@ class Functionality
 
 
     public function __construct($IdFunctionality=NULL, $name=NULL, $description=NULL){
-        $this->IdFunctionality = $IdFunctionality;
-        $this->name = $name;
-        $this->description = $description;
+
+        if (!empty($name) && !empty($description)) {
+            $this->constructEntity($IdFunctionality,$name, $description);
+        }
+    }
+
+    private function constructEntity($IdFunctionality=NULL, $name=NULL, $description=NULL){
+        if($this->isCorrect($name,$description)){
+            $this->setIdFunctionality($IdFunctionality);
+            $this->setName($name);
+            $this->setDescription($description);
+        }
+
     }
 
     public function getIdFunctionality()
@@ -29,8 +39,8 @@ class Functionality
 
     public function setName($name)
     {
-        if(!is_string($name) || strlen($name)>60 || $name == NULL){
-            throw new DAOException('Error de validación.');
+        if(strlen($name)>60){
+            throw new ValidationException('Error de validación.');
         }else{
             $this->name = $name;
         }
@@ -43,13 +53,18 @@ class Functionality
 
     public function setDescription($description)
     {
-        if(!is_string($description) || strlen($description)>100 || $description == NULL){
-            throw new DAOException('Error de validación.');
+        if(strlen($description)>100){
+            throw new ValidationException('Error de validación.');
         }else{
             $this->description = $description;
         }
     }
 
+    function isCorrect($name, $description){
+        if($name == NULL || $description == NULL){
+            throw new ValidationException('Error de validación');
+        }
+    }
 
     public static function expose()
     {

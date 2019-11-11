@@ -6,9 +6,19 @@ class Action
     private $description;
 
     public function __construct($IdAction=NULL, $name=NULL, $description=NULL){
-        $this->IdAction = $IdAction;
-        $this->name = $name;
-        $this->description = $description;
+
+        if (!empty($name) && !empty($description)) {
+            $this->constructEntity($IdAction,$name, $description);
+        }
+
+    }
+    private function constructEntity($IdAction=NULL, $name=NULL, $description=NULL){
+        if($this->isCorrect($name,$description)){
+            $this->setIdAction($IdAction);
+            $this->setName($name);
+            $this->setDescription($description);
+        }
+
     }
 
     public function getIdAction()
@@ -28,8 +38,8 @@ class Action
 
     public function setName($name)
     {
-        if(!is_string($name) || strlen($name)>60 || $name == NULL){
-            throw new DAOException('Error de validación.');
+        if(strlen($name)>60){
+            throw new ValidationException('Error de validación.');
         }else{
             $this->name = $name;
         }
@@ -42,10 +52,16 @@ class Action
 
     public function setDescription($description)
     {
-        if(!is_string($description) || strlen($description)>100 || $description == NULL){
-            throw new DAOException('Error de validación.');
+        if(strlen($description)>100){
+            throw new ValidationException('Error de validación.');
         }else{
             $this->description = $description;
+        }
+    }
+
+    function isCorrect($name, $description){
+        if($name == NULL || $description == NULL){
+            throw new ValidationException('Error de validación');
         }
     }
 

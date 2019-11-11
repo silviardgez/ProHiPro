@@ -45,3 +45,7 @@ class FuncActionEditView {
     }
 }
 ?>
+
+<script>
+    translatePage(getCookie("language-selected"));
+</script>

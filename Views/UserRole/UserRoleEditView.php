@@ -21,7 +21,7 @@ class UserRoleEditView {
                 <h1 class="h2" data-translate="Acción"> <?php echo $this->userRole->getIdUserRole() ?></h1>
                 <a class="btn btn-primary" role="button" href="../Controllers/UserRoleController.php"><p data-translate="Volver"></p></a>
             </div>
-            <form action='../Controllers/UserRoleController.php?action=edit&IdUserRole=<?php echo $this->userRole->getIdUserRole() ?>' method='POST'>
+            <form name = "EDIT" action='../Controllers/UserRoleController.php?action=edit&IdUserRole=<?php echo $this->userRole->getIdUserRole() ?>' method='POST'>
                 <div class="form-group">
                     <label for="name" data-translate="Usuario"></label>
                     <select class="form-control" id="login" name="login">
@@ -45,3 +45,7 @@ class UserRoleEditView {
     }
 }
 ?>
+
+<script>
+    translatePage(getCookie("language-selected"));
+</script>

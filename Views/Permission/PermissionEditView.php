@@ -59,3 +59,7 @@ class PermissionEditView {
     }
 }
 ?>
+
+<script>
+    translatePage(getCookie("language-selected"));
+</script>

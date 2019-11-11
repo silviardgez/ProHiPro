@@ -23,12 +23,12 @@ class UserEditView {
                     <label for="login" data-translate="Login"></label>
                     <input type="text" class="form-control" id="login" name="login" max-length="9"
                            value="<?php echo $this->user->getLogin() ?>" readonly
-                           required onblur="checkLength(this,'9') && checkText(this,'9')">
+                           required onblur="checkLength(this,'9') && checkText(this,'9')" required>
                 </div>
                 <div class="form-group">
                     <label for="password1" data-translate="Contraseña"></label>
                     <input type="password" class="form-control" id="password1" name="password" max-length="20"
-                           onblur="checkLength(this,'20') && checkText(this,'20')">
+                           onblur="checkLength(this,'20') && checkText(this,'20')" required>
                 </div>
                 <div class="form-group">
                     <label for="password2" data-translate="Confirmar contraseña"></label>
@@ -104,3 +104,7 @@ class UserEditView {
     }
 }
 ?>
+
+<script>
+    translatePage(getCookie("language-selected"));
+</script>

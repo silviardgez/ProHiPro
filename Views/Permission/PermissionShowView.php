@@ -71,3 +71,7 @@ private $functionalities;
     }
 }
 ?>
+
+<script>
+    translatePage(getCookie("language-selected"));
+</script>

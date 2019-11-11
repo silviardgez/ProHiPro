@@ -623,6 +623,10 @@
     "Búsqueda de permisos": {
         "en": "Search for permissions",
         "gl": "Procura de permisos"
+    },
+    "No tienes permiso para acceder": {
+        "en": "You are not allowed to access",
+        "gl": "Non tes permisos para acceder"
     }
 }
 

@@ -43,3 +43,7 @@ private $academicCourse;
     }
 }
 ?>
+
+<script>
+    translatePage(getCookie("language-selected"));
+</script>

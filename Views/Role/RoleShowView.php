@@ -43,3 +43,7 @@ class RoleShowView {
     }
 }
 ?>
+
+<script>
+    translatePage(getCookie("language-selected"));
+</script>

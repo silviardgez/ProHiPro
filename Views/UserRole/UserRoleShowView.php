@@ -44,3 +44,7 @@ private $roles;
     }
 }
 ?>
+
+<script>
+    translatePage(getCookie("language-selected"));
+</script>

@@ -12,6 +12,13 @@ class User
 
     public function __construct($login=NULL, $password=NULL, $dni=NULL, $name=NULL, $surname=NULL, $email=NULL,
                                 $address=NULL, $telephone=NULL){
+        if(!empty($login) && !empty($login)){
+            $this->constructEntity($login,$password,$dni,$name,$surname,$email,$address,$telephone);
+        }
+    }
+
+    private function constructEntity($login=NULL, $password=NULL, $dni=NULL, $name=NULL, $surname=NULL, $email=NULL,
+                                     $address=NULL, $telephone=NULL){
         $this->setLogin($login);
         $this->setPassword($password);
         $this->setDni($dni);

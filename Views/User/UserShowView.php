@@ -63,3 +63,7 @@ private $user;
     }
 }
 ?>
+
+<script>
+    translatePage(getCookie("language-selected"));
+</script>

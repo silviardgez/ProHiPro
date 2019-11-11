@@ -602,3 +602,85 @@ function checkSearchUser() {
 
     return true;
 }
+
+function checkAddAcademicCourse() {
+
+    var start_year;
+    var end_year;
+
+    start_year = document.forms['ADD'].elements[0];
+    end_year = document.forms['ADD'].elements[1];
+    //document.write('<div>Print this after the script tag</div>'+start_year.value+'--'+end_year.value);
+    if(start_year.value>=end_year.value){
+        msgError('El atributo ' + start_year.name + ' es mayor o igual que '+ end_year.name);
+        start_year.focus();
+        return false;
+    }
+
+    if(start_year.value!=(end_year.value-1)){
+        msgError('No puede existir una diferencia de más de 1 año entre cursos.');
+        start_year.focus();
+        return false;
+    }
+    return true;
+
+}
+
+function checkEditAcademicCourse() {
+
+    var start_year;
+    var end_year;
+
+    start_year = document.forms['EDIT'].elements[0];
+    end_year = document.forms['EDIT'].elements[1];
+    //document.write('<div>Print this after the script tag</div>'+start_year.value+'--'+end_year.value);
+    if(start_year.value>=end_year.value){
+        msgError('El atributo ' + start_year.name + ' es mayor o igual que '+ end_year.name);
+        start_year.focus();
+        return false;
+    }
+
+    if(start_year.value!=(end_year.value-1)){
+        msgError('No puede existir una diferencia de más de 1 año entre cursos.');
+        start_year.focus();
+        return false;
+    }
+    return true;
+
+}
+
+function checkAddNameDescription() {
+    var name;
+    var description;
+
+    name = document.forms['ADD'].elements[0];
+    description = document.forms['ADD'].elements[1];
+
+    if(!checkEmpty(name) || !checkLength(name, 60)){
+        name.focus();
+        return false;
+    }
+    if(!checkEmpty(description) || !checkLength(description, 100)){
+        name.focus();
+        return false;
+    }
+    return true;
+}
+
+function checkEditNameDescription() {
+    var name;
+    var description;
+
+    name = document.forms['EDIT'].elements[0];
+    description = document.forms['EDIT'].elements[1];
+
+    if(!checkEmpty(name) || !checkLength(name, 60)){
+        name.focus();
+        return false;
+    }
+    if(!checkEmpty(description) || !checkLength(description, 100)){
+        name.focus();
+        return false;
+    }
+    return true;
+}
