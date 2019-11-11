@@ -595,6 +595,10 @@
     "Error de validación.": {
         "en": "Validation error.",
         "gl": "Error de validación."
+    },
+    "Usuarios por página": {
+        "en":"Users per page",
+        "gl": "Usuarios por páxina"
     }
 }
 
