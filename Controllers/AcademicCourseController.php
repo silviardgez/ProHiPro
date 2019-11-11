@@ -9,6 +9,7 @@ if (!IsAuthenticated()){
 include '../Models/AcademicCourse/AcademicCourseDAO.php';
 include '../Models/Common/MessageType.php';
 include '../Models/Common/DAOException.php';
+include '../Models/Common/ValidationException.php';
 include '../Views/Common/Head.php';
 include '../Views/Common/DefaultView.php';
 include '../Views/AcademicCourse/AcademicCourseShowAllView.php';
@@ -27,7 +28,8 @@ switch($action) {
         }
         else {
             try {
-                $academicCourse = new AcademicCourse(NULL,NULL, $_POST["start_year"], $_POST["end_year"]);
+                $academicCourse = new AcademicCourse(NULL,
+                    NULL, $_POST["start_year"], $_POST["end_year"]);
                 $academicCourseDAO = new AcademicCourseDAO();
                 $academicCourseDAO->add($academicCourse);
                 $message = MessageType::SUCCESS;
@@ -37,6 +39,10 @@ switch($action) {
                 $message = MessageType::ERROR;
                 showAll();
                 showToast($message, $e->getMessage());
+            } catch (ValidationException $ve) {
+                $message = MessageType::ERROR;
+                new AcademicCourseAddView();
+                showToast($message, $ve->getMessage());
             }
         }
         break;
@@ -55,6 +61,10 @@ switch($action) {
                 $message = MessageType::ERROR;
                 showAll();
                 showToast($message, $e->getMessage());
+            } catch (ValidationException $ve) {
+                $message = MessageType::ERROR;
+                showAll();
+                showToast($message, $ve->getMessage());
             }
         } else {
             showAll();
@@ -71,6 +81,10 @@ switch($action) {
                 $message = MessageType::ERROR;
                 showAll();
                 showToast($message, $e->getMessage());
+            } catch (ValidationException $ve) {
+                $message = MessageType::ERROR;
+                showAll();
+                showToast($message, $ve->getMessage());
             }
         }
         break;
@@ -86,6 +100,10 @@ switch($action) {
             $message = MessageType::ERROR;
             showAll();
             showToast($message, $e->getMessage());
+        } catch (ValidationException $ve) {
+            $message = MessageType::ERROR;
+            showAll();
+            showToast($message, $ve->getMessage());
         }
         break;
     case "edit":
@@ -98,9 +116,10 @@ switch($action) {
                 new AcademicCourseEditView($academicCourse);
             } else {
                 try {
-                    $academicCourse->setAcademicCourseAbbr($academicCourse->formatAbbr($_POST["start_year"],$_POST["end_year"]));
+                    $academicCourse->isCorrectAcademicCourse($_POST["start_year"], $_POST["end_year"]);
                     $academicCourse->setStartYear($_POST["start_year"]);
                     $academicCourse->setEndYear($_POST["end_year"]);
+                    $academicCourse->setAcademicCourseAbbr($academicCourse->formatAbbr($_POST["start_year"],$_POST["end_year"]));
 
                     $academicCourseDAO = new AcademicCourseDAO();
                     $response = $academicCourseDAO->edit($academicCourse);
@@ -111,12 +130,20 @@ switch($action) {
                     $message = MessageType::ERROR;
                     showAll();
                     showToast($message, $e->getMessage());
+                } catch (ValidationException $ve) {
+                    $message = MessageType::ERROR;
+                    new AcademicCourseEditView($academicCourse);
+                    showToast($message, $ve->getMessage());
                 }
             }
         } catch (DAOException $e) {
             $message = MessageType::ERROR;
             showAll();
             showToast($message, $e->getMessage());
+        } catch (ValidationException $ve) {
+            $message = MessageType::ERROR;
+            showAll();
+            showToast($message, $ve->getMessage());
         }
         break;
     case "search":
@@ -126,8 +153,8 @@ switch($action) {
         else {
             try {
                 $academicCourse = new AcademicCourse();
-                if(!empty($_POST["academic_course_abbr"])) {
-                    $academicCourse->setAcademicCourseAbbr($_POST["academic_course_abbr"]);
+                if(!empty($_POST["start_year"]) && !empty($_POST["start_year"])) {
+                    $academicCourse->isCorrectAcademicCourse($_POST["start_year"], $_POST["end_year"]);
                 }
                 if(!empty($_POST["start_year"])) {
                     $academicCourse->setStartYear($_POST["start_year"]);
@@ -135,11 +162,18 @@ switch($action) {
                 if(!empty($_POST["end_year"])) {
                     $academicCourse->setEndYear($_POST["end_year"]);
                 }
+                if(!empty($_POST["academic_course_abbr"])) {
+                    $academicCourse->setAcademicCourseAbbr($_POST["academic_course_abbr"]);
+                }
                 showAllSearch($academicCourse);
             } catch (DAOException $e) {
                 $message = MessageType::ERROR;
                 showAll();
                 showToast($message, $e->getMessage());
+            } catch (ValidationException $ve) {
+                $message = MessageType::ERROR;
+                new AcademicCourseSearchView();
+                showToast($message, $ve->getMessage());
             }
         }
         break;

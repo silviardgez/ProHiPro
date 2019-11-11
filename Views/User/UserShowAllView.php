@@ -74,6 +74,7 @@ function render(){
     </div>
 
     <div class="row">
+    <?php if($this->totalUsers > 0): ?>
     <!-- Search -->
     <a class="btn btn-primary button-specific-search" role="button"
        href="../Controllers/UserController.php?action=search">
@@ -122,6 +123,7 @@ function render(){
             </li>
         </ul>
     </nav>
+    <?php endif; ?>
     <?php endif; ?>
     </div>
 </main>

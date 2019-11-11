@@ -70,9 +70,11 @@ function render(){
 
         <div class="row">
         <!-- Search -->
+        <?php if($this->totalAcademicCourses > 0): ?>
         <a class="btn btn-primary button-specific-search" role="button"
             href="../Controllers/AcademicCourseController.php?action=search">
             <span data-feather="search"></span><p class="btn-show-view" data-translate="Búsqueda específica"></p></a>
+
         <!-- Pagination -->
         <label class="label-pagination" data-translate="Cursos académicos por página"></label>
         <select class="form-control items-page" id="items-page-select"
@@ -116,6 +118,7 @@ function render(){
                     </li>
                 </ul>
             </nav>
+        <?php endif; ?>
         <?php endif; ?>
         </div>
     </div>
