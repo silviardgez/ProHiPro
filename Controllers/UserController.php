@@ -1,25 +1,25 @@
 <?php
 
 session_start();
-include '../Functions/Authentication.php';
+include_once'../Functions/Authentication.php';
 include_once '../Functions/HavePermission.php';
 
 if (!IsAuthenticated()) {
     header('Location:../index.php');
 }
-include '../Models/User/UserDAO.php';
-include '../Models/Common/MessageType.php';
-include '../Models/Common/DAOException.php';
-include '../Views/Common/Head.php';
-include '../Views/Common/DefaultView.php';
-include '../Views/User/UserShowAllView.php';
-include '../Views/User/UserAddView.php';
-include '../Views/User/UserShowView.php';
-include '../Views/User/UserEditView.php';
-include '../Views/User/UserSearchView.php';
-include '../Functions/ShowToast.php';
-include '../Functions/OpenDeletionModal.php';
-include '../Functions/Redirect.php';
+include_once'../Models/User/UserDAO.php';
+include_once'../Models/Common/MessageType.php';
+include_once'../Models/Common/DAOException.php';
+include_once'../Views/Common/Head.php';
+include_once'../Views/Common/DefaultView.php';
+include_once'../Views/User/UserShowAllView.php';
+include_once'../Views/User/UserAddView.php';
+include_once'../Views/User/UserShowView.php';
+include_once'../Views/User/UserEditView.php';
+include_once'../Views/User/UserSearchView.php';
+include_once'../Functions/ShowToast.php';
+include_once'../Functions/OpenDeletionModal.php';
+include_once'../Functions/Redirect.php';
 
 $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "";
 switch ($action) {
