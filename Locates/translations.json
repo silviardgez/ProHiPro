@@ -615,6 +615,14 @@
     "Búsqueda de cursos académicos": {
         "en": "Search for academic courses",
         "gl": "Procura de cursos académicos"
+    },
+    "Permisos por página": {
+        "en": "Permissions per page",
+        "gl": "Permisos por páxina"
+    },
+    "Búsqueda de permisos": {
+        "en": "Search for permissions",
+        "gl": "Procura de permisos"
     }
 }
 
