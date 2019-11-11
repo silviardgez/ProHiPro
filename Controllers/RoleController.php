@@ -18,7 +18,9 @@ include_once '../Views/Role/RoleShowView.php';
 include_once '../Views/Role/RoleEditView.php';
 include_once '../Functions/ShowToast.php';
 include_once '../Functions/OpenDeletionModal.php';
+include_once '../Functions/OpenDependenciesModal.php';
 include_once '../Functions/Redirect.php';
+
 $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "";
 switch ($action) {
     case "add":
@@ -43,7 +45,7 @@ switch ($action) {
                     showToast($message, $e->getMessage());
                 }
             }
-        } else{
+        } else {
             $message = MessageType::ERROR;
             showToast($message, "No tienes permiso para acceder");
         }
@@ -68,11 +70,20 @@ switch ($action) {
                 showAll();
                 $key = "IdRole";
                 $value = $_REQUEST[$key];
-                openDeletionModal("Eliminar role " . $value, "¿Está seguro de que desea eliminar " .
-                    "el role <b>" . $value . "</b>? Esta acción es permanente y no se puede recuperar.",
-                    "../Controllers/RoleController.php?action=delete&IdRole=" . $value . "&confirm=true");
+                $deletionDependencies = checkIfAbleToDelete($value);
+                if (count($deletionDependencies) == 0) {
+                    openDeletionModal("Eliminar role " . $value, "¿Está seguro de que desea eliminar " .
+                        "el role <b>" . $value . "</b>? Esta acción es permanente y no se puede recuperar.",
+                        "../Controllers/RoleController.php?action=delete&IdRole=" . $value . "&confirm=true");
+                } else {
+                    $dependecies = "";
+                    foreach ($deletionDependencies as $entity => $id) {
+                        $dependecies = $dependecies . "\t" . $entity . " (Id: " . $id . ")";
+                    }
+                    openDependenciesModal("No se puede borrar el elemento por las siguientes dependencias", $dependecies);
+                }
             }
-        } else{
+        } else {
             $message = MessageType::ERROR;
             showToast($message, "No tienes permiso para acceder");
         }
@@ -90,7 +101,7 @@ switch ($action) {
                 showAll();
                 showToast($message, $e->getMessage());
             }
-        } else{
+        } else {
             $message = MessageType::ERROR;
             showToast($message, "No tienes permiso para acceder");
         }
@@ -126,7 +137,7 @@ switch ($action) {
                 showAll();
                 showToast($message, $e->getMessage());
             }
-        } else{
+        } else {
             $message = MessageType::ERROR;
             showToast($message, "No tienes permiso para acceder");
         }
@@ -134,6 +145,25 @@ switch ($action) {
     default:
         showAll();
         break;
+}
+
+function checkIfAbleToDelete($id)
+{
+    $dependencies = array();
+
+    try {
+        $userRoleDAO = new UserRoleDAO();
+        $userRole = $userRoleDAO->show('IdRole', $id);
+        $dependencies["UserRole"] = $userRole->getIdUserRole();
+    } catch (DAOException $e) {
+    }
+    try {
+        $permissionDAO = new PermissionDAO();
+        $permission = $permissionDAO->show('IdRole', $id);
+        $dependencies["Permission"] = $permission->getIdPermission();
+    } catch (DAOException $e) {
+    }
+    return $dependencies;
 }
 
 function showAll()
@@ -148,7 +178,7 @@ function showAll()
             new RoleShowAllView(array());
             showToast($message, $e->getMessage());
         }
-    }else {
+    } else {
         $message = MessageType::ERROR;
         showToast($message, "No tienes permiso para acceder");
     }

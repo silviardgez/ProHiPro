@@ -1,25 +1,27 @@
 <?php
 
 session_start();
-include_once'../Functions/Authentication.php';
+include_once '../Functions/Authentication.php';
 include_once '../Functions/HavePermission.php';
 
 if (!IsAuthenticated()) {
     header('Location:../index.php');
 }
-include_once'../Models/User/UserDAO.php';
-include_once'../Models/Common/MessageType.php';
-include_once'../Models/Common/DAOException.php';
-include_once'../Views/Common/Head.php';
-include_once'../Views/Common/DefaultView.php';
-include_once'../Views/User/UserShowAllView.php';
-include_once'../Views/User/UserAddView.php';
-include_once'../Views/User/UserShowView.php';
-include_once'../Views/User/UserEditView.php';
-include_once'../Views/User/UserSearchView.php';
-include_once'../Functions/ShowToast.php';
-include_once'../Functions/OpenDeletionModal.php';
-include_once'../Functions/Redirect.php';
+include_once '../Models/User/UserDAO.php';
+include_once '../Models/UserRole/UserRoleDAO.php';
+include_once '../Models/Common/MessageType.php';
+include_once '../Models/Common/DAOException.php';
+include_once '../Views/Common/Head.php';
+include_once '../Views/Common/DefaultView.php';
+include_once '../Views/User/UserShowAllView.php';
+include_once '../Views/User/UserAddView.php';
+include_once '../Views/User/UserShowView.php';
+include_once '../Views/User/UserEditView.php';
+include_once '../Views/User/UserSearchView.php';
+include_once '../Functions/ShowToast.php';
+include_once '../Functions/OpenDeletionModal.php';
+include_once '../Functions/OpenDependenciesModal.php';
+include_once '../Functions/Redirect.php';
 
 $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "";
 switch ($action) {
@@ -50,7 +52,7 @@ switch ($action) {
                     showToast($message, $e->getMessage());
                 }
             }
-        } else{
+        } else {
             $message = MessageType::ERROR;
             showToast($message, "No tienes permiso para acceder");
         }
@@ -75,11 +77,20 @@ switch ($action) {
                 showAll();
                 $key = "login";
                 $value = $_REQUEST[$key];
-                openDeletionModal("Eliminar usuario " . $value, "¿Está seguro de que desea eliminar " .
-                    "el usuario <b>" . $value . "</b>? Esta acción es permanente y no se puede recuperar.",
-                    "../Controllers/UserController.php?action=delete&login=" . $value . "&confirm=true");
+                $deletionDependencies = checkIfAbleToDelete($value);
+                if (count($deletionDependencies) == 0) {
+                    openDeletionModal("Eliminar usuario " . $value, "¿Está seguro de que desea eliminar " .
+                        "el usuario <b>" . $value . "</b>? Esta acción es permanente y no se puede recuperar.",
+                        "../Controllers/UserController.php?action=delete&login=" . $value . "&confirm=true");
+                } else {
+                    $dependecies = "";
+                    foreach ($deletionDependencies as $entity => $id) {
+                        $dependecies = $dependecies . "\t" . $entity . " (Id: " . $id . ")";
+                    }
+                    openDependenciesModal("No se puede borrar el elemento por las siguientes dependencias", $dependecies);
+                }
             }
-        } else{
+        } else {
             $message = MessageType::ERROR;
             showToast($message, "No tienes permiso para acceder");
         }
@@ -97,7 +108,7 @@ switch ($action) {
                 showAll();
                 showToast($message, $e->getMessage());
             }
-        } else{
+        } else {
             $message = MessageType::ERROR;
             showToast($message, "No tienes permiso para acceder");
         }
@@ -139,7 +150,7 @@ switch ($action) {
                 showAll();
                 showToast($message, $e->getMessage());
             }
-        } else{
+        } else {
             $message = MessageType::ERROR;
             showToast($message, "No tienes permiso para acceder");
         }
@@ -166,7 +177,7 @@ switch ($action) {
                     showToast($message, $e->getMessage());
                 }
             }
-        } else{
+        } else {
             $message = MessageType::ERROR;
             showToast($message, "No tienes permiso para acceder");
         }
@@ -176,6 +187,19 @@ switch ($action) {
         break;
 }
 
+function checkIfAbleToDelete($id)
+{
+    $dependencies = array();
+
+    try {
+        $userRoleDAO = new UserRoleDAO();
+        $userRole = $userRoleDAO->show('login', $id);
+        $dependencies["UserRole"] = $userRole->getIdUserRole();
+    } catch (DAOException $e) {
+    }
+    return $dependencies;
+}
+
 function showAll()
 {
     showAllSearch(NULL);
@@ -183,7 +207,7 @@ function showAll()
 
 function showAllSearch($search)
 {
-    if(HavePermission("Permission", "SHOWALL")) {
+    if (HavePermission("Permission", "SHOWALL")) {
         try {
             $userDAO = new UserDAO();
 
@@ -216,7 +240,7 @@ function showAllSearch($search)
             new UserShowAllView(array());
             showToast($message, $e->getMessage());
         }
-    } else{
+    } else {
         $message = MessageType::ERROR;
         showToast($message, "No tienes permiso para acceder");
     }
