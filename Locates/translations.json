@@ -230,11 +230,11 @@
     },
     "Texto a buscar": {
         "en": "Search text",
-        "gl": "Texto a buscar"
+        "gl": "Texto a procurar"
     },
     "Buscar": {
         "en": "Search",
-        "gl": "Buscar"
+        "gl": "Procurar"
     },
     "Añadir usuario": {
         "en": "Add user",
@@ -582,15 +582,15 @@
     },
     "Búsqueda específica": {
         "en": "Specific search",
-        "gl": "Búsqueda específica"
+        "gl": "Procura específica"
     },
     "Búsqueda de usuarios": {
         "en": "Users search",
-        "gl": "Búsqueda de usuarios"
+        "gl": "Procura de usuarios"
     },
     "Eliminar año académico": {
-        "en": "Users search",
-        "gl": "Búsqueda de usuarios"
+        "en": "Delete academic course",
+        "gl": "Eliminar ano académico"
     },
     "Año fuera de rango.": {
         "en": "Year out of range",
@@ -601,8 +601,24 @@
         "gl": "Error de validación."
     },
     "Usuarios por página": {
-        "en":"Users per page",
+        "en": "Users per page",
         "gl": "Usuarios por páxina"
+    },
+    "Cursos académicos por página": {
+        "en": "Academic courses per page",
+        "gl": "Cursos académicos por páxina"
+    },
+    "Abreviatura de curso académico": {
+        "en": "Abbreviation for academic year",
+        "gl": "Abreviatura de curso académico"
+    },
+    "Introducir abreviatura de curso académico": {
+        "en": "Enter abbreviation of academic year",
+        "gl": "Engadir abreviatura de curso académico"
+    },
+    "Búsqueda de cursos académicos": {
+        "en": "Search for academic courses",
+        "gl": "Procura de cursos académicos"
     }
 }
 

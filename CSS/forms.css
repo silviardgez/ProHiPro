@@ -1,3 +1,7 @@
 .form-group {
     max-width: 500px;
 }
+
+h1 label {
+    margin: 0;
+}
