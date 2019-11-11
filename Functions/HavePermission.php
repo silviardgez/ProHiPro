@@ -1,5 +1,10 @@
 <?php
 include_once "../Models/UserRole/UserRoleDAO.php";
+include_once "../Models/FuncAction/FuncActionDAO.php";
+include_once "../Models/Functionality/FunctionalityDAO.php";
+include_once "../Models/Action/ActionDAO.php";
+include_once "../Models/Permission/PermissionDAO.php";
+
 function HavePermission($controller, $act)
 {
 

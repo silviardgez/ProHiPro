@@ -1,28 +1,28 @@
 <?php
 
 session_start();
-include '../Functions/Authentication.php';
-include '../Functions/HavePermission.php';
+include_once '../Functions/Authentication.php';
+include_once '../Functions/HavePermission.php';
 
 if (!IsAuthenticated()){
     header('Location:../index.php');
 }
-include '../Models/FuncAction/FuncActionDAO.php';
-include '../Models/Action/ActionDAO.php';
-include '../Models/Functionality/FunctionalityDAO.php';
-include '../Models/Permission/PermissionDAO.php';
-include '../Models/Role/RoleDAO.php';
-include '../Models/Common/MessageType.php';
-include '../Models/Common/DAOException.php';
-include '../Views/Common/Head.php';
-include '../Views/Common/DefaultView.php';
-include '../Views/Permission/PermissionShowAllView.php';
-include '../Views/Permission/PermissionAddView.php';
-include '../Views/Permission/PermissionShowView.php';
-include '../Views/Permission/PermissionEditView.php';
-include '../Functions/ShowToast.php';
-include '../Functions/OpenDeletionModal.php';
-include '../Functions/Redirect.php';
+include_once '../Models/FuncAction/FuncActionDAO.php';
+include_once '../Models/Action/ActionDAO.php';
+include_once '../Models/Functionality/FunctionalityDAO.php';
+include_once '../Models/Permission/PermissionDAO.php';
+include_once '../Models/Role/RoleDAO.php';
+include_once '../Models/Common/MessageType.php';
+include_once '../Models/Common/DAOException.php';
+include_once '../Views/Common/Head.php';
+include_once '../Views/Common/DefaultView.php';
+include_once '../Views/Permission/PermissionShowAllView.php';
+include_once '../Views/Permission/PermissionAddView.php';
+include_once '../Views/Permission/PermissionShowView.php';
+include_once '../Views/Permission/PermissionEditView.php';
+include_once '../Functions/ShowToast.php';
+include_once '../Functions/OpenDeletionModal.php';
+include_once '../Functions/Redirect.php';
 $permission = isset($_REQUEST['action']) ? $_REQUEST['action'] : "";
 switch($permission) {
     case "add":
@@ -187,7 +187,7 @@ function showAll() {
     } else{
         $message = MessageType::ERROR;
         showToast($message,"Access Denied");
-//        redirect("./IndexController.php");
+        redirect("./IndexController.php");
 
     }
 }
