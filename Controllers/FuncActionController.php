@@ -171,14 +171,51 @@ switch ($funcAction) {
 function showAll()
 {
     if (HavePermission("FuncAction", "SHOWALL")) {
+//        try {
+//            $funcActionDAO = new FuncActionDAO();
+//            $actionDAO = new ActionDAO();
+//            $funcDAO = new FunctionalityDAO();
+//            $funcActionsData = $funcActionDAO->showAll();
+//            $actionsData = $actionDAO->showAll();
+//            $functionalitiesData = $funcDAO->showAll();
+//            new FuncActionShowAllView($funcActionsData, $actionsData, $functionalitiesData);
+//        } catch (DAOException $e) {
+//            $message = MessageType::ERROR;
+//            new UserRoleShowAllView(array());
+//            showToast($message, $e->getMessage());
+//        }
+
         try {
+            if (!empty($_REQUEST['currentPage'])) {
+                $currentPage = $_REQUEST['currentPage'];
+            } else {
+                $currentPage = 1;
+            }
+            if (!empty($_REQUEST['itemsPerPage'])) {
+                $itemsPerPage = $_REQUEST['itemsPerPage'];
+            } else {
+                $itemsPerPage = 10;
+            }
+//            $searchRequested = $_REQUEST['search'];
+//            if (!empty($searchRequested)) {
+//                $toSearch = $searchRequested;
+//            } elseif (!is_null($search)) {
+//                $toSearch = $search;
+//            } else {
+//                $toSearch = NULL;
+//            }
+
             $funcActionDAO = new FuncActionDAO();
             $actionDAO = new ActionDAO();
             $funcDAO = new FunctionalityDAO();
             $funcActionsData = $funcActionDAO->showAll();
             $actionsData = $actionDAO->showAll();
             $functionalitiesData = $funcDAO->showAll();
-            new FuncActionShowAllView($funcActionsData, $actionsData, $functionalitiesData);
+
+            $totalFuncAction = count($funcActionsData);
+            $funcActionsData = $funcActionDAO->showAllPaged($currentPage, $itemsPerPage, null);
+            new FuncActionShowAllView($funcActionsData, $actionsData, $functionalitiesData,
+                $itemsPerPage, $currentPage, $totalFuncAction);
         } catch (DAOException $e) {
             $message = MessageType::ERROR;
             new UserRoleShowAllView(array());

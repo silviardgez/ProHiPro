@@ -31,6 +31,19 @@ class FuncActionDAO
         return new Func_Action($funcAction_db["IdFuncAction"], $funcAction_db["IdAction"], $funcAction_db["IdFunctionality"]);
     }
 
+    function showAllPaged($currentPage, $itemsPerPage, $stringToSearch) {
+        $funcAction_db = $this->defaultDAO->showAllPaged($currentPage, $itemsPerPage, new Func_Action(), $stringToSearch);
+        return $this->getFuncActionFromDB($funcAction_db);
+    }
+
+    private function getFuncActionFromDB($funcAction_db) {
+        $funcActions = array();
+        foreach ($funcAction_db as $funcAction) {
+            array_push($funcActions, new Func_Action($funcAction["IdFuncAction"], $funcAction["IdAction"], $funcAction["IdFunctionality"]));
+        }
+        return $funcActions;
+    }
+
     function edit($funcAction) {
         return $this->defaultDAO->edit($funcAction, "IdFuncAction");
     }

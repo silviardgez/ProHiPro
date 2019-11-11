@@ -35,8 +35,12 @@ class PermissionShowAllView
         <main role="main" class="margin-main ml-sm-auto px-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-3">
                 <h1 class="h2" data-translate="Listado de Permisos"></h1>
-                <a class="btn btn-success" role="button" href="../Controllers/PermissionController.php?action=add">
-                    <span data-feather="plus"></span><p data-translate="Añadir Permiso"></p></a>
+                <?php if ($this->stringToSearch!=null && $this->stringToSearch!=''): ?>
+                <?php echo "<a class=\"btn btn-primary\" role=\"button\" href=\"../Controllers/PermissionController.php\"><p data-translate=\"Volver\"></p></a>";?>
+                <?php else:?>
+                <?php echo "<a class=\"btn btn-success\" role=\"button\" href=\"../Controllers/PermissionController.php?action=add\">
+                    <span data-feather=\"plus\"></span><p data-translate=\"Añadir Permiso\"></p></a>";?>
+                <?php endif;?>
             </div>
             <div class="table-responsive">
                 <table class="table table-striped table-sm">

@@ -32,8 +32,13 @@ function render(){
             <button name="submit" type="submit" class="btn btn-primary" data-translate="Buscar"></button>
         </form>
 
-        <a class="btn btn-success" role="button" href="../Controllers/UserController.php?action=add">
-            <span data-feather="plus"></span><p class="btn-show-view" data-translate="Añadir usuario"></p></a>
+        <?php if ($this->stringToSearch!=null && $this->stringToSearch!=''): ?>
+            <?php echo "<a class=\"btn btn-primary\" role=\"button\" href=\"../Controllers/UserController.php\" data-translate=\"Volver\"></a>";?>
+        <?php else:?>
+            <?php echo "<a class=\"btn btn-success\" role=\"button\" href=\"../Controllers/UserController.php?action=add\">
+            <span data-feather=\"plus\"></span><p class=\"btn-show-view\" data-translate=\"Añadir usuario\"></p></a>";?>
+        <?php endif;?>
+
     </div>
 
     <div class="table-responsive">
