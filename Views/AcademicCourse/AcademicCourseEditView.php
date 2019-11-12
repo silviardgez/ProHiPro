@@ -68,7 +68,3 @@ class AcademicCourseEditView {
     }
 }
 ?>
-
-<script>
-    translatePage(getCookie("language-selected"));
-</script>

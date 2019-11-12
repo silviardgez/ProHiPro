@@ -1,6 +1,8 @@
-function openDeletionModal(title, message, $href) {
-    document.getElementById('modal-title').innerHTML = title;
-    document.getElementById('modal-text').innerHTML = message;
-    document.getElementById('delete-button').href = $href;
+function openDeletionModal(title, message, href) {
+    var messageContent = "<p data-translate='" + message + "'></p>";
+    $('#modal-text').append(messageContent);
+    var titleContent = "<strong class='mr-auto' data-translate='" + title + "'></strong>";
+    $('#modal-title').append(titleContent);
+    document.getElementById('delete-button').href = href;
     $("#exampleModal").modal('toggle');
 }

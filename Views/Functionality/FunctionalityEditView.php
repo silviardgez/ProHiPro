@@ -66,7 +66,3 @@ class FunctionalityEditView {
     }
 }
 ?>
-
-<script>
-    translatePage(getCookie("language-selected"));
-</script>

@@ -15,9 +15,9 @@
                 <ul class="navbar-nav px-1">
                     <div class="row margin-right">
                     <li class="nav-item text-nowrap row flags">
-                        <a href="javascript:translatePage('gl')"><img class="flag" src="../Images/gl.png"></a>
-                        <a href="javascript:translatePage('es')"><img class="flag" src="../Images/es.jpg"></a>
-                        <a href="javascript:translatePage('en')"><img class="flag" src="../Images/en.jpg"></a>
+                        <a href="javascript:setCookie('language-selected', 'gl'); translatePage();"><img class="flag" src="../Images/gl.png"></a>
+                        <a href="javascript:setCookie('language-selected', 'es'); translatePage();"><img class="flag" src="../Images/es.jpg"></a>
+                        <a href="javascript:setCookie('language-selected', 'en'); translatePage();"><img class="flag" src="../Images/en.jpg"></a>
                     </li>
                     <li class="nav-item text-nowrap">
                         <a class="nav-link" href="../Controllers/UserController.php?action=show&login=<?php echo $_SESSION['login'] ?>"
@@ -209,6 +209,5 @@
 <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
 <script>
     feather.replace();
-    translatePage(getCookie("language-selected"));
 </script>
 </html>

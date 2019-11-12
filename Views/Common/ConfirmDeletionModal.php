@@ -12,8 +12,8 @@
           <p id="modal-text"></p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <a id="delete-button" role="button" class="btn btn-danger" href="#">Eliminar</a>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal"><p data-translate="Cerrar"></p></button>
+        <a id="delete-button" role="button" class="btn btn-danger" href="#"><p data-translate="Eliminar"></p></a>
       </div>
     </div>
   </div>

@@ -61,6 +61,3 @@ function render(){
     }
 }
 ?>
-<script>
-    translatePage(getCookie("language-selected"));
-</script>

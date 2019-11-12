@@ -164,7 +164,3 @@ class PermissionShowAllView
     }
 }
 ?>
-
-<script>
-    translatePage(getCookie("language-selected"));
-</script>

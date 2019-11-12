@@ -84,7 +84,3 @@ class UserSearchView {
     }
 }
 ?>
-
-<script>
-    translatePage(getCookie("language-selected"));
-</script>

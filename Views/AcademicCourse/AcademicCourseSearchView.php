@@ -39,7 +39,3 @@ class AcademicCourseSearchView {
 }
 ?>
 
-<script>
-    translatePage(getCookie("language-selected"));
-</script>
-

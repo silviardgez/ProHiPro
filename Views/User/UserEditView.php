@@ -104,7 +104,3 @@ class UserEditView {
     }
 }
 ?>
-
-<script>
-    translatePage(getCookie("language-selected"));
-</script>

@@ -45,7 +45,3 @@ class UserRoleEditView {
     }
 }
 ?>
-
-<script>
-    translatePage(getCookie("language-selected"));
-</script>

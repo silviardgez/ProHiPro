@@ -75,8 +75,8 @@ switch ($action) {
                 $value = $_REQUEST[$key];
                 $deletionDependencies = checkIfAbleToDelete($value);
                 if (count($deletionDependencies) == 0) {
-                    openDeletionModal("Eliminar usuario " . $value, "¿Está seguro de que desea eliminar " .
-                        "el usuario <b>" . $value . "</b>? Esta acción es permanente y no se puede recuperar.",
+                    openDeletionModal("Eliminar usuario %" . $value . "%", "¿Está seguro de que desea eliminar " .
+                        "el usuario %" . $value . "%? Esta acción es permanente y no se puede recuperar.",
                         "../Controllers/UserController.php?action=delete&login=" . $value . "&confirm=true");
                 } else {
                     $dependecies = "";

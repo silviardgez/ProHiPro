@@ -43,7 +43,3 @@ private $functionality;
     }
 }
 ?>
-
-<script>
-    translatePage(getCookie("language-selected"));
-</script>
