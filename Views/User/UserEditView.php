@@ -15,7 +15,7 @@ class UserEditView {
         <main role="main" class="margin-main ml-sm-auto px-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-3
             border-bottom">
-                <h1 class="h2" data-translate="Usuario"> <?php echo $this->user->getLogin() ?></h1>
+                <h1 class="h2" data-translate="Editar usuario %<?php echo $this->user->getLogin() ?>%"></h1>
                 <a class="btn btn-primary" role="button" href="../Controllers/UserController.php" data-translate="Volver"></a>
             </div>
             <form name="EDIT" action='../Controllers/UserController.php?action=edit' method='POST' onsubmit="return checkEditUser()">
@@ -28,12 +28,12 @@ class UserEditView {
                 <div class="form-group">
                     <label for="password1" data-translate="Contraseña"></label>
                     <input type="password" class="form-control" id="password1" name="password" max-length="20"
-                           onblur="checkLength(this,'20') && checkText(this,'20')" required>
+                           onblur="withOutWhiteSpaces(this) && checkLength(this,'20') && checkText(this,'20')">
                 </div>
                 <div class="form-group">
                     <label for="password2" data-translate="Confirmar contraseña"></label>
                     <input type="password" class="form-control" id="password2" max-length="20"
-                           required onblur="checkEmpty(this) && withOutWhiteSpaces(this) && checkLength(this,'20') && checkText(this,'20')">
+                           onblur="withOutWhiteSpaces(this) && checkLength(this,'20') && checkText(this,'20')">
                 </div>
                 <div class="form-group">
                     <label for="dni" data-translate="DNI"></label>

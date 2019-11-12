@@ -1,35 +1,32 @@
 <?php
 class Functionality
 {
-    private $IdFunctionality;
+    private $id;
     private $name;
     private $description;
 
 
-    public function __construct($IdFunctionality=NULL, $name=NULL, $description=NULL){
-
+    public function __construct($id=NULL, $name=NULL, $description=NULL){
         if (!empty($name) && !empty($description)) {
-            $this->constructEntity($IdFunctionality,$name, $description);
+            $this->constructEntity($id, $name, $description);
         }
     }
 
-    private function constructEntity($IdFunctionality=NULL, $name=NULL, $description=NULL){
-        if($this->isCorrect($name,$description)){
-            $this->setIdFunctionality($IdFunctionality);
-            $this->setName($name);
-            $this->setDescription($description);
-        }
+    private function constructEntity($id=NULL, $name=NULL, $description=NULL){
+        $this->setId($id);
+        $this->setName($name);
+        $this->setDescription($description);
 
     }
 
-    public function getIdFunctionality()
+    public function getId()
     {
-        return $this->IdFunctionality;
+        return $this->id;
     }
 
-    public function setIdFunctionality($IdFunctionality)
+    public function setId($id)
     {
-        $this->IdFunctionality = $IdFunctionality;
+        $this->id = $id;
     }
 
     public function getName()
@@ -39,9 +36,9 @@ class Functionality
 
     public function setName($name)
     {
-        if(strlen($name)>60){
+        if (strlen($name)>60 || empty($name)) {
             throw new ValidationException('Error de validación.');
-        }else{
+        } else {
             $this->name = $name;
         }
     }
@@ -53,18 +50,10 @@ class Functionality
 
     public function setDescription($description)
     {
-        if(strlen($description)>100){
+        if (strlen($description)>100 || empty($description)) {
             throw new ValidationException('Error de validación.');
-        }else{
+        } else {
             $this->description = $description;
-        }
-    }
-
-    function isCorrect($name, $description){
-        if($name == NULL || $description == NULL){
-            throw new ValidationException('Error de validación');
-        }else{
-            return true;
         }
     }
 

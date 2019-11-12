@@ -19,7 +19,6 @@ class User
 
     private function constructEntity($login=NULL, $password=NULL, $dni=NULL, $name=NULL, $surname=NULL, $email=NULL,
                                      $address=NULL, $telephone=NULL){
-        if($this->isCorrectUser($login, $password, $dni, $name, $surname, $email, $address, $telephone)){
             $this->setLogin($login);
             $this->setPassword($password);
             $this->setDni($dni);
@@ -28,8 +27,6 @@ class User
             $this->setEmail($email);
             $this->setAddress($address);
             $this->setTelephone($telephone);
-        }
-
     }
 
     public function getLogin()
@@ -37,9 +34,19 @@ class User
         return $this->login;
     }
 
+    public function getId()
+    {
+        return $this->login;
+    }
+
     public function setLogin($login)
     {
-        $this->login = $login;
+        if (empty($login) || strlen($login)>9) {
+            throw new ValidationException('Error de validación. Login incorrecto.');
+
+        } else {
+            $this->login = $login;
+        }
     }
 
     public function getPassword()
@@ -49,7 +56,11 @@ class User
 
     public function setPassword($password)
     {
-        $this->password = $password;
+        if (empty($password) || strlen($password)>128) {
+            throw new ValidationException('Error de validación. Contraseña incorrecta.');
+        } else {
+            $this->password = $password;
+        }
     }
 
     public function encryptPassword($password)
@@ -64,7 +75,11 @@ class User
 
     public function setDni($dni)
     {
-        $this->dni = $dni;
+        if (empty($dni) || strlen($dni)>9) {
+            throw new ValidationException('Error de validación. DNI incorrecto.');
+        } else {
+            $this->dni = $dni;
+        }
     }
 
     public function getName()
@@ -74,7 +89,11 @@ class User
 
     public function setName($name)
     {
-        $this->name = $name;
+        if (empty($name) || strlen($name)>30) {
+            throw new ValidationException('Error de validación. Nombre incorrecto.');
+        } else {
+            $this->name = $name;
+        }
     }
 
     public function getSurname()
@@ -84,7 +103,11 @@ class User
 
     public function setSurname($surname)
     {
-        $this->surname = $surname;
+        if (empty($surname) || strlen($surname)>50) {
+            throw new ValidationException('Error de validación. Apellido incorrecto.');
+        } else {
+            $this->surname = $surname;
+        }
     }
 
     public function getEmail()
@@ -94,7 +117,11 @@ class User
 
     public function setEmail($email)
     {
-        $this->email = $email;
+        if (empty($email) || strlen($email)>40) {
+            throw new ValidationException('Error de validación. Email incorrecto.');
+        } else {
+            $this->email = $email;
+        }
     }
 
     public function getAddress()
@@ -104,7 +131,11 @@ class User
 
     public function setAddress($address)
     {
-        $this->address = $address;
+        if (empty($address) || strlen($address)>60) {
+            throw new ValidationException('Error de validación. Dirección incorrecta.');
+        } else {
+            $this->address = $address;
+        }
     }
 
     public function getTelephone()
@@ -114,45 +145,13 @@ class User
 
     public function setTelephone($telephone)
     {
-        $this->telephone = $telephone;
-    }
-
-    function isCorrectUser($login, $password, $dni, $name, $surname, $email, $address, $telephone){
-        if($login == NULL || strlen($login)>9){
-            throw new ValidationException('Error de validación.');
-
-        }elseif($password == NULL || strlen($password)>128){
-            throw new ValidationException('Error de validación.');
-
-        }elseif($dni == NULL || strlen($dni)>9){
-            throw new ValidationException('Error de validación.');
-
-        }elseif($name == NULL || strlen($name)>30){
-            throw new ValidationException('Error de validación.');
-
-        }elseif($surname == NULL || strlen($surname)>50){
-            throw new ValidationException('Error de validación.');
-
-        }elseif($email == NULL || strlen($email)>40){
-            throw new ValidationException('Error de validación.');
-
-        }elseif($address == NULL || strlen($address)>60){
-            throw new ValidationException('Error de validación.');
-
-        }elseif($telephone == NULL || strlen($telephone)>11 || $this->checkPhone($telephone)){
-            throw new ValidationException('Error de validación.');
-        }else{
-            return true;
+        if (empty($telephone) || strlen($telephone)>11) {
+            throw new ValidationException('Error de validación. Teléfono incorrecto.');
+        } else {
+            $this->telephone = $telephone;
         }
     }
 
-    function checkPhone($phone){
-        if(!preg_match('^(34)?[6|7|9][0-9]{8}$', $phone)){
-            return false;
-        }else{
-            return true;
-        }
-    }
     public static function expose()
     {
         return get_class_vars(__CLASS__);

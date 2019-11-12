@@ -12,10 +12,6 @@
         "en": "Permissions",
         "gl": "Permisos"
     },
-    "Acciones": {
-        "en": "Actions",
-        "gl": "Accións"
-    },
     "Funcionalidades": {
         "en": "Functionalities",
         "gl": "Funcionalidades"
@@ -102,7 +98,7 @@
     },
     "Listado de acciones": {
         "en": "Actions list",
-        "gl": "Listado de acciones"
+        "gl": "Listado de accións"
     },
     "Listado de funcionalidades": {
         "en": "Functionalities list",
@@ -164,7 +160,7 @@
         "en": "No user has been obtained",
         "gl": "Non se obtuvo ningún usuario"
     },
-    "No se ha obtenido ningúna acción": {
+    "No se ha obtenido ninguna acción": {
         "en": "No action has been obtained",
         "gl": "Non se obtuvo ningunha acción"
     },
@@ -400,21 +396,21 @@
         "en": "Permission does not exist",
         "gl": "O permiso non existe"
     },
-    "Insertar Rol": {
-        "en": "Add rol",
-        "gl": "Insertar Rol"
+    "Insertar rol": {
+        "en": "Add role",
+        "gl": "Insertar rol"
     },
-    "Listado de Roles": {
+    "Listado de roles": {
         "en": "Roles list",
-        "gl": "Listado de Roles"
+        "gl": "Listado de roles"
     },
     "Usuario": {
         "en": "User",
         "gl": "Usuario"
     },
-    "Añadir Rol a Usuario": {
-        "en": "Add role to user",
-        "gl": "Engadir rol a usuario"
+    "Asignar rol a usuario": {
+        "en": "Assign role to user",
+        "gl": "Asignar rol a usuario"
     },
     "No se ha obtenido ningún rol": {
         "en": "No role has been obtained",
@@ -466,15 +462,15 @@
     },
     "Funcionalidad añadida correctamente.": {
         "en": "Functionality added succesfully.",
-        "gl": "Fubncionalidade engadida correctamente."
+        "gl": "Funcionalidade engadida correctamente."
     },
     "Funcionalidad eliminada correctamente.": {
         "en": "Functionality deleted succesfully.",
-        "gl": "Fubncionalidade eliminada correctamente."
+        "gl": "Funcionalidade eliminada correctamente."
     },
     "Funcionalidad editada correctamente.": {
         "en": "Functionality editted succesfully.",
-        "gl": "Fubncionalidade editada correctamente."
+        "gl": "Funcionalidade editada correctamente."
     },
     "Acción-funcionalidad añadida correctamente.": {
         "en": "Action-functionality added succesfully.",
@@ -545,11 +541,11 @@
         "gl": "Non pode existir unha diferencia de máis de 1 ano entre cursos."
     },
     "Error de conexión con la base de datos.": {
-        "en": "Data Base connection error.",
+        "en": "Database connection error.",
         "gl": "Error de conexión coa base de datos."
     },
     "Entidad duplicada. Ya existe en la base de datos.": {
-        "en": "Duplicate entity. It does already exist in data base.",
+        "en": "Duplicate entity. It does already exist in database.",
         "gl": "Entidad duplicada. Xa existe na base de datos."
     },
     "La entidad que se intenta eliminar no existe.": {
@@ -568,9 +564,33 @@
         "en": "User does not exist.",
         "gl": "O usuario non existe."
     },
-    "Asignación de Permisos": {
-        "en": "Permission asignation",
+    "Asignación de permisos": {
+        "en": "Permission assignation",
         "gl": "Asignación de permisos"
+    },
+    "Asignar permiso": {
+        "en": "Assign permission",
+        "gl": "Asignar permiso"
+    },
+    "Asignación de permiso": {
+        "en": "Permission assignation",
+        "gl": "Asignación de permiso"
+    },
+    "Editar asignación de permiso": {
+        "en": "Edit permission assignment",
+        "gl": "Editar asignación de permiso"
+    },
+    "Insertar asignación de permiso": {
+        "en": "Insert permission assignment",
+        "gl": "Inserir asignación de permiso"
+    },
+    "Búsqueda de asignación de permisos": {
+        "en": "Search permissions assignment",
+        "gl": "Procura de asignación de permisos"
+    },
+    "Listado de asignación de permisos": {
+        "en": "Permission assignment list",
+        "gl": "Listado de asignación de permisos"
     },
     "Asignación de Roles": {
         "en": "Roles asgnation",
@@ -584,9 +604,9 @@
         "en": "Users search",
         "gl": "Procura de usuarios"
     },
-    "Eliminar año académico": {
+    "Eliminar curso académico": {
         "en": "Delete academic course",
-        "gl": "Eliminar ano académico"
+        "gl": "Eliminar curso académico"
     },
     "Año fuera de rango.": {
         "en": "Year out of range",
@@ -596,13 +616,9 @@
         "en": "Validation error.",
         "gl": "Error de validación."
     },
-    "Usuarios por página": {
-        "en": "Users per page",
-        "gl": "Usuarios por páxina"
-    },
-    "Cursos académicos por página": {
-        "en": "Academic courses per page",
-        "gl": "Cursos académicos por páxina"
+    "Items por página": {
+        "en": "Items per page",
+        "gl": "Items por páxina"
     },
     "Abreviatura de curso académico": {
         "en": "Abbreviation for academic year",
@@ -616,21 +632,41 @@
         "en": "Search for academic courses",
         "gl": "Procura de cursos académicos"
     },
-    "Permisos por página": {
-        "en": "Permissions per page",
-        "gl": "Permisos por páxina"
-    },
     "Búsqueda de permisos": {
         "en": "Search for permissions",
         "gl": "Procura de permisos"
     },
-    "No tienes permiso para acceder": {
-        "en": "You are not allowed to access",
-        "gl": "Non tes permisos para acceder"
+    "No tienes permiso para acceder.": {
+        "en": "You are not allowed to access.",
+        "gl": "Non tes permisos para acceder."
+    },
+    "No tienes permiso para añadir.": {
+        "en": "You are not allowed to add.",
+        "gl": "Non tes permisos para engadir."
+    },
+    "No tienes permiso para eliminar.": {
+        "en": "You are not allowed to delete.",
+        "gl": "Non tes permisos para eliminar."
+    },
+    "No tienes permiso para editar.": {
+        "en": "You are not allowed to edit.",
+        "gl": "Non tes permisos para editar."
+    },
+    "No tienes permiso para visualizar la entidad.": {
+        "en": "You are not allowed to view the entity.",
+        "gl": "Non tes permisos para visualizar a entidade."
     },
     "¿Está seguro de que desea eliminar el usuario %c? Esta acción es permanente y no se puede recuperar.": {
         "en": "Are you sure you want to delete the user %c? This action is permanent and cannot be recovered.",
         "gl": "Está seguro de que desexa eliminar o usuario %c? Esta acción é permanente e non se pode recuperar."
+    },
+    "¿Está seguro de que desea eliminar la asignación de permiso %c? Esta acción es permanente y no se puede recuperar.": {
+        "en": "Are you sure you want to delete the permission assignment %c? This action is permanent and cannot be recovered.",
+        "gl": "Está seguro de que desexa eliminar a asignación de permiso %c? Esta acción é permanente e non se pode recuperar."
+    },
+    "Eliminar asignación de permiso": {
+        "en": "Delete permission assignment",
+        "gl": "Eliminar asignación de permiso"
     },
     "Eliminar": {
         "en": "Delete",
@@ -640,9 +676,149 @@
         "en": "Close",
         "gl": "Pechar"
     },
-    "Eliminar usuario %c": {
-        "en": "Delete user %c",
-        "gl": "Eliminar usuario %c"
+    "Eliminar usuario": {
+        "en": "Delete user",
+        "gl": "Eliminar usuario"
+    },
+    "Error de la base de datos: %c": {
+        "en": "Database error: %c",
+        "gl": "Erro da base de datos: %c"
+    },
+    "Asignación de permiso añadida correctamente.": {
+        "en": "Permission assignment added sucessfully.",
+        "gl": "Asignación de permiso engadida correctamente."
+    },
+    "Asignación de permiso eliminada correctamente.": {
+        "en": "Permission assignment deleted sucessfully.",
+        "gl": "Asignación de permiso eliminada correctamente."
+    },
+    "Asignación de permiso editada correctamente.": {
+        "en": "Permission assignment edited sucessfully.",
+        "gl": "Asignación de permiso editada correctamente."
+    },
+    "¿Está seguro de que desea eliminar el curso académico %c? Esta acción es permanente y no se puede recuperar.": {
+        "en": "Are you sure you want to delete the academic course %c? This action is permanent and cannot be recovered.",
+        "gl": "Está seguro de que desexa eliminar o curso académico %c? Esta acción é permanente e non se pode recuperar."
+    },
+    "Curso académico %c": {
+        "en": "Academic course %c",
+        "gl": "Curso académico %c"
+    },
+    "No se puede borrar por que hay %c elementos en %c que dependen de esta entidad.": {
+        "en": "It cannot be deleted because there are %c elements in %c that depend on this entity.",
+        "gl": "Non se pode borrar por que hai %c elementos en %c que dependen desta entidade."
+    },
+    "¿Está seguro de que desea eliminar la acción %c? Esta acción es permanente y no se puede recuperar.": {
+        "en": "Are you sure you want to delete the action %c? This action is permanent and cannot be recovered.",
+        "gl": "Está seguro de que desexa eliminar a acción %c? Esta acción é permanente e non se pode recuperar."
+    },
+    "Eliminar acción": {
+        "en": "Delete action",
+        "gl": "Eliminar acción"
+    },
+    "Editar acción '%c'": {
+        "en": "Edit action '%c'",
+        "gl": "Editar acción '%c'"
+    },
+    "Búsqueda de acciones": {
+        "en": "Actions search",
+        "gl": "Búsqueda de accións"
+    },
+    "Acción '%c'": {
+        "en": "Action '%c'",
+        "gl": "Acción '%c'"
+    },
+    "No se ha obtenido ninguna acción-funcionalidad": {
+        "en": "No action-functionality has been obtained",
+        "gl": "Non se obtuvo ningunha acción-funcionalidade"
+    },
+    "Acción-funcionalidad '%c'": {
+        "en": "Action-funcionality '%c'",
+        "gl": "Acción-funcionalidade '%c'"
+    },
+    "Editar acción-funcionalidad '%c'": {
+        "en": "Edit action-funcionality '%c'",
+        "gl": "Editat acción-funcionalidade '%c'"
+    },
+    "¿Está seguro de que desea eliminar la acción-funcionalidad %c? Esta acción es permanente y no se puede recuperar.": {
+        "en": "Are you sure you want to delete the action-functionality %c? This action is permanent and cannot be recovered.",
+        "gl": "Está seguro de que desexa eliminar a acción-funcionalidade %c? Esta acción é permanente e non se pode recuperar."
+    },
+    "Eliminar acción-funcionalidad": {
+        "en": "Delete action-functionality",
+        "gl": "Eliminar acción-funcionalidade"
+    },
+    "Búsqueda de acciones-funcionalidades": {
+        "en": "Actions-functionalities search",
+        "gl": "Búsqueda de accións-funcionalidades"
+    },
+    "Funcionalidad '%c'": {
+        "en": "Functionality '%c'",
+        "gl": "Funcionalidade '%c'"
+    },
+    "Editar funcionalidad '%c'": {
+        "en": "Edit functionality '%c'",
+        "gl": "Editar funcionalidade '%c'"
+    },
+    "Eliminar funcionalidad": {
+        "en": "Delete functionality",
+        "gl": "Eliminar funcionalidade"
+    },
+    "¿Está seguro de que desea eliminar la funcionalidad %c? Esta acción es permanente y no se puede recuperar.": {
+        "en": "Are you sure you want to delete the functionality %c? This action is permanent and cannot be recovered.",
+        "gl": "Está seguro de que desexa eliminar a funcionalidade %c? Esta acción é permanente e non se pode recuperar."
+    },
+    "Búsqueda de funcionalidades": {
+        "en": "Functionalities search",
+        "gl": "Procura de funcionalidades"
+    },
+    "¿Está seguro de que desea eliminar el rol %c? Esta acción es permanente y no se puede recuperar.": {
+        "en": "Are you sure you want to delete the role %c? This action is permanent and cannot be recovered.",
+        "gl": "Está seguro de que desexa eliminar o rol %c? Esta acción é permanente e non se pode recuperar."
+    },
+    "Eliminar rol": {
+        "en": "Delete role",
+        "gl": "Eliminar rol"
+    },
+    "Búsqueda de roles": {
+        "en": "Roles search",
+        "gl": "Búsqueda de roles"
+    },
+    "Editar rol '%c'": {
+        "en": "Edit role '%c'",
+        "gl": "Editar rol '%c'"
+    },
+    "Rol '%c'": {
+        "en": "Role '%c'",
+        "gl": "Rol '%c'"
+    },
+    "Editar usuario %c": {
+        "en": "Edit user %c",
+        "gl": "Editar usuario %c"
+    },
+    "Usuario %c": {
+        "en": "User %c",
+        "gl": "Usuario %c"
+    },
+    "Listado de asignación de roles a usuarios": {
+        "en": "List of role assignment to users",
+        "gl": "Listado de asignación de roles a usuarios"
+    },
+    "Usuario-rol '%c'": {
+        "en": "User-role '%c'",
+        "gl": "Usuario-rol '%c'"
+    },
+    "¿Está seguro de que desea eliminar el usuario-rol %c? Esta acción es permanente y no se puede recuperar.": {
+        "en": "Are you sure you want to delete the user-role %c? This action is permanent and cannot be recovered.",
+        "gl": "Está seguro de que desexa eliminar o usuario-rol %c? Esta acción é permanente e non se pode recuperar."
+    },
+    "Eliminar asignación de rol a usuario": {
+        "en": "Delete role assignment to user",
+        "gl": "Eliminar asignación de rol a usuario"
+    },
+    "Búsqueda de roles asignados a usuarios": {
+        "en": "Search for roles assigned to users",
+        "gl": "Búsqueda de roles asignados a usuarios"
     }
 }
 

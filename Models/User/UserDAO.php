@@ -15,11 +15,11 @@ class UserDAO
     }
 
     function add($user) {
-        return $this->defaultDAO->insert($user, "login");
+        $this->defaultDAO->insert($user, "login");
     }
 
     function delete($key, $value) {
-        return $this->defaultDAO->delete("user", $key, $value);
+        $this->defaultDAO->delete("user", $key, $value);
     }
 
     function show($key, $value) {
@@ -29,14 +29,15 @@ class UserDAO
     }
 
     function edit($user) {
-        return $this->defaultDAO->edit($user, "login");
+        $this->defaultDAO->edit($user, "login");
     }
 
     function truncateTable() {
-        return $this->defaultDAO->truncateTable("user");
+        $this->defaultDAO->truncateTable("user");
     }
 
     function canBeLogged($login, $password) {
+        echo $login;
         $result = $this->show("login", $login);
         if (!is_null($result)){
             if ($result->getPassword() != md5($password)){
@@ -54,6 +55,10 @@ class UserDAO
 
     function countTotalUsers($stringToSearch) {
         return $this->defaultDAO->countTotalEntries(new User(), $stringToSearch);
+    }
+
+    function checkDependencies($value) {
+        $this->defaultDAO->checkDependencies("user", $value);
     }
 
     private function getUsersFromDB($usersDB) {

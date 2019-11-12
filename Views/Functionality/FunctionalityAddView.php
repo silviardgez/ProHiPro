@@ -18,10 +18,6 @@ function render(){
         </div>
         <form id="functionalityForm" name = "ADD"action='../Controllers/FunctionalityController.php?action=add' method='POST' onsubmit="return checkAddNameDescription()">
             <div class="form-group">
-                <label for="IdFunctionality" data-translate="Id funcionalidad"></label>
-                <input type="text" class="form-control" id="IdFunctionality" name="IdFunctionality" data-translate="Introducir id de funcionalidad">
-            </div>
-            <div class="form-group">
                 <label for="name" data-translate="Nombre"></label>
                 <input type="text" class="form-control" id="name" name="name" data-translate="Introducir nombre" required onblur="checkEmpty(this)">
             </div>

@@ -369,8 +369,6 @@ function checkEditUser() {
     }
 
     if (!checkEmpty(pwd)) {
-        return false;
-    } else {
         if (!withOutWhiteSpaces(pwd)) {
             return false;
         } else {
@@ -385,8 +383,6 @@ function checkEditUser() {
     }
 
     if (!checkEmpty(pwd2)) {
-        return false;
-    } else {
         if (!withOutWhiteSpaces(pwd2)) {
             return false;
         } else {

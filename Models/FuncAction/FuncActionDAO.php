@@ -1,54 +1,70 @@
 <?php
 include_once '../Models/Common/DefaultDAO.php';
-include_once 'Func_Action.php';
+include_once '../Models/Action/ActionDAO.php';
+include_once '../Models/Functionality/FunctionalityDAO.php';
+include_once 'FuncAction.php';
 
 class FuncActionDAO
 {
     private $defaultDAO;
+    private $actionDAO;
+    private $functionalityDAO;
+
     public function __construct() {
         $this->defaultDAO = new DefaultDAO();
+        $this->actionDAO = new ActionDAO();
+        $this->functionalityDAO = new FunctionalityDAO();
     }
 
     function showAll() {
         $funcActions_db = $this->defaultDAO->showAll("func_action");
-        $funcActions = array();
-        foreach ($funcActions_db as $funcAction) {
-            array_push($funcActions, new Func_Action($funcAction["IdFuncAction"], $funcAction["IdAction"], $funcAction["IdFunctionality"]));
-        }
-        return $funcActions;
+        return $this->getFuncActionFromDB($funcActions_db);
     }
 
     function add($funcAction) {
-        return $this->defaultDAO->insert($funcAction,"IdFuncAction");
+        $this->defaultDAO->insert($funcAction,"id");
     }
 
     function delete($key, $value) {
-        return $this->defaultDAO->delete("func_action", $key, $value);
+        $this->defaultDAO->delete("func_action", $key, $value);
     }
 
     function show($key, $value) {
         $funcAction_db = $this->defaultDAO->show("func_action", $key, $value);
-        return new Func_Action($funcAction_db["IdFuncAction"], $funcAction_db["IdAction"], $funcAction_db["IdFunctionality"]);
+        $action = $this->actionDAO->show("id", $funcAction_db["action_id"]);
+        $functionality = $this->functionalityDAO->show("id", $funcAction_db["functionality_id"]);
+        return new FuncAction($funcAction_db["id"], $action, $functionality);
     }
 
     function showAllPaged($currentPage, $itemsPerPage, $stringToSearch) {
-        $funcAction_db = $this->defaultDAO->showAllPaged($currentPage, $itemsPerPage, new Func_Action(), $stringToSearch);
+        $funcAction_db = $this->defaultDAO->showAllPaged($currentPage, $itemsPerPage, new FuncAction(), $stringToSearch);
         return $this->getFuncActionFromDB($funcAction_db);
     }
 
-    private function getFuncActionFromDB($funcAction_db) {
-        $funcActions = array();
-        foreach ($funcAction_db as $funcAction) {
-            array_push($funcActions, new Func_Action($funcAction["IdFuncAction"], $funcAction["IdAction"], $funcAction["IdFunctionality"]));
-        }
-        return $funcActions;
+    function countTotalFuncActions($stringToSearch) {
+        return $this->defaultDAO->countTotalEntries(new FuncAction(), $stringToSearch);
     }
 
     function edit($funcAction) {
-        return $this->defaultDAO->edit($funcAction, "IdFuncAction");
+        $this->defaultDAO->edit($funcAction, "id");
     }
 
     function truncateTable() {
-        return $this->defaultDAO->truncateTable("func_action");
+        $this->defaultDAO->truncateTable("func_action");
+    }
+
+    function checkDependencies($value) {
+        $this->defaultDAO->checkDependencies("func_action", $value);
+    }
+
+    private function getFuncActionFromDB($funcActions_db) {
+        $funcActions = array();
+        foreach ($funcActions_db as $funcAction) {
+            $action = $this->actionDAO->show("id", $funcAction["action_id"]);
+            $functionality = $this->functionalityDAO->show("id", $funcAction["functionality_id"]);
+            array_push($funcActions, new FuncAction($funcAction["id"],
+                $action, $functionality));
+        }
+        return $funcActions;
     }
 }

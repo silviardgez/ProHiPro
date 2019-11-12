@@ -1,14 +1,14 @@
 <?php
-class Permission
+class UserRole
 {
     private $id;
     private $role;
-    private $func_action;
+    private $user;
 
-    public function __construct($id=NULL, $role=NULL, $func_action=NULL){
+    public function __construct($id=NULL, $role=NULL, $user=NULL){
         $this->id = $id;
         $this->role = $role;
-        $this->func_action = $func_action;
+        $this->user = $user;
     }
 
     public function getId()
@@ -31,14 +31,14 @@ class Permission
         $this->role = $role;
     }
 
-    public function getFuncAction()
+    public function getUser()
     {
-        return $this->func_action;
+        return $this->user;
     }
 
-    public function setFuncAction($func_action)
+    public function setUser($user)
     {
-        $this->func_action = $func_action;
+        $this->user = $user;
     }
 
     public static function expose()

@@ -4,7 +4,7 @@ declare (strict_types=1);
 use PHPUnit\Framework\TestCase;
 
 require_once '../Models/Permission/Permission.php';
-require_once '../Models/FuncAction/Func_Action.php';
+require_once '../Models/FuncAction/FuncAction.php';
 require_once '../Models/Action/Action.php';
 require_once '../Models/Functionality/Functionality.php';
 require_once '../Models/Role/Role.php';
@@ -43,10 +43,10 @@ final class PermissionTest extends TestCase
 
         self::$roleDAO->add(new Role('3', 'Test', 'Role to test'));
 
-        self::$funcActionDAO->add(new Func_Action(1, 2, 1));
-        self::$funcActionDAO->add(new Func_Action(2, 2, 2));
-        self::$funcActionDAO->add(new Func_Action(3, 2, 2));
-        self::$funcActionDAO->add(new Func_Action(4, 2, 2));
+        self::$funcActionDAO->add(new FuncAction(1, 2, 1));
+        self::$funcActionDAO->add(new FuncAction(2, 2, 2));
+        self::$funcActionDAO->add(new FuncAction(3, 2, 2));
+        self::$funcActionDAO->add(new FuncAction(4, 2, 2));
 
         self::$examplePermission = new Permission(1, 3, 1);
 

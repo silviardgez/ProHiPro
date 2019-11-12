@@ -14,15 +14,15 @@ class RoleShowView {
         <main role="main" class="margin-main ml-sm-auto px-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-3
             border-bottom">
-                <h1 class="h2" data-translate="Rol"> <?php echo $_REQUEST['IdRole'] ?></h1>
+                <h1 class="h2" data-translate="Rol '%<?php echo $this->role->getId(); ?>%'"></h1>
                 <a class="btn btn-primary" role="button" href="../Controllers/RoleController.php" data-translate="Volver"></a>
             </div>
             <?php if(!is_null($this->role)): ?>
             <form>
                 <div class="form-group">
-                    <label for="IdRole" data-translate="Id rol"></label>
-                    <input type="text" class="form-control" id="IdRole" name="IdRole"
-                           value="<?php echo $this->role->getIdRole() ?>" readonly>
+                    <label for="id" data-translate="Id rol"></label>
+                    <input type="text" class="form-control" id="id" name="id"
+                           value="<?php echo $this->role->getId() ?>" readonly>
                 </div>
                 <div class="form-group">
                     <label for="name" data-translate="Nombre"></label>

@@ -29,14 +29,22 @@ class DefaultDAO
         $attributes = array_keys($entity->expose());
         $sql_keys = "";
         $sql_values = "";
+
         foreach ($attributes as $attribute) {
+            $function_name = $this->changeFunctionName($attribute);
+            $value = $entity->$function_name();
+
+            if(is_object($value)) {
+                $attribute = $attribute . "_id";
+                $value = $value->getId();
+            }
+
             if ($sql_keys == "") {
                 $sql_keys = "(" . $attribute;
             } else {
                 $sql_keys = $sql_keys . "," . $attribute;
             }
-            $function_name = $this->changeFunctionName($attribute);
-            $value = $entity->$function_name();
+
             $value = $this->checkValueType($value);
 
             if ($sql_values == "") {
@@ -48,16 +56,17 @@ class DefaultDAO
 
         $primary_key_function = $this->changeFunctionName($primary_key);
 
-        $sql = "SELECT * FROM " . strtoupper(get_class($entity)) . " WHERE " . $primary_key . "='".
+        $sql = "SELECT * FROM " . $this->getTableName($entity) . " WHERE " . $primary_key . "='".
             $entity->$primary_key_function() . "'";
         if (!$result = $this->mysqli->query($sql)){
             throw new DAOException('Error de conexión con la base de datos.');
         }
         else {
             if ($result->num_rows == 0){
-                $sql = "INSERT INTO " . strtoupper(get_class($entity)) . $sql_keys . ") VALUES " . $sql_values . ")";
+                $sql = "INSERT INTO " . $this->getTableName($entity) . $sql_keys . ") VALUES " . $sql_values . ")";
                 if(!$resultInsertion = $this->mysqli->query($sql)) {
-                    throw new DAOException('Entidad duplicada. Ya existe en la base de datos.');
+                    throw new DAOException('Error de la base de datos: %' .
+                        str_replace("\'", "", addslashes($this->mysqli->error)) . '%');
                 }
             } else {
                throw new DAOException('Entidad duplicada. Ya existe en la base de datos.');
@@ -83,7 +92,6 @@ class DefaultDAO
     function show($entityName, $key, $value)
     {
         $sql = "SELECT * FROM " . strtoupper($entityName) . " WHERE " . $key . " ='" . $value . "'";
-
         if (!$result = $this->mysqli->query($sql)) {
             throw new DAOException('Error de conexión con la base de datos.');
         } else {
@@ -102,6 +110,12 @@ class DefaultDAO
         foreach ($attributes as $attribute) {
             $function_name = $this->changeFunctionName($attribute);
             $value = $entity->$function_name();
+
+            if(is_object($value)) {
+                $attribute = $attribute . "_id";
+                $value = $value->getId();
+            }
+
             $value = $this->checkValueType($value);
 
             if ($attribute != $primary_key) {
@@ -112,17 +126,20 @@ class DefaultDAO
                 }
             }
         }
+
         $primary_key_function = $this->changeFunctionName($primary_key);
-        $sql_query = "SELECT * FROM " . strtoupper(get_class($entity)) . " WHERE " . $primary_key . "= '" .
+        $sql_query = "SELECT * FROM " . $this->getTableName($entity) . " WHERE " . $primary_key . "= '" .
             $entity->$primary_key_function() . "'";
+
         if (!$result = $this->mysqli->query($sql_query)) {
             throw new DAOException('Error de conexión con la base de datos.');
         } else {
             if ($result->num_rows != 0) {
-                $sql_edit = "UPDATE " . strtoupper(get_class($entity)) . " SET " . $sql . " WHERE " .
+                $sql_edit = "UPDATE " . $this->getTableName($entity) . " SET " . $sql . " WHERE " .
                     $primary_key . "= '" . $entity->$primary_key_function() . "'";
                 if(!$resultEdit = $this->mysqli->query($sql_edit)) {
-                    throw new DAOException($this->mysqli->error);
+                    throw new DAOException('Error de la base de datos: %' .
+                        str_replace("\'", "", addslashes($this->mysqli->error)) . '%');
                 }
             } else {
                 throw new DAOException('La entidad a editar no existe en la base de datos.');
@@ -139,7 +156,7 @@ class DefaultDAO
     }
 
     function countTotalEntries($entity, $stringToSearch) {
-        $sql = "SELECT COUNT(*) FROM " . strtoupper(get_class($entity));
+        $sql = "SELECT COUNT(*) FROM " . $this->getTableName($entity);
         $sql .= $this->obtainWhereClauseToSearch($entity, $stringToSearch);
         if (!($result = $this->mysqli->query($sql))) {
             throw new DAOException('Error de conexión con la base de datos.');
@@ -148,9 +165,36 @@ class DefaultDAO
         }
     }
 
+    function checkDependencies($tableName, $value) {
+        $sql = "SELECT TABLE_NAME, COLUMN_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE 
+                WHERE REFERENCED_TABLE_NAME = '" . strtoupper($tableName) . "'";
+        $dependencies = $this->getArrayFromSqlQuery($sql);
+        $stringToShow = "";
+
+        foreach ($dependencies as $dependency) {
+            $tableDependency = $dependency["TABLE_NAME"];
+            $columnDependency = $dependency["COLUMN_NAME"];
+            $sql_dependencies = "SELECT * FROM " . $tableDependency . " WHERE " . $columnDependency . " = '" . $value . "'";
+            $dependency_array = $this->getArrayFromSqlQuery($sql_dependencies);
+            if(!empty($dependency_array)) {
+                if($stringToShow == "") {
+                    $stringToShow .= "No se puede borrar por que hay %" . count($dependency_array) . "% elementos en %" . $tableDependency .
+                        "%";
+                } else {
+                    $stringToShow .= " y %" . count($dependency_array) . "% elementos en %" . $tableDependency .
+                        "%";
+                }
+
+                $stringToShow .= " que dependen de esta entidad.";
+
+                throw new DAOException($stringToShow);
+            }
+        }
+    }
+
     function showAllPaged($currentPage, $itemsPerPage, $entity, $stringToSearch) {
         $startBlock = ($currentPage - 1) * $itemsPerPage;
-        $sql = "SELECT * FROM " . strtoupper(get_class($entity));
+        $sql = "SELECT * FROM " . $this->getTableName($entity);
         $sql .= $this->obtainWhereClauseToSearch($entity, $stringToSearch);
         $sql .= " LIMIT " . $startBlock . "," . $itemsPerPage;
         return $this->getArrayFromSqlQuery($sql);
@@ -195,6 +239,20 @@ class DefaultDAO
         }
     }
 
+    private function obtainWhereClauseToSearch($entity, $stringToSearch) {
+        $sql = "";
+        if(get_class($stringToSearch) == "DefaultDAO" || empty(get_class($stringToSearch))) {
+            if (!is_null($stringToSearch)) {
+                $sqlWhere = $this->getSearchConsult($entity, $stringToSearch);
+                $sql = " WHERE " . $sqlWhere;
+            }
+        } else {
+            $sqlWhere = $this->getSearchConsultWithEntity($stringToSearch);
+            $sql = " WHERE " . $sqlWhere;
+        }
+        return $sql;
+    }
+
     private function getSearchConsult($entity, $stringToSearch) {
         $attributes = array_keys($entity->expose());
         $sql = "";
@@ -215,27 +273,27 @@ class DefaultDAO
             $functionName = $this->changeFunctionName($attribute);
             $value = $stringToSearch->$functionName();
             if (!empty($value)) {
-                if ($sql == "") {
-                    $sql = "(" . $attribute . " LIKE '%" . $stringToSearch->$functionName() . "%')";
+                if(!is_object($value)) {
+                    if ($sql == "") {
+                        $sql = "(" . $attribute . " LIKE '%" . $value . "%')";
+                    } else {
+                        $sql = $sql . " AND (" . $attribute . " LIKE '%" . $value . "%')";
+                    }
                 } else {
-                    $sql = $sql . " AND (" . $attribute . " LIKE '%" . $stringToSearch->$functionName() . "%')";
+                    $attribute = $attribute . "_id";
+                    if ($sql == "") {
+                        $sql = "(" . $attribute . " = '" . $value->getId() . "')";
+                    } else {
+                        $sql = $sql . " AND (" . $attribute . " = '" . $value->getId() . "')";
+                    }
                 }
             }
         }
         return $sql;
     }
 
-    private function obtainWhereClauseToSearch($entity, $stringToSearch) {
-        $sql = "";
-        if(get_class($stringToSearch) == "DefaultDAO" || empty(get_class($stringToSearch))) {
-            if (!is_null($stringToSearch)) {
-                $sqlWhere = $this->getSearchConsult($entity, $stringToSearch);
-                $sql = " WHERE " . $sqlWhere;
-            }
-        } else {
-            $sqlWhere = $this->getSearchConsultWithEntity($stringToSearch);
-            $sql = " WHERE " . $sqlWhere;
-        }
-        return $sql;
+    private function getTableName($entity) {
+        return strtoupper(preg_replace('/\B([A-Z])/', '_$1', get_class($entity)));
     }
+
 }

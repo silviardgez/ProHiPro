@@ -15,15 +15,12 @@ class RoleEditView {
         <main role="main" class="margin-main ml-sm-auto px-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-3
             border-bottom">
-                <h1 class="h2" data-translate="Rol"> <?php echo $this->role->getIdRole() ?></h1>
+                <h1 class="h2" data-translate="Editar rol '%<?php echo $this->role->getId();?>%'"></h1>
                 <a class="btn btn-primary" role="button" href="../Controllers/RoleController.php" data-translate="Volver"></a>
             </div>
             <form name = "EDIT" action='../Controllers/RoleController.php?action=edit' method='POST' onsubmit="return checkEditNameDescription()">
-                <div class="form-group">
-                    <label for="IdRole" data-translate="Id rol"></label>
-                    <input type="text" class="form-control" id="IdRole" name="IdRole"
-                           value="<?php echo $this->role->getIdRole() ?>" readonly>
-                </div>
+                <input type="text" class="form-control" id="id" name="id"
+                           value="<?php echo $this->role->getId()?>" style="display: none">
                 <div class="form-group">
                     <label for="name" data-translate="Nombre"></label>
                     <input type="text" class="form-control" id="name" name="name"

@@ -1,38 +1,38 @@
 <?php
 class AcademicCourse
 {
-    private $id_academic_course;
+    private $id;
     private $academic_course_abbr;
     private $start_year;
     private $end_year;
 
-    public function __construct($id_academic_course=NULL,$academic_course_abbr=NULL, $start_year=NULL, $end_year=NULL)
+    public function __construct($id=NULL,$academic_course_abbr=NULL, $start_year=NULL, $end_year=NULL)
     {
         if (!empty($start_year) && !empty($end_year)) {
-            $this->constructEntity($id_academic_course,$academic_course_abbr, $start_year, $end_year);
+            $this->constructEntity($id ,$academic_course_abbr, $start_year, $end_year);
         }
     }
 
-    private function constructEntity($id_academic_course=NULL,$academic_course_abbr=NULL , $start_year=NULL, $end_year=NULL) {
+    private function constructEntity($id=NULL,$academic_course_abbr=NULL , $start_year=NULL, $end_year=NULL) {
         if ($this->isCorrectAcademicCourse($start_year, $end_year)) {
             if($academic_course_abbr === NULL) {
                 $academic_course_abbr = $this->formatAbbr($start_year, $end_year);
             }
-            $this->setIdAcademicCourse($id_academic_course);
+            $this->setId($id);
             $this->setAcademicCourseAbbr($academic_course_abbr);
             $this->setStartYear($start_year);
             $this->setEndYear($end_year);
         }
     }
 
-    public function getIdAcademicCourse()
+    public function getId()
     {
-        return $this->id_academic_course;
+        return $this->id;
     }
 
-    public function setIdAcademicCourse($id_academic_course)
+    public function setId($id)
     {
-        $this->id_academic_course = $id_academic_course;
+        $this->id = $id;
     }
 
     public function getStartYear()
@@ -73,7 +73,6 @@ class AcademicCourse
     {
         $this->academic_course_abbr = $academic_course_abbr;
     }
-
 
     function isCorrectAcademicCourse($startYear, $endYear){
         if ($startYear >= $endYear) {

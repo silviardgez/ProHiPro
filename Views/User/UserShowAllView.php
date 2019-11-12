@@ -76,60 +76,9 @@ function render(){
             </table>
             <p data-translate="No se ha obtenido ningún usuario">.</p>
             <?php endif; ?>
-    </div>
 
-    <div class="row">
-    <?php if($this->totalUsers > 0): ?>
-    <!-- Search -->
-    <a class="btn btn-primary button-specific-search" role="button"
-       href="../Controllers/UserController.php?action=search">
-        <span data-feather="search"></span><p class="btn-show-view" data-translate="Búsqueda específica"></p></a>
-
-    <!-- Pagination -->
-    <label class="label-pagination" data-translate="Usuarios por página"></label>
-    <select class="form-control items-page" id="items-page-select"
-            onchange="selectChange(this, 'User')">
-        <option value="5" <?php if ($this->itemsPerPage == 5) echo "selected" ?>>5</option>
-        <option value="10" <?php if ($this->itemsPerPage == 10) echo "selected" ?>>10</option>
-        <option value="15" <?php if ($this->itemsPerPage == 15) echo "selected" ?>>15</option>
-        <option value="20" <?php if ($this->itemsPerPage == 20) echo "selected" ?>>20</option>
-    </select>
-    <?php if ($this->totalPages > 1): ?>
-    <nav aria-label="...">
-        <ul class="pagination">
-            <?php if ($this->currentPage == 1): ?>
-            <li class="page-item disabled">
-            <?php else: ?>
-            <li class="page-item">
-            <?php endif; ?>
-                <a class="page-link" href="../Controllers/UserController.php?currentPage=<?php echo $this->currentPage-1?>&itemsPerPage=<?php echo $this->itemsPerPage ?>">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-            <?php for ($i = 1; $i <= $this->totalPages; $i++): ?>
-                <?php if ($this->currentPage == $i): ?>
-                <li class="page-item active">
-                <?php else: ?>
-                <li class="page-item">
-                <?php endif; ?>
-                        <a class="page-link"
-                        href="../Controllers/UserController.php?currentPage=<?php echo $i ?>&itemsPerPage=<?php echo $this->itemsPerPage ?>">
-                            <?php echo $i?></a>
-                </li>
-            <?php endfor; ?>
-            <?php if ($this->currentPage == $this->totalPages): ?>
-            <li class="page-item disabled">
-            <?php else: ?>
-            <li class="page-item">
-            <?php endif; ?>
-                <a class="page-link" href="../Controllers/UserController.php?currentPage=<?php echo $this->currentPage+1?>&itemsPerPage=<?php echo $this->itemsPerPage ?>">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-    <?php endif; ?>
-    <?php endif; ?>
+        <?php new PaginationView($this->itemsPerPage, $this->currentPage, $this->totalUsers,
+            "User") ?>
     </div>
 </main>
 

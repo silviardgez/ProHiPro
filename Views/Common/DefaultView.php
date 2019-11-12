@@ -60,7 +60,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="../Controllers/PermissionController.php">
-                                        <p data-translate="Asignación de Permisos"></p>
+                                        <p data-translate="Asignación de permisos"></p>
                                     </a>
                                 </li>
 								<li class="nav-item">
