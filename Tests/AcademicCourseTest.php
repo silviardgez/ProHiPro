@@ -15,6 +15,9 @@ final class AcademicCourseTest extends TestCase
 
     public static function setUpBeforeClass(): void
     {
+        shell_exec('mysqldump --opt --no-create-info  -u userTEC -ppassTEC TEC > ../dump.sql');
+        shell_exec('mysql -u userTEC -ppassTEC < ../build_database.sql');
+
         self::$academicCourseDAO = new AcademicCourseDAO();
         self::$exampleAcademicCourse = new AcademicCourse(1, '50/51', 2050, 2051);
         self::$exampleAcademicCourseArray = array(
@@ -30,6 +33,15 @@ final class AcademicCourseTest extends TestCase
     {
         try {
             self::$academicCourseDAO->delete('academic_course_abbr', '50/51');
+        } catch (Exception $e) {
+        }
+    }
+
+    public static function tearDownAfterClass(): void
+    {
+        try {
+            shell_exec('mysql -u userTEC -ppassTEC < ../build_database.sql');
+            shell_exec('mysql -u userTEC -ppassTEC TEC < ../dump.sql');
         } catch (Exception $e) {
         }
     }
