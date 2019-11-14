@@ -15,6 +15,9 @@ final class UserTest extends TestCase
 
     public static function setUpBeforeClass(): void
     {
+        shell_exec('mysqldump --opt --no-create-info  -u userTEC -ppassTEC TEC > ../dump.sql');
+        shell_exec('mysql -u userTEC -ppassTEC < ../build_database.sql');
+
         self::$userDAO = new UserDAO();
         self::$exampleUser = new User('_test_', 'test_pass', '11111111A', 'test', 'test user', 'test@example.com',
             'calle falsa 123', '666444666');
@@ -35,7 +38,17 @@ final class UserTest extends TestCase
     {
         try {
             self::$userDAO->delete('login', '_test_');
-        } catch (Exception $e) {}
+        } catch (Exception $e) {
+        }
+    }
+
+    public static function tearDownAfterClass(): void
+    {
+        try {
+            shell_exec('mysql -u userTEC -ppassTEC < ../build_database.sql');
+            shell_exec('mysql -u userTEC -ppassTEC TEC < ../dump.sql');
+        } catch (Exception $e) {
+        }
     }
 
     public function testCanBeCreated()
@@ -141,10 +154,11 @@ final class UserTest extends TestCase
         $userCreated = self::$userDAO->show("login", "_test_");
     }
 
-    private function curlPost($postData, $action) {
+    private function curlPost($postData, $action)
+    {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_URL, "http://localhost/Controllers/UserController.php?action=".$action."&login=_test_");
+        curl_setopt($ch, CURLOPT_URL, "http://localhost/Controllers/UserController.php?action=" . $action);
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);

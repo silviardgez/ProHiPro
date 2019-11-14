@@ -30,6 +30,9 @@ final class PermissionTest extends TestCase
 
     public static function setUpBeforeClass(): void
     {
+        shell_exec('mysqldump --opt --no-create-info  -u userTEC -ppassTEC TEC > ../dump.sql');
+        shell_exec('mysql -u userTEC -ppassTEC < ../build_database.sql');
+
         self::$permissionDAO = new PermissionDAO();
         self::$funcActionDAO = new FuncActionDAO();
         self::$actionDAO = new ActionDAO();
@@ -69,15 +72,8 @@ final class PermissionTest extends TestCase
     public static function tearDownAfterClass(): void
     {
         try {
-            self::$funcActionDAO->delete('IdFuncAction', 1);
-            self::$funcActionDAO->delete('IdFuncAction', 2);
-            self::$funcActionDAO->delete('IdFuncAction', 3);
-            self::$funcActionDAO->delete('IdFuncAction', 4);
-
-            self::$roleDAO->delete('name', 'Test');
-            self::$functionalityDAO->delete('name', 'Test');
-            self::$actionDAO->delete('name', 'Test');
-
+            shell_exec('mysql -u userTEC -ppassTEC < ../build_database.sql');
+            shell_exec('mysql -u userTEC -ppassTEC TEC < ../dump.sql');
         } catch (Exception $e) {
         }
     }
