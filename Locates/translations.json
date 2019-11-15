@@ -1023,6 +1023,34 @@
     "El atributo descripción contiene algún carácter no válido: %c.": {
         "en": "The description attribute contains some invalid character: %c.",
         "gl": "O atributo descripción contén algún caracter non válido: %c."
+    },
+    "El atributo inicio no puede ser mayor que %c.": {
+        "en": "The start attribute can have a maximum value of %c.",
+        "gl": "O atributo inicio pode ter un valor máximo de %c."
+    },
+    "El atributo fin no puede ser mayor que %c.": {
+        "en": "The end attribute can have a maximum value of %c.",
+        "gl": "O atributo fin pode ter un valor máximo de %c."
+    },
+    "El atributo inicio no puede ser menor que %c.": {
+        "en": "The start attribute can have a minimum value of %c.",
+        "gl": "O atributo inicio pode ter un valor mínimo de %c."
+    },
+    "El atributo fin no puede ser menor que %c.": {
+        "en": "The end attribute can have a minimum value of %c.",
+        "gl": "O atributo fin pode ter un valor mínimo de %c."
+    },
+    "La diferencia debe ser igual a 1 año": {
+        "en": "The difference may be 1 year.",
+        "gl": "A diferencia debe ser 1 ano."
+    },
+    "El año de finalización debe ser mayor que el de comienzo": {
+        "en": "End year may be greater than start year.",
+        "gl": "O ano de remate debe ser maior que o de comezo."
+    },
+    "El atributo abreviatura contiene algún carácter no válido: %c.": {
+        "en": "The abbreviate attribute contains some invalid character: %c.",
+        "gl": "O atributo abreviatura contén algún caracter non válido: %c."
     }
 }
 
