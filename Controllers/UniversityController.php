@@ -1,49 +1,52 @@
 <?php
+
 session_start();
 include_once '../Functions/Authentication.php';
+
 if (!IsAuthenticated()) {
     header('Location:../index.php');
 }
-include_once '../Models/User/UserDAO.php';
-include_once '../Models/Role/RoleDAO.php';
-include_once '../Models/UserRole/UserRoleDAO.php';
+
+include_once '../Models/University/UniversityDAO.php';
+include_once '../Models/AcademicCourse/AcademicCourseDAO.php';
 include_once '../Models/Common/DAOException.php';
 include_once '../Views/Common/Head.php';
 include_once '../Views/Common/DefaultView.php';
-include_once '../Views/UserRole/UserRoleShowAllView.php';
-include_once '../Views/UserRole/UserRoleAddView.php';
-include_once '../Views/UserRole/UserRoleShowView.php';
-include_once '../Views/UserRole/UserRoleEditView.php';
-include_once '../Views/UserRole/UserRoleSearchView.php';
+include_once '../Views/University/UniversityShowAllView.php';
+include_once '../Views/University/UniversityAddView.php';
+include_once '../Views/University/UniversityShowView.php';
+include_once '../Views/University/UniversityEditView.php';
+include_once '../Views/University/UniversitySearchView.php';
 include_once '../Views/Common/PaginationView.php';
 include_once '../Functions/HavePermission.php';
 include_once '../Functions/OpenDeletionModal.php';
 include_once '../Functions/Redirect.php';
 include_once '../Functions/Messages.php';
 include_once '../Functions/Pagination.php';
+
 //DAOS
-$userRoleDAO = new UserRoleDAO();
-$roleDAO = new RoleDAO();
-$userDAO = new UserDAO();
+$universityDAO = new UniversityDAO();
+$academicCourseDAO = new AcademicCourseDAO();
+
 //Data required
-$roleData = $roleDAO->showAll();
-$userData = $userDAO->showAll();
-$userRolePrimaryKey = "id";
-$value = $_REQUEST[$userRolePrimaryKey];
+$academicCourseData = $academicCourseDAO->showAll();
+
+$universityPrimaryKey = "id";
+$value = $_REQUEST[$universityPrimaryKey];
 
 $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "";
 switch ($action) {
     case "add":
-        if (HavePermission("UserRole", "ADD")) {
+        if (HavePermission("University", "ADD")) {
             if (!isset($_POST["submit"])) {
-                new UserRoleAddView($userData, $roleData);
+                new UniversityAddView($academicCourseData);
             } else {
                 try {
-                    $userRole = new UserRole();
-                    $userRole->setUser($userDAO->show("login", $_POST["user_id"]));
-                    $userRole->setRole($roleDAO->show("id", $_POST["role_id"]));
-                    $userRoleDAO->add($userRole);
-                    goToShowAllAndShowSuccess("Rol añadido correctamente.");
+                    $university = new University();
+                    $university->setAcademicCourse($academicCourseDAO->show("id", $_POST["academic_course_id"]));
+                    $university->setName($_POST["name"]);
+                    $universityDAO->add($university);
+                    goToShowAllAndShowSuccess("Universidad añadida correctamente.");
                 } catch (DAOException $e) {
                     goToShowAllAndShowError($e->getMessage());
                 } catch (ValidationException $ve) {
@@ -55,21 +58,21 @@ switch ($action) {
         }
         break;
     case "delete":
-        if (HavePermission("UserRole", "DELETE")) {
+        if (HavePermission("University", "DELETE")) {
             if (isset($_REQUEST["confirm"])) {
                 try {
-                    $userRoleDAO->delete($userRolePrimaryKey, $value);
-                    goToShowAllAndShowSuccess("Rol eliminado correctamente.");
+                    $universityDAO->delete($universityPrimaryKey, $value);
+                    goToShowAllAndShowSuccess("Universidad eliminada correctamente.");
                 } catch (DAOException $e) {
                     goToShowAllAndShowError($e->getMessage());
                 }
             } else {
                 try {
-                    $userRoleDAO->checkDependencies($value);
+                    $universityDAO->checkDependencies($value);
                     showAll();
-                    openDeletionModal("Eliminar asignación de rol a usuario", "¿Está seguro de que desea eliminar " .
-                        "el usuario-rol %" . $value . "%? Esta acción es permanente y no se puede recuperar.",
-                        "../Controllers/UserRoleController.php?action=delete&id=" . $value . "&confirm=true");
+                    openDeletionModal("Eliminar universidad", "¿Está seguro de que desea eliminar " .
+                        "la universidad %" . $value . "%? Esta acción es permanente y no se puede recuperar.",
+                        "../Controllers/UniversityController.php?action=delete&id=" . $value . "&confirm=true");
                 } catch (DAOException $e) {
                     goToShowAllAndShowError($e->getMessage());
                 }
@@ -79,10 +82,10 @@ switch ($action) {
         }
         break;
     case "show":
-        if (HavePermission("UserRole", "SHOWCURRENT")) {
+        if (HavePermission("University", "SHOWCURRENT")) {
             try {
-                $userRoleData = $userRoleDAO->show($userRolePrimaryKey, $value);
-                new UserRoleShowView($userRoleData);
+                $universityData = $universityDAO->show($universityPrimaryKey, $value);
+                new UniversityShowView($universityData);
             } catch (DAOException $e) {
                 goToShowAllAndShowError($e->getMessage());
             } catch (ValidationException $ve) {
@@ -93,17 +96,17 @@ switch ($action) {
         }
         break;
     case "edit":
-        if (HavePermission("UserRole", "EDIT")) {
+        if (HavePermission("University", "EDIT")) {
             try {
-                $userRole = $userRoleDAO->show($userRolePrimaryKey, $value);
+                $university = $universityDAO->show($universityPrimaryKey, $value);
                 if (!isset($_POST["submit"])) {
-                    new UserRoleEditView($userRole, $userData, $roleData);
+                    new UniversityEditView($university, $academicCourseData);
                 } else {
-                    $userRole->setId($value);
-                    $userRole->setUser($userDAO->show("login", $_POST["user_id"]));
-                    $userRole->setRole($roleDAO->show("id", $_POST["role_id"]));
-                    $userRoleDAO->edit($userRole);
-                    goToShowAllAndShowSuccess("Rol editado correctamente.");
+                    $university->setId($value);
+                    $university->setAcademicCourse($academicCourseDAO->show("id", $_POST["academic_course_id"]));
+                    $university->setName($_POST["name"]);
+                    $universityDAO->edit($university);
+                    goToShowAllAndShowSuccess("Universidad editada correctamente.");
                 }
             } catch (DAOException $e) {
                 goToShowAllAndShowError($e->getMessage());
@@ -115,19 +118,19 @@ switch ($action) {
         }
         break;
     case "search":
-        if (HavePermission("UserRole", "SHOWALL")) {
+        if (HavePermission("University", "SHOWALL")) {
             if (!isset($_POST["submit"])) {
-                new UserRoleSearchView($userData, $roleData);
+                new UniversitySearchView($academicCourseData);
             } else {
                 try {
-                    $userRole = new UserRole();
-                    if(!empty($_POST["user_id"])) {
-                        $userRole->setUser($userDAO->show("login", $_POST["user_id"]));
+                    $university = new University();
+                    if(!empty($_POST["academic_course_id"])) {
+                        $university->setAcademicCourse($academicCourseDAO->show("id", $_POST["academic_course_id"]));
                     }
-                    if(!empty($_POST["role_id"])) {
-                        $userRole->setRole($roleDAO->show("id", $_POST["role_id"]));
+                    if(!empty($_POST["name"])) {
+                        $university->setName($_POST["name"]);
                     }
-                    showAllSearch($userRole);
+                    showAllSearch($university);
                 } catch (DAOException $e) {
                     goToShowAllAndShowError($e->getMessage());
                 } catch (ValidationException $ve) {
@@ -142,30 +145,34 @@ switch ($action) {
         showAll();
         break;
 }
+
 function showAll() {
     showAllSearch(NULL);
 }
+
 function showAllSearch($search) {
-    if (HavePermission("UserRole", "SHOWALL")) {
+    if (HavePermission("University", "SHOWALL")) {
         try {
             $currentPage = getCurrentPage();
             $itemsPerPage = getItemsPerPage();
             $toSearch = getToSearch($search);
-            $totalUserRoles = $GLOBALS["userRoleDAO"]->countTotalUserRoles($toSearch);
-            $userRolesData = $GLOBALS["userRoleDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
-            new UserRoleShowAllView($userRolesData, $itemsPerPage, $currentPage, $totalUserRoles, $toSearch);
+            $totalUniversities = $GLOBALS["universityDAO"]->countTotalUniversities($toSearch);
+            $universitiesData = $GLOBALS["universityDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
+            new UniversityShowAllView($universitiesData, $itemsPerPage, $currentPage, $totalUniversities, $toSearch);
         } catch (DAOException $e) {
-            new UserRoleShowAllView(array());
+            new UniversityShowAllView(array());
             errorMessage($e->getMessage());
         }
     } else {
         accessDenied();
     }
 }
+
 function goToShowAllAndShowError($message) {
     showAll();
     errorMessage($message);
 }
+
 function goToShowAllAndShowSuccess($message) {
     showAll();
     successMessage($message);

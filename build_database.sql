@@ -135,13 +135,15 @@ CREATE TABLE `ACADEMICCOURSE` (
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 CREATE TABLE `UNIVERSITY` (
-  `IdUniversity` int(8) COLLATE latin1_spanish_ci NOT NULL,
-  `id_academic_course` int(8) COLLATE latin1_spanish_ci NOT NULL,
+  `id` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
+  `academic_course_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
   `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY(`IdUniversity`, `id_academic_course`),
   FOREIGN KEY (`id_academic_course`)
 	REFERENCES `ACADEMICCOURSE`(`id_academic_course`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+ALTER TABLE `UNIVERSITY` ADD UNIQUE KEY `uidx` (`academic_course_id`, `name`);
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 -- TABLE STRUCTURE FOR TABLE `CENTER`
@@ -298,7 +300,8 @@ INSERT INTO `FUNCTIONALITY` (`IdFunctionality`, `name`, `description`) VALUES
 ('5', 'PermissionManagement', 'PermissionManagement'),
 ('6', 'AcademicCourseManagement', 'AcademicCourseManagement'),
 ('7', 'FuncActionManagement', 'FuncActionManagement'),
-('8', 'UserRoleManagement', 'UserRoleManagement');
+('8', 'UserRoleManagement', 'UserRoleManagement'),
+('9', 'UniversityManagement', 'UniversityManagement');
 
 
 INSERT INTO `FUNC_ACTION` (`IdFuncAction`,`IdFunctionality`, `IdAction`) VALUES
@@ -341,7 +344,12 @@ INSERT INTO `FUNC_ACTION` (`IdFuncAction`,`IdFunctionality`, `IdAction`) VALUES
 ('37','8','2'),
 ('38','8','3'),
 ('39','8','4'),
-('40','8','5');
+('40','8','5'),
+('41','9','1'),
+('42','9','2'),
+('43','9','3'),
+('44','9','4'),
+('45','9','5');
 
 INSERT INTO `USER` (`login`,`password`,`dni`, `name`,`surname`,`email`,`address`,`telephone`) VALUES
 ('admin','21232f297a57a5a743894a0e4a801fc3' , '111222333A','Administrador','Administrador', 'admin@admin.com', 'address', '666555444');
@@ -354,44 +362,55 @@ INSERT INTO `ROLE` (`IdRole`, `name`, `description`) VALUES
 INSERT INTO `USER_ROLE` (`login`,`IdRole`) VALUES
 ('admin', 1);
 
-INSERT INTO `PERMISSION` (`IdRole`,`IdFuncAction`) VALUES
-('1','1'),
-('1','2'),
-('1','3'),
-('1','4'),
-('1','5'),
-('1','6'),
-('1','7'),
-('1','8'),
-('1','9'),
-('1','10'),
-('1','11'),
-('1','12'),
-('1','13'),
-('1','14'),
-('1','15'),
-('1','16'),
-('1','17'),
-('1','18'),
-('1','19'),
-('1','20'),
-('1','21'),
-('1','22'),
-('1','23'),
-('1','24'),
-('1','25'),
-('1','26'),
-('1','27'),
-('1','28'),
-('1','29'),
-('1','30'),
-('1','31'),
-('1','32'),
-('1','33'),
-('1','34'),
-('1','35'),
-('1','36'),
-('1','37'),
-('1','38'),
-('1','39'),
-('1','40');
+INSERT INTO `PERMISSION` (`role_id`,`func_action_id`) VALUES
+(1,'1'),
+(1,'2'),
+(1,'3'),
+(1,'4'),
+(1,'5'),
+(1,'6'),
+(1,'7'),
+(1,'8'),
+(1,'9'),
+(1,'10'),
+(1,'11'),
+(1,'12'),
+(1,'13'),
+(1,'14'),
+(1,'15'),
+(1,'16'),
+(1,'17'),
+(1,'18'),
+(1,'19'),
+(1,'20'),
+(1,'21'),
+(1,'22'),
+(1,'23'),
+(1,'24'),
+(1,'25'),
+(1,'26'),
+(1,'27'),
+(1,'28'),
+(1,'29'),
+(1,'30'),
+(1,'31'),
+(1,'32'),
+(1,'33'),
+(1,'34'),
+(1,'35'),
+(1,'36'),
+(1,'37'),
+(1,'38'),
+(1,'39'),
+(1,'40'),
+(1,'41'),
+(1,'42'),
+(1,'43'),
+(1,'44'),
+(1,'45');
+
+INSERT INTO `ACADEMIC_COURSE` (`id`, `academic_course_abbr`, `start_year`, `end_year`) VALUES
+(1, '18/19', '2018', '2019'),
+(2, '19/20', '2019', '2020'),
+(3, '20/21', '2020', '2021');
+
