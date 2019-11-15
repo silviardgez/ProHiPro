@@ -1,6 +1,6 @@
 <head>
     <link rel="stylesheet" href="../CSS/login.css" />
-    <script src="../JS/Validations.js"></script>
+    <script src="../JS/Validations/UserValidations.js"></script>
 </head>
 <div class="sidenav">
          <div class="login-main-text">
@@ -10,14 +10,16 @@
       <div class="main">
          <div class="col-md-7 col-sm-12">
             <div class="login-form">
-               <form name="formLogin" action='../Controllers/LoginController.php' method="post">
-                  <div class="form-group">
+               <form id="loginForm" name="formLogin" action='../Controllers/LoginController.php' method="post" onsubmit="return areLoginFieldsCorrect()">
+                  <div id="login-div" class="form-group">
                      <label data-translate="Nombre de usuario"></label>
-                     <input type="text" class="form-control" id="login" name="login" maxlength="9" size ="9" data-translate="Nombre de usuario">
+                     <input type="text" class="form-control" id="login" name="login" maxlength="9" size ="9" data-translate="Nombre de usuario"
+                            oninput="checkLoginUser(this);">
                   </div>
-                  <div class="form-group">
+                  <div id="password-div" class="form-group">
                      <label data-translate="Contraseña"></label>
-                     <input type="password" class="form-control" id="password" name="password" maxlength="20" size ="20" data-translate="Contraseña">
+                     <input type="password" class="form-control" id="password" name="password" maxlength="20" size ="20" data-translate="Contraseña"
+                            oninput="checkPasswordUser(this);">
                   </div>
                   <button type="submit" name="action" value="login-user" class="btn btn-black">
                       <p data-translate="Iniciar sesión"></p></button>

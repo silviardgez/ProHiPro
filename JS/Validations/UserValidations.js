@@ -189,7 +189,7 @@ function checkTelephoneEmptyUser(field) {
 }
 
 function areUserFieldsCorrect() {
-    form = $('#userForm')[0];
+    const form = $('#userForm')[0];
     if(checkLoginUser(form.elements[0]) && checkPasswordUser(form.elements[1]) &&
     checkConfirmPasswordUser(form.elements[2]) && checkDniUser(form.elements[3]) &&
     checkNameUser(form.elements[4]) && checkSurnameUser(form.elements[5]) &&
@@ -202,7 +202,7 @@ function areUserFieldsCorrect() {
 }
 
 function areUserEditFieldsCorrect() {
-    form = $('#userEditForm')[0];
+    const form = $('#userEditForm')[0];
     if(checkLoginUser(form.elements[0]) && checkPasswordEmptyUser(form.elements[1]) &&
     checkConfirmPasswordEmptyUser(form.elements[2]) && checkDniUser(form.elements[3]) &&
     checkNameUser(form.elements[4]) && checkSurnameUser(form.elements[5]) &&
@@ -215,11 +215,20 @@ function areUserEditFieldsCorrect() {
 }
 
 function areUserSearchFieldsCorrect() {
-    form = $('#userSearchForm')[0];
+    const form = $('#userSearchForm')[0];
     if(checkLoginEmptyUser(form.elements[0]) && checkDniEmptyUser(form.elements[1]) &&
         checkNameEmptyUser(form.elements[2]) && checkSurnameEmptyUser(form.elements[3]) &&
         checkEmailEmptyUser(form.elements[4]) && checkAddressEmptyUser(form.elements[5]) &&
         checkTelephoneEmptyUser(form.elements[6])) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function areLoginFieldsCorrect() {
+    const form = $('#loginForm')[0];
+    if(checkLoginUser(form.elements[0]) && checkPasswordUser(form.elements[1])) {
         return true;
     } else {
         return false;
