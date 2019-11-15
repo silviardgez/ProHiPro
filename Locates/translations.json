@@ -285,7 +285,7 @@
         "gl": "Introducir nome de usuario"
     },
     "Introducir contraseña": {
-        "en": "Add passwords",
+        "en": "Add password",
         "gl": "Introducir contrasinal"
     },
     "Introducir DNI": {
@@ -871,6 +871,9 @@
     "Introducir curso académico": {
         "en": "Insert academic course",
         "gl": "Inserir curso académico"
+    },
+    "El atributo dni no puede ser mayor que %c.": {
+        
     }
 }
 

@@ -3,6 +3,7 @@
 <head>
     <link rel="stylesheet" href="../CSS/default.css" />
     <script src="../JS/SidebarToggler.js"></script>
+    <script src="../JS/Validations.js"></script>
 </head>
 <body>
         <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
