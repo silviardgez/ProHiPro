@@ -1,44 +1,44 @@
 <?php
 class Permission
 {
-    private $IdPermission;
-    private $IdRole;
-    private $IdFuncAction;
+    private $id;
+    private $role;
+    private $func_action;
 
-    public function __construct($IdPermission=NULL, $IdRole=NULL, $IdFuncAction=NULL){
-        $this->IdPermission = $IdPermission;
-        $this->IdRole = $IdRole;
-        $this->IdFuncAction = $IdFuncAction;
+    public function __construct($id=NULL, $role=NULL, $func_action=NULL){
+        $this->id = $id;
+        $this->role = $role;
+        $this->func_action = $func_action;
     }
 
-    public function getIdPermission()
+    public function getId()
     {
-        return $this->IdPermission;
+        return $this->id;
     }
 
-    public function setIdPermission($IdPermission)
+    public function setId($id)
     {
-        $this->IdPermission = $IdPermission;
+        $this->id = $id;
     }
 
-    public function getIdRole()
+    public function getRole()
     {
-        return $this->IdRole;
+        return $this->role;
     }
 
-    public function setIdRole($IdRole)
+    public function setRole($role)
     {
-        $this->IdRole = $IdRole;
+        $this->role = $role;
     }
 
-    public function getIdFuncAction()
+    public function getFuncAction()
     {
-        return $this->IdFuncAction;
+        return $this->func_action;
     }
 
-    public function setIdFuncAction($IdFuncAction)
+    public function setFuncAction($func_action)
     {
-        $this->IdFuncAction = $IdFuncAction;
+        $this->func_action = $func_action;
     }
 
     public static function expose()

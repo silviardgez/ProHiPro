@@ -1,34 +1,29 @@
 <?php
 class Action
 {
-    private $IdAction;
+    private $id;
     private $name;
     private $description;
 
-    public function __construct($IdAction=NULL, $name=NULL, $description=NULL){
-
+    public function __construct($id=NULL, $name=NULL, $description=NULL){
         if (!empty($name) && !empty($description)) {
-            $this->constructEntity($IdAction,$name, $description);
+            $this->constructEntity($id, $name, $description);
         }
-
     }
-    private function constructEntity($IdAction=NULL, $name=NULL, $description=NULL){
-        if($this->isCorrect($name,$description)){
-            $this->setIdAction($IdAction);
-            $this->setName($name);
-            $this->setDescription($description);
-        }
-
+    private function constructEntity($id=NULL, $name=NULL, $description=NULL){
+        $this->setId($id);
+        $this->setName($name);
+        $this->setDescription($description);
     }
 
-    public function getIdAction()
+    public function getId()
     {
-        return $this->IdAction;
+        return $this->id;
     }
 
-    public function setIdAction($IdAction)
+    public function setId($id)
     {
-        $this->IdAction = $IdAction;
+        $this->id = $id;
     }
 
     public function getName()
@@ -38,9 +33,9 @@ class Action
 
     public function setName($name)
     {
-        if(strlen($name)>60){
-            throw new ValidationException('Error de validación.');
-        }else{
+        if (strlen($name)>60 || empty($name)) {
+            throw new ValidationException('Error de validación. Nombre incorrecto.');
+        } else {
             $this->name = $name;
         }
     }
@@ -52,18 +47,10 @@ class Action
 
     public function setDescription($description)
     {
-        if(strlen($description)>100){
-            throw new ValidationException('Error de validación.');
-        }else{
+        if (strlen($description)>100 || empty($description)) {
+            throw new ValidationException('Error de validación. Descripción incorrecta.');
+        } else {
             $this->description = $description;
-        }
-    }
-
-    function isCorrect($name, $description){
-        if($name == NULL || $description == NULL){
-            throw new ValidationException('Error de validación');
-        }else{
-            return true;
         }
     }
 

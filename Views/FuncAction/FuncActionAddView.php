@@ -2,6 +2,7 @@
 class FuncActionAddView {
     private $actions;
     private $functionalities;
+
 function __construct($actionsData, $functionalitiesData){
     $this->actions = $actionsData;
     $this->functionalities = $functionalitiesData;
@@ -15,23 +16,23 @@ function render(){
 </head>
     <main role="main" class="margin-main ml-sm-auto px-4">
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-3 border-bottom">
-            <h1 class="h2" ><p data-translate="Insertar acción-funcionalidad"></p></h1>
+            <h1 class="h2" data-translate="Insertar acción-funcionalidad"></h1>
             <a class="btn btn-primary" role="button" href="../Controllers/FuncActionController.php" data-translate="Volver"></a>
         </div>
         <form action='../Controllers/FuncActionController.php?action=add' method='POST'>
             <div class="form-group">
-                <label for="name" data-translate="Nombre"></label>
-                <select class="form-control" id="idAction" name="idAction">
+                <label for="action_id" data-translate="Acción"></label>
+                <select class="form-control" id="action_id" name="action_id">
                     <?php foreach ($this->actions as $action): ?>
-                        <option value="<?php echo $action->getIdAction()?>"><?php echo $action->getName() ?></option>
+                        <option value="<?php echo $action->getId()?>"><?php echo $action->getName() ?></option>
                     <?php endforeach;?>
                 </select>
             </div>
             <div class="form-group">
-                <label for="description" data-translate="Descripción"></label>
-                <select class="form-control" id="idFunctionality" name="idFunctionality"?>
+                <label for="functionality_id" data-translate="Funcionalidad"></label>
+                <select class="form-control" id="functionality_id" name="functionality_id"?>
                     <?php foreach ($this->functionalities as $func): ?>
-                        <option value="<?php echo $func->getIdFunctionality() ?>"><?php echo $func->getName() ?></option>
+                        <option value="<?php echo $func->getId() ?>"><?php echo $func->getName() ?></option>
                     <?php endforeach;?>
                 </select>
             </div>

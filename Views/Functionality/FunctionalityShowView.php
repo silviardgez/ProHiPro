@@ -14,15 +14,15 @@ private $functionality;
         <main role="main" class="margin-main ml-sm-auto px-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-3
             border-bottom">
-                <h1 class="h2" data-translate="Funcionalidad"> <?php echo $_REQUEST['IdFunctionality'] ?></h1>
+                <h1 class="h2" data-translate="Funcionalidad '%<?php echo $this->functionality->getId()?>%'"></h1>
                 <a class="btn btn-primary" role="button" href="../Controllers/FunctionalityController.php" data-translate="Volver"></a>
             </div>
-            <?php if(!is_null($this->functionality)): ?>
+            <?php if(!empty($this->functionality)): ?>
             <form>
                 <div class="form-group">
-                    <label for="IdFunctionality"  data-translate="Id funcionalidad">IdFunctionality</label>
-                    <input type="text" class="form-control" id="IdFunctionality" name="IdFunctionality"
-                           value="<?php echo $this->functionality->getIdFunctionality() ?>" readonly>
+                    <label for="id" data-translate="Id funcionalidad"></label>
+                    <input type="text" class="form-control" id="id" name="id"
+                           value="<?php echo $this->functionality->getId() ?>" readonly>
                 </div>
                 <div class="form-group">
                     <label for="name" data-translate="Nombre"></label>

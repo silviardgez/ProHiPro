@@ -25,12 +25,12 @@ function translatePage() {
                 element=  $('[' + elementName + '="'+text+'"]'),
                 postHTML;
 
-            if (numbers != null && numbers>1)
-                text= text.replace(numbers, '%n');
-
             if (dinamicText != null) {
                 dinamicText.forEach(function(tag) { text = text.replace(tag, '%c'); });
             }
+
+            if (numbers != null && numbers>1)
+                text= text.replace(numbers, '%n');
 
             if (translate[text]!==undefined) { // Check if exist the text in translation.json
 

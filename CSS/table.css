@@ -22,6 +22,7 @@ th label {
 
 .pagination {
     justify-content: flex-end;
+    margin-left: 1rem;
 }
 
 .active {
@@ -47,7 +48,6 @@ form button {
 
 .items-page {
     max-width: 4.4rem;
-    margin-right: 1rem;
 }
 
 .label-pagination {

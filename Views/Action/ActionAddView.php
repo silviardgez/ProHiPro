@@ -16,11 +16,7 @@ function render(){
             <h1 class="h2" data-translate="Insertar acción"></h1>
             <a class="btn btn-primary" role="button" href="../Controllers/ActionController.php" data-translate="Volver"></a>
         </div>
-        <form id="actionForm" name = "ADD"action='../Controllers/ActionController.php?action=add' method='POST' onsubmit="return checkAddNameDescription()">
-            <div class="form-group">
-                <label for="IdAction" data-translate="Id acción"></label>
-                <input type="text" class="form-control" id="IdAction" name="IdAction" data-translate="Introducir Id de accion">
-            </div>
+        <form id="actionForm" name = "ADD" action='../Controllers/ActionController.php?action=add' method='POST' onsubmit="return checkAddNameDescription()">
             <div class="form-group">
                 <label for="name" data-translate="Nombre"></label>
                 <input type="text" class="form-control" id="name" name="name" data-translate="Introducir nombre" required onblur="checkEmpty(this)">

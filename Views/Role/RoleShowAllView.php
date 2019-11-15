@@ -1,9 +1,19 @@
 <?php
 class RoleShowAllView {
 private $roles;
+private $itemsPerPage;
+private $currentPage;
+private $totalRoles;
+private $totalPages;
+private $stringToSearch;
 
-function __construct($rolesData){
+function __construct($rolesData, $itemsPerPage=NULL, $currentPage=NULL, $totalRoles=NULL, $toSearch=NULL){
     $this->roles = $rolesData;
+    $this->itemsPerPage = $itemsPerPage;
+    $this->currentPage = $currentPage;
+    $this->totalRoles = $totalRoles;
+    $this->totalPages = ceil($totalRoles/$itemsPerPage);
+    $this->stringToSearch = $toSearch;
     $this->render();
 }
 function render(){
@@ -14,9 +24,22 @@ function render(){
 </head>
 <main role="main" class="margin-main ml-sm-auto px-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-3">
-        <h1 class="h2" data-translate="Listado de Roles"></h1>
-        <a class="btn btn-success" role="button" href="../Controllers/RoleController.php?action=add">
-            <span data-feather="plus"></span> <p data-translate="Añadir rol"></p></a>
+        <h1 class="h2" data-translate="Listado de roles"></h1>
+        <!-- Search -->
+        <form class="row" action='../Controllers/RoleController.php' method='POST'>
+            <input type="text" class="form-control" id="search" name="search" data-translate="Texto a buscar">
+            <button name="submit" type="submit" class="btn btn-primary" data-translate="Buscar"></button>
+        </form>
+
+        <?php if (!empty($this->stringToSearch)): ?>
+            <a class="btn btn-primary" role="button" href="../Controllers/RoleController.php">
+                <p data-translate="Volver"></p>
+            </a>
+        <?php else:?>
+            <a class="btn btn-success" role="button" href="../Controllers/RoleController.php?action=add">
+                <span data-feather="plus"></span><p data-translate="Añadir rol"></p>
+            </a>
+        <?php endif;?>
     </div>
     <div class="table-responsive">
         <table class="table table-striped table-sm">
@@ -32,15 +55,15 @@ function render(){
             <tbody>
                 <?php foreach ($this->roles as $role): ?>
                 <tr>
-                    <td><?php echo $role->getIdRole() ?></td>
+                    <td><?php echo $role->getId() ?></td>
                     <td><?php echo $role->getName() ?></td>
                     <td><?php echo $role->getDescription() ?></td>
                     <td class="row">
-                        <a href="../Controllers/RoleController.php?action=show&IdRole=<?php echo $role->getIdRole()?>">
+                        <a href="../Controllers/RoleController.php?action=show&id=<?php echo $role->getId()?>">
                             <span data-feather="eye"></span></a>
-                        <a href="../Controllers/RoleController.php?action=edit&IdRole=<?php echo $role->getIdRole()?>">
+                        <a href="../Controllers/RoleController.php?action=edit&id=<?php echo $role->getId()?>">
                             <span data-feather="edit"></span></a>
-                        <a href="../Controllers/RoleController.php?action=delete&IdRole=<?php echo $role->getIdRole()?>">
+                        <a href="../Controllers/RoleController.php?action=delete&id=<?php echo $role->getId()?>">
                             <span data-feather="trash-2"></span></a>
                     </td>
                 </tr>
@@ -51,6 +74,10 @@ function render(){
             </table>
                 <p data-translate="No se ha obtenido ningún rol">. </p>
             <?php endif; ?>
+
+        <?php new PaginationView($this->itemsPerPage, $this->currentPage, $this->totalRoles,
+            "Role")?>
+
     </div>
 </main>
 

@@ -1,27 +1,20 @@
 <?php
 include_once "../Models/UserRole/UserRoleDAO.php";
-include_once "../Models/FuncAction/FuncActionDAO.php";
-include_once "../Models/Functionality/FunctionalityDAO.php";
-include_once "../Models/Action/ActionDAO.php";
 include_once "../Models/Permission/PermissionDAO.php";
+
 function HavePermission($controller, $act)
 {
-    $funcActionDAO = new FuncActionDAO();
-    $funcDAO = new FunctionalityDAO();
-    $actionDAO = new ActionDAO();
     $permissionDAO = new PermissionDAO();
     $userRoleDAO = new UserRoleDAO();
     try{
         $userRoles = $userRoleDAO->showAll();
         foreach ($userRoles as $userRole) {
-            if($userRole->getLogin() ==  $_SESSION['login']) {
+            if($userRole->getUser()->getLogin() ==  $_SESSION['login']) {
                 $permissions = $permissionDAO->showAll();
                 foreach ($permissions as $permission) {
-                    if ($permission->getIdRole() == $userRole->getIdRole()) {
-                        $funcAction = $funcActionDAO->show("IdFuncAction", $permission->getIdFuncAction());
-                        $func = $funcDAO->show("IdFunctionality", $funcAction->getIdFunctionality());
-                        $action = $actionDAO->show("IdAction", $funcAction->getIdAction());
-                        if ($func->getName() == $controller . "Management" && $action->getName() == $act) {
+                    if ($permission->getRole()->getId() == $userRole->getId()) {
+                        if ($permission->getFuncAction()->getFunctionality()->getName() ==
+                            $controller . "Management" && $permission->getFuncAction()->getAction()->getName() == $act) {
                             return true;
                         }
                     }

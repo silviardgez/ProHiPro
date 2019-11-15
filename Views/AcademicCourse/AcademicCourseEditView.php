@@ -15,13 +15,13 @@ class AcademicCourseEditView {
         <main role="main" class="margin-main ml-sm-auto px-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-3
             border-bottom">
-                <h1 class="h2"><label data-translate="Curso académico"></label><?php echo " " . $this->academicCourse->getAcademicCourseAbbr() ?> </h1>
-                <a class="btn btn-primary" role="button" href="../Controllers/AcademicCourseController.php"><p data-translate="Volver"></a>
+                <h1 class="h2" data-translate="Curso académico %<?php echo $this->academicCourse->getAcademicCourseAbbr() ?>%"></h1>
+                <a class="btn btn-primary" role="button" href="../Controllers/AcademicCourseController.php"><p data-translate="Volver"></p></a>
             </div>
             <form id="academicCourseForm" name = "EDIT" action='../Controllers/AcademicCourseController.php?action=edit' method='POST' onsubmit="return checkEditAcademicCourse()">
                 <div class="form-group">
                     <label for="IdAcademicCourse" data-translate="Identificador"></label>
-                    <input type="hidden" name="id_academic_course" value="<?php echo $this->academicCourse->getIdAcademicCourse() ?>" >
+                    <input type="hidden" name="id" value="<?php echo $this->academicCourse->getId() ?>" >
                     <input type="text" class="form-control" id="academicCourseAbbr" name="academicCourseAbbr"
                            value="<?php echo $this->academicCourse->getAcademicCourseAbbr() ?>" readonly>
                 </div>

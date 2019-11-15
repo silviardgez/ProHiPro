@@ -1,14 +1,11 @@
 <?php
 class PermissionSearchView {
-    private $actions;
     private $roles;
     private $funcActions;
-    private $functionalities;
-    function __construct($rolesData, $funcActionData, $actionsData, $functionalitiesData){
+
+    function __construct($rolesData, $funcActionsData){
         $this->roles = $rolesData;
-        $this->funcActions = $funcActionData;
-        $this->actions = $actionsData;
-        $this->functionalities = $functionalitiesData;
+        $this->funcActions = $funcActionsData;
         $this->render();
     }
     function render(){
@@ -19,31 +16,26 @@ class PermissionSearchView {
         </head>
         <main role="main" class="margin-main ml-sm-auto px-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-3 border-bottom">
-                <h1 class="h2" data-translate="Búsqueda de permisos"></h1>
+                <h1 class="h2" data-translate="Búsqueda de asignación de permisos"></h1>
                 <a class="btn btn-primary" role="button" href="../Controllers/PermissionController.php"><p data-translate="Volver"></p></a>
             </div>
             <form action='../Controllers/PermissionController.php?action=search' method='POST'>
                 <div class="form-group">
                     <label for="name" data-translate="Rol"></label>
-                    <select class="form-control" id="idRole" name="idRole">
+                    <select class="form-control" id="role_id" name="role_id">
+                        <option value=""></option>
                         <?php foreach ($this->roles as $rol): ?>
-                            <option value="<?php echo $rol->getIdRole()?>"><?php echo $rol->getName() ?></option>
+                            <option value="<?php echo $rol->getId() ?>"><?php echo $rol->getName() ?></option>
                         <?php endforeach;?>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="description" data-translate="Permiso"></label>
-                    <select class="form-control" id="idFuncAction" name="idFuncAction"?>
+                    <select class="form-control" id="func_action_id" name="func_action_id"?>
+                        <option value=""></option>
                         <?php foreach ($this->funcActions as $funcAction): ?>
-                            <?php foreach ($this->actions as $action): ?>
-                                <?php foreach ($this->functionalities as $func): ?>
-                                    <?php if ($funcAction->getIdAction() == $action->getIdAction()): ?>
-                                        <?php if($funcAction->getIdFunctionality() == $func->getIdFunctionality()): ?>
-                                            <option value="<?php echo $funcAction->getIdFuncAction() ?>"><?php echo $action->getName()." - ".$func->getName(); ?></option>
-                                        <?php endif;?>
-                                    <?php endif;?>
-                                <?php endforeach;?>
-                            <?php endforeach;?>
+                            <option value="<?php echo $funcAction->getId() ?>">
+                                <?php echo $funcAction->getAction()->getName()." - ". $funcAction->getFunctionality()->getName(); ?></option>
                         <?php endforeach;?>
                     </select>
                 </div>
@@ -54,5 +46,4 @@ class PermissionSearchView {
     }
 }
 ?>
-
 

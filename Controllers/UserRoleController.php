@@ -2,15 +2,14 @@
 
 session_start();
 include_once '../Functions/Authentication.php';
-include_once '../Functions/HavePermission.php';
 
 if (!IsAuthenticated()) {
     header('Location:../index.php');
 }
+
 include_once '../Models/User/UserDAO.php';
 include_once '../Models/Role/RoleDAO.php';
 include_once '../Models/UserRole/UserRoleDAO.php';
-include_once '../Models/Common/MessageType.php';
 include_once '../Models/Common/DAOException.php';
 include_once '../Views/Common/Head.php';
 include_once '../Views/Common/DefaultView.php';
@@ -18,141 +17,131 @@ include_once '../Views/UserRole/UserRoleShowAllView.php';
 include_once '../Views/UserRole/UserRoleAddView.php';
 include_once '../Views/UserRole/UserRoleShowView.php';
 include_once '../Views/UserRole/UserRoleEditView.php';
-include_once '../Functions/ShowToast.php';
+include_once '../Views/UserRole/UserRoleSearchView.php';
+include_once '../Views/Common/PaginationView.php';
+include_once '../Functions/HavePermission.php';
 include_once '../Functions/OpenDeletionModal.php';
 include_once '../Functions/Redirect.php';
-$userRole = isset($_REQUEST['action']) ? $_REQUEST['action'] : "";
-switch ($userRole) {
+include_once '../Functions/Messages.php';
+include_once '../Functions/Pagination.php';
+
+//DAOS
+$userRoleDAO = new UserRoleDAO();
+$roleDAO = new RoleDAO();
+$userDAO = new UserDAO();
+
+//Data required
+$roleData = $roleDAO->showAll();
+$userData = $userDAO->showAll();
+
+$userRolePrimaryKey = "id";
+$value = $_REQUEST[$userRolePrimaryKey];
+
+$action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "";
+switch ($action) {
     case "add":
         if (HavePermission("UserRole", "ADD")) {
             if (!isset($_POST["submit"])) {
-                $roleDAO = new RoleDAO();
-                $userDAO = new UserDAO();
-                $roleData = $roleDAO->showAll();
-                $userData = $userDAO->showAll();
                 new UserRoleAddView($userData, $roleData);
             } else {
                 try {
-                    $userRole = new User_Role();
-                    $userRole->setLogin($_POST["login"]);
-                    $userRole->setIdRole($_POST["idRole"]);
-
-                    $userRoleDAO = new UserRoleDAO();
-
-                    $allUserRole = $userRoleDAO->showAll();
-                    foreach ($allUserRole as $usRo) {
-                        if ($usRo->getLogin() == $userRole->getLogin() and $usRo->getIdRole() == $userRole->getIdRole()) {
-                            throw new DAOException('Rol duplicado.');
-                        }
-                    }
-
+                    $userRole = new UserRole();
+                    $userRole->setUser($userDAO->show("login", $_POST["user_id"]));
+                    $userRole->setRole($roleDAO->show("id", $_POST["role_id"]));
                     $userRoleDAO->add($userRole);
-                    $message = MessageType::SUCCESS;
-                    showAll();
-                    showToast($message, "Rol añadido correctamente.");
+                    goToShowAllAndShowSuccess("Rol añadido correctamente.");
                 } catch (DAOException $e) {
-                    $message = MessageType::ERROR;
-                    showAll();
-                    showToast($message, $e->getMessage());
+                    goToShowAllAndShowError($e->getMessage());
+                } catch (ValidationException $ve) {
+                    goToShowAllAndShowError($ve->getMessage());
                 }
             }
-        } else{
-            $message = MessageType::ERROR;
-            showToast($message, "No tienes permiso para acceder");
+        } else {
+            goToShowAllAndShowError("No tienes permiso para añadir.");
         }
         break;
     case "delete":
         if (HavePermission("UserRole", "DELETE")) {
             if (isset($_REQUEST["confirm"])) {
                 try {
-                    $key = "IdUserRole";
-                    $value = $_REQUEST[$key];
-                    $userRoleDAO = new UserRoleDAO();
-                    $response = $userRoleDAO->delete($key, $value);
-                    $message = MessageType::SUCCESS;
-                    showAll();
-                    showToast($message, "Rol eliminado correctamente.");
+                    $userRoleDAO->delete($userRolePrimaryKey, $value);
+                    goToShowAllAndShowSuccess("Rol eliminado correctamente.");
                 } catch (DAOException $e) {
-                    $message = MessageType::ERROR;
-                    showAll();
-                    showToast($message, $e->getMessage());
+                    goToShowAllAndShowError($e->getMessage());
                 }
             } else {
-                showAll();
-                $key = "IdUserRole";
-                $value = $_REQUEST[$key];
-                openDeletionModal("Eliminar rol " . $value, "¿Está seguro de que desea eliminar " .
-                    "el rol <b>" . $value . "</b>? Esta acción es permanente y no se puede recuperar.",
-                    "../Controllers/UserRoleController.php?action=delete&IdUserRole=" . $value . "&confirm=true");
+                try {
+                    $userRoleDAO->checkDependencies($value);
+                    showAll();
+                    openDeletionModal("Eliminar asignación de rol a usuario", "¿Está seguro de que desea eliminar " .
+                        "el usuario-rol %" . $value . "%? Esta acción es permanente y no se puede recuperar.",
+                        "../Controllers/UserRoleController.php?action=delete&id=" . $value . "&confirm=true");
+                } catch (DAOException $e) {
+                    goToShowAllAndShowError($e->getMessage());
+                }
             }
-        } else{
-            $message = MessageType::ERROR;
-            showToast($message, "No tienes permiso para acceder");
+        } else {
+            goToShowAllAndShowError("No tienes permiso para eliminar.");
         }
         break;
     case "show":
         if (HavePermission("UserRole", "SHOWCURRENT")) {
             try {
-                $key = "IdUserRole";
-                $value = $_REQUEST[$key];
-                $userRoleDAO = new UserRoleDAO();
-                $roleDAO = new RoleDAO();
-                $roleData = $roleDAO->showAll();
-                $userRoleData = $userRoleDAO->show($key, $value);
-                new UserRoleShowView($userRoleData, $roleData);
+                $userRoleData = $userRoleDAO->show($userRolePrimaryKey, $value);
+                new UserRoleShowView($userRoleData);
             } catch (DAOException $e) {
-                $message = MessageType::ERROR;
-                showAll();
-                showToast($message, $e->getMessage());
+                goToShowAllAndShowError($e->getMessage());
+            } catch (ValidationException $ve) {
+                goToShowAllAndShowError($ve->getMessage());
             }
+        } else {
+            goToShowAllAndShowError("No tienes permiso visualizar la entidad.");
         }
         break;
     case "edit":
         if (HavePermission("UserRole", "EDIT")) {
-            $key = "IdUserRole";
-            $value = $_REQUEST[$key];
-            $userRoleDAO = new UserRoleDAO();
             try {
-                $userRole = $userRoleDAO->show($key, $value);
+                $userRole = $userRoleDAO->show($userRolePrimaryKey, $value);
                 if (!isset($_POST["submit"])) {
-                    $roleDAO = new RoleDAO();
-                    $userDAO = new UserDAO();
-                    $roleData = $roleDAO->showAll();
-                    $userData = $userDAO->showAll();
                     new UserRoleEditView($userRole, $userData, $roleData);
                 } else {
-                    try {
-                        $userRole->setIdUserRole($value);
-                        $userRole->setLogin($_POST["login"]);
-                        $userRole->setIdRole($_POST["idRole"]);
-
-                        $userRoleDAO = new UserRoleDAO();
-
-                        $allUserRole = $userRoleDAO->showAll();
-                        foreach ($allUserRole as $usRo) {
-                            if ($usRo->getLogin() == $userRole->getLogin() and $usRo->getIdRole() == $userRole->getIdRole()) {
-                                throw new DAOException('Rol duplicado.');
-                            }
-                        }
-
-                        $response = $userRoleDAO->edit($userRole);
-                        $message = MessageType::SUCCESS;
-                        showAll();
-                        showToast($message, "Rol editado correctamente.");
-                    } catch (DAOException $e) {
-                        $message = MessageType::ERROR;
-                        showAll();
-                        showToast($message, $e->getMessage());
-                    }
+                    $userRole->setId($value);
+                    $userRole->setUser($userDAO->show("login", $_POST["user_id"]));
+                    $userRole->setRole($roleDAO->show("id", $_POST["role_id"]));
+                    $userRoleDAO->edit($userRole);
+                    goToShowAllAndShowSuccess("Rol editado correctamente.");
                 }
             } catch (DAOException $e) {
-                $message = MessageType::ERROR;
-                showAll();
-                showToast($message, $e->getMessage());
+                goToShowAllAndShowError($e->getMessage());
+            } catch (ValidationException $ve) {
+                goToShowAllAndShowError($ve->getMessage());
             }
         } else{
-            $message = MessageType::ERROR;
-            showToast($message, "No tienes permiso para acceder");
+            goToShowAllAndShowError("No tienes permiso para editar.");
+        }
+        break;
+    case "search":
+        if (HavePermission("UserRole", "SHOWALL")) {
+            if (!isset($_POST["submit"])) {
+                new UserRoleSearchView($userData, $roleData);
+            } else {
+                try {
+                    $userRole = new UserRole();
+                    if(!empty($_POST["user_id"])) {
+                        $userRole->setUser($userDAO->show("login", $_POST["user_id"]));
+                    }
+                    if(!empty($_POST["role_id"])) {
+                        $userRole->setRole($roleDAO->show("id", $_POST["role_id"]));
+                    }
+                    showAllSearch($userRole);
+                } catch (DAOException $e) {
+                    goToShowAllAndShowError($e->getMessage());
+                } catch (ValidationException $ve) {
+                    goToShowAllAndShowError($ve->getMessage());
+                }
+            }
+        } else {
+            goToShowAllAndShowError("No tienes permiso para buscar.");
         }
         break;
     default:
@@ -160,23 +149,34 @@ switch ($userRole) {
         break;
 }
 
-function showAll()
-{
+function showAll() {
+    showAllSearch(NULL);
+}
+
+function showAllSearch($search) {
     if (HavePermission("UserRole", "SHOWALL")) {
         try {
-            $userRoleDAO = new UserRoleDAO();
-            $roleDAO = new RoleDAO();
-            $userRoleData = $userRoleDAO->showAll();
-            $roleData = $roleDAO->showAll();
-            new UserRoleShowAllView($userRoleData, $roleData);
+            $currentPage = getCurrentPage();
+            $itemsPerPage = getItemsPerPage();
+            $toSearch = getToSearch($search);
+            $totalUserRoles = $GLOBALS["userRoleDAO"]->countTotalUserRoles($toSearch);
+            $userRolesData = $GLOBALS["userRoleDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
+            new UserRoleShowAllView($userRolesData, $itemsPerPage, $currentPage, $totalUserRoles, $toSearch);
         } catch (DAOException $e) {
-            $message = MessageType::ERROR;
             new UserRoleShowAllView(array());
-            showToast($message, $e->getMessage());
+            errorMessage($e->getMessage());
         }
-    }  else{
-        $message = MessageType::ERROR;
-        showToast($message, "No tienes permiso para acceder");
+    } else {
+        accessDenied();
     }
+}
 
+function goToShowAllAndShowError($message) {
+    showAll();
+    errorMessage($message);
+}
+
+function goToShowAllAndShowSuccess($message) {
+    showAll();
+    successMessage($message);
 }

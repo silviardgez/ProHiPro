@@ -2,14 +2,12 @@
 
 session_start();
 include_once '../Functions/Authentication.php';
-include_once '../Functions/HavePermission.php';
 
 if (!IsAuthenticated()) {
     header('Location:../index.php');
 }
+
 include_once '../Models/Functionality/FunctionalityDAO.php';
-include_once '../Models/FuncAction/FuncActionDAO.php';
-include_once '../Models/Common/MessageType.php';
 include_once '../Models/Common/DAOException.php';
 include_once '../Views/Common/Head.php';
 include_once '../Views/Common/DefaultView.php';
@@ -17,10 +15,20 @@ include_once '../Views/Functionality/FunctionalityShowAllView.php';
 include_once '../Views/Functionality/FunctionalityAddView.php';
 include_once '../Views/Functionality/FunctionalityShowView.php';
 include_once '../Views/Functionality/FunctionalityEditView.php';
-include_once '../Functions/ShowToast.php';
+include_once '../Views/Functionality/FunctionalitySearchView.php';
+include_once '../Views/Common/PaginationView.php';
+include_once '../Functions/HavePermission.php';
 include_once '../Functions/OpenDeletionModal.php';
-include_once '../Functions/OpenDependenciesModal.php';
 include_once '../Functions/Redirect.php';
+include_once '../Functions/Messages.php';
+include_once '../Functions/Pagination.php';
+
+//DAO
+$functionalityDAO = new FunctionalityDAO();
+
+$functionalityPrimaryKey = "id";
+$value = $_REQUEST[$functionalityPrimaryKey];
+
 $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "";
 switch ($action) {
     case "add":
@@ -30,116 +38,102 @@ switch ($action) {
             } else {
                 try {
                     $functionality = new Functionality();
-                    $functionality->setIdFunctionality($_POST["IdFunctionality"]);
                     $functionality->setName($_POST["name"]);
                     $functionality->setDescription($_POST["description"]);
-
-                    $functionalityDAO = new FunctionalityDAO();
                     $functionalityDAO->add($functionality);
-                    $message = MessageType::SUCCESS;
-                    showAll();
-                    showToast($message, "Funcionalidad añadida correctamente.");
+                    goToShowAllAndShowSuccess("Funcionalidad añadida correctamente.");
                 } catch (DAOException $e) {
-                    $message = MessageType::ERROR;
-                    showAll();
-                    showToast($message, $e->getMessage());
+                    goToShowAllAndShowError($e->getMessage());
+                } catch (ValidationException $ve) {
+                    goToShowAllAndShowError($ve->getMessage());
                 }
             }
         } else {
-            $message = MessageType::ERROR;
-            showToast($message, "No tienes permiso para acceder");
+            goToShowAllAndShowError("No tienes permiso para añadir.");
         }
         break;
     case "delete":
         if (HavePermission("Functionality", "DELETE")) {
             if (isset($_REQUEST["confirm"])) {
                 try {
-                    $key = "IdFunctionality";
-                    $value = $_REQUEST[$key];
-                    $functionalityDAO = new FunctionalityDAO();
-                    $response = $functionalityDAO->delete($key, $value);
-                    $message = MessageType::SUCCESS;
-                    showAll();
-                    showToast($message, "Funcionalidad eliminada correctamente.");
+                    $functionalityDAO->delete($functionalityPrimaryKey, $value);
+                    goToShowAllAndShowSuccess("Funcionalidad eliminada correctamente.");
                 } catch (DAOException $e) {
-                    $message = MessageType::ERROR;
-                    showAll();
-                    showToast($message, $e->getMessage());
+                    goToShowAllAndShowError($e->getMessage());
                 }
             } else {
-                showAll();
-                $key = "IdFunctionality";
-                $value = $_REQUEST[$key];
-                $deletionDependencies = checkIfAbleToDelete($value);
-                if (count($deletionDependencies) == 0) {
-                    openDeletionModal("Eliminar funcionalidad " . $value, "¿Está seguro de que desea eliminar " .
-                        "la funcionalidad <b>" . $value . "</b>? Esta acción es permanente y no se puede recuperar.",
-                        "../Controllers/FunctionalityController.php?action=delete&IdFunctionality=" . $value . "&confirm=true");
-                } else {
-                    $dependecies = "";
-                    foreach ($deletionDependencies as $entity => $id) {
-                        $dependecies = $dependecies . "\t" . $entity . " (Id: " . $id . ")";
-                    }
-                    openDependenciesModal("No se puede borrar el elemento por las siguientes dependencias", $dependecies);
+                try {
+                    $functionalityDAO->checkDependencies($value);
+                    showAll();
+                    openDeletionModal("Eliminar funcionalidad", "¿Está seguro de que desea eliminar " .
+                        "la funcionalidad %" . $value . "%? Esta acción es permanente y no se puede recuperar.",
+                        "../Controllers/FunctionalityController.php?action=delete&id=" . $value . "&confirm=true");
+                } catch (DAOException $e) {
+                    goToShowAllAndShowError($e->getMessage());
                 }
             }
         } else {
-            $message = MessageType::ERROR;
-            showToast($message, "No tienes permiso para acceder");
+            goToShowAllAndShowError("No tienes permiso para eliminar.");
         }
         break;
     case "show":
         if (HavePermission("Functionality", "SHOWCURRENT")) {
             try {
-                $key = "IdFunctionality";
-                $value = $_REQUEST[$key];
-                $functionalityDAO = new FunctionalityDAO();
-                $functionalityData = $functionalityDAO->show($key, $value);
+                $functionalityData = $functionalityDAO->show($functionalityPrimaryKey, $value);
                 new FunctionalityShowView($functionalityData);
             } catch (DAOException $e) {
-                $message = MessageType::ERROR;
-                showAll();
-                showToast($message, $e->getMessage());
+                goToShowAllAndShowError($e->getMessage());
+            } catch (ValidationException $ve) {
+                goToShowAllAndShowError($ve->getMessage());
             }
         } else {
-            $message = MessageType::ERROR;
-            showToast($message, "No tienes permiso para acceder");
+            goToShowAllAndShowError("No tienes permiso visualizar la entidad.");
         }
         break;
     case "edit":
         if (HavePermission("Functionality", "EDIT")) {
-            $key = "IdFunctionality";
-            $value = $_REQUEST[$key];
-            $functionalityDAO = new FunctionalityDAO();
             try {
-                $functionality = $functionalityDAO->show($key, $value);
+                $functionality = $functionalityDAO->show($functionalityPrimaryKey, $value);
                 if (!isset($_POST["submit"])) {
                     new FunctionalityEditView($functionality);
                 } else {
-                    try {
-
-                        $functionality->setName($_POST["name"]);
-                        $functionality->setDescription($_POST["description"]);
-
-                        $functionalityDAO = new FunctionalityDAO();
-                        $response = $functionalityDAO->edit($functionality);
-                        $message = MessageType::SUCCESS;
-                        showAll();
-                        showToast($message, "Funcionalidad editada correctamente.");
-                    } catch (DAOException $e) {
-                        $message = MessageType::ERROR;
-                        showAll();
-                        showToast($message, $e->getMessage());
-                    }
+                    $functionality->setId($value);
+                    $functionality->setName($_POST["name"]);
+                    $functionality->setDescription($_POST["description"]);
+                    $functionalityDAO->edit($functionality);
+                    goToShowAllAndShowSuccess("Funcionalidad editada correctamente.");
                 }
             } catch (DAOException $e) {
-                $message = MessageType::ERROR;
-                showAll();
-                showToast($message, $e->getMessage());
+                goToShowAllAndShowError($e->getMessage());
+            } catch (ValidationException $ve) {
+                goToShowAllAndShowError($ve->getMessage());
             }
         } else {
-            $message = MessageType::ERROR;
-            showToast($message, "No tienes permiso para acceder");
+            goToShowAllAndShowError("No tienes permiso para editar.");
+        }
+        break;
+    case "search":
+        if (HavePermission("Functionality", "SHOWALL")) {
+            if (!isset($_POST["submit"])) {
+                new FunctionalitySearchView();
+            } else {
+                try {
+                    $functionality = new Functionality();
+                    if(!empty($_POST["name"])) {
+                        $functionality->setName($_POST["name"]);
+                    }
+                    if(!empty($_POST["description"])) {
+                        $functionality->setDescription($_POST["description"]);
+                    }
+                    showAllSearch($functionality);
+                } catch (DAOException $e) {
+                    goToShowAllAndShowError($e->getMessage());
+                } catch (ValidationException $ve) {
+                    goToShowAllAndShowError($ve->getMessage());
+                }
+            }
+        } else {
+            goToShowAllAndShowError("No tienes permiso para buscar.");
         }
         break;
     default:
@@ -147,34 +141,29 @@ switch ($action) {
         break;
 }
 
-function checkIfAbleToDelete($id)
-{
-    $dependencies = array();
-
-    try {
-        $funcActionDAO = new FuncActionDAO();
-        $func_action = $funcActionDAO->show('IdFunctionality', $id);
-        $dependencies["FuncAction"] = $func_action->getIdFuncAction();
-    } catch (DAOException $e) {
-    }
-    return $dependencies;
+function showAll() {
+    showAllSearch(NULL);
 }
 
-function showAll()
-{
+function showAllSearch($search) {
     if (HavePermission("Functionality", "SHOWALL")) {
         try {
-            $functionalityDAO = new FunctionalityDAO();
-            $functionalitiesData = $functionalityDAO->showAll();
-            new FunctionalityShowAllView($functionalitiesData);
+            $currentPage = getCurrentPage();
+            $itemsPerPage = getItemsPerPage();
+            $toSearch = getToSearch($search);
+            $totalFunctionalities = $GLOBALS["functionalityDAO"]->countTotalFunctionalities($toSearch);
+            $functionalityData = $GLOBALS["functionalityDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
+            new FunctionalityShowAllView($functionalityData, $itemsPerPage, $currentPage, $totalFunctionalities, $toSearch);
         } catch (DAOException $e) {
-            $message = MessageType::ERROR;
             new FunctionalityShowAllView(array());
-            showToast($message, $e->getMessage());
+            errorMessage($e->getMessage());
         }
     } else {
-        $message = MessageType::ERROR;
-        showToast($message, "No tienes permiso para acceder");
+        accessDenied();
     }
+}
 
+function goToShowAllAndShowSuccess($message) {
+    showAll();
+    successMessage($message);
 }

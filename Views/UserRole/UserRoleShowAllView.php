@@ -1,11 +1,19 @@
 <?php
 class UserRoleShowAllView {
 private $userRoles;
-private $roles;
+private $itemsPerPage;
+private $currentPage;
+private $totalUserRoles;
+private $totalPages;
+private $stringToSearch;
 
-function __construct($userRoleData, $roleData){
+function __construct($userRoleData, $itemsPerPage=NULL, $currentPage=NULL, $totalUserRoles=NULL, $toSearch=NULL){
     $this->userRoles = $userRoleData;
-    $this->roles = $roleData;
+    $this->itemsPerPage = $itemsPerPage;
+    $this->currentPage = $currentPage;
+    $this->totalUserRoles = $totalUserRoles;
+    $this->totalPages = ceil($totalUserRoles/$itemsPerPage);
+    $this->stringToSearch = $toSearch;
     $this->render();
 }
 function render(){
@@ -16,9 +24,18 @@ function render(){
 </head>
 <main role="main" class="margin-main ml-sm-auto px-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-3">
-        <h1 class="h2"><p data-translate="Listado de Roles"></p></h1>
-        <a class="btn btn-success" role="button" href="../Controllers/UserRoleController.php?action=add">
-            <span data-feather="plus"></span><p data-translate="Añadir Rol a Usuario"></p></a>
+        <h1 class="h2" data-translate="Listado de asignación de roles a usuarios"></h1>
+
+        <?php if (!empty($this->stringToSearch)): ?>
+            <a class="btn btn-primary" role="button" href="../Controllers/UserRoleController.php">
+                <p data-translate="Volver"></p>
+            </a>
+        <?php else:?>
+            <a class="btn btn-success" role="button" href="../Controllers/UserRoleController.php?action=add">
+                <span data-feather="plus"></span><p data-translate="Asignar rol a usuario"></p>
+            </a>
+        <?php endif;?>
+
     </div>
     <div class="table-responsive">
         <table class="table table-striped table-sm">
@@ -33,20 +50,14 @@ function render(){
             <tbody>
                 <?php foreach ($this->userRoles as $userRole): ?>
                 <tr>
-                    <td><?php echo $userRole->getLogin() ;?></td>
-
-                    <?php foreach ($this->roles as $rol): ?>
-                        <?php if($rol->getIdRole() == $userRole->getIdRole()): ?>
-                            <td><?php echo $rol->getName() ;?></td>
-                        <?php endif;?>
-                    <?php endforeach;?>
-
+                    <td><?php echo $userRole->getUser()->getLogin() ;?></td>
+                    <td><?php echo $userRole->getRole()->getName() ;?></td>
                     <td class="row">
-                        <a href="../Controllers/UserRoleController.php?action=show&IdUserRole=<?php echo $userRole->getIdUserRole()?>">
+                        <a href="../Controllers/UserRoleController.php?action=show&id=<?php echo $userRole->getId()?>">
                             <span data-feather="eye"></span></a>
-                        <a href="../Controllers/UserRoleController.php?action=edit&IdUserRole=<?php echo $userRole->getIdUserRole()?>">
+                        <a href="../Controllers/UserRoleController.php?action=edit&id=<?php echo $userRole->getId()?>">
                             <span data-feather="edit"></span></a>
-                        <a href="../Controllers/UserRoleController.php?action=delete&IdUserRole=<?php echo $userRole->getIdUserRole()?>">
+                        <a href="../Controllers/UserRoleController.php?action=delete&id=<?php echo $userRole->getId()?>">
                             <span data-feather="trash-2"></span></a>
                     </td>
                 </tr>
@@ -57,6 +68,10 @@ function render(){
             </table>
             <p data-translate="No se ha obtenido ningún rol">. </p>
             <?php endif; ?>
+
+        <?php new PaginationView($this->itemsPerPage, $this->currentPage, $this->totalUserRoles,
+            "UserRole")?>
+
     </div>
 </main>
 
