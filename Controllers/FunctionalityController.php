@@ -163,6 +163,11 @@ function showAllSearch($search) {
     }
 }
 
+function goToShowAllAndShowError($message) {
+    showAll();
+    errorMessage($message);
+}
+
 function goToShowAllAndShowSuccess($message) {
     showAll();
     successMessage($message);
