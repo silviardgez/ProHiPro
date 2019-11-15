@@ -156,6 +156,10 @@
         "en": "No academic course has been obtained",
         "gl": "Non se obtuvo ningún curso académico"
     },
+    "No se ha obtenido ninguna universidad": {
+        "en": "No university has been obtained",
+        "gl": "Non se obtuvo ningunha universidade"
+    },
     "No se ha obtenido ningún usuario": {
         "en": "No user has been obtained",
         "gl": "Non se obtuvo ningún usuario"
@@ -235,6 +239,10 @@
     "Añadir usuario": {
         "en": "Add user",
         "gl": "Engadir usuario"
+    },
+    "Añadir universidad": {
+        "en": "Add university",
+        "gl": "Engadir universidade"
     },
     "Login": {
         "en": "Login",
@@ -344,6 +352,10 @@
         "en": "Insert action-functionality",
         "gl": "Insertar acción-funcionalidade"
     },
+    "Insertar universidad": {
+        "en": "Insert university",
+        "gl": "Insertar universidad"
+    },
     "Listado de acciones-funcionalidades": {
         "en": "Actions-functionalities list",
         "gl": "Listado de acciones-funcionalidades"
@@ -437,16 +449,28 @@
         "gl": "Introducir id de rol"
     },
     "Curso académico añadido correctamente.": {
-        "en": "Academic course added succesfully.",
+        "en": "Academic course added successfully.",
         "gl": "Curso académico engadido correctamente."
     },
     "Curso académico eliminado correctamente.": {
-        "en": "Academic course deleted succesfully.",
+        "en": "Academic course deleted successfully.",
         "gl": "Curso académico eliminado correctamente."
     },
     "Curso académico editado correctamente.": {
-        "en": "Academic course editted succesfully.",
+        "en": "Academic course edited successfully.",
         "gl": "Curso académico editado correctamente."
+    },
+    "Universidad añadida correctamente.": {
+        "en": "University added successfully.",
+        "gl": "Universidade engadida correctamente."
+    },
+    "Universidad eliminada correctamente.": {
+        "en": "University deleted successfully.",
+        "gl": "Universidade eliminada correctamente."
+    },
+    "Universidad editada correctamente.": {
+        "en": "University edited successfully.",
+        "gl": "Universidad editada correctamente."
     },
     "Acción añadida correctamente.": {
         "en": "Action added succesfully.",
@@ -580,6 +604,14 @@
         "en": "Edit permission assignment",
         "gl": "Editar asignación de permiso"
     },
+    "Editar universidad '%c'": {
+        "en": "Edit university '%c'",
+        "gl": "Editar universidad '%c'"
+    },
+    "Universidad '%c'": {
+        "en": "University '%c'",
+        "gl": "Universidad '%c'"
+    },
     "Insertar asignación de permiso": {
         "en": "Insert permission assignment",
         "gl": "Inserir asignación de permiso"
@@ -607,6 +639,10 @@
     "Eliminar curso académico": {
         "en": "Delete academic course",
         "gl": "Eliminar curso académico"
+    },
+    "Eliminar universidad": {
+        "en": "Delete university",
+        "gl": "Eliminar universidade"
     },
     "Año fuera de rango.": {
         "en": "Year out of range",
@@ -663,6 +699,10 @@
     "¿Está seguro de que desea eliminar la asignación de permiso %c? Esta acción es permanente y no se puede recuperar.": {
         "en": "Are you sure you want to delete the permission assignment %c? This action is permanent and cannot be recovered.",
         "gl": "Está seguro de que desexa eliminar a asignación de permiso %c? Esta acción é permanente e non se pode recuperar."
+    },
+    "¿Está seguro de que desea eliminar la universidad %c? Esta acción es permanente y no se puede recuperar.": {
+        "en": "Are you sure you want to delete the university %c? This action is permanent and cannot be recovered.",
+        "gl": "Está seguro de que desexa eliminar a universidade %c? Esta acción é permanente e non se pode recuperar."
     },
     "Eliminar asignación de permiso": {
         "en": "Delete permission assignment",
@@ -723,6 +763,10 @@
     "Búsqueda de acciones": {
         "en": "Actions search",
         "gl": "Búsqueda de accións"
+    },
+    "Búsqueda de universidades": {
+        "en": "Universities search",
+        "gl": "Búsqueda de universidades"
     },
     "Acción '%c'": {
         "en": "Action '%c'",
@@ -819,6 +863,14 @@
     "Búsqueda de roles asignados a usuarios": {
         "en": "Search for roles assigned to users",
         "gl": "Búsqueda de roles asignados a usuarios"
+    },
+    "Listado de universidades": {
+        "en": "Universities list",
+        "gl": "Listado de universidades"
+    },
+    "Introducir curso académico": {
+        "en": "Insert academic course",
+        "gl": "Inserir curso académico"
     }
 }
 

@@ -141,13 +141,15 @@ CREATE TABLE `ACADEMIC_COURSE` (
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 CREATE TABLE `UNIVERSITY` (
-  `id` int(8) COLLATE latin1_spanish_ci NOT NULL,
+  `id` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
   `academic_course_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
   `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY(`id`, `academic_course_id`),
   FOREIGN KEY (`academic_course_id`)
 	REFERENCES `ACADEMIC_COURSE`(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+ALTER TABLE `UNIVERSITY` ADD UNIQUE KEY `uidx` (`academic_course_id`, `name`);
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 -- TABLE STRUCTURE FOR TABLE `CENTER`
@@ -304,7 +306,8 @@ INSERT INTO `FUNCTIONALITY` (`id`, `name`, `description`) VALUES
 ('5', 'PermissionManagement', 'PermissionManagement'),
 ('6', 'AcademicCourseManagement', 'AcademicCourseManagement'),
 ('7', 'FuncActionManagement', 'FuncActionManagement'),
-('8', 'UserRoleManagement', 'UserRoleManagement');
+('8', 'UserRoleManagement', 'UserRoleManagement'),
+('9', 'UniversityManagement', 'UniversityManagement');
 
 
 INSERT INTO `FUNC_ACTION` (`id`,`functionality_id`, `action_id`) VALUES
@@ -347,7 +350,12 @@ INSERT INTO `FUNC_ACTION` (`id`,`functionality_id`, `action_id`) VALUES
 ('37','8','2'),
 ('38','8','3'),
 ('39','8','4'),
-('40','8','5');
+('40','8','5'),
+('41','9','1'),
+('42','9','2'),
+('43','9','3'),
+('44','9','4'),
+('45','9','5');
 
 INSERT INTO `USER` (`login`,`password`,`dni`, `name`,`surname`,`email`,`address`,`telephone`) VALUES
 ('admin','21232f297a57a5a743894a0e4a801fc3' , '111222333A','Administrador','Administrador', 'admin@admin.com', 'address', '666555444');
@@ -400,5 +408,15 @@ INSERT INTO `PERMISSION` (`role_id`,`func_action_id`) VALUES
 (1,'37'),
 (1,'38'),
 (1,'39'),
-(1,'40');
+(1,'40'),
+(1,'41'),
+(1,'42'),
+(1,'43'),
+(1,'44'),
+(1,'45');
+
+INSERT INTO `ACADEMIC_COURSE` (`id`, `academic_course_abbr`, `start_year`, `end_year`) VALUES
+(1, '18/19', '2018', '2019'),
+(2, '19/20', '2019', '2020'),
+(3, '20/21', '2020', '2021');
 

@@ -147,7 +147,7 @@
                                 </a>
                                 <ul class="flex-column collapse items-collapsed" id="collapseUniversity">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">
+                                        <a class="nav-link" href="../Controllers/UniversityController.php">
                                             <p data-translate="Universidades"></p>
                                         </a>
                                     </li>
