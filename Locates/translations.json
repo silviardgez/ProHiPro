@@ -872,8 +872,157 @@
         "en": "Insert academic course",
         "gl": "Inserir curso académico"
     },
-    "El atributo dni no puede ser mayor que %c.": {
-        
+    "El atributo dni puede tener una longitud máxima de %c.": {
+        "en": "The dni attribute can have a maximum length of %c.",
+        "gl": "O atributo dni pode ter unha lonxitude máxima de %c."
+    },
+    "El atributo dni no puede tener espacios en blanco.": {
+        "en": "The dni attribute cannot have blanks.",
+        "gl": "O atributo dni non pode ter espazos en branco."
+    },
+    "El atributo dni no puede estar vacío.": {
+        "en": "The dni attribute cannot be empty.",
+        "gl": "O atributo dni non pode estar baleiro"
+    },
+    "El atributo dni contiene algún carácter no válido: %c.": {
+        "en": "The dni attribute contains some invalid character: %c.",
+        "gl": "O atributo dni contén algún caracter non válido: %c."
+    },
+    "El atributo login puede tener una longitud máxima de %c.": {
+        "en": "The login attribute can have a maximum length of %c.",
+        "gl": "O atributo login pode ter unha lonxitude máxima de %c."
+    },
+    "El atributo login no puede tener espacios en blanco.": {
+        "en": "The login attribute cannot have blanks.",
+        "gl": "O atributo login non pode ter espazos en branco."
+    },
+    "El atributo login no puede estar vacío.": {
+        "en": "The login attribute cannot be empty.",
+        "gl": "O atributo dni non pode estar baleiro."
+    },
+    "El atributo login contiene algún carácter no válido: %c.": {
+        "en": "The login attribute contains some invalid character: %c.",
+        "gl": "O atributo login contén algún caracter non válido: %c."
+    },
+    "El atributo contraseña puede tener una longitud máxima de %c.": {
+        "en": "The password attribute can have a maximum length of %c.",
+        "gl": "O atributo contrasinal pode ter unha lonxitude máxima de %c."
+    },
+    "El atributo contraseña no puede tener espacios en blanco.": {
+        "en": "The password attribute cannot have blanks.",
+        "gl": "O atributo contrasinal dni non pode ter espazos en branco."
+    },
+    "El atributo contraseña no puede estar vacío.": {
+        "en": "The password attribute cannot be empty.",
+        "gl": "O atributo contrasinal dni non pode estar baleiro."
+    },
+    "El atributo contraseña contiene algún carácter no válido: %c.": {
+        "en": "The password attribute contains some invalid character: %c.",
+        "gl": "O atributo contrasinal contén algún caracter non válido: %c."
+    },
+    "El atributo confirmación de contraseña puede tener una longitud máxima de %c.": {
+        "en": "The confirm password attribute can have a maximum length of %c.",
+        "gl": "O atributo confirmación de contrasinal pode ter unha lonxitude máxima de %c."
+    },
+    "El atributo confirmación de contraseña no puede tener espacios en blanco.": {
+        "en": "The confirm password attribute cannot have blanks.",
+        "gl": "O atributo confirmación de contrasinal dni non pode ter espazos en branco."
+    },
+    "El atributo confirmación de contraseña no puede estar vacío.": {
+        "en": "The confirm password attribute cannot be empty.",
+        "gl": "O atributo confirmación de contrasinal dni non pode estar baleiro."
+    },
+    "El atributo confirmación de contraseña contiene algún carácter no válido: %c.": {
+        "en": "The confirm password attribute contains some invalid character: %c.",
+        "gl": "O atributo confirmación de contrasinal contén algún caracter non válido: %c."
+    },
+    "Las contraseñas no coinciden.": {
+        "en": "Passwords do not match.",
+        "gl": "Os contrasinais non coinciden."
+    },
+    "El atributo nombre puede tener una longitud máxima de %c.": {
+        "en": "The name attribute can have a maximum length of %c.",
+        "gl": "O atributo nome pode ter unha lonxitude máxima de %c."
+    },
+    "El atributo nombre solo admite carácteres alfabéticos.": {
+        "en": "The name attribute only supports alphabetic characters.",
+        "gl": "O atributo nome só admite caracteres alfabéticos."
+    },
+    "El atributo nombre no puede estar vacío.": {
+        "en": "The name attribute cannot be empty.",
+        "gl": "O atributo nome non pode estar baleiro."
+    },
+    "El atributo nombre contiene algún carácter no válido: %c.": {
+        "en": "The name attribute contains some invalid character: %c.",
+        "gl": "O atributo nome contén algún caracter non válido: %c."
+    },
+    "El atributo apellido puede tener una longitud máxima de %c.": {
+        "en": "The surname attribute can have a maximum length of %c.",
+        "gl": "O atributo apelido pode ter unha lonxitude máxima de %c."
+    },
+    "El atributo apellido solo admite carácteres alfabéticos.": {
+        "en": "The surname attribute only supports alphabetic characters.",
+        "gl": "O atributo apelido só admite caracteres alfabéticos."
+    },
+    "El atributo apellido no puede estar vacío.": {
+        "en": "The surname attribute cannot be empty.",
+        "gl": "O atributo apelido non pode estar baleiro."
+    },
+    "El atributo apellido contiene algún carácter no válido: %c.": {
+        "en": "The surname attribute contains some invalid character: %c.",
+        "gl": "O atributo apelido contén algún caracter non válido: %c."
+    },
+    "El atributo email puede tener una longitud máxima de %c.": {
+        "en": "The email attribute can have a maximum length of %c.",
+        "gl": "O atributo email pode ter unha lonxitude máxima de %c."
+    },
+    "El atributo email tiene un formato erróneo.": {
+        "en": "The email attribute has a wrong format.",
+        "gl": "O atributo email ten un formato erróneo."
+    },
+    "El atributo email no puede estar vacío.": {
+        "en": "The email attribute cannot be empty.",
+        "gl": "O atributo email non pode estar baleiro."
+    },
+    "El atributo email contiene algún carácter no válido: %c.": {
+        "en": "The surname email contains some invalid character: %c.",
+        "gl": "O atributo email contén algún caracter non válido: %c."
+    },
+    "El atributo dirección puede tener una longitud máxima de %c.": {
+        "en": "The address attribute can have a maximum length of %c.",
+        "gl": "O atributo dirección pode ter unha lonxitude máxima de %c."
+    },
+    "El atributo dirección no puede estar vacío.": {
+        "en": "The address attribute cannot be empty.",
+        "gl": "O atributo dirección non pode estar baleiro."
+    },
+    "El atributo dirección contiene algún carácter no válido: %c.": {
+        "en": "The surname address contains some invalid character: %c.",
+        "gl": "O atributo dirección contén algún caracter non válido: %c."
+    },
+    "El atributo teléfono puede tener una longitud máxima de %c.": {
+        "en": "The telephone attribute can have a maximum length of %c.",
+        "gl": "O atributo teléfono pode ter unha lonxitude máxima de %c."
+    },
+    "El atributo teléfono tiene un formato erróneo.": {
+        "en": "The telephone attribute has a wrong format.",
+        "gl": "O atributo teléfono ten un formato erróneo."
+    },
+    "El atributo teléfono no puede estar vacío.": {
+        "en": "The telephone attribute cannot be empty.",
+        "gl": "O atributo teléfono non pode estar baleiro."
+    },
+	    "El atributo descripción puede tener una longitud máxima de %c.": {
+        "en": "The description attribute can have a maximum length of %c.",
+        "gl": "O atributo descripción pode ter unha lonxitude máxima de %c."
+    },
+    "El atributo descripción no puede estar vacío.": {
+        "en": "The description attribute cannot be empty.",
+        "gl": "O atributo descripción non pode estar baleiro."
+    },
+    "El atributo descripción contiene algún carácter no válido: %c.": {
+        "en": "The description attribute contains some invalid character: %c.",
+        "gl": "O atributo descripción contén algún caracter non válido: %c."
     }
 }
 
