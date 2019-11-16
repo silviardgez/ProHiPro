@@ -207,7 +207,7 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">
+                                        <a class="nav-link" href="../Controllers/CenterController.php">
                                             <p data-translate="Centros"></p>
                                         </a>
                                     </li>

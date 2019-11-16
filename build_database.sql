@@ -156,11 +156,11 @@ ALTER TABLE `UNIVERSITY` ADD UNIQUE KEY `uidx` (`academic_course_id`, `name`);
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 CREATE TABLE `CENTER` (
-  `IdCenter` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,  
+  `id` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
   `university_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
   `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
   `location` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
-  PRIMARY KEY(`IdCenter`, `university_id`),
+  PRIMARY KEY(`id`),
   FOREIGN KEY (`university_id`)
 	REFERENCES `UNIVERSITY`(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
@@ -171,11 +171,11 @@ CREATE TABLE `CENTER` (
 -- --------------------------------------------------------
 CREATE TABLE `BUILDING` (
   `IdBuilding` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,  
-  `IdCenter` int(8) COLLATE latin1_spanish_ci NOT NULL,
+  `center_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
   `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
-  PRIMARY KEY(`IdBuilding`, `IdCenter`),
-  FOREIGN KEY (`IdCenter`) 
-	REFERENCES `CENTER`(`IdCenter`)
+  PRIMARY KEY(`IdBuilding`, `center_id`),
+  FOREIGN KEY (`center_id`)
+	REFERENCES `CENTER`(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 -- --------------------------------------------------------
 -- --------------------------------------------------------
@@ -197,11 +197,11 @@ CREATE TABLE `SPACE` (
 -- --------------------------------------------------------
 CREATE TABLE `DEGREE` (
   `IdDegree` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,  
-  `IdCenter` int(8) COLLATE latin1_spanish_ci NOT NULL,
+  `center_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
   `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
-  PRIMARY KEY(`IdDegree`, `IdCenter`),
-  FOREIGN KEY (`IdCenter`) 
-	REFERENCES `CENTER`(`IdCenter`)   
+  PRIMARY KEY(`IdDegree`, `center_id`),
+  FOREIGN KEY (`center_id`)
+	REFERENCES `CENTER`(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 -- --------------------------------------------------------
 -- --------------------------------------------------------
@@ -307,7 +307,8 @@ INSERT INTO `FUNCTIONALITY` (`id`, `name`, `description`) VALUES
 ('6', 'AcademicCourseManagement', 'AcademicCourseManagement'),
 ('7', 'FuncActionManagement', 'FuncActionManagement'),
 ('8', 'UserRoleManagement', 'UserRoleManagement'),
-('9', 'UniversityManagement', 'UniversityManagement');
+('9', 'UniversityManagement', 'UniversityManagement'),
+('10', 'CenterManagement', 'CenterManagement');
 
 
 INSERT INTO `FUNC_ACTION` (`id`,`functionality_id`, `action_id`) VALUES
@@ -355,7 +356,12 @@ INSERT INTO `FUNC_ACTION` (`id`,`functionality_id`, `action_id`) VALUES
 ('42','9','2'),
 ('43','9','3'),
 ('44','9','4'),
-('45','9','5');
+('45','9','5'),
+('46','10','1'),
+('47','10','2'),
+('48','10','3'),
+('49','10','4'),
+('50','10','5');
 
 INSERT INTO `USER` (`login`,`password`,`dni`, `name`,`surname`,`email`,`address`,`telephone`) VALUES
 ('admin','21232f297a57a5a743894a0e4a801fc3' , '111222333A','Administrador','Administrador', 'admin@admin.com', 'address', '666555444');
@@ -413,7 +419,12 @@ INSERT INTO `PERMISSION` (`role_id`,`func_action_id`) VALUES
 (1,'42'),
 (1,'43'),
 (1,'44'),
-(1,'45');
+(1,'45'),
+(1,'46'),
+(1,'47'),
+(1,'48'),
+(1,'49'),
+(1,'50');
 
 INSERT INTO `ACADEMIC_COURSE` (`id`, `academic_course_abbr`, `start_year`, `end_year`) VALUES
 (1, '18/19', '2018', '2019'),

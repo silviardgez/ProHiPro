@@ -1,1056 +1,1115 @@
-
 {
-    "Gestión de usuarios": {
-        "en": "User management",
-        "gl": "Xestión de usuarios"
-    },
-    "Usuarios": {
-        "en": "Users",
-        "gl": "Usuarios"
-    },
-    "Permisos":{
-        "en": "Permissions",
-        "gl": "Permisos"
-    },
-    "Funcionalidades": {
-        "en": "Functionalities",
-        "gl": "Funcionalidades"
-    },
-    "Roles": {
-        "en": "Roles",
-        "gl": "Roles"
-    },
-    "Gestión de horarios":{
-        "en": "Schedule management",
-        "gl": "Xestión de horarios"
-    },
-    "Gestión de titulaciones": {
-        "en": "Degree management",
-        "gl": "Xestión de titulacións"
-    },
-    "Titulaciones": {
-        "en": "Degrees",
-        "gl": "Titulacións"
-    },
-    "Asignaturas": {
-        "en": "Subjects",
-        "gl": "Materias"
-    },
-    "Grupos":{
-        "en": "Groups",
-        "gl": "Grupos"
-    },
-    "Gestión de departamentos": {
-        "en": "Department management",
-        "gl": "Xestión de departamentos"
-    },
-    "Departamentos": {
-        "en": "Departments",
-        "gl": "Departamentos"
-    },
-    "Profesores": {
-        "en": "Teachers",
-        "gl": "Profesores"
-    },
-    "Tutorías":{
-        "en": "Tutorials",
-        "gl": "Titorías"
-    },
-    "Gestión de universidades": {
-        "en": "University management",
-        "gl": "Xestión de universidades"
-    },
-    "Universidades": {
-        "en": "Universities",
-        "gl": "Universidades"
-    },
-    "Edificios": {
-        "en": "Buildings",
-        "gl": "Edificios"
-    },
-    "Centros": {
-        "en": "Centers",
-        "gl": "Centros"
-    },
-    "Espacios": {
-        "en": "Spaces",
-        "gl": "Espacios"
-    },
-    "Gestión de cursos académicos": {
-        "en": "Academic courses management",
-        "gl": "Xestión de cursos académicos"
-    },
-    "Importar/Exportar": {
-        "en": "Import/Export",
-        "gl": "Importar/Exportar"
-    },
-    "Informes": {
-        "en": "Reports",
-        "gl": "Informes"
-    },
-    "Cerrar sesión": {
-        "en": "Log out",
-        "gl": "Pechar sesión"
-    },
-    "Listado de usuarios": {
-        "en": "User list",
-        "gl": "Listado de usuarios"
-    },
-    "Listado de acciones": {
-        "en": "Actions list",
-        "gl": "Listado de accións"
-    },
-    "Listado de funcionalidades": {
-        "en": "Functionalities list",
-        "gl": "Listado de funcionalidades"
-    },
-    "Nombre de usuario": {
-        "en": "Username",
-        "gl": "Nome de usuario"
-    },
-    "Iniciar sesión": {
-        "en": "Log in",
-        "gl": "Iniciar sesión"
-    },
-    "Contraseña": {
-        "en": "Password",
-        "gl": "Contrasinal"
-    },
-    "Confirmar contraseña": {
-        "en": "Repeat password",
-        "gl": "Confirmar contrasinal"
-    },
-    "Introducir nombre de usuario": {
-        "en": "Enter username",
-        "gl": "Introducir nome de usuario"
-    },
-    "Listado de cursos académicos": {
-        "en": "Academic courses list",
-        "gl": "Listado de cursos académicos"
-    },
-    "Añadir curso académico": {
-        "en": "Add academic course",
-        "gl": "Engadir curso académico"
-    },
-    "Añadir acción": {
-        "en": "Add action",
-        "gl": "Engadir acción"
-    },
-    "Añadir funcionalidad": {
-        "en": "Add functionality",
-        "gl": "Engadir funcionalidade"
-    },
-    "Identificador": {
-        "en": "Id",
-        "gl": "Identificador"
-    },
-    "Año de inicio": {
-        "en": "Start year",
-        "gl": "Ano de inicio"
-    },
-    "Año de fin": {
-        "en": "End year",
-        "gl": "Ano de fin"
-    },
-    "No se ha obtenido ningún curso académico": {
-        "en": "No academic course has been obtained",
-        "gl": "Non se obtuvo ningún curso académico"
-    },
-    "No se ha obtenido ninguna universidad": {
-        "en": "No university has been obtained",
-        "gl": "Non se obtuvo ningunha universidade"
-    },
-    "No se ha obtenido ningún usuario": {
-        "en": "No user has been obtained",
-        "gl": "Non se obtuvo ningún usuario"
-    },
-    "No se ha obtenido ninguna acción": {
-        "en": "No action has been obtained",
-        "gl": "Non se obtuvo ningunha acción"
-    },
-    "Volver": {
-        "en": "Back",
-        "gl": "Volver"
-    },
-    "Insertar curso académico": {
-        "en": "Add academic course",
-        "gl": "Engadir curso académico"
-    },
-    "Insertar acción": {
-        "en": "Add action",
-        "gl": "Engadir acción"
-    },
-    "Insertar funcionalidad": {
-        "en": "Add functionality",
-        "gl": "Insertar funcionalidade"
-    },
-    "Enviar": {
-        "en": "Send",
-        "gl": "Enviar"
-    },
-    "El curso académico no existe": {
-        "en": "Academic course does not exist",
-        "gl": "O curso académico non existe"
-    },
-    "El usuario no existe": {
-        "en": "User does not exist",
-        "gl": "O usuario non existe"
-    },
-    "Introducir año de inicio": {
-        "en": "Add start year",
-        "gl": "Engadir ano de inicio"
-    },
-    "Introducir año de fin": {
-        "en": "Add end year",
-        "gl": "Engadir ano de fin"
-    },
-    "Curso académico": {
-        "en": "Academic course",
-        "gl": "Curso académico"
-    },
-    "Usuario añadido correctamente.": {
-        "en": "User added successfully.",
-        "gl": "Usuario engadido correctamente."
-    },
-    "INFORMACIÓN": {
-        "en": "INFO",
-        "gl": "INFORMACIÓN"
-    },
-    "ADVERTENCIA": {
-        "en": "WARNING",
-        "gl": "ADVERTENCIA"
-    },
-    "ÉXITO": {
-        "en": "SUCCESS",
-        "gl": "ÉXITO"
-    },
-    "ERROR": {
-        "en": "ERROR",
-        "gl": "ERROR"
-    },
-    "Texto a buscar": {
-        "en": "Search text",
-        "gl": "Texto a procurar"
-    },
-    "Buscar": {
-        "en": "Search",
-        "gl": "Procurar"
-    },
-    "Añadir usuario": {
-        "en": "Add user",
-        "gl": "Engadir usuario"
-    },
-    "Añadir universidad": {
-        "en": "Add university",
-        "gl": "Engadir universidade"
-    },
-    "Login": {
-        "en": "Login",
-        "gl": "Login"
-    },
-    "Nombre": {
-        "en": "Name",
-        "gl": "Nome"
-    },
-    "Apellido": {
-        "en": "First name",
-        "gl": "Apelido"
-    },
-    "Email": {
-        "en": "Email",
-        "gl": "Email"
-    },
-    "Acciones": {
+  "Gestión de usuarios": {
+    "en": "User management",
+    "gl": "Xestión de usuarios"
+  },
+  "Usuarios": {
+    "en": "Users",
+    "gl": "Usuarios"
+  },
+  "Permisos": {
+    "en": "Permissions",
+    "gl": "Permisos"
+  },
+  "Funcionalidades": {
+    "en": "Functionalities",
+    "gl": "Funcionalidades"
+  },
+  "Roles": {
+    "en": "Roles",
+    "gl": "Roles"
+  },
+  "Gestión de horarios": {
+    "en": "Schedule management",
+    "gl": "Xestión de horarios"
+  },
+  "Gestión de titulaciones": {
+    "en": "Degree management",
+    "gl": "Xestión de titulacións"
+  },
+  "Titulaciones": {
+    "en": "Degrees",
+    "gl": "Titulacións"
+  },
+  "Asignaturas": {
+    "en": "Subjects",
+    "gl": "Materias"
+  },
+  "Grupos": {
+    "en": "Groups",
+    "gl": "Grupos"
+  },
+  "Gestión de departamentos": {
+    "en": "Department management",
+    "gl": "Xestión de departamentos"
+  },
+  "Departamentos": {
+    "en": "Departments",
+    "gl": "Departamentos"
+  },
+  "Profesores": {
+    "en": "Teachers",
+    "gl": "Profesores"
+  },
+  "Tutorías": {
+    "en": "Tutorials",
+    "gl": "Titorías"
+  },
+  "Gestión de universidades": {
+    "en": "University management",
+    "gl": "Xestión de universidades"
+  },
+  "Universidades": {
+    "en": "Universities",
+    "gl": "Universidades"
+  },
+  "Edificios": {
+    "en": "Buildings",
+    "gl": "Edificios"
+  },
+  "Centros": {
+    "en": "Centers",
+    "gl": "Centros"
+  },
+  "Espacios": {
+    "en": "Spaces",
+    "gl": "Espacios"
+  },
+  "Gestión de cursos académicos": {
+    "en": "Academic courses management",
+    "gl": "Xestión de cursos académicos"
+  },
+  "Importar/Exportar": {
+    "en": "Import/Export",
+    "gl": "Importar/Exportar"
+  },
+  "Informes": {
+    "en": "Reports",
+    "gl": "Informes"
+  },
+  "Cerrar sesión": {
+    "en": "Log out",
+    "gl": "Pechar sesión"
+  },
+  "Listado de usuarios": {
+    "en": "User list",
+    "gl": "Listado de usuarios"
+  },
+  "Listado de acciones": {
+    "en": "Actions list",
+    "gl": "Listado de accións"
+  },
+  "Listado de funcionalidades": {
+    "en": "Functionalities list",
+    "gl": "Listado de funcionalidades"
+  },
+  "Nombre de usuario": {
+    "en": "Username",
+    "gl": "Nome de usuario"
+  },
+  "Iniciar sesión": {
+    "en": "Log in",
+    "gl": "Iniciar sesión"
+  },
+  "Contraseña": {
+    "en": "Password",
+    "gl": "Contrasinal"
+  },
+  "Confirmar contraseña": {
+    "en": "Repeat password",
+    "gl": "Confirmar contrasinal"
+  },
+  "Introducir nombre de usuario": {
+    "en": "Enter username",
+    "gl": "Introducir nome de usuario"
+  },
+  "Listado de cursos académicos": {
+    "en": "Academic courses list",
+    "gl": "Listado de cursos académicos"
+  },
+  "Añadir curso académico": {
+    "en": "Add academic course",
+    "gl": "Engadir curso académico"
+  },
+  "Añadir acción": {
+    "en": "Add action",
+    "gl": "Engadir acción"
+  },
+  "Añadir funcionalidad": {
+    "en": "Add functionality",
+    "gl": "Engadir funcionalidade"
+  },
+  "Añadir centro": {
+    "en": "Add center",
+    "gl": "Engadir centro"
+  },
+  "Identificador": {
+    "en": "Id",
+    "gl": "Identificador"
+  },
+  "Año de inicio": {
+    "en": "Start year",
+    "gl": "Ano de inicio"
+  },
+  "Año de fin": {
+    "en": "End year",
+    "gl": "Ano de fin"
+  },
+  "No se ha obtenido ningún curso académico": {
+    "en": "No academic course has been obtained",
+    "gl": "Non se obtuvo ningún curso académico"
+  },
+  "No se ha obtenido ningún centro": {
+    "en": "No center has been obtained",
+    "gl": "Non se obtuvo ningún centro"
+  },
+  "No se ha obtenido ninguna universidad": {
+    "en": "No university has been obtained",
+    "gl": "Non se obtuvo ningunha universidade"
+  },
+  "No se ha obtenido ningún usuario": {
+    "en": "No user has been obtained",
+    "gl": "Non se obtuvo ningún usuario"
+  },
+  "No se ha obtenido ninguna acción": {
+    "en": "No action has been obtained",
+    "gl": "Non se obtuvo ningunha acción"
+  },
+  "Volver": {
+    "en": "Back",
+    "gl": "Volver"
+  },
+  "Insertar curso académico": {
+    "en": "Add academic course",
+    "gl": "Engadir curso académico"
+  },
+  "Insertar acción": {
+    "en": "Add action",
+    "gl": "Engadir acción"
+  },
+  "Insertar funcionalidad": {
+    "en": "Add functionality",
+    "gl": "Insertar funcionalidade"
+  },
+  "Enviar": {
+    "en": "Send",
+    "gl": "Enviar"
+  },
+  "El curso académico no existe": {
+    "en": "Academic course does not exist",
+    "gl": "O curso académico non existe"
+  },
+  "El usuario no existe": {
+    "en": "User does not exist",
+    "gl": "O usuario non existe"
+  },
+  "Introducir año de inicio": {
+    "en": "Add start year",
+    "gl": "Engadir ano de inicio"
+  },
+  "Introducir año de fin": {
+    "en": "Add end year",
+    "gl": "Engadir ano de fin"
+  },
+  "Curso académico": {
+    "en": "Academic course",
+    "gl": "Curso académico"
+  },
+  "Centro añadido correctamente.": {
+    "en": "Center added successfully.",
+    "gl": "Centro engadido correctamente."
+  },
+  "INFORMACIÓN": {
+    "en": "INFO",
+    "gl": "INFORMACIÓN"
+  },
+  "ADVERTENCIA": {
+    "en": "WARNING",
+    "gl": "ADVERTENCIA"
+  },
+  "ÉXITO": {
+    "en": "SUCCESS",
+    "gl": "ÉXITO"
+  },
+  "ERROR": {
+    "en": "ERROR",
+    "gl": "ERROR"
+  },
+  "Texto a buscar": {
+    "en": "Search text",
+    "gl": "Texto a procurar"
+  },
+  "Buscar": {
+    "en": "Search",
+    "gl": "Procurar"
+  },
+  "Añadir usuario": {
+    "en": "Add user",
+    "gl": "Engadir usuario"
+  },
+  "Añadir universidad": {
+    "en": "Add university",
+    "gl": "Engadir universidade"
+  },
+  "Login": {
+    "en": "Login",
+    "gl": "Login"
+  },
+  "Nombre": {
+    "en": "Name",
+    "gl": "Nome"
+  },
+  "Apellido": {
+    "en": "First name",
+    "gl": "Apelido"
+  },
+  "Email": {
+    "en": "Email",
+    "gl": "Email"
+  },
+  "Acciones": {
     "en": "Actions",
     "gl": "Accións"
-    },
-    "DNI": {
-        "en": "DNI",
-        "gl": "DNI"
-    },
-    "Dirección": {
-        "en": "Address",
-        "gl": "Dirección"
-    },
-    "Teléfono": {
-        "en": "Phone",
-        "gl": "Teléfono"
-    },
-    "Tirafondos": {
-        "en": "Screw",
-        "gl": "Parafuso"
-    },
-    "Introducir nombre de usuario": {
-        "en": "Add user name",
-        "gl": "Introducir nome de usuario"
-    },
-    "Introducir contraseña": {
-        "en": "Add password",
-        "gl": "Introducir contrasinal"
-    },
-    "Introducir DNI": {
-        "en": "Add DNI",
-        "gl": "Introducir DNI"
-    },
-    "Introducir nombre": {
-        "en": "Add name",
-        "gl": "Introducir nome"
-    },
-    "Introducir apellido": {
-        "en": "Add first name",
-        "gl": "Introducir primer apelido"
-    },
-    "Introducir email": {
-        "en": "Add email",
-        "gl": "Introducir email"
-    },
-    "Introducir nombre de usuario": {
-        "en": "Add user name",
-        "gl": "Introducir nome de usuario"
-    },
-    "Introducir dirección": {
-        "en": "Add address",
-        "gl": "Introducir dirección"
-    },
-    "Introducir teléfono": {
-        "en": "Add phone",
-        "gl": "Introducir teléfono"
-    },
-    "Id acción": {
-        "en": "Action Id",
-        "gl": "Id acción"
-    },
-    "Descripción": {
-        "en": "Description",
-        "gl": "Descrición"
-    },
-    "Introducir Id de accion": {
-        "en": "Add action Id",
-        "gl": "Introducir Id de acción"
-    },
-    "Introducir descripción": {
-        "en": "Add description",
-        "gl": "Introducir descrición"
-    },
-    "Id funcionalidad": {
-        "en": "Functionality id",
-        "gl": "Id funcionalidade"
-    },
-    "Introducir id de funcionalidad": {
-        "en": "Add functionality id",
-        "gl": "Introducir id de funcionalidade"
-    },
-    "Acción": {
-        "en": "Action",
-        "gl": "Acción"
-    },
-    "Funcionalidad": {
-        "en": "Functionality",
-        "gl": "Funcionalidade"
-    },
-    "Insertar acción-funcionalidad": {
-        "en": "Insert action-functionality",
-        "gl": "Insertar acción-funcionalidade"
-    },
-    "Insertar universidad": {
-        "en": "Insert university",
-        "gl": "Insertar universidad"
-    },
-    "Listado de acciones-funcionalidades": {
-        "en": "Actions-functionalities list",
-        "gl": "Listado de acciones-funcionalidades"
-    },
-    "Añadir acción-funcionalidad": {
-        "en": "Add action-functionality",
-        "gl": "Engadir acción-funcionalidade"
-    },
-    "Funcionalidad": {
-        "en": "Functionality",
-        "gl": "Funcionalidade"
-    },
-    "No se ha obtenido ninguna funcionalidad.": {
-        "en": "No functionality has been obtained.",
-        "gl": "Funcionalidade"
-    },
-    "No se ha obtenido ninguna acción-funcionalidad.": {
-        "en": "No action-functionality has been obtained.",
-        "gl": "Non se obtuvo ninguna acción-funcionalidade."
-    },
-    "Acción Funcionalidad": {
-        "en": "Action Functionality",
-        "gl": "Acción Funcionalidade"
-    },
-    "Insertar Permiso": {
-        "en": "Add permission",
-        "gl": "Insertar permiso"
-    },
-    "Rol": {
-        "en": "Role",
-        "gl": "Rol"
-    },
-    "Permiso": {
-        "en": "Permission",
-        "gl": "Permiso"
-    },
-    "Listado de Permisos": {
-        "en": "Permission list",
-        "gl": "Listado de Permisos"
-    },
-    "Añadir Permiso": {
-        "en": "Add permission",
-        "gl": "Engadir permiso"
-    },
-    "No se ha obtenido ningún permiso": {
-        "en": "No permission has been obtained",
-        "gl": "Non se obtuvo ningún permiso"
-    },
-    "El permiso no existe": {
-        "en": "Permission does not exist",
-        "gl": "O permiso non existe"
-    },
-    "Insertar rol": {
-        "en": "Add role",
-        "gl": "Insertar rol"
-    },
-    "Listado de roles": {
-        "en": "Roles list",
-        "gl": "Listado de roles"
-    },
-    "Usuario": {
-        "en": "User",
-        "gl": "Usuario"
-    },
-    "Asignar rol a usuario": {
-        "en": "Assign role to user",
-        "gl": "Asignar rol a usuario"
-    },
-    "No se ha obtenido ningún rol": {
-        "en": "No role has been obtained",
-        "gl": "Non se obtuvo ningún rol"
-    },
-    "El rol no existe": {
-        "en": "Role does not exist",
-        "gl": "O rol non existe"
-    },
-    "La funcionalidad no existe": {
-        "en": "Functionality does not exist",
-        "gl": "A funcionalidade non existe"
-    },
-    "Añadir rol": {
-        "en": "Add role",
-        "gl": "Engadir rol"
-    },
-    "Id rol": {
-        "en": "Role id",
-        "gl": "Id rol"
-    },
-    "Introducir id de rol": {
-        "en": "Add role id",
-        "gl": "Introducir id de rol"
-    },
-    "Curso académico añadido correctamente.": {
-        "en": "Academic course added successfully.",
-        "gl": "Curso académico engadido correctamente."
-    },
-    "Curso académico eliminado correctamente.": {
-        "en": "Academic course deleted successfully.",
-        "gl": "Curso académico eliminado correctamente."
-    },
-    "Curso académico editado correctamente.": {
-        "en": "Academic course edited successfully.",
-        "gl": "Curso académico editado correctamente."
-    },
-    "Universidad añadida correctamente.": {
-        "en": "University added successfully.",
-        "gl": "Universidade engadida correctamente."
-    },
-    "Universidad eliminada correctamente.": {
-        "en": "University deleted successfully.",
-        "gl": "Universidade eliminada correctamente."
-    },
-    "Universidad editada correctamente.": {
-        "en": "University edited successfully.",
-        "gl": "Universidad editada correctamente."
-    },
-    "Acción añadida correctamente.": {
-        "en": "Action added succesfully.",
-        "gl": "Acción engadida correctamente."
-    },
-    "Acción eliminada correctamente.": {
-        "en": "Action deleted succesfully.",
-        "gl": "Acción eliminada correctamente."
-    },
-    "Acción editada correctamente.": {
-        "en": "Action editted succesfully.",
-        "gl": "Acción editada correctamente."
-    },
-    "Funcionalidad añadida correctamente.": {
-        "en": "Functionality added succesfully.",
-        "gl": "Funcionalidade engadida correctamente."
-    },
-    "Funcionalidad eliminada correctamente.": {
-        "en": "Functionality deleted succesfully.",
-        "gl": "Funcionalidade eliminada correctamente."
-    },
-    "Funcionalidad editada correctamente.": {
-        "en": "Functionality editted succesfully.",
-        "gl": "Funcionalidade editada correctamente."
-    },
-    "Acción-funcionalidad añadida correctamente.": {
-        "en": "Action-functionality added succesfully.",
-        "gl": "Acción-funcionalidade engadida correctamente."
-    },
-    "Acción-funcionalidad eliminada correctamente.": {
-        "en": "Action-functionality deleted succesfully.",
-        "gl": "Acción-funcionalidade eliminada correctamente."
-    },
-    "Acción-funcionalidad editada correctamente.": {
-        "en": "Action-functionality editted succesfully.",
-        "gl": "Acción-funcionalidade editada correctamente."
-    },
-    "Accion-funcionalidad duplicada.": {
-        "en": "Action-functionality editted succesfully.",
-        "gl": "Acción-funcionalidade editada correctamente."
-    },
-    "Permiso añadido correctamente.": {
-        "en": "Permission added succesfully.",
-        "gl": "Permiso engadido correctamente."
-    },
-    "Permiso eliminado correctamente.": {
-        "en": "Permission deleted succesfully.",
-        "gl": "Permiso eliminado correctamente."
-    },
-    "Permiso editado correctamente.": {
-        "en": "Permission editted succesfully.",
-        "gl": "Permiso editado correctamente."
-    },
-    "Rol añadido correctamente.": {
-        "en": "Role added succesfully.",
-        "gl": "Rol engadido correctamente."
-    },
-    "Rol eliminado correctamente.": {
-        "en": "Role deleted succesfully.",
-        "gl": "Rol eliminado correctamente."
-    },
-    "Rol editado correctamente.": {
-        "en": "Role editted succesfully.",
-        "gl": "Rol editado correctamente."
-    },
-    "Rol duplicado.": {
-        "en": "Duplicated role.",
-        "gl": "Rol duplicado."
-    },
-    "Rol no añadido correctamente.": {
-        "en": "Rol not added succesfully",
-        "gl": "Rol non añadido correctamente."
-    },
-    "Usuario añadido correctamente.": {
-        "en": "User added succesfully.",
-        "gl": "Usuario engadido correctamente."
-    },
-    "Usuario eliminado correctamente.": {
-        "en": "User deleted succesfully.",
-        "gl": "Usuario eliminado correctamente."
-    },
-    "Usuario editado correctamente.": {
-        "en": "User editted succesfully.",
-        "gl": "Usuario editado correctamente."
-    },
-    "Año de inicio mayor o igual que año fin.": {
-        "en": "Start year greater or equal than end year.",
-        "gl": "Ano de inicio maior ou igual que ano fin."
-    },
-    "No puede existir una diferencia de más de 1 año entre cursos.": {
-        "en": "Difference between courses must not be greater than 1 year.",
-        "gl": "Non pode existir unha diferencia de máis de 1 ano entre cursos."
-    },
-    "Error de conexión con la base de datos.": {
-        "en": "Database connection error.",
-        "gl": "Error de conexión coa base de datos."
-    },
-    "Entidad duplicada. Ya existe en la base de datos.": {
-        "en": "Duplicate entity. It does already exist in database.",
-        "gl": "Entidad duplicada. Xa existe na base de datos."
-    },
-    "La entidad que se intenta eliminar no existe.": {
-        "en": "The entity you are trying to delete does not exist",
-        "gl": "A entidade que intenta eliminar non existe."
-    },
-    "La entidad consultada no existe.": {
-        "en": "Consulted entity does not exist.",
-        "gl": "A entidade consultada non existe."
-    },
-    "Contraseña incorrecta.": {
-        "en": "Incorrect password.",
-        "gl": "Contrasinal incorrecta."
-    },
-    "El usuario no existe.": {
-        "en": "User does not exist.",
-        "gl": "O usuario non existe."
-    },
-    "Asignación de permisos": {
-        "en": "Permission assignation",
-        "gl": "Asignación de permisos"
-    },
-    "Asignar permiso": {
-        "en": "Assign permission",
-        "gl": "Asignar permiso"
-    },
-    "Asignación de permiso": {
-        "en": "Permission assignation",
-        "gl": "Asignación de permiso"
-    },
-    "Editar asignación de permiso": {
-        "en": "Edit permission assignment",
-        "gl": "Editar asignación de permiso"
-    },
-    "Editar universidad '%c'": {
-        "en": "Edit university '%c'",
-        "gl": "Editar universidad '%c'"
-    },
-    "Universidad '%c'": {
-        "en": "University '%c'",
-        "gl": "Universidad '%c'"
-    },
-    "Insertar asignación de permiso": {
-        "en": "Insert permission assignment",
-        "gl": "Inserir asignación de permiso"
-    },
-    "Búsqueda de asignación de permisos": {
-        "en": "Search permissions assignment",
-        "gl": "Procura de asignación de permisos"
-    },
-    "Listado de asignación de permisos": {
-        "en": "Permission assignment list",
-        "gl": "Listado de asignación de permisos"
-    },
-    "Asignación de Roles": {
-        "en": "Roles asgnation",
-        "gl": "Asignación de roles"
-    },
-    "Búsqueda específica": {
-        "en": "Specific search",
-        "gl": "Procura específica"
-    },
-    "Búsqueda de usuarios": {
-        "en": "Users search",
-        "gl": "Procura de usuarios"
-    },
-    "Eliminar curso académico": {
-        "en": "Delete academic course",
-        "gl": "Eliminar curso académico"
-    },
-    "Eliminar universidad": {
-        "en": "Delete university",
-        "gl": "Eliminar universidade"
-    },
-    "Año fuera de rango.": {
-        "en": "Year out of range",
-        "gl": "Ano fora de rango"
-    },
-    "Error de validación.": {
-        "en": "Validation error.",
-        "gl": "Error de validación."
-    },
-    "Items por página": {
-        "en": "Items per page",
-        "gl": "Items por páxina"
-    },
-    "Abreviatura de curso académico": {
-        "en": "Abbreviation for academic year",
-        "gl": "Abreviatura de curso académico"
-    },
-    "Introducir abreviatura de curso académico": {
-        "en": "Enter abbreviation of academic year",
-        "gl": "Engadir abreviatura de curso académico"
-    },
-    "Búsqueda de cursos académicos": {
-        "en": "Search for academic courses",
-        "gl": "Procura de cursos académicos"
-    },
-    "Búsqueda de permisos": {
-        "en": "Search for permissions",
-        "gl": "Procura de permisos"
-    },
-    "No tienes permiso para acceder.": {
-        "en": "You are not allowed to access.",
-        "gl": "Non tes permisos para acceder."
-    },
-    "No tienes permiso para añadir.": {
-        "en": "You are not allowed to add.",
-        "gl": "Non tes permisos para engadir."
-    },
-    "No tienes permiso para eliminar.": {
-        "en": "You are not allowed to delete.",
-        "gl": "Non tes permisos para eliminar."
-    },
-    "No tienes permiso para editar.": {
-        "en": "You are not allowed to edit.",
-        "gl": "Non tes permisos para editar."
-    },
-    "No tienes permiso para visualizar la entidad.": {
-        "en": "You are not allowed to view the entity.",
-        "gl": "Non tes permisos para visualizar a entidade."
-    },
-    "¿Está seguro de que desea eliminar el usuario %c? Esta acción es permanente y no se puede recuperar.": {
-        "en": "Are you sure you want to delete the user %c? This action is permanent and cannot be recovered.",
-        "gl": "Está seguro de que desexa eliminar o usuario %c? Esta acción é permanente e non se pode recuperar."
-    },
-    "¿Está seguro de que desea eliminar la asignación de permiso %c? Esta acción es permanente y no se puede recuperar.": {
-        "en": "Are you sure you want to delete the permission assignment %c? This action is permanent and cannot be recovered.",
-        "gl": "Está seguro de que desexa eliminar a asignación de permiso %c? Esta acción é permanente e non se pode recuperar."
-    },
-    "¿Está seguro de que desea eliminar la universidad %c? Esta acción es permanente y no se puede recuperar.": {
-        "en": "Are you sure you want to delete the university %c? This action is permanent and cannot be recovered.",
-        "gl": "Está seguro de que desexa eliminar a universidade %c? Esta acción é permanente e non se pode recuperar."
-    },
-    "Eliminar asignación de permiso": {
-        "en": "Delete permission assignment",
-        "gl": "Eliminar asignación de permiso"
-    },
-    "Eliminar": {
-        "en": "Delete",
-        "gl": "Eliminar"
-    },
-    "Cerrar": {
-        "en": "Close",
-        "gl": "Pechar"
-    },
-    "Eliminar usuario": {
-        "en": "Delete user",
-        "gl": "Eliminar usuario"
-    },
-    "Error de la base de datos: %c": {
-        "en": "Database error: %c",
-        "gl": "Erro da base de datos: %c"
-    },
-    "Asignación de permiso añadida correctamente.": {
-        "en": "Permission assignment added sucessfully.",
-        "gl": "Asignación de permiso engadida correctamente."
-    },
-    "Asignación de permiso eliminada correctamente.": {
-        "en": "Permission assignment deleted sucessfully.",
-        "gl": "Asignación de permiso eliminada correctamente."
-    },
-    "Asignación de permiso editada correctamente.": {
-        "en": "Permission assignment edited sucessfully.",
-        "gl": "Asignación de permiso editada correctamente."
-    },
-    "¿Está seguro de que desea eliminar el curso académico %c? Esta acción es permanente y no se puede recuperar.": {
-        "en": "Are you sure you want to delete the academic course %c? This action is permanent and cannot be recovered.",
-        "gl": "Está seguro de que desexa eliminar o curso académico %c? Esta acción é permanente e non se pode recuperar."
-    },
-    "Curso académico %c": {
-        "en": "Academic course %c",
-        "gl": "Curso académico %c"
-    },
-    "No se puede borrar por que hay %c elementos en %c que dependen de esta entidad.": {
-        "en": "It cannot be deleted because there are %c elements in %c that depend on this entity.",
-        "gl": "Non se pode borrar por que hai %c elementos en %c que dependen desta entidade."
-    },
-    "¿Está seguro de que desea eliminar la acción %c? Esta acción es permanente y no se puede recuperar.": {
-        "en": "Are you sure you want to delete the action %c? This action is permanent and cannot be recovered.",
-        "gl": "Está seguro de que desexa eliminar a acción %c? Esta acción é permanente e non se pode recuperar."
-    },
-    "Eliminar acción": {
-        "en": "Delete action",
-        "gl": "Eliminar acción"
-    },
-    "Editar acción '%c'": {
-        "en": "Edit action '%c'",
-        "gl": "Editar acción '%c'"
-    },
-    "Búsqueda de acciones": {
-        "en": "Actions search",
-        "gl": "Búsqueda de accións"
-    },
-    "Búsqueda de universidades": {
-        "en": "Universities search",
-        "gl": "Búsqueda de universidades"
-    },
-    "Acción '%c'": {
-        "en": "Action '%c'",
-        "gl": "Acción '%c'"
-    },
-    "No se ha obtenido ninguna acción-funcionalidad": {
-        "en": "No action-functionality has been obtained",
-        "gl": "Non se obtuvo ningunha acción-funcionalidade"
-    },
-    "Acción-funcionalidad '%c'": {
-        "en": "Action-funcionality '%c'",
-        "gl": "Acción-funcionalidade '%c'"
-    },
-    "Editar acción-funcionalidad '%c'": {
-        "en": "Edit action-funcionality '%c'",
-        "gl": "Editat acción-funcionalidade '%c'"
-    },
-    "¿Está seguro de que desea eliminar la acción-funcionalidad %c? Esta acción es permanente y no se puede recuperar.": {
-        "en": "Are you sure you want to delete the action-functionality %c? This action is permanent and cannot be recovered.",
-        "gl": "Está seguro de que desexa eliminar a acción-funcionalidade %c? Esta acción é permanente e non se pode recuperar."
-    },
-    "Eliminar acción-funcionalidad": {
-        "en": "Delete action-functionality",
-        "gl": "Eliminar acción-funcionalidade"
-    },
-    "Búsqueda de acciones-funcionalidades": {
-        "en": "Actions-functionalities search",
-        "gl": "Búsqueda de accións-funcionalidades"
-    },
-    "Funcionalidad '%c'": {
-        "en": "Functionality '%c'",
-        "gl": "Funcionalidade '%c'"
-    },
-    "Editar funcionalidad '%c'": {
-        "en": "Edit functionality '%c'",
-        "gl": "Editar funcionalidade '%c'"
-    },
-    "Eliminar funcionalidad": {
-        "en": "Delete functionality",
-        "gl": "Eliminar funcionalidade"
-    },
-    "¿Está seguro de que desea eliminar la funcionalidad %c? Esta acción es permanente y no se puede recuperar.": {
-        "en": "Are you sure you want to delete the functionality %c? This action is permanent and cannot be recovered.",
-        "gl": "Está seguro de que desexa eliminar a funcionalidade %c? Esta acción é permanente e non se pode recuperar."
-    },
-    "Búsqueda de funcionalidades": {
-        "en": "Functionalities search",
-        "gl": "Procura de funcionalidades"
-    },
-    "¿Está seguro de que desea eliminar el rol %c? Esta acción es permanente y no se puede recuperar.": {
-        "en": "Are you sure you want to delete the role %c? This action is permanent and cannot be recovered.",
-        "gl": "Está seguro de que desexa eliminar o rol %c? Esta acción é permanente e non se pode recuperar."
-    },
-    "Eliminar rol": {
-        "en": "Delete role",
-        "gl": "Eliminar rol"
-    },
-    "Búsqueda de roles": {
-        "en": "Roles search",
-        "gl": "Búsqueda de roles"
-    },
-    "Editar rol '%c'": {
-        "en": "Edit role '%c'",
-        "gl": "Editar rol '%c'"
-    },
-    "Rol '%c'": {
-        "en": "Role '%c'",
-        "gl": "Rol '%c'"
-    },
-    "Editar usuario %c": {
-        "en": "Edit user %c",
-        "gl": "Editar usuario %c"
-    },
-    "Usuario %c": {
-        "en": "User %c",
-        "gl": "Usuario %c"
-    },
-    "Listado de asignación de roles a usuarios": {
-        "en": "List of role assignment to users",
-        "gl": "Listado de asignación de roles a usuarios"
-    },
-    "Usuario-rol '%c'": {
-        "en": "User-role '%c'",
-        "gl": "Usuario-rol '%c'"
-    },
-    "¿Está seguro de que desea eliminar el usuario-rol %c? Esta acción es permanente y no se puede recuperar.": {
-        "en": "Are you sure you want to delete the user-role %c? This action is permanent and cannot be recovered.",
-        "gl": "Está seguro de que desexa eliminar o usuario-rol %c? Esta acción é permanente e non se pode recuperar."
-    },
-    "Eliminar asignación de rol a usuario": {
-        "en": "Delete role assignment to user",
-        "gl": "Eliminar asignación de rol a usuario"
-    },
-    "Búsqueda de roles asignados a usuarios": {
-        "en": "Search for roles assigned to users",
-        "gl": "Búsqueda de roles asignados a usuarios"
-    },
-    "Listado de universidades": {
-        "en": "Universities list",
-        "gl": "Listado de universidades"
-    },
-    "Introducir curso académico": {
-        "en": "Insert academic course",
-        "gl": "Inserir curso académico"
-    },
-    "El atributo dni puede tener una longitud máxima de %c.": {
-        "en": "The dni attribute can have a maximum length of %c.",
-        "gl": "O atributo dni pode ter unha lonxitude máxima de %c."
-    },
-    "El atributo dni no puede tener espacios en blanco.": {
-        "en": "The dni attribute cannot have blanks.",
-        "gl": "O atributo dni non pode ter espazos en branco."
-    },
-    "El atributo dni no puede estar vacío.": {
-        "en": "The dni attribute cannot be empty.",
-        "gl": "O atributo dni non pode estar baleiro"
-    },
-    "El atributo dni contiene algún carácter no válido: %c.": {
-        "en": "The dni attribute contains some invalid character: %c.",
-        "gl": "O atributo dni contén algún caracter non válido: %c."
-    },
-    "El atributo login puede tener una longitud máxima de %c.": {
-        "en": "The login attribute can have a maximum length of %c.",
-        "gl": "O atributo login pode ter unha lonxitude máxima de %c."
-    },
-    "El atributo login no puede tener espacios en blanco.": {
-        "en": "The login attribute cannot have blanks.",
-        "gl": "O atributo login non pode ter espazos en branco."
-    },
-    "El atributo login no puede estar vacío.": {
-        "en": "The login attribute cannot be empty.",
-        "gl": "O atributo dni non pode estar baleiro."
-    },
-    "El atributo login contiene algún carácter no válido: %c.": {
-        "en": "The login attribute contains some invalid character: %c.",
-        "gl": "O atributo login contén algún caracter non válido: %c."
-    },
-    "El atributo contraseña puede tener una longitud máxima de %c.": {
-        "en": "The password attribute can have a maximum length of %c.",
-        "gl": "O atributo contrasinal pode ter unha lonxitude máxima de %c."
-    },
-    "El atributo contraseña no puede tener espacios en blanco.": {
-        "en": "The password attribute cannot have blanks.",
-        "gl": "O atributo contrasinal dni non pode ter espazos en branco."
-    },
-    "El atributo contraseña no puede estar vacío.": {
-        "en": "The password attribute cannot be empty.",
-        "gl": "O atributo contrasinal dni non pode estar baleiro."
-    },
-    "El atributo contraseña contiene algún carácter no válido: %c.": {
-        "en": "The password attribute contains some invalid character: %c.",
-        "gl": "O atributo contrasinal contén algún caracter non válido: %c."
-    },
-    "El atributo confirmación de contraseña puede tener una longitud máxima de %c.": {
-        "en": "The confirm password attribute can have a maximum length of %c.",
-        "gl": "O atributo confirmación de contrasinal pode ter unha lonxitude máxima de %c."
-    },
-    "El atributo confirmación de contraseña no puede tener espacios en blanco.": {
-        "en": "The confirm password attribute cannot have blanks.",
-        "gl": "O atributo confirmación de contrasinal dni non pode ter espazos en branco."
-    },
-    "El atributo confirmación de contraseña no puede estar vacío.": {
-        "en": "The confirm password attribute cannot be empty.",
-        "gl": "O atributo confirmación de contrasinal dni non pode estar baleiro."
-    },
-    "El atributo confirmación de contraseña contiene algún carácter no válido: %c.": {
-        "en": "The confirm password attribute contains some invalid character: %c.",
-        "gl": "O atributo confirmación de contrasinal contén algún caracter non válido: %c."
-    },
-    "Las contraseñas no coinciden.": {
-        "en": "Passwords do not match.",
-        "gl": "Os contrasinais non coinciden."
-    },
-    "El atributo nombre puede tener una longitud máxima de %c.": {
-        "en": "The name attribute can have a maximum length of %c.",
-        "gl": "O atributo nome pode ter unha lonxitude máxima de %c."
-    },
-    "El atributo nombre solo admite carácteres alfabéticos.": {
-        "en": "The name attribute only supports alphabetic characters.",
-        "gl": "O atributo nome só admite caracteres alfabéticos."
-    },
-    "El atributo nombre no puede estar vacío.": {
-        "en": "The name attribute cannot be empty.",
-        "gl": "O atributo nome non pode estar baleiro."
-    },
-    "El atributo nombre contiene algún carácter no válido: %c.": {
-        "en": "The name attribute contains some invalid character: %c.",
-        "gl": "O atributo nome contén algún caracter non válido: %c."
-    },
-    "El atributo apellido puede tener una longitud máxima de %c.": {
-        "en": "The surname attribute can have a maximum length of %c.",
-        "gl": "O atributo apelido pode ter unha lonxitude máxima de %c."
-    },
-    "El atributo apellido solo admite carácteres alfabéticos.": {
-        "en": "The surname attribute only supports alphabetic characters.",
-        "gl": "O atributo apelido só admite caracteres alfabéticos."
-    },
-    "El atributo apellido no puede estar vacío.": {
-        "en": "The surname attribute cannot be empty.",
-        "gl": "O atributo apelido non pode estar baleiro."
-    },
-    "El atributo apellido contiene algún carácter no válido: %c.": {
-        "en": "The surname attribute contains some invalid character: %c.",
-        "gl": "O atributo apelido contén algún caracter non válido: %c."
-    },
-    "El atributo email puede tener una longitud máxima de %c.": {
-        "en": "The email attribute can have a maximum length of %c.",
-        "gl": "O atributo email pode ter unha lonxitude máxima de %c."
-    },
-    "El atributo email tiene un formato erróneo.": {
-        "en": "The email attribute has a wrong format.",
-        "gl": "O atributo email ten un formato erróneo."
-    },
-    "El atributo email no puede estar vacío.": {
-        "en": "The email attribute cannot be empty.",
-        "gl": "O atributo email non pode estar baleiro."
-    },
-    "El atributo email contiene algún carácter no válido: %c.": {
-        "en": "The surname email contains some invalid character: %c.",
-        "gl": "O atributo email contén algún caracter non válido: %c."
-    },
-    "El atributo dirección puede tener una longitud máxima de %c.": {
-        "en": "The address attribute can have a maximum length of %c.",
-        "gl": "O atributo dirección pode ter unha lonxitude máxima de %c."
-    },
-    "El atributo dirección no puede estar vacío.": {
-        "en": "The address attribute cannot be empty.",
-        "gl": "O atributo dirección non pode estar baleiro."
-    },
-    "El atributo dirección contiene algún carácter no válido: %c.": {
-        "en": "The surname address contains some invalid character: %c.",
-        "gl": "O atributo dirección contén algún caracter non válido: %c."
-    },
-    "El atributo teléfono puede tener una longitud máxima de %c.": {
-        "en": "The telephone attribute can have a maximum length of %c.",
-        "gl": "O atributo teléfono pode ter unha lonxitude máxima de %c."
-    },
-    "El atributo teléfono tiene un formato erróneo.": {
-        "en": "The telephone attribute has a wrong format.",
-        "gl": "O atributo teléfono ten un formato erróneo."
-    },
-    "El atributo teléfono no puede estar vacío.": {
-        "en": "The telephone attribute cannot be empty.",
-        "gl": "O atributo teléfono non pode estar baleiro."
-    },
-	    "El atributo descripción puede tener una longitud máxima de %c.": {
-        "en": "The description attribute can have a maximum length of %c.",
-        "gl": "O atributo descripción pode ter unha lonxitude máxima de %c."
-    },
-    "El atributo descripción no puede estar vacío.": {
-        "en": "The description attribute cannot be empty.",
-        "gl": "O atributo descripción non pode estar baleiro."
-    },
-    "El atributo descripción contiene algún carácter no válido: %c.": {
-        "en": "The description attribute contains some invalid character: %c.",
-        "gl": "O atributo descripción contén algún caracter non válido: %c."
-    },
-    "El atributo inicio no puede ser mayor que %c.": {
-        "en": "The start attribute can have a maximum value of %c.",
-        "gl": "O atributo inicio pode ter un valor máximo de %c."
-    },
-    "El atributo fin no puede ser mayor que %c.": {
-        "en": "The end attribute can have a maximum value of %c.",
-        "gl": "O atributo fin pode ter un valor máximo de %c."
-    },
-    "El atributo inicio no puede ser menor que %c.": {
-        "en": "The start attribute can have a minimum value of %c.",
-        "gl": "O atributo inicio pode ter un valor mínimo de %c."
-    },
-    "El atributo fin no puede ser menor que %c.": {
-        "en": "The end attribute can have a minimum value of %c.",
-        "gl": "O atributo fin pode ter un valor mínimo de %c."
-    },
-    "La diferencia debe ser igual a 1 año": {
-        "en": "The difference may be 1 year.",
-        "gl": "A diferencia debe ser 1 ano."
-    },
-    "El año de finalización debe ser mayor que el de comienzo": {
-        "en": "End year may be greater than start year.",
-        "gl": "O ano de remate debe ser maior que o de comezo."
-    },
-    "El atributo abreviatura contiene algún carácter no válido: %c.": {
-        "en": "The abbreviate attribute contains some invalid character: %c.",
-        "gl": "O atributo abreviatura contén algún caracter non válido: %c."
-    }
+  },
+  "DNI": {
+    "en": "DNI",
+    "gl": "DNI"
+  },
+  "Dirección": {
+    "en": "Address",
+    "gl": "Dirección"
+  },
+  "Teléfono": {
+    "en": "Phone",
+    "gl": "Teléfono"
+  },
+  "Tirafondos": {
+    "en": "Screw",
+    "gl": "Parafuso"
+  },
+  "Introducir nombre de usuario": {
+    "en": "Add user name",
+    "gl": "Introducir nome de usuario"
+  },
+  "Introducir contraseña": {
+    "en": "Add password",
+    "gl": "Introducir contrasinal"
+  },
+  "Introducir DNI": {
+    "en": "Add DNI",
+    "gl": "Introducir DNI"
+  },
+  "Introducir nombre": {
+    "en": "Add name",
+    "gl": "Introducir nome"
+  },
+  "Introducir apellido": {
+    "en": "Add first name",
+    "gl": "Introducir primer apelido"
+  },
+  "Introducir email": {
+    "en": "Add email",
+    "gl": "Introducir email"
+  },
+  "Introducir universidad": {
+    "en": "Add university",
+    "gl": "Introducir universidade"
+  },
+  "Introducir nombre de usuario": {
+    "en": "Add user name",
+    "gl": "Introducir nome de usuario"
+  },
+  "Introducir dirección": {
+    "en": "Add address",
+    "gl": "Introducir dirección"
+  },
+  "Introducir teléfono": {
+    "en": "Add phone",
+    "gl": "Introducir teléfono"
+  },
+  "Id acción": {
+    "en": "Action Id",
+    "gl": "Id acción"
+  },
+  "Descripción": {
+    "en": "Description",
+    "gl": "Descrición"
+  },
+  "Introducir Id de accion": {
+    "en": "Add action Id",
+    "gl": "Introducir Id de acción"
+  },
+  "Introducir descripción": {
+    "en": "Add description",
+    "gl": "Introducir descrición"
+  },
+  "Id funcionalidad": {
+    "en": "Functionality id",
+    "gl": "Id funcionalidade"
+  },
+  "Introducir id de funcionalidad": {
+    "en": "Add functionality id",
+    "gl": "Introducir id de funcionalidade"
+  },
+  "Acción": {
+    "en": "Action",
+    "gl": "Acción"
+  },
+  "Funcionalidad": {
+    "en": "Functionality",
+    "gl": "Funcionalidade"
+  },
+  "Insertar acción-funcionalidad": {
+    "en": "Insert action-functionality",
+    "gl": "Insertar acción-funcionalidade"
+  },
+  "Insertar universidad": {
+    "en": "Insert university",
+    "gl": "Insertar universidad"
+  },
+  "Listado de acciones-funcionalidades": {
+    "en": "Actions-functionalities list",
+    "gl": "Listado de acciones-funcionalidades"
+  },
+  "Añadir acción-funcionalidad": {
+    "en": "Add action-functionality",
+    "gl": "Engadir acción-funcionalidade"
+  },
+  "Funcionalidad": {
+    "en": "Functionality",
+    "gl": "Funcionalidade"
+  },
+  "No se ha obtenido ninguna funcionalidad.": {
+    "en": "No functionality has been obtained.",
+    "gl": "Funcionalidade"
+  },
+  "No se ha obtenido ninguna acción-funcionalidad.": {
+    "en": "No action-functionality has been obtained.",
+    "gl": "Non se obtuvo ninguna acción-funcionalidade."
+  },
+  "Acción Funcionalidad": {
+    "en": "Action Functionality",
+    "gl": "Acción Funcionalidade"
+  },
+  "Insertar Permiso": {
+    "en": "Add permission",
+    "gl": "Insertar permiso"
+  },
+  "Rol": {
+    "en": "Role",
+    "gl": "Rol"
+  },
+  "Permiso": {
+    "en": "Permission",
+    "gl": "Permiso"
+  },
+  "Listado de Permisos": {
+    "en": "Permission list",
+    "gl": "Listado de Permisos"
+  },
+  "Listado de centros": {
+    "en": "Centers list",
+    "gl": "Listado de centros"
+  },
+  "Añadir Permiso": {
+    "en": "Add permission",
+    "gl": "Engadir permiso"
+  },
+  "No se ha obtenido ningún permiso": {
+    "en": "No permission has been obtained",
+    "gl": "Non se obtuvo ningún permiso"
+  },
+  "El permiso no existe": {
+    "en": "Permission does not exist",
+    "gl": "O permiso non existe"
+  },
+  "Insertar rol": {
+    "en": "Add role",
+    "gl": "Insertar rol"
+  },
+  "Insertar centro": {
+    "en": "Add center",
+    "gl": "Insertar centro"
+  },
+  "Listado de roles": {
+    "en": "Roles list",
+    "gl": "Listado de roles"
+  },
+  "Usuario": {
+    "en": "User",
+    "gl": "Usuario"
+  },
+  "Asignar rol a usuario": {
+    "en": "Assign role to user",
+    "gl": "Asignar rol a usuario"
+  },
+  "No se ha obtenido ningún rol": {
+    "en": "No role has been obtained",
+    "gl": "Non se obtuvo ningún rol"
+  },
+  "El rol no existe": {
+    "en": "Role does not exist",
+    "gl": "O rol non existe"
+  },
+  "La funcionalidad no existe": {
+    "en": "Functionality does not exist",
+    "gl": "A funcionalidade non existe"
+  },
+  "Añadir rol": {
+    "en": "Add role",
+    "gl": "Engadir rol"
+  },
+  "Id rol": {
+    "en": "Role id",
+    "gl": "Id rol"
+  },
+  "Introducir id de rol": {
+    "en": "Add role id",
+    "gl": "Introducir id de rol"
+  },
+  "Introducir localización": {
+    "en": "Add location",
+    "gl": "Introducir localización"
+  },
+  "Curso académico añadido correctamente.": {
+    "en": "Academic course added successfully.",
+    "gl": "Curso académico engadido correctamente."
+  },
+  "Curso académico eliminado correctamente.": {
+    "en": "Academic course deleted successfully.",
+    "gl": "Curso académico eliminado correctamente."
+  },
+  "Centro eliminado correctamente.": {
+    "en": "Center deleted successfully.",
+    "gl": "Centro eliminado correctamente."
+  },
+  "Curso académico editado correctamente.": {
+    "en": "Academic course edited successfully.",
+    "gl": "Curso académico editado correctamente."
+  },
+  "Centro editado correctamente.": {
+    "en": "Center edited successfully.",
+    "gl": "Centro editado correctamente."
+  },
+  "Universidad añadida correctamente.": {
+    "en": "University added successfully.",
+    "gl": "Universidade engadida correctamente."
+  },
+  "Universidad eliminada correctamente.": {
+    "en": "University deleted successfully.",
+    "gl": "Universidade eliminada correctamente."
+  },
+  "Universidad editada correctamente.": {
+    "en": "University edited successfully.",
+    "gl": "Universidad editada correctamente."
+  },
+  "Acción añadida correctamente.": {
+    "en": "Action added succesfully.",
+    "gl": "Acción engadida correctamente."
+  },
+  "Acción eliminada correctamente.": {
+    "en": "Action deleted succesfully.",
+    "gl": "Acción eliminada correctamente."
+  },
+  "Acción editada correctamente.": {
+    "en": "Action editted succesfully.",
+    "gl": "Acción editada correctamente."
+  },
+  "Funcionalidad añadida correctamente.": {
+    "en": "Functionality added succesfully.",
+    "gl": "Funcionalidade engadida correctamente."
+  },
+  "Funcionalidad eliminada correctamente.": {
+    "en": "Functionality deleted succesfully.",
+    "gl": "Funcionalidade eliminada correctamente."
+  },
+  "Funcionalidad editada correctamente.": {
+    "en": "Functionality editted succesfully.",
+    "gl": "Funcionalidade editada correctamente."
+  },
+  "Acción-funcionalidad añadida correctamente.": {
+    "en": "Action-functionality added succesfully.",
+    "gl": "Acción-funcionalidade engadida correctamente."
+  },
+  "Acción-funcionalidad eliminada correctamente.": {
+    "en": "Action-functionality deleted succesfully.",
+    "gl": "Acción-funcionalidade eliminada correctamente."
+  },
+  "Acción-funcionalidad editada correctamente.": {
+    "en": "Action-functionality editted succesfully.",
+    "gl": "Acción-funcionalidade editada correctamente."
+  },
+  "Accion-funcionalidad duplicada.": {
+    "en": "Action-functionality editted succesfully.",
+    "gl": "Acción-funcionalidade editada correctamente."
+  },
+  "Permiso añadido correctamente.": {
+    "en": "Permission added succesfully.",
+    "gl": "Permiso engadido correctamente."
+  },
+  "Permiso eliminado correctamente.": {
+    "en": "Permission deleted succesfully.",
+    "gl": "Permiso eliminado correctamente."
+  },
+  "Permiso editado correctamente.": {
+    "en": "Permission editted succesfully.",
+    "gl": "Permiso editado correctamente."
+  },
+  "Rol añadido correctamente.": {
+    "en": "Role added succesfully.",
+    "gl": "Rol engadido correctamente."
+  },
+  "Rol eliminado correctamente.": {
+    "en": "Role deleted succesfully.",
+    "gl": "Rol eliminado correctamente."
+  },
+  "Rol editado correctamente.": {
+    "en": "Role editted succesfully.",
+    "gl": "Rol editado correctamente."
+  },
+  "Rol duplicado.": {
+    "en": "Duplicated role.",
+    "gl": "Rol duplicado."
+  },
+  "Rol no añadido correctamente.": {
+    "en": "Rol not added succesfully",
+    "gl": "Rol non añadido correctamente."
+  },
+  "Usuario añadido correctamente.": {
+    "en": "User added succesfully.",
+    "gl": "Usuario engadido correctamente."
+  },
+  "Usuario eliminado correctamente.": {
+    "en": "User deleted succesfully.",
+    "gl": "Usuario eliminado correctamente."
+  },
+  "Usuario editado correctamente.": {
+    "en": "User editted succesfully.",
+    "gl": "Usuario editado correctamente."
+  },
+  "Año de inicio mayor o igual que año fin.": {
+    "en": "Start year greater or equal than end year.",
+    "gl": "Ano de inicio maior ou igual que ano fin."
+  },
+  "No puede existir una diferencia de más de 1 año entre cursos.": {
+    "en": "Difference between courses must not be greater than 1 year.",
+    "gl": "Non pode existir unha diferencia de máis de 1 ano entre cursos."
+  },
+  "Error de conexión con la base de datos.": {
+    "en": "Database connection error.",
+    "gl": "Error de conexión coa base de datos."
+  },
+  "Entidad duplicada. Ya existe en la base de datos.": {
+    "en": "Duplicate entity. It does already exist in database.",
+    "gl": "Entidad duplicada. Xa existe na base de datos."
+  },
+  "La entidad que se intenta eliminar no existe.": {
+    "en": "The entity you are trying to delete does not exist",
+    "gl": "A entidade que intenta eliminar non existe."
+  },
+  "La entidad consultada no existe.": {
+    "en": "Consulted entity does not exist.",
+    "gl": "A entidade consultada non existe."
+  },
+  "Contraseña incorrecta.": {
+    "en": "Incorrect password.",
+    "gl": "Contrasinal incorrecta."
+  },
+  "El usuario no existe.": {
+    "en": "User does not exist.",
+    "gl": "O usuario non existe."
+  },
+  "Asignación de permisos": {
+    "en": "Permission assignation",
+    "gl": "Asignación de permisos"
+  },
+  "Asignar permiso": {
+    "en": "Assign permission",
+    "gl": "Asignar permiso"
+  },
+  "Asignación de permiso": {
+    "en": "Permission assignation",
+    "gl": "Asignación de permiso"
+  },
+  "Editar asignación de permiso": {
+    "en": "Edit permission assignment",
+    "gl": "Editar asignación de permiso"
+  },
+  "Editar universidad '%c'": {
+    "en": "Edit university '%c'",
+    "gl": "Editar universidad '%c'"
+  },
+  "Universidad '%c'": {
+    "en": "University '%c'",
+    "gl": "Universidade '%c'"
+  },
+  "Editar centro '%c'": {
+    "en": "Edit center '%c'",
+    "gl": "Editar centro '%c'"
+  },
+  "Centro '%c'": {
+    "en": "Center '%c'",
+    "gl": "Centro '%c'"
+  },
+  "Universidad": {
+    "en": "University",
+    "gl": "Universidade"
+  },
+  "Localización": {
+    "en": "Location",
+    "gl": "Localización"
+  },
+  "Insertar asignación de permiso": {
+    "en": "Insert permission assignment",
+    "gl": "Inserir asignación de permiso"
+  },
+  "Búsqueda de asignación de permisos": {
+    "en": "Search permissions assignment",
+    "gl": "Procura de asignación de permisos"
+  },
+  "Listado de asignación de permisos": {
+    "en": "Permission assignment list",
+    "gl": "Listado de asignación de permisos"
+  },
+  "Asignación de Roles": {
+    "en": "Roles asgnation",
+    "gl": "Asignación de roles"
+  },
+  "Búsqueda específica": {
+    "en": "Specific search",
+    "gl": "Procura específica"
+  },
+  "Búsqueda de usuarios": {
+    "en": "Users search",
+    "gl": "Procura de usuarios"
+  },
+  "Eliminar curso académico": {
+    "en": "Delete academic course",
+    "gl": "Eliminar curso académico"
+  },
+  "Búsqueda de centros": {
+    "en": "Centers search",
+    "gl": "Procura de centros"
+  },
+  "Eliminar universidad": {
+    "en": "Delete university",
+    "gl": "Eliminar universidade"
+  },
+  "Año fuera de rango.": {
+    "en": "Year out of range",
+    "gl": "Ano fora de rango"
+  },
+  "Error de validación.": {
+    "en": "Validation error.",
+    "gl": "Error de validación."
+  },
+  "Items por página": {
+    "en": "Items per page",
+    "gl": "Items por páxina"
+  },
+  "Abreviatura de curso académico": {
+    "en": "Abbreviation for academic year",
+    "gl": "Abreviatura de curso académico"
+  },
+  "Introducir abreviatura de curso académico": {
+    "en": "Enter abbreviation of academic year",
+    "gl": "Engadir abreviatura de curso académico"
+  },
+  "Búsqueda de cursos académicos": {
+    "en": "Search for academic courses",
+    "gl": "Procura de cursos académicos"
+  },
+  "Búsqueda de permisos": {
+    "en": "Search for permissions",
+    "gl": "Procura de permisos"
+  },
+  "No tienes permiso para acceder.": {
+    "en": "You are not allowed to access.",
+    "gl": "Non tes permisos para acceder."
+  },
+  "No tienes permiso para añadir.": {
+    "en": "You are not allowed to add.",
+    "gl": "Non tes permisos para engadir."
+  },
+  "No tienes permiso para eliminar.": {
+    "en": "You are not allowed to delete.",
+    "gl": "Non tes permisos para eliminar."
+  },
+  "No tienes permiso para editar.": {
+    "en": "You are not allowed to edit.",
+    "gl": "Non tes permisos para editar."
+  },
+  "No tienes permiso para visualizar la entidad.": {
+    "en": "You are not allowed to view the entity.",
+    "gl": "Non tes permisos para visualizar a entidade."
+  },
+  "¿Está seguro de que desea eliminar el usuario %c? Esta acción es permanente y no se puede recuperar.": {
+    "en": "Are you sure you want to delete the user %c? This action is permanent and cannot be recovered.",
+    "gl": "Está seguro de que desexa eliminar o usuario %c? Esta acción é permanente e non se pode recuperar."
+  },
+  "¿Está seguro de que desea eliminar el centro %c? Esta acción es permanente y no se puede recuperar.": {
+    "en": "Are you sure you want to delete the center %c? This action is permanent and cannot be recovered.",
+    "gl": "Está seguro de que desexa eliminar o centro %c? Esta acción é permanente e non se pode recuperar."
+  },
+  "¿Está seguro de que desea eliminar la asignación de permiso %c? Esta acción es permanente y no se puede recuperar.": {
+    "en": "Are you sure you want to delete the permission assignment %c? This action is permanent and cannot be recovered.",
+    "gl": "Está seguro de que desexa eliminar a asignación de permiso %c? Esta acción é permanente e non se pode recuperar."
+  },
+  "¿Está seguro de que desea eliminar la universidad %c? Esta acción es permanente y no se puede recuperar.": {
+    "en": "Are you sure you want to delete the university %c? This action is permanent and cannot be recovered.",
+    "gl": "Está seguro de que desexa eliminar a universidade %c? Esta acción é permanente e non se pode recuperar."
+  },
+  "Eliminar asignación de permiso": {
+    "en": "Delete permission assignment",
+    "gl": "Eliminar asignación de permiso"
+  },
+  "Eliminar centro": {
+    "en": "Delete center",
+    "gl": "Eliminar centro"
+  },
+  "Eliminar": {
+    "en": "Delete",
+    "gl": "Eliminar"
+  },
+  "Cerrar": {
+    "en": "Close",
+    "gl": "Pechar"
+  },
+  "Eliminar usuario": {
+    "en": "Delete user",
+    "gl": "Eliminar usuario"
+  },
+  "Error de la base de datos: %c": {
+    "en": "Database error: %c",
+    "gl": "Erro da base de datos: %c"
+  },
+  "Asignación de permiso añadida correctamente.": {
+    "en": "Permission assignment added sucessfully.",
+    "gl": "Asignación de permiso engadida correctamente."
+  },
+  "Asignación de permiso eliminada correctamente.": {
+    "en": "Permission assignment deleted sucessfully.",
+    "gl": "Asignación de permiso eliminada correctamente."
+  },
+  "Asignación de permiso editada correctamente.": {
+    "en": "Permission assignment edited sucessfully.",
+    "gl": "Asignación de permiso editada correctamente."
+  },
+  "¿Está seguro de que desea eliminar el curso académico %c? Esta acción es permanente y no se puede recuperar.": {
+    "en": "Are you sure you want to delete the academic course %c? This action is permanent and cannot be recovered.",
+    "gl": "Está seguro de que desexa eliminar o curso académico %c? Esta acción é permanente e non se pode recuperar."
+  },
+  "Curso académico %c": {
+    "en": "Academic course %c",
+    "gl": "Curso académico %c"
+  },
+  "No se puede borrar por que hay %c elementos en %c que dependen de esta entidad.": {
+    "en": "It cannot be deleted because there are %c elements in %c that depend on this entity.",
+    "gl": "Non se pode borrar por que hai %c elementos en %c que dependen desta entidade."
+  },
+  "¿Está seguro de que desea eliminar la acción %c? Esta acción es permanente y no se puede recuperar.": {
+    "en": "Are you sure you want to delete the action %c? This action is permanent and cannot be recovered.",
+    "gl": "Está seguro de que desexa eliminar a acción %c? Esta acción é permanente e non se pode recuperar."
+  },
+  "Eliminar acción": {
+    "en": "Delete action",
+    "gl": "Eliminar acción"
+  },
+  "Editar acción '%c'": {
+    "en": "Edit action '%c'",
+    "gl": "Editar acción '%c'"
+  },
+  "Búsqueda de acciones": {
+    "en": "Actions search",
+    "gl": "Búsqueda de accións"
+  },
+  "Búsqueda de universidades": {
+    "en": "Universities search",
+    "gl": "Búsqueda de universidades"
+  },
+  "Acción '%c'": {
+    "en": "Action '%c'",
+    "gl": "Acción '%c'"
+  },
+  "No se ha obtenido ninguna acción-funcionalidad": {
+    "en": "No action-functionality has been obtained",
+    "gl": "Non se obtuvo ningunha acción-funcionalidade"
+  },
+  "Acción-funcionalidad '%c'": {
+    "en": "Action-funcionality '%c'",
+    "gl": "Acción-funcionalidade '%c'"
+  },
+  "Editar acción-funcionalidad '%c'": {
+    "en": "Edit action-funcionality '%c'",
+    "gl": "Editat acción-funcionalidade '%c'"
+  },
+  "¿Está seguro de que desea eliminar la acción-funcionalidad %c? Esta acción es permanente y no se puede recuperar.": {
+    "en": "Are you sure you want to delete the action-functionality %c? This action is permanent and cannot be recovered.",
+    "gl": "Está seguro de que desexa eliminar a acción-funcionalidade %c? Esta acción é permanente e non se pode recuperar."
+  },
+  "Eliminar acción-funcionalidad": {
+    "en": "Delete action-functionality",
+    "gl": "Eliminar acción-funcionalidade"
+  },
+  "Búsqueda de acciones-funcionalidades": {
+    "en": "Actions-functionalities search",
+    "gl": "Búsqueda de accións-funcionalidades"
+  },
+  "Funcionalidad '%c'": {
+    "en": "Functionality '%c'",
+    "gl": "Funcionalidade '%c'"
+  },
+  "Editar funcionalidad '%c'": {
+    "en": "Edit functionality '%c'",
+    "gl": "Editar funcionalidade '%c'"
+  },
+  "Eliminar funcionalidad": {
+    "en": "Delete functionality",
+    "gl": "Eliminar funcionalidade"
+  },
+  "¿Está seguro de que desea eliminar la funcionalidad %c? Esta acción es permanente y no se puede recuperar.": {
+    "en": "Are you sure you want to delete the functionality %c? This action is permanent and cannot be recovered.",
+    "gl": "Está seguro de que desexa eliminar a funcionalidade %c? Esta acción é permanente e non se pode recuperar."
+  },
+  "Búsqueda de funcionalidades": {
+    "en": "Functionalities search",
+    "gl": "Procura de funcionalidades"
+  },
+  "¿Está seguro de que desea eliminar el rol %c? Esta acción es permanente y no se puede recuperar.": {
+    "en": "Are you sure you want to delete the role %c? This action is permanent and cannot be recovered.",
+    "gl": "Está seguro de que desexa eliminar o rol %c? Esta acción é permanente e non se pode recuperar."
+  },
+  "Eliminar rol": {
+    "en": "Delete role",
+    "gl": "Eliminar rol"
+  },
+  "Búsqueda de roles": {
+    "en": "Roles search",
+    "gl": "Búsqueda de roles"
+  },
+  "Editar rol '%c'": {
+    "en": "Edit role '%c'",
+    "gl": "Editar rol '%c'"
+  },
+  "Rol '%c'": {
+    "en": "Role '%c'",
+    "gl": "Rol '%c'"
+  },
+  "Editar usuario %c": {
+    "en": "Edit user %c",
+    "gl": "Editar usuario %c"
+  },
+  "Usuario %c": {
+    "en": "User %c",
+    "gl": "Usuario %c"
+  },
+  "Listado de asignación de roles a usuarios": {
+    "en": "List of role assignment to users",
+    "gl": "Listado de asignación de roles a usuarios"
+  },
+  "Usuario-rol '%c'": {
+    "en": "User-role '%c'",
+    "gl": "Usuario-rol '%c'"
+  },
+  "¿Está seguro de que desea eliminar el usuario-rol %c? Esta acción es permanente y no se puede recuperar.": {
+    "en": "Are you sure you want to delete the user-role %c? This action is permanent and cannot be recovered.",
+    "gl": "Está seguro de que desexa eliminar o usuario-rol %c? Esta acción é permanente e non se pode recuperar."
+  },
+  "Eliminar asignación de rol a usuario": {
+    "en": "Delete role assignment to user",
+    "gl": "Eliminar asignación de rol a usuario"
+  },
+  "Búsqueda de roles asignados a usuarios": {
+    "en": "Search for roles assigned to users",
+    "gl": "Búsqueda de roles asignados a usuarios"
+  },
+  "Listado de universidades": {
+    "en": "Universities list",
+    "gl": "Listado de universidades"
+  },
+  "Introducir curso académico": {
+    "en": "Insert academic course",
+    "gl": "Inserir curso académico"
+  },
+  "El atributo dni puede tener una longitud máxima de %c.": {
+    "en": "The dni attribute can have a maximum length of %c.",
+    "gl": "O atributo dni pode ter unha lonxitude máxima de %c."
+  },
+  "El atributo dni no puede tener espacios en blanco.": {
+    "en": "The dni attribute cannot have blanks.",
+    "gl": "O atributo dni non pode ter espazos en branco."
+  },
+  "El atributo dni no puede estar vacío.": {
+    "en": "The dni attribute cannot be empty.",
+    "gl": "O atributo dni non pode estar baleiro"
+  },
+  "El atributo dni contiene algún carácter no válido: %c.": {
+    "en": "The dni attribute contains some invalid character: %c.",
+    "gl": "O atributo dni contén algún caracter non válido: %c."
+  },
+  "El atributo login puede tener una longitud máxima de %c.": {
+    "en": "The login attribute can have a maximum length of %c.",
+    "gl": "O atributo login pode ter unha lonxitude máxima de %c."
+  },
+  "El atributo login no puede tener espacios en blanco.": {
+    "en": "The login attribute cannot have blanks.",
+    "gl": "O atributo login non pode ter espazos en branco."
+  },
+  "El atributo login no puede estar vacío.": {
+    "en": "The login attribute cannot be empty.",
+    "gl": "O atributo dni non pode estar baleiro."
+  },
+  "El atributo login contiene algún carácter no válido: %c.": {
+    "en": "The login attribute contains some invalid character: %c.",
+    "gl": "O atributo login contén algún caracter non válido: %c."
+  },
+  "El atributo contraseña puede tener una longitud máxima de %c.": {
+    "en": "The password attribute can have a maximum length of %c.",
+    "gl": "O atributo contrasinal pode ter unha lonxitude máxima de %c."
+  },
+  "El atributo contraseña no puede tener espacios en blanco.": {
+    "en": "The password attribute cannot have blanks.",
+    "gl": "O atributo contrasinal dni non pode ter espazos en branco."
+  },
+  "El atributo contraseña no puede estar vacío.": {
+    "en": "The password attribute cannot be empty.",
+    "gl": "O atributo contrasinal dni non pode estar baleiro."
+  },
+  "El atributo contraseña contiene algún carácter no válido: %c.": {
+    "en": "The password attribute contains some invalid character: %c.",
+    "gl": "O atributo contrasinal contén algún caracter non válido: %c."
+  },
+  "El atributo confirmación de contraseña puede tener una longitud máxima de %c.": {
+    "en": "The confirm password attribute can have a maximum length of %c.",
+    "gl": "O atributo confirmación de contrasinal pode ter unha lonxitude máxima de %c."
+  },
+  "El atributo confirmación de contraseña no puede tener espacios en blanco.": {
+    "en": "The confirm password attribute cannot have blanks.",
+    "gl": "O atributo confirmación de contrasinal dni non pode ter espazos en branco."
+  },
+  "El atributo confirmación de contraseña no puede estar vacío.": {
+    "en": "The confirm password attribute cannot be empty.",
+    "gl": "O atributo confirmación de contrasinal dni non pode estar baleiro."
+  },
+  "El atributo confirmación de contraseña contiene algún carácter no válido: %c.": {
+    "en": "The confirm password attribute contains some invalid character: %c.",
+    "gl": "O atributo confirmación de contrasinal contén algún caracter non válido: %c."
+  },
+  "Las contraseñas no coinciden.": {
+    "en": "Passwords do not match.",
+    "gl": "Os contrasinais non coinciden."
+  },
+  "El atributo nombre puede tener una longitud máxima de %c.": {
+    "en": "The name attribute can have a maximum length of %c.",
+    "gl": "O atributo nome pode ter unha lonxitude máxima de %c."
+  },
+  "El atributo nombre solo admite carácteres alfabéticos.": {
+    "en": "The name attribute only supports alphabetic characters.",
+    "gl": "O atributo nome só admite caracteres alfabéticos."
+  },
+  "El atributo nombre no puede estar vacío.": {
+    "en": "The name attribute cannot be empty.",
+    "gl": "O atributo nome non pode estar baleiro."
+  },
+  "El atributo nombre contiene algún carácter no válido: %c.": {
+    "en": "The name attribute contains some invalid character: %c.",
+    "gl": "O atributo nome contén algún caracter non válido: %c."
+  },
+  "El atributo apellido puede tener una longitud máxima de %c.": {
+    "en": "The surname attribute can have a maximum length of %c.",
+    "gl": "O atributo apelido pode ter unha lonxitude máxima de %c."
+  },
+  "El atributo apellido solo admite carácteres alfabéticos.": {
+    "en": "The surname attribute only supports alphabetic characters.",
+    "gl": "O atributo apelido só admite caracteres alfabéticos."
+  },
+  "El atributo apellido no puede estar vacío.": {
+    "en": "The surname attribute cannot be empty.",
+    "gl": "O atributo apelido non pode estar baleiro."
+  },
+  "El atributo apellido contiene algún carácter no válido: %c.": {
+    "en": "The surname attribute contains some invalid character: %c.",
+    "gl": "O atributo apelido contén algún caracter non válido: %c."
+  },
+  "El atributo email puede tener una longitud máxima de %c.": {
+    "en": "The email attribute can have a maximum length of %c.",
+    "gl": "O atributo email pode ter unha lonxitude máxima de %c."
+  },
+  "El atributo email tiene un formato erróneo.": {
+    "en": "The email attribute has a wrong format.",
+    "gl": "O atributo email ten un formato erróneo."
+  },
+  "El atributo email no puede estar vacío.": {
+    "en": "The email attribute cannot be empty.",
+    "gl": "O atributo email non pode estar baleiro."
+  },
+  "El atributo email contiene algún carácter no válido: %c.": {
+    "en": "The surname email contains some invalid character: %c.",
+    "gl": "O atributo email contén algún caracter non válido: %c."
+  },
+  "El atributo dirección puede tener una longitud máxima de %c.": {
+    "en": "The address attribute can have a maximum length of %c.",
+    "gl": "O atributo dirección pode ter unha lonxitude máxima de %c."
+  },
+  "El atributo dirección no puede estar vacío.": {
+    "en": "The address attribute cannot be empty.",
+    "gl": "O atributo dirección non pode estar baleiro."
+  },
+  "El atributo dirección contiene algún carácter no válido: %c.": {
+    "en": "The surname address contains some invalid character: %c.",
+    "gl": "O atributo dirección contén algún caracter non válido: %c."
+  },
+  "El atributo teléfono puede tener una longitud máxima de %c.": {
+    "en": "The telephone attribute can have a maximum length of %c.",
+    "gl": "O atributo teléfono pode ter unha lonxitude máxima de %c."
+  },
+  "El atributo teléfono tiene un formato erróneo.": {
+    "en": "The telephone attribute has a wrong format.",
+    "gl": "O atributo teléfono ten un formato erróneo."
+  },
+  "El atributo teléfono no puede estar vacío.": {
+    "en": "The telephone attribute cannot be empty.",
+    "gl": "O atributo teléfono non pode estar baleiro."
+  },
+  "El atributo descripción puede tener una longitud máxima de %c.": {
+    "en": "The description attribute can have a maximum length of %c.",
+    "gl": "O atributo descripción pode ter unha lonxitude máxima de %c."
+  },
+  "El atributo descripción no puede estar vacío.": {
+    "en": "The description attribute cannot be empty.",
+    "gl": "O atributo descripción non pode estar baleiro."
+  },
+  "El atributo descripción contiene algún carácter no válido: %c.": {
+    "en": "The description attribute contains some invalid character: %c.",
+    "gl": "O atributo descripción contén algún caracter non válido: %c."
+  },
+  "El atributo inicio no puede ser mayor que %c.": {
+    "en": "The start attribute can have a maximum value of %c.",
+    "gl": "O atributo inicio pode ter un valor máximo de %c."
+  },
+  "El atributo fin no puede ser mayor que %c.": {
+    "en": "The end attribute can have a maximum value of %c.",
+    "gl": "O atributo fin pode ter un valor máximo de %c."
+  },
+  "El atributo inicio no puede ser menor que %c.": {
+    "en": "The start attribute can have a minimum value of %c.",
+    "gl": "O atributo inicio pode ter un valor mínimo de %c."
+  },
+  "El atributo fin no puede ser menor que %c.": {
+    "en": "The end attribute can have a minimum value of %c.",
+    "gl": "O atributo fin pode ter un valor mínimo de %c."
+  },
+  "La diferencia debe ser igual a 1 año": {
+    "en": "The difference may be 1 year.",
+    "gl": "A diferencia debe ser 1 ano."
+  },
+  "El año de finalización debe ser mayor que el de comienzo": {
+    "en": "End year may be greater than start year.",
+    "gl": "O ano de remate debe ser maior que o de comezo."
+  },
+  "El atributo abreviatura contiene algún carácter no válido: %c.": {
+    "en": "The abbreviate attribute contains some invalid character: %c.",
+    "gl": "O atributo abreviatura contén algún caracter non válido: %c."
+  }
 }
 

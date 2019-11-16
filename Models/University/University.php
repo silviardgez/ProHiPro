@@ -12,9 +12,9 @@ class University
     }
 
     public function constructEntity($id=NULL, $academicCourse=NULL, $name=NULL) {
-        $this->id = $id;
-        $this->academic_course = $academicCourse;
-        $this->name = $name;
+        $this->setId($id);
+        $this->setAcademicCourse($academicCourse);
+        $this->setName($name);
     }
 
     public function getId()
