@@ -12,17 +12,6 @@ CREATE DATABASE `TEC` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 -- SELECTS FOR USE
 --
 USE `TEC`;
---
--- GIVES PERMISSION OF USE AND DELETES THE USER THAT WE WANT TO CREATE FOR THERE IS
---
-GRANT USAGE ON * . * TO `userTEC`@`localhost`;
-	DROP USER `userTEC`@`localhost`;
---
--- CREATES THE USER AND GIVES YOU PASSWORD - GIVES PERMIT OF USE AND GIVES PERMITS ON THE DATABASE
---
-CREATE USER IF NOT EXISTS `userTEC`@`localhost` IDENTIFIED BY 'passTEC';
-GRANT USAGE ON *.* TO `userTEC`@`localhost` REQUIRE NONE WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0;
-GRANT ALL PRIVILEGES ON `TEC`.* TO `userTEC`@`localhost` WITH GRANT OPTION;
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 -- TABLE STRUCTURE FOR TABLE `USER`
@@ -146,17 +135,35 @@ CREATE TABLE `UNIVERSITY` (
 ALTER TABLE `UNIVERSITY` ADD UNIQUE KEY `uidx` (`academic_course_id`, `name`);
 -- --------------------------------------------------------
 -- --------------------------------------------------------
+
+-- TABLE STRUCTURE FOR TABLE `BUILDING`
+-- --------------------------------------------------------
+-- --------------------------------------------------------
+CREATE TABLE `BUILDING` (
+  `id` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,  
+  `location` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
+  `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
+  `user_id` varchar(9) COLLATE latin1_spanish_ci NOT NULL,
+  PRIMARY KEY(`Id`),
+  FOREIGN KEY (`user_id`)
+    REFERENCES `USER`(`login`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+ALTER TABLE `BUILDING` ADD UNIQUE KEY `uidx` (`location`, `name`, `user_id`);
+-- --------------------------------------------------------
+-- --------------------------------------------------------
+
 -- TABLE STRUCTURE FOR TABLE `CENTER`
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 CREATE TABLE `CENTER` (
-  `IdCenter` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,  
-  `IdUniversity` int(8) COLLATE latin1_spanish_ci NOT NULL,
+  `id` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
+  `university_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
   `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
   `location` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
-  PRIMARY KEY(`IdCenter`, `IdUniversity`),
-  FOREIGN KEY (`IdUniversity`) 
-	REFERENCES `UNIVERSITY`(`IdUniversity`)
+  PRIMARY KEY(`id`),
+  FOREIGN KEY (`university_id`)
+	REFERENCES `UNIVERSITY`(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 -- --------------------------------------------------------
 -- --------------------------------------------------------
@@ -165,12 +172,15 @@ CREATE TABLE `CENTER` (
 -- --------------------------------------------------------
 CREATE TABLE `BUILDING` (
   `IdBuilding` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,  
-  `IdCenter` int(8) COLLATE latin1_spanish_ci NOT NULL,
+  `center_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
   `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
-  PRIMARY KEY(`IdBuilding`, `IdCenter`),
-  FOREIGN KEY (`IdCenter`) 
-	REFERENCES `CENTER`(`IdCenter`)
+  PRIMARY KEY(`IdBuilding`, `center_id`),
+  FOREIGN KEY (`center_id`)
+	REFERENCES `CENTER`(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+ALTER TABLE `CENTER` ADD UNIQUE KEY `uidx` (`university_id`, `name`, `user_id`);
+
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 -- TABLE STRUCTURE FOR TABLE `SPACE`
@@ -184,6 +194,7 @@ CREATE TABLE `SPACE` (
   FOREIGN KEY (`IdBuilding`) 
 	REFERENCES `BUILDING`(`IdBuilding`)  
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+ALTER TABLE `SPACE` ADD UNIQUE KEY `uidx` (`building_id`, `name`);
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 -- TABLE STRUCTURE FOR TABLE `DEGREE`
@@ -191,11 +202,11 @@ CREATE TABLE `SPACE` (
 -- --------------------------------------------------------
 CREATE TABLE `DEGREE` (
   `IdDegree` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,  
-  `IdCenter` int(8) COLLATE latin1_spanish_ci NOT NULL,
+  `center_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
   `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
-  PRIMARY KEY(`IdDegree`, `IdCenter`),
-  FOREIGN KEY (`IdCenter`) 
-	REFERENCES `CENTER`(`IdCenter`)   
+  PRIMARY KEY(`IdDegree`, `center_id`),
+  FOREIGN KEY (`center_id`)
+	REFERENCES `CENTER`(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 -- --------------------------------------------------------
 -- --------------------------------------------------------
@@ -301,7 +312,8 @@ INSERT INTO `FUNCTIONALITY` (`IdFunctionality`, `name`, `description`) VALUES
 ('6', 'AcademicCourseManagement', 'AcademicCourseManagement'),
 ('7', 'FuncActionManagement', 'FuncActionManagement'),
 ('8', 'UserRoleManagement', 'UserRoleManagement'),
-('9', 'UniversityManagement', 'UniversityManagement');
+('9', 'UniversityManagement', 'UniversityManagement'),
+('10', 'CenterManagement', 'CenterManagement');
 
 
 INSERT INTO `FUNC_ACTION` (`IdFuncAction`,`IdFunctionality`, `IdAction`) VALUES
@@ -349,7 +361,12 @@ INSERT INTO `FUNC_ACTION` (`IdFuncAction`,`IdFunctionality`, `IdAction`) VALUES
 ('42','9','2'),
 ('43','9','3'),
 ('44','9','4'),
-('45','9','5');
+('45','9','5'),
+('46','10','1'),
+('47','10','2'),
+('48','10','3'),
+('49','10','4'),
+('50','10','5');
 
 INSERT INTO `USER` (`login`,`password`,`dni`, `name`,`surname`,`email`,`address`,`telephone`) VALUES
 ('admin','21232f297a57a5a743894a0e4a801fc3' , '111222333A','Administrador','Administrador', 'admin@admin.com', 'address', '666555444');
@@ -407,7 +424,12 @@ INSERT INTO `PERMISSION` (`role_id`,`func_action_id`) VALUES
 (1,'42'),
 (1,'43'),
 (1,'44'),
-(1,'45');
+(1,'45'),
+(1,'46'),
+(1,'47'),
+(1,'48'),
+(1,'49'),
+(1,'50');
 
 INSERT INTO `ACADEMIC_COURSE` (`id`, `academic_course_abbr`, `start_year`, `end_year`) VALUES
 (1, '18/19', '2018', '2019'),

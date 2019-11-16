@@ -6,6 +6,7 @@ use PHPUnit\Framework\TestCase;
 include_once '../Models/User/User.php';
 include_once '../Models/User/UserDAO.php';
 include_once '../Models/Common/DAOException.php';
+include_once './testDB.php';
 
 final class UserTest extends TestCase
 {
@@ -15,6 +16,8 @@ final class UserTest extends TestCase
 
     public static function setUpBeforeClass(): void
     {
+        initTestDB();
+
         self::$userDAO = new UserDAO();
         self::$exampleUser = new User('_test_', 'test_pass', '11111111A', 'test', 'test user', 'test@example.com',
             'calle falsa 123', '666444666');
@@ -35,7 +38,16 @@ final class UserTest extends TestCase
     {
         try {
             self::$userDAO->delete('login', '_test_');
-        } catch (Exception $e) {}
+        } catch (Exception $e) {
+        }
+    }
+
+    public static function tearDownAfterClass(): void
+    {
+        try {
+            initTestDB();
+        } catch (Exception $e) {
+        }
     }
 
     public function testCanBeCreated()
@@ -101,54 +113,5 @@ final class UserTest extends TestCase
         $this->assertTrue($usersCreated[2]->getLogin() == '_test_3');
 
         self::$userDAO->delete('name', 'test');
-    }
-
-    public function testIntCanBeCreated()
-    {
-        $postData = self::$exampleUserArray;
-        self::curlPost($postData, 'add');
-        $userCreated = self::$userDAO->show("login", "_test_");
-        $this->assertInstanceOf(User::class, $userCreated);
-    }
-
-    public function testIntCanBeUpdated()
-    {
-        $user = clone self::$exampleUser;
-        self::$userDAO->add($user);
-        $postData = self::$exampleUserArray;
-        $postData['address'] = 'calle falsa 124';
-        self::curlPost($postData, "edit");
-        $userCreated = self::$userDAO->show("login", "_test_");
-        $this->assertEquals('calle falsa 124', $userCreated->getAddress());
-    }
-
-    public function testIntCanBeDeleted()
-    {
-        $user = clone self::$exampleUser;
-        self::$userDAO->add($user);
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt(
-            $ch,
-            CURLOPT_URL,
-            "http://localhost/Controllers/UserController.php?action=delete&login=_test_&confirm=true"
-        );
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_exec($ch);
-        curl_close($ch);
-
-        $this->expectException(DAOException::class);
-        $userCreated = self::$userDAO->show("login", "_test_");
-    }
-
-    private function curlPost($postData, $action) {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_URL, "http://localhost/Controllers/UserController.php?action=".$action."&login=_test_");
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_exec($ch);
-        curl_close($ch);
     }
 }

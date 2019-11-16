@@ -1,42 +1,57 @@
 <?php
+
 session_start();
 include_once '../Functions/Authentication.php';
+
 if (!IsAuthenticated()) {
     header('Location:../index.php');
 }
-include_once '../Models/Role/RoleDAO.php';
+
+include_once '../Models/Center/CenterDAO.php';
+include_once '../Models/University/UniversityDAO.php';
+include_once '../Models/User/UserDAO.php';
 include_once '../Models/Common/DAOException.php';
 include_once '../Views/Common/Head.php';
 include_once '../Views/Common/DefaultView.php';
-include_once '../Views/Role/RoleShowAllView.php';
-include_once '../Views/Role/RoleAddView.php';
-include_once '../Views/Role/RoleShowView.php';
-include_once '../Views/Role/RoleEditView.php';
-include_once '../Views/Role/RoleSearchView.php';
+include_once '../Views/Center/CenterShowAllView.php';
+include_once '../Views/Center/CenterAddView.php';
+include_once '../Views/Center/CenterShowView.php';
+include_once '../Views/Center/CenterEditView.php';
+include_once '../Views/Center/CenterSearchView.php';
 include_once '../Views/Common/PaginationView.php';
 include_once '../Functions/HavePermission.php';
 include_once '../Functions/OpenDeletionModal.php';
 include_once '../Functions/Redirect.php';
-include_once '../Functions/Redirect.php';
 include_once '../Functions/Messages.php';
 include_once '../Functions/Pagination.php';
-//DAO
-$roleDAO = new RoleDAO();
-$rolePrimaryKey = "id";
-$value = $_REQUEST[$rolePrimaryKey];
+
+//DAOS
+$centerDAO = new CenterDAO();
+$universityDAO = new UniversityDAO();
+$userDAO = new UserDAO();
+
+//Data required
+$universityData = $universityDAO->showAll();
+$userData = $userDAO->showAll();
+
+$centerPrimaryKey = "id";
+$value = $_REQUEST[$centerPrimaryKey];
+
 $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "";
 switch ($action) {
     case "add":
-        if (HavePermission("Role", "ADD")) {
+        if (HavePermission("Center", "ADD")) {
             if (!isset($_POST["submit"])) {
-                new RoleAddView();
+                new CenterAddView($universityData, $userData);
             } else {
                 try {
-                    $role = new Role();
-                    $role->setName($_POST["name"]);
-                    $role->setDescription($_POST["description"]);
-                    $roleDAO->add($role);
-                    goToShowAllAndShowSuccess("Rol añadido correctamente.");
+                    $center = new Center();
+                    $center->setUniversity($universityDAO->show("id", $_POST["university_id"]));
+                    $center->setUser($userDAO->show("login", $_POST["user_id"]));
+                    $center->setName($_POST["name"]);
+                    $center->setLocation($_POST["location"]);
+                    $centerDAO->add($center);
+                    goToShowAllAndShowSuccess("Centro añadido correctamente.");
                 } catch (DAOException $e) {
                     goToShowAllAndShowError($e->getMessage());
                 } catch (ValidationException $ve) {
@@ -48,21 +63,21 @@ switch ($action) {
         }
         break;
     case "delete":
-        if (HavePermission("Role", "DELETE")) {
+        if (HavePermission("Center", "DELETE")) {
             if (isset($_REQUEST["confirm"])) {
                 try {
-                    $roleDAO->delete($rolePrimaryKey, $value);
-                    goToShowAllAndShowSuccess("Rol eliminado correctamente.");
+                    $centerDAO->delete($centerPrimaryKey, $value);
+                    goToShowAllAndShowSuccess("Centro eliminado correctamente.");
                 } catch (DAOException $e) {
                     goToShowAllAndShowError($e->getMessage());
                 }
             } else {
                 try {
-                    $roleDAO->checkDependencies($value);
+                    $centerDAO->checkDependencies($value);
                     showAll();
-                    openDeletionModal("Eliminar rol", "¿Está seguro de que desea eliminar " .
-                        "el rol %" . $value . "%? Esta acción es permanente y no se puede recuperar.",
-                        "../Controllers/RoleController.php?action=delete&id=" . $value . "&confirm=true");
+                    openDeletionModal("Eliminar centro", "¿Está seguro de que desea eliminar " .
+                        "el centro %" . $value . "%? Esta acción es permanente y no se puede recuperar.",
+                        "../Controllers/CenterController.php?action=delete&id=" . $value . "&confirm=true");
                 } catch (DAOException $e) {
                     goToShowAllAndShowError($e->getMessage());
                 }
@@ -72,10 +87,10 @@ switch ($action) {
         }
         break;
     case "show":
-        if (HavePermission("Role", "SHOWCURRENT")) {
+        if (HavePermission("Center", "SHOWCURRENT")) {
             try {
-                $roleData = $roleDAO->show($rolePrimaryKey, $value);
-                new RoleShowView($roleData);
+                $centerData = $centerDAO->show($centerPrimaryKey, $value);
+                new CenterShowView($centerData);
             } catch (DAOException $e) {
                 goToShowAllAndShowError($e->getMessage());
             } catch (ValidationException $ve) {
@@ -86,41 +101,46 @@ switch ($action) {
         }
         break;
     case "edit":
-        if (HavePermission("Role", "EDIT")) {
+        if (HavePermission("Center", "EDIT")) {
             try {
-                $role = $roleDAO->show($rolePrimaryKey, $value);
+                $center = $centerDAO->show($centerPrimaryKey, $value);
                 if (!isset($_POST["submit"])) {
-                    new RoleEditView($role);
+                    new CenterEditView($center, $universityData, $userData);
                 } else {
-                    $role->setId($value);
-                    $role->setName($_POST["name"]);
-                    $role->setDescription($_POST["description"]);
-                    $roleDAO->edit($role);
-                    goToShowAllAndShowSuccess("Rol editado correctamente.");
+                    $center->setId($value);
+                    $center->setUniversity($universityDAO->show("id", $_POST["university_id"]));
+                    $center->setUser($userDAO->show("login", $_POST["user_id"]));
+                    $center->setName($_POST["name"]);
+                    $center->setLocation($_POST["location"]);
+                    $universityDAO->edit($center);
+                    goToShowAllAndShowSuccess("Centro editado correctamente.");
                 }
             } catch (DAOException $e) {
                 goToShowAllAndShowError($e->getMessage());
             } catch (ValidationException $ve) {
                 goToShowAllAndShowError($ve->getMessage());
             }
-        } else {
+        } else{
             goToShowAllAndShowError("No tienes permiso para editar.");
         }
         break;
     case "search":
-        if (HavePermission("Role", "SHOWALL")) {
+        if (HavePermission("Center", "SHOWALL")) {
             if (!isset($_POST["submit"])) {
-                new RoleSearchView();
+                new CenterSearchView($universityData);
             } else {
                 try {
-                    $role = new Role();
+                    $center = new Center();
+                    if(!empty($_POST["university_id"])) {
+                        $center->setUniversity($universityDAO->show("id", $_POST["university_id"]));
+                    }
                     if(!empty($_POST["name"])) {
-                        $role->setName($_POST["name"]);
+                        $center->setName($_POST["name"]);
                     }
-                    if(!empty($_POST["description"])) {
-                        $role->setDescription($_POST["description"]);
+                    if(!empty($_POST["location"])) {
+                        $center->setLocation($_POST["location"]);
                     }
-                    showAllSearch($role);
+                    showAllSearch($center);
                 } catch (DAOException $e) {
                     goToShowAllAndShowError($e->getMessage());
                 } catch (ValidationException $ve) {
@@ -135,30 +155,34 @@ switch ($action) {
         showAll();
         break;
 }
+
 function showAll() {
     showAllSearch(NULL);
 }
+
 function showAllSearch($search) {
-    if (HavePermission("Role", "SHOWALL")) {
+    if (HavePermission("Center", "SHOWALL")) {
         try {
             $currentPage = getCurrentPage();
             $itemsPerPage = getItemsPerPage();
             $toSearch = getToSearch($search);
-            $totalRoles = $GLOBALS["roleDAO"]->countTotalRoles($toSearch);
-            $rolesData = $GLOBALS["roleDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
-            new RoleShowAllView($rolesData, $itemsPerPage, $currentPage, $totalRoles, $toSearch);
+            $totalCenters = $GLOBALS["centerDAO"]->countTotalCenters($toSearch);
+            $centersData = $GLOBALS["centerDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
+            new CenterShowAllView($centersData, $itemsPerPage, $currentPage, $totalCenters, $toSearch);
         } catch (DAOException $e) {
-            new RoleShowAllView(array());
+            new CenterShowAllView(array());
             errorMessage($e->getMessage());
         }
     } else {
         accessDenied();
     }
 }
+
 function goToShowAllAndShowError($message) {
     showAll();
     errorMessage($message);
 }
+
 function goToShowAllAndShowSuccess($message) {
     showAll();
     successMessage($message);

@@ -22,7 +22,7 @@ class PermissionSearchView {
                 <div class="form-group">
                     <label for="name" data-translate="Rol"></label>
                     <select class="form-control" id="role_id" name="role_id">
-                        <option value=""></option>
+                        <option data-translate="Introducir rol" value=""></option>
                         <?php foreach ($this->roles as $rol): ?>
                             <option value="<?php echo $rol->getId() ?>"><?php echo $rol->getName() ?></option>
                         <?php endforeach;?>
@@ -31,7 +31,7 @@ class PermissionSearchView {
                 <div class="form-group">
                     <label for="description" data-translate="Permiso"></label>
                     <select class="form-control" id="func_action_id" name="func_action_id"?>
-                        <option value=""></option>
+                        <option data-translate="Introducir acción-funcionalidad" value=""></option>
                         <?php foreach ($this->funcActions as $funcAction): ?>
                             <option value="<?php echo $funcAction->getId() ?>">
                                 <?php echo $funcAction->getAction()->getName()." - ". $funcAction->getFunctionality()->getName(); ?></option>

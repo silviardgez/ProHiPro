@@ -28,6 +28,11 @@ class UniversityShowView {
                     <input type="text" class="form-control" id="name" name="name" data-translate="Introducir curso académico"
                            value="<?php echo $this->university->getAcademicCourse()->getAcademicCourseAbbr() ?>" readonly>
                 </div>
+                <div class="form-group">
+                    <label for="user_id" data-translate="Responsable"></label>
+                    <input type="text" class="form-control" id="user_id" name="user_id"
+                           value="<?php echo $this->university->getUser()->getName()." ".$this->university->getUser()->getSurname() ?>" readonly>
+                </div>
             </form>
         </main>
         <?php
