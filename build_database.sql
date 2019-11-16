@@ -189,6 +189,7 @@ CREATE TABLE `SPACE` (
   `building_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
   `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
   `capacity` int(3) COLLATE latin1_spanish_ci NOT NULL,
+  `office` bit COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY(`id`, `building_id`),
   FOREIGN KEY (`building_id`)
 	REFERENCES `BUILDING`(`id`)
@@ -217,11 +218,11 @@ CREATE TABLE `DEGREE` (
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 CREATE TABLE `SUBJECT` (
-  `IdSubject` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
+  `id` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
   `degree_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
   `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
   `description` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
-  PRIMARY KEY(`IdSubject`, `degree_id`),
+  PRIMARY KEY(`id`, `degree_id`),
   FOREIGN KEY (`degree_id`)
 	REFERENCES `DEGREE`(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
@@ -231,12 +232,12 @@ CREATE TABLE `SUBJECT` (
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 CREATE TABLE `SUBJECT_GROUP` (
-  `IdSubjectGroup` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
-  `IdSubject` int(8) COLLATE latin1_spanish_ci NOT NULL,
+  `id` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
+  `subject_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
   `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
-  PRIMARY KEY(`IdSubjectGroup`, `IdSubject`),
-  FOREIGN KEY (`IdSubject`)
-	REFERENCES `SUBJECT`(`IdSubject`)
+  PRIMARY KEY(`id`, `subject_id`),
+  FOREIGN KEY (`subject_id`)
+	REFERENCES `SUBJECT`(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 -- --------------------------------------------------------
 -- --------------------------------------------------------
@@ -244,14 +245,15 @@ CREATE TABLE `SUBJECT_GROUP` (
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 CREATE TABLE `TEACHER` (
-  `IdTeacher` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
-  `dni` varchar(9) COLLATE latin1_spanish_ci NOT NULL,
-  `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
-  `surname` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
-  `email` varchar(40) COLLATE latin1_spanish_ci NOT NULL,
-  `address` varchar(60) COLLATE latin1_spanish_ci NOT NULL,
-  `telephone` varchar(11) COLLATE latin1_spanish_ci NOT NULL,
-  PRIMARY KEY(`IdTeacher`)
+  `id` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
+  `user_id` varchar(9) COLLATE latin1_spanish_ci NOT NULL UNIQUE,
+  `space_id` int(8) COLLATE latin1_spanish_ci,
+  `dedication` varchar(4) COLLATE latin1_spanish_ci NOT NULL,
+  PRIMARY KEY(`id`),
+  FOREIGN KEY (`space_id`)
+	REFERENCES `SPACE`(`id`),
+  FOREIGN KEY (`user_id`)
+	REFERENCES `USER`(`login`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 -- --------------------------------------------------------
 -- --------------------------------------------------------
@@ -260,12 +262,12 @@ CREATE TABLE `TEACHER` (
 -- --------------------------------------------------------
 CREATE TABLE `TUTORIAL` (
   `IdTutorial` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
-  `IdTeacher` int(8) COLLATE latin1_spanish_ci NOT NULL,
+  `teacher_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
   `start_date` datetime COLLATE latin1_spanish_ci NOT NULL,
   `end_date` datetime COLLATE latin1_spanish_ci NOT NULL,
-  PRIMARY KEY(`IdTutorial`, `IdTeacher`),
-  FOREIGN KEY (`IdTeacher`)
-	REFERENCES `TEACHER`(`IdTeacher`)
+  PRIMARY KEY(`IdTutorial`, `teacher_id`),
+  FOREIGN KEY (`teacher_id`)
+	REFERENCES `TEACHER`(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 -- --------------------------------------------------------
 -- --------------------------------------------------------
@@ -273,12 +275,13 @@ CREATE TABLE `TUTORIAL` (
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 CREATE TABLE `DEPARTMENT` (
-  `IdDepartment` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
-  `IdResponsable` int(8) COLLATE latin1_spanish_ci NOT NULL,
+  `id` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
+  `code` varchar(6) COLLATE latin1_spanish_ci NOT NULL UNIQUE,
+  `teacher_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
   `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
-  PRIMARY KEY(`IdDepartment`, `IdResponsable`),
-  FOREIGN KEY (`IdResponsable`)
-	REFERENCES `TEACHER`(`IdTeacher`)
+  PRIMARY KEY(`id`),
+  FOREIGN KEY (`teacher_id`)
+	REFERENCES `TEACHER`(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 -- --------------------------------------------------------
 -- --------------------------------------------------------
@@ -287,14 +290,14 @@ CREATE TABLE `DEPARTMENT` (
 -- --------------------------------------------------------
 CREATE TABLE `SCHEDULE` (
   `IdSchedule` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
-  `IdSpace` int(8) COLLATE latin1_spanish_ci NOT NULL,
-  `IdTeacher` int(8) COLLATE latin1_spanish_ci NOT NULL,
-  `IdSubjectGroup` int(8) COLLATE latin1_spanish_ci NOT NULL,
-  PRIMARY KEY(`IdSchedule`, `IdSpace`, `IdTeacher`, `IdSubjectGroup`),
-  FOREIGN KEY (`IdSpace`)
+  `space_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
+  `teacher_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
+  `subject_group_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
+  PRIMARY KEY(`IdSchedule`, `space_id`, `teacher_id`, `subject_group_id`),
+  FOREIGN KEY (`space_id`)
 	REFERENCES `SPACE`(`id`),
-  FOREIGN KEY (`IdTeacher`)
-	REFERENCES `TEACHER`(`IdTeacher`),
-  FOREIGN KEY (`IdSubjectGroup`)
-	REFERENCES `SUBJECT_GROUP`(`IdSubjectGroup`)
+  FOREIGN KEY (`teacher_id`)
+	REFERENCES `TEACHER`(`id`),
+  FOREIGN KEY (`subject_group_id`)
+	REFERENCES `SUBJECT_GROUP`(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;

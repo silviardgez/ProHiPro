@@ -1,4 +1,5 @@
 <?php
+
 include_once '../Functions/HavePermission.php';
 
 class BuildingShowAllView
@@ -17,14 +18,13 @@ class BuildingShowAllView
         $this->itemsPerPage = $itemsPerPage;
         $this->currentPage = $currentPage;
         $this->totalBuildings = $totalBuildings;
-        $this->totalPages = ceil($totalBuildings / $itemsPerPage);
+        $this->totalPages = ceil($totalBuildings/$itemsPerPage);
         $this->stringToSearch = $toSearch;
         $this->searching=$searching;
         $this->render();
     }
 
-    function render()
-    {
+    function render(){
         ?>
         <head>
             <link rel="stylesheet" href="../CSS/default.css" />
@@ -38,6 +38,7 @@ class BuildingShowAllView
                     <a class="btn btn-primary" role="button" href="../Controllers/BuildingController.php">
                         <p data-translate="Volver"></p>
                     </a>
+
                 <?php else:
                     if (HavePermission("Building", "ADD")): ?>
                         <a class="btn btn-success" role="button"
@@ -58,7 +59,9 @@ class BuildingShowAllView
                         <th class="actions-row"><label data-translate="Acciones"></label></th>
                     </tr>
                     </thead>
-                    <?php if (!empty($this->buildings)): ?>
+
+                    <?php if(!empty($this->buildings)):?>
+
                     <tbody>
                     <?php foreach ($this->buildings as $building): ?>
                         <tr>
@@ -89,8 +92,7 @@ class BuildingShowAllView
                 <?php endif; ?>
 
                 <?php new PaginationView($this->itemsPerPage, $this->currentPage, $this->totalBuildings,
-                    "Building") ?>
-
+                    "Building")?>
             </div>
         </main>
 

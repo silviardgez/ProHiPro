@@ -8,32 +8,31 @@ class AcademicCourseShowAllView
     private $totalAcademicCourses;
     private $totalPages;
     private $stringToSearch;
-    function __construct($academicCoursesData, $itemsPerPage = NULL, $currentPage = NULL, $totalAcademicCourses = NULL,
-                         $stringToSearch = NULL)
-    {
-        $this->academicCourses = $academicCoursesData;
-        $this->itemsPerPage = $itemsPerPage;
-        $this->currentPage = $currentPage;
-        $this->totalAcademicCourses = $totalAcademicCourses;
-        $this->totalPages = ceil($totalAcademicCourses / $itemsPerPage);
-        $this->stringToSearch = $stringToSearch;
-        $this->render();
-    }
-    function render()
-    {
-        ?>
-        <head>
-            <link rel="stylesheet" href="../CSS/default.css"/>
-            <link rel="stylesheet" href="../CSS/table.css"/>
-        </head>
-        <main role="main" class="margin-main ml-sm-auto px-4">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-3">
-                <h1 class="h2" data-translate="Listado de cursos académicos"></h1>
-                <!-- Search -->
-                <form class="row" action='../Controllers/AcademicCourseController.php' method='POST'>
-                    <input type="text" class="form-control" id="search" name="search" data-translate="Texto a buscar">
-                    <button name="submit" type="submit" class="btn btn-primary" data-translate="Buscar"></button>
-                </form>
+function __construct($academicCoursesData, $itemsPerPage=NULL, $currentPage=NULL, $totalAcademicCourses=NULL,
+                     $stringToSearch=NULL){
+    $this->academicCourses = $academicCoursesData;
+    $this->itemsPerPage = $itemsPerPage;
+    $this->currentPage = $currentPage;
+    $this->totalAcademicCourses = $totalAcademicCourses;
+    $this->totalPages = ceil($totalAcademicCourses/$itemsPerPage);
+    $this->stringToSearch = $stringToSearch;
+    $this->render();
+}
+function render(){
+?>
+<head>
+    <link rel="stylesheet" href="../CSS/default.css" />
+    <link rel="stylesheet" href="../CSS/table.css" />
+</head>
+<main role="main" class="margin-main ml-sm-auto px-4">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-3">
+        <h1 class="h2" data-translate="Listado de cursos académicos"></h1>
+        <!-- Search -->
+        <form class="row" action='../Controllers/AcademicCourseController.php' method='POST'>
+            <input type="text" class="form-control" id="search" name="search" data-translate="Texto a buscar">
+            <button name="submit" type="submit" class="btn btn-primary" data-translate="Buscar"></button>
+        </form>
+
 
                 <?php if (!empty($this->stringToSearch)): ?>
                     <a class="btn btn-primary" role="button" href="../Controllers/AcademicCourseController.php">

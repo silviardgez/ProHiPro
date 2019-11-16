@@ -1,6 +1,8 @@
 <?php
 declare (strict_types=1);
+
 use PHPUnit\Framework\TestCase;
+
 include_once '../Models/Center/Center.php';
 include_once '../Models/University/University.php';
 include_once '../Models/User/User.php';
@@ -13,6 +15,7 @@ include_once '../Models/User/UserDAO.php';
 include_once '../Models/Building/BuildingDAO.php';
 include_once '../Models/Common/DAOException.php';
 include_once './testDB.php';
+
 final class CenterTest extends TestCase
 {
     protected static $centerDAO;
@@ -21,6 +24,7 @@ final class CenterTest extends TestCase
     protected static $academicCourseDAO;
     protected static $buildingDAO;
     protected static $exampleCenter;
+
     public static function setUpBeforeClass(): void
     {
         initTestDB();
@@ -44,6 +48,7 @@ final class CenterTest extends TestCase
         self::$buildingDAO->add($building);
         self::$exampleCenter = new Center(1, $university1, 'ESEI', $building, $user);
     }
+
     protected function tearDown(): void
     {
         try {
@@ -51,6 +56,7 @@ final class CenterTest extends TestCase
         } catch (Exception $e) {
         }
     }
+
     public static function tearDownAfterClass(): void
     {
         try {
@@ -58,6 +64,7 @@ final class CenterTest extends TestCase
         } catch (Exception $e) {
         }
     }
+
     public function testCanBeCreated()
     {
         $center = clone self::$exampleCenter;
@@ -66,6 +73,7 @@ final class CenterTest extends TestCase
             $center
         );
     }
+
     public function testCanBeAdded()
     {
         $center = clone self::$exampleCenter;
@@ -73,6 +81,7 @@ final class CenterTest extends TestCase
         $centerCreated = self::$centerDAO->show("id", 1);
         $this->assertInstanceOf(Center::class, $centerCreated);
     }
+
     public function testCanBeUpdated()
     {
         $center = clone self::$exampleCenter;
@@ -82,6 +91,7 @@ final class CenterTest extends TestCase
         $centerCreated = self::$centerDAO->show("id", 1);
         $this->assertEquals($centerCreated->getUniversity()->getId(), 2);
     }
+
     public function testCanBeDeleted()
     {
         $center = clone self::$exampleCenter;
@@ -90,11 +100,13 @@ final class CenterTest extends TestCase
         $this->expectException(DAOException::class);
         $centerCreated = self::$centerDAO->show("id", 1);
     }
+
     public function testCanShowNone()
     {
         $centerCreated = self::$centerDAO->showAll("id", 1);
         $this->assertEmpty($centerCreated);
     }
+
     public function testCanShowSeveral()
     {
         $center1 = clone self::$exampleCenter;
@@ -108,6 +120,7 @@ final class CenterTest extends TestCase
         self::$centerDAO->add($center1);
         self::$centerDAO->add($center2);
         self::$centerDAO->add($center3);
+
         $universitiessCreated = self::$centerDAO->showAll();
         $this->assertTrue($universitiessCreated[0]->getId() == 2);
         $this->assertTrue($universitiessCreated[1]->getId() == 3);

@@ -1,6 +1,8 @@
 <?php
 declare (strict_types=1);
+
 use PHPUnit\Framework\TestCase;
+
 include_once '../Models/University/University.php';
 include_once '../Models/AcademicCourse/AcademicCourse.php';
 include_once '../Models/User/User.php';
@@ -9,15 +11,18 @@ include_once '../Models/AcademicCourse/AcademicCourseDAO.php';
 include_once '../Models/User/UserDAO.php';
 include_once '../Models/Common/DAOException.php';
 include_once './testDB.php';
+
 final class UniversityTest extends TestCase
 {
     protected static $universityDAO;
     protected static $academicCourseDAO;
     protected static $userDAO;
     protected static $exampleUniversity;
+
     public static function setUpBeforeClass(): void
     {
         initTestDB();
+
         self::$universityDAO = new UniversityDAO();
         self::$academicCourseDAO = new AcademicCourseDAO();
         self::$userDAO = new UserDAO();
@@ -32,6 +37,7 @@ final class UniversityTest extends TestCase
         self::$userDAO->add($user);
         self::$exampleUniversity = new University(1, $acCourse1, 'Universidade de Vigo', $user);
     }
+
     protected function tearDown(): void
     {
         try {
@@ -39,6 +45,7 @@ final class UniversityTest extends TestCase
         } catch (Exception $e) {
         }
     }
+
     public static function tearDownAfterClass(): void
     {
         try {
@@ -46,6 +53,7 @@ final class UniversityTest extends TestCase
         } catch (Exception $e) {
         }
     }
+
     public function testCanBeCreated()
     {
         $university = clone self::$exampleUniversity;
@@ -54,6 +62,7 @@ final class UniversityTest extends TestCase
             $university
         );
     }
+
     public function testCanBeAdded()
     {
         $university = clone self::$exampleUniversity;
@@ -61,6 +70,7 @@ final class UniversityTest extends TestCase
         $universityCreated = self::$universityDAO->show("id", 1);
         $this->assertInstanceOf(University::class, $universityCreated);
     }
+
     public function testCanBeUpdated()
     {
         $university = clone self::$exampleUniversity;
@@ -70,19 +80,23 @@ final class UniversityTest extends TestCase
         $universityCreated = self::$universityDAO->show("id", 1);
         $this->assertEquals($universityCreated->getAcademicCourse()->getId(), 2);
     }
+
     public function testCanBeDeleted()
     {
         $university = clone self::$exampleUniversity;
         self::$universityDAO->add($university);
         self::$universityDAO->delete("id", 1);
+
         $this->expectException(DAOException::class);
         $universityCreated = self::$universityDAO->show("id", 1);
     }
+
     public function testCanShowNone()
     {
         $universityCreated = self::$universityDAO->showAll("id", 1);
         $this->assertEmpty($universityCreated);
     }
+
     public function testCanShowSeveral()
     {
         $university1 = clone self::$exampleUniversity;
@@ -93,12 +107,17 @@ final class UniversityTest extends TestCase
         $university3 = clone self::$exampleUniversity;
         $university3->setId(4);
         $university3->setAcademicCourse(new AcademicCourse(3, '52/53', 2052, 2053));
+
         self::$universityDAO->add($university1);
         self::$universityDAO->add($university2);
         self::$universityDAO->add($university3);
+
         $universitiessCreated = self::$universityDAO->showAll();
+
         $this->assertTrue($universitiessCreated[0]->getId() == 2);
         $this->assertTrue($universitiessCreated[1]->getId() == 3);
         $this->assertTrue($universitiessCreated[2]->getId() == 4);
     }
+
 }
+

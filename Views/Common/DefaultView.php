@@ -147,8 +147,8 @@
                                 </a>
                                 <ul class="flex-column collapse items-collapsed" id="collapseDegree">
                                 <?php
-                                if (HavePermission("Degree", "SHOWALL")) {
-                                    ?>
+                                    if (HavePermission("Degree", "SHOWALL")) {
+                                ?>
                                     <li class="nav-item">
                                         <a class="nav-link" href="../Controllers/DegreeController.php">
                                             <p data-translate="Titulaciones"></p>

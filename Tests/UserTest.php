@@ -15,7 +15,8 @@ final class UserTest extends TestCase
 
     public static function setUpBeforeClass(): void
     {
-        initTestDB();
+        shell_exec('mysqldump --opt --no-create-info  -u userTEC -ppassTEC TEC > ../dump.sql');
+        shell_exec('mysql -u userTEC -ppassTEC < ../build_database.sql');
 
         self::$userDAO = new UserDAO();
         self::$exampleUser = new User('_test_', 'test_pass', '11111111A', 'test', 'test user', 'test@example.com',
@@ -33,7 +34,8 @@ final class UserTest extends TestCase
     public static function tearDownAfterClass(): void
     {
         try {
-            initTestDB();
+            shell_exec('mysql -u userTEC -ppassTEC < ../build_database.sql');
+            shell_exec('mysql -u userTEC -ppassTEC TEC < ../dump.sql');
         } catch (Exception $e) {
         }
     }
@@ -102,4 +104,55 @@ final class UserTest extends TestCase
 
         self::$userDAO->delete('name', 'test');
     }
+
+    public function testIntCanBeCreated()
+    {
+        $postData = self::$exampleUserArray;
+        self::curlPost($postData, 'add');
+        $userCreated = self::$userDAO->show("login", "_test_");
+        $this->assertInstanceOf(User::class, $userCreated);
+    }
+
+    public function testIntCanBeUpdated()
+    {
+        $user = clone self::$exampleUser;
+        self::$userDAO->add($user);
+        $postData = self::$exampleUserArray;
+        $postData['address'] = 'calle falsa 124';
+        self::curlPost($postData, "edit");
+        $userCreated = self::$userDAO->show("login", "_test_");
+        $this->assertEquals('calle falsa 124', $userCreated->getAddress());
+    }
+
+    public function testIntCanBeDeleted()
+    {
+        $user = clone self::$exampleUser;
+        self::$userDAO->add($user);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt(
+            $ch,
+            CURLOPT_URL,
+            "http://localhost/Controllers/UserController.php?action=delete&login=_test_&confirm=true"
+        );
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_exec($ch);
+        curl_close($ch);
+
+        $this->expectException(DAOException::class);
+        $userCreated = self::$userDAO->show("login", "_test_");
+    }
+
+    private function curlPost($postData, $action)
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_URL, "http://localhost/Controllers/UserController.php?action=" . $action);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_exec($ch);
+        curl_close($ch);
+    }
+
 }

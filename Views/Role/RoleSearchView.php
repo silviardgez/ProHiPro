@@ -25,7 +25,7 @@ class RoleSearchView {
                 <div id="description-div" class="form-group">
                     <label for="description" data-translate="Descripción"></label>
                     <input type="text" class="form-control" id="description" name="description" data-translate="Introducir descripción"
-					    maxlength="100" oninput="checkDescriptionEmptyRole(this);">
+					maxlength="100" oninput="checkDescriptionEmptyRole(this);">
                 </div>
                 <button name="submit" type="submit" class="btn btn-primary" data-translate="Enviar"></button>
             </form>

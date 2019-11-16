@@ -12,7 +12,9 @@ final class AcademicCourseTest extends TestCase
     public static function setUpBeforeClass(): void
 
     {
-        initTestDB();
+        shell_exec('mysqldump --opt --no-create-info  -u userTEC -ppassTEC TEC > ../dump.sql');
+        shell_exec('mysql -u userTEC -ppassTEC < ../build_database.sql');
+
         self::$academicCourseDAO = new AcademicCourseDAO();
         self::$exampleAcademicCourse = new AcademicCourse(1, '50/51', 2050, 2051);
     }
@@ -28,7 +30,8 @@ final class AcademicCourseTest extends TestCase
     public static function tearDownAfterClass(): void
     {
         try {
-            initTestDB();
+            shell_exec('mysql -u userTEC -ppassTEC < ../build_database.sql');
+            shell_exec('mysql -u userTEC -ppassTEC TEC < ../dump.sql');
         } catch (Exception $e) {
         }
     }

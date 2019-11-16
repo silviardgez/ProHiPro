@@ -1,5 +1,5 @@
 <?php
-include_once '../Functions/HavePermission.php';
+
 class FuncActionShowAllView
 {
     private $funcActions;
@@ -8,6 +8,7 @@ class FuncActionShowAllView
     private $totalFuncActions;
     private $totalPages;
     private $stringToSearch;
+
     function __construct($funcActionsData, $itemsPerPage = NULL, $currentPage = NULL, $totalFuncActions = NULL, $stringToSearch = NULL)
     {
         $this->funcActions = $funcActionsData;
@@ -18,6 +19,7 @@ class FuncActionShowAllView
         $this->stringToSearch = $stringToSearch;
         $this->render();
     }
+
     function render()
     {
         ?>
@@ -79,9 +81,9 @@ class FuncActionShowAllView
                     <p data-translate="No se ha obtenido ninguna acción-funcionalidad">.</p>
                 <?php endif; ?>
 
-                <?php new PaginationView($this->itemsPerPage, $this->currentPage, $this->totalFuncActions, "FuncAction"); ?>
-            </div>
-        </main>
+        <?php new PaginationView($this->itemsPerPage, $this->currentPage, $this->totalFuncActions, "FuncAction"); ?>
+    </div>
+</main>
 
         <!-- Icons -->
         <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
