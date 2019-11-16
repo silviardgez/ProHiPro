@@ -167,6 +167,8 @@ CREATE TABLE `BUILDING` (
   FOREIGN KEY (`user_id`)
     REFERENCES `USER`(`login`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+ALTER TABLE `BUILDING` ADD UNIQUE KEY `uidx` (`location`, `name`, `user_id`);
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 -- TABLE STRUCTURE FOR TABLE `CENTER`
@@ -187,6 +189,7 @@ CREATE TABLE `CENTER` (
     REFERENCES `BUILDING`(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
+ALTER TABLE `CENTER` ADD UNIQUE KEY `uidx` (`university_id`, `name`, `user_id`);
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 -- TABLE STRUCTURE FOR TABLE `SPACE`
@@ -201,6 +204,7 @@ CREATE TABLE `SPACE` (
   FOREIGN KEY (`building_id`) 
 	REFERENCES `BUILDING`(`id`)  
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+ALTER TABLE `SPACE` ADD UNIQUE KEY `uidx` (`building_id`, `name`);
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 -- TABLE STRUCTURE FOR TABLE `DEGREE`
