@@ -12,7 +12,6 @@ final class UserTest extends TestCase
 {
     protected static $userDAO;
     protected static $exampleUser;
-    protected static $exampleUserArray;
 
     public static function setUpBeforeClass(): void
     {
@@ -21,17 +20,6 @@ final class UserTest extends TestCase
         self::$userDAO = new UserDAO();
         self::$exampleUser = new User('_test_', 'test_pass', '11111111A', 'test', 'test user', 'test@example.com',
             'calle falsa 123', '666444666');
-        self::$exampleUserArray = array(
-            'submit' => true,
-            'login' => '_test_',
-            'password' => 'test_pass',
-            'dni' => '11111111A',
-            'name' => 'test',
-            'surname' => 'test user',
-            'email' => 'test@example.com',
-            'address' => 'calle falsa 123',
-            'telephone' => '666444666',
-        );
     }
 
     protected function tearDown(): void

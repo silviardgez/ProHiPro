@@ -25,8 +25,6 @@ final class PermissionTest extends TestCase
     protected static $roleDAO;
     protected static $examplePermission;
     protected static $exampleFuncAction;
-    protected static $examplePermissionArray;
-    protected static $exampleFuncActionArray;
 
 
     public static function setUpBeforeClass(): void

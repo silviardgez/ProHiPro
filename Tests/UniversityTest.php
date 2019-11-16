@@ -5,8 +5,10 @@ use PHPUnit\Framework\TestCase;
 
 include_once '../Models/University/University.php';
 include_once '../Models/AcademicCourse/AcademicCourse.php';
+include_once '../Models/User/User.php';
 include_once '../Models/University/UniversityDAO.php';
 include_once '../Models/AcademicCourse/AcademicCourseDAO.php';
+include_once '../Models/User/UserDAO.php';
 include_once '../Models/Common/DAOException.php';
 include_once './testDB.php';
 
@@ -14,8 +16,8 @@ final class UniversityTest extends TestCase
 {
     protected static $universityDAO;
     protected static $academicCourseDAO;
+    protected static $userDAO;
     protected static $exampleUniversity;
-    protected static $exampleUniversityArray;
 
     public static function setUpBeforeClass(): void
     {
@@ -23,13 +25,17 @@ final class UniversityTest extends TestCase
 
         self::$universityDAO = new UniversityDAO();
         self::$academicCourseDAO = new AcademicCourseDAO();
+        self::$userDAO = new UserDAO();
         $acCourse1 = new AcademicCourse(1, '50/51', 2050, 2051);
         $acCourse2 = new AcademicCourse(2, '51/52', 2051, 2052);
         $acCourse3 = new AcademicCourse(3, '52/53', 2052, 2053);
         self::$academicCourseDAO->add($acCourse1);
         self::$academicCourseDAO->add($acCourse2);
         self::$academicCourseDAO->add($acCourse3);
-        self::$exampleUniversity = new University(1, $acCourse1, 'Universidade de Vigo');
+        $user = new User('_test_', 'test_pass', '11111111A', 'test', 'test user', 'test@example.com',
+            'calle falsa 123', '666444666');
+        self::$userDAO->add($user);
+        self::$exampleUniversity = new University(1, $acCourse1, 'Universidade de Vigo', $user);
     }
 
     protected function tearDown(): void

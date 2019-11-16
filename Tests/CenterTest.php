@@ -5,10 +5,14 @@ use PHPUnit\Framework\TestCase;
 
 include_once '../Models/Center/Center.php';
 include_once '../Models/University/University.php';
+include_once '../Models/User/User.php';
+include_once '../Models/Building/Building.php';
 include_once '../Models/AcademicCourse/AcademicCourse.php';
 include_once '../Models/Center/CenterDAO.php';
 include_once '../Models/University/UniversityDAO.php';
 include_once '../Models/AcademicCourse/AcademicCourseDAO.php';
+include_once '../Models/User/UserDAO.php';
+include_once '../Models/Building/BuildingDAO.php';
 include_once '../Models/Common/DAOException.php';
 include_once './testDB.php';
 
@@ -16,9 +20,10 @@ final class CenterTest extends TestCase
 {
     protected static $centerDAO;
     protected static $universityDAO;
+    protected static $userDAO;
     protected static $academicCourseDAO;
+    protected static $buildingDAO;
     protected static $exampleCenter;
-    protected static $exampleCenterArray;
 
     public static function setUpBeforeClass(): void
     {
@@ -27,15 +32,22 @@ final class CenterTest extends TestCase
         self::$centerDAO = new CenterDAO();
         self::$universityDAO = new UniversityDAO();
         self::$academicCourseDAO = new AcademicCourseDAO();
+        self::$userDAO = new UserDAO();
+        self::$buildingDAO = new BuildingDAO();
         $acCourse = new AcademicCourse(1, '50/51', 2050, 2051);
         self::$academicCourseDAO->add($acCourse);
-        $university1 = new University(1, $acCourse, "Universidade de Vigo");
-        $university2 = new University(2, $acCourse, "Universidade de Coruña");
-        $university3 = new University(3, $acCourse, "Universidade de Santiago");
+        $user = new User('_test_', 'test_pass', '11111111A', 'test', 'test user', 'test@example.com',
+            'calle falsa 123', '666444666');
+        self::$userDAO->add($user);
+        $university1 = new University(1, $acCourse, "Universidade de Vigo", $user);
+        $university2 = new University(2, $acCourse, "Universidade de Coruña", $user);
+        $university3 = new University(3, $acCourse, "Universidade de Santiago", $user);
         self::$universityDAO->add($university1);
         self::$universityDAO->add($university2);
         self::$universityDAO->add($university3);
-        self::$exampleCenter = new Center(1, $university1, 'ESEI', 'Edificio Politécnico');
+        $building = new Building(1, 'Edificio Politécnico', 'Ourense', $user);
+        self::$buildingDAO->add($building);
+        self::$exampleCenter = new Center(1, $university1, 'ESEI', $building, $user);
     }
 
     protected function tearDown(): void
