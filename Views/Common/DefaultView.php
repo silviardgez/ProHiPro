@@ -212,12 +212,12 @@
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">
+                                        <a class="nav-link" href="../Controllers/BuildingController.php">
                                             <p data-translate="Edificios"></p>
                                         </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">
+                                        <a class="nav-link" href="../Controllers/SpaceController.php">
                                             <p data-translate="Espacios"></p>
                                         </a>
                                     </li>

@@ -1,16 +1,22 @@
 <?php
 include_once '../Models/Common/DefaultDAO.php';
 include_once '../Models/University/UniversityDAO.php';
+include_once '../Models/Building/BuildingDAO.php';
+include_once '../Models/User/UserDAO.php';
 include_once 'Center.php';
 
 class CenterDAO
 {
     private $defaultDAO;
     private $universityDAO;
+    private $userDAO;
+    private $buildingDAO;
 
     public function __construct() {
         $this->defaultDAO = new DefaultDAO();
         $this->universityDAO = new UniversityDAO();
+        $this->userDAO = new UserDAO();
+        $this->buildingDAO = new BuildingDAO();
     }
 
     function showAll() {
@@ -29,7 +35,9 @@ class CenterDAO
     function show($key, $value) {
         $center = $this->defaultDAO->show("center", $key, $value);
         $university = $this->universityDAO->show("id", $center["university_id"]);
-        return new Center($center["id"], $university, $center["name"], $center["location"]);
+        $user = $this->userDAO->show("login", $center["user_id"]);
+        $building = $this->buildingDAO->show("id", $center["building_id"]);
+        return new Center($center["id"], $university, $center["name"], $building, $user);
     }
 
     function edit($center) {
@@ -57,7 +65,9 @@ class CenterDAO
         $centers = array();
         foreach ($centersDB as $center) {
             $university = $this->universityDAO->show("id", $center["university_id"]);
-            array_push($centers, new Center($center["id"], $university, $center["name"], $center["location"]));
+            $user = $this->userDAO->show("login", $center["user_id"]);
+            $building = $this->buildingDAO->show("id", $center["building_id"]);
+            array_push($centers, new Center($center["id"], $university, $center["name"], $building,$user));
         }
         return $centers;
     }

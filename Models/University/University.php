@@ -4,17 +4,19 @@ class University
     private $id;
     private $academic_course;
     private $name;
+    private $user;
 
-    public function __construct($id=NULL, $academicCourse=NULL, $name=NULL){
+    public function __construct($id=NULL, $academicCourse=NULL, $name=NULL, $user=NULL){
         if(!empty($id)) {
-            $this->constructEntity($id, $academicCourse, $name);
+            $this->constructEntity($id, $academicCourse, $name, $user);
         }
     }
 
-    public function constructEntity($id=NULL, $academicCourse=NULL, $name=NULL) {
+    public function constructEntity($id=NULL, $academicCourse=NULL, $name=NULL, $user=NULL) {
         $this->setId($id);
         $this->setAcademicCourse($academicCourse);
         $this->setName($name);
+        $this->setUser($user);
     }
 
     public function getId()
@@ -45,6 +47,16 @@ class University
     public function setName($name)
     {
         $this->name = $name;
+    }
+
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    public function setUser($user)
+    {
+        $this->user = $user;
     }
 
     public static function expose()

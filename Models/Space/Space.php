@@ -1,24 +1,22 @@
 <?php
-class Center
+class Space
 {
     private $id;
-    private $university;
     private $name;
     private $building;
-    private $user;
+    private $capacity;
 
-    public function __construct($id=NULL, $university=NULL, $name=NULL, $building=NULL, $user=NULL){
+    public function __construct($id=NULL, $name=NULL, $building=NULL, $capacity=NULL){
         if(!empty($id)) {
-            $this->constructEntity($id, $university, $name, $building,$user);
+            $this->constructEntity($id, $name, $building,$capacity);
         }
     }
 
-    public function constructEntity($id=NULL, $university=NULL, $name=NULL, $building=NULL, $user=NULL) {
+    public function constructEntity($id=NULL, $name=NULL, $building=NULL, $capacity=NULL) {
         $this->setId($id);
-        $this->setUniversity($university);
         $this->setName($name);
         $this->setBuilding($building);
-        $this->setUser($user);
+        $this->setCapacity($capacity);
     }
 
     public function getId()
@@ -29,16 +27,6 @@ class Center
     public function setId($id)
     {
         $this->id = $id;
-    }
-
-    public function getUniversity()
-    {
-        return $this->university;
-    }
-
-    public function setUniversity($university)
-    {
-        $this->university = $university;
     }
 
     public function getName()
@@ -61,14 +49,14 @@ class Center
         $this->building = $building;
     }
 
-    public function getUser()
+    public function getCapacity()
     {
-        return $this->user;
+        return $this->capacity;
     }
 
-    public function setUser($user)
+    public function setCapacity($capacity)
     {
-        $this->user = $user;
+        $this->capacity = $capacity;
     }
 
     public static function expose()

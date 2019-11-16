@@ -1110,6 +1110,126 @@
   "El atributo abreviatura contiene algún carácter no válido: %c.": {
     "en": "The abbreviate attribute contains some invalid character: %c.",
     "gl": "O atributo abreviatura contén algún caracter non válido: %c."
+  },
+  "Responsable": {
+    "en": "Owner",
+    "gl": "Responsable"
+  },
+  "Espacio añadido correctamente.": {
+    "en": "Room added successfully.",
+    "gl": "Espazo engadido correctamente."
+  },
+  "Espacio eliminado correctamente.": {
+    "en": "Room deleted successfully.",
+    "gl": "Espazo eliminado correctamente."
+  },
+  "Eliminar espacio": {
+    "en": "Delete room",
+    "gl": "Eliminar espazo"
+  },
+  "Espacio editado correctamente.": {
+    "en": "Room edited successfully.",
+    "gl": "Espazo editado correctamente."
+  },
+  "Listado de espacios": {
+    "en": "Room list",
+    "gl": "Listado de espacios"
+  },
+  "No se ha obtenido ningún espacio": {
+    "en": "No room has been obtained",
+    "gl": "Non se obtuvo ningún espazo"
+  },
+  "Insertar Espacio": {
+    "en": "Add room",
+    "gl": "Engadir espazo"
+  },
+  "Espacio '%c'": {
+    "en": "Room '%c'",
+    "gl": "Espazo '%c'"
+  },
+  "Editar espacio '%c'": {
+    "en": "Edit room '%c'",
+    "gl": "Editar espazo '%c'"
+  },
+  "Búsqueda de espacios": {
+    "en": "Rooms search",
+    "gl": "Procura de espazo"
+  },
+  "Eliminar Espacio": {
+    "en": "Delete room",
+    "gl": "Eliminar espazo"
+  },
+  "¿Está seguro de que desea eliminar el espacio %c? Esta acción es permanente y no se puede recuperar.": {
+    "en": "Are you sure you want to delete the room %c? This action is permanent and cannot be recovered.",
+    "gl": "Está seguro de que desexa eliminar o espazo %c? Esta acción é permanente e non se pode recuperar."
+  },
+  "Edificio añadido correctamente.": {
+    "en": "Building added successfully.",
+    "gl": "Edificio engadido correctamente."
+  },
+  "Edificio eliminado correctamente.": {
+    "en": "Building deleted successfully.",
+    "gl": "Edificio eliminado correctamente."
+  },
+  "Eliminar edificio": {
+    "en": "Delete building",
+    "gl": "Eliminar edificio"
+  },
+  "Edificio editado correctamente.": {
+    "en": "Building edited successfully.",
+    "gl": "Edificio editado correctamente."
+  },
+  "Listado de edificios": {
+    "en": "Building list",
+    "gl": "Listado de edificios"
+  },
+  "No se ha obtenido ningún edificio": {
+    "en": "No building has been obtained",
+    "gl": "Non se obtuvo ningún edificio"
+  },
+  "Insertar Edificio": {
+    "en": "Add building",
+    "gl": "Engadir edificio"
+  },
+  "Edificio '%c'": {
+    "en": "Building '%c'",
+    "gl": "Edificio '%c'"
+  },
+  "Editar edificio '%c'": {
+    "en": "Edit building '%c'",
+    "gl": "Editar edificio '%c'"
+  },
+  "Búsqueda de edificios": {
+    "en": "Buildings search",
+    "gl": "Procura de edificios"
+  },
+  "Eliminar Edificio": {
+    "en": "Delete building",
+    "gl": "Eliminar edificio"
+  },
+  "¿Está seguro de que desea eliminar el edificio %c? Esta acción es permanente y no se puede recuperar.": {
+    "en": "Are you sure you want to delete the building %c? This action is permanent and cannot be recovered.",
+    "gl": "Está seguro de que desexa eliminar o edificio %c? Esta acción é permanente e non se pode recuperar."
+  },
+  "Capacidad": {
+    "en": "Capacity",
+    "gl": "Capacidade"
+  },
+  "Introducir edificio": {
+    "en": "Insert building",
+    "gl": "Inserir edificio"
+  },
+  "Introducir capacidad": {
+    "en": "Insert capacity",
+    "gl": "Inserir capacidade"
+  },
+  "Edificio": {
+    "en": "Building",
+    "gl": "Edificio"
+  },
+  "Añadir espacio": {
+    "en": "Add Room",
+    "gl": "Engadir espazo"
   }
 }
 
