@@ -1,25 +1,32 @@
 <?php
-class UserShowAllView {
+include_once '../Functions/HavePermission.php';
+
+class UserShowAllView
+{
     private $users;
     private $itemsPerPage;
     private $currentPage;
     private $totalUsers;
     private $totalPages;
     private $stringToSearch;
-    function __construct($usersData, $itemsPerPage, $currentPage, $totalUsers, $stringToSearch){
+
+    function __construct($usersData, $itemsPerPage, $currentPage, $totalUsers, $stringToSearch)
+    {
         $this->users = $usersData;
         $this->itemsPerPage = $itemsPerPage;
         $this->currentPage = $currentPage;
         $this->totalUsers = $totalUsers;
-        $this->totalPages = ceil($totalUsers/$itemsPerPage);
+        $this->totalPages = ceil($totalUsers / $itemsPerPage);
         $this->stringToSearch = $stringToSearch;
         $this->render();
     }
-    function render(){
+
+    function render()
+    {
         ?>
         <head>
-            <link rel="stylesheet" href="../CSS/default.css" />
-            <link rel="stylesheet" href="../CSS/table.css" />
+            <link rel="stylesheet" href="../CSS/default.css"/>
+            <link rel="stylesheet" href="../CSS/table.css"/>
         </head>
         <main role="main" class="margin-main ml-sm-auto px-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-3">
@@ -31,12 +38,13 @@ class UserShowAllView {
                     <button name="submit" type="submit" class="btn btn-primary" data-translate="Buscar"></button>
                 </form>
 
-                <?php if ($this->stringToSearch!=null && $this->stringToSearch!=''): ?>
-                    <?php echo "<a class=\"btn btn-primary\" role=\"button\" href=\"../Controllers/UserController.php\" data-translate=\"Volver\"></a>";?>
-                <?php else:?>
-                    <?php echo "<a class=\"btn btn-success\" role=\"button\" href=\"../Controllers/UserController.php?action=add\">
-            <span data-feather=\"plus\"></span><p class=\"btn-show-view\" data-translate=\"Añadir usuario\"></p></a>";?>
-                <?php endif;?>
+                <?php if ($this->stringToSearch != null && $this->stringToSearch != ''): ?>
+                    <?php echo "<a class=\"btn btn-primary\" role=\"button\" href=\"../Controllers/UserController.php\" data-translate=\"Volver\"></a>"; ?>
+                <?php else:
+                    if (HavePermission("User", "ADD")):
+                        echo "<a class=\"btn btn-success\" role=\"button\" href=\"../Controllers/UserController.php?action=add\">
+            <span data-feather=\"plus\"></span><p class=\"btn-show-view\" data-translate=\"Añadir usuario\"></p></a>"; ?>
+                    <?php endif; endif; ?>
 
             </div>
 
@@ -51,7 +59,7 @@ class UserShowAllView {
                         <th class="actions-row" data-translate="Acciones"></th>
                     </tr>
                     </thead>
-                    <?php if(!empty($this->users)):?>
+                    <?php if (!empty($this->users)): ?>
                     <tbody>
                     <?php foreach ($this->users as $user): ?>
                         <tr>
@@ -60,12 +68,18 @@ class UserShowAllView {
                             <td><?php echo $user->getSurname() ?></td>
                             <td><?php echo $user->getEmail() ?></td>
                             <td class="row">
-                                <a href="../Controllers/UserController.php?action=show&login=<?php echo $user->getLogin()?>">
-                                    <span data-feather="eye"></span></a>
-                                <a href="../Controllers/UserController.php?action=edit&login=<?php echo $user->getLogin()?>">
-                                    <span data-feather="edit"></span></a>
-                                <a href="../Controllers/UserController.php?action=delete&login=<?php echo $user->getLogin()?>">
-                                    <span data-feather="trash-2"></span></a>
+                                <?php if (HavePermission("User", "SHOWCURRENT")) { ?>
+                                    <a href="../Controllers/UserController.php?action=show&login=<?php echo $user->getLogin() ?>">
+                                        <span data-feather="eye"></span></a>
+                                <?php }
+                                if (HavePermission("User", "EDIT")) { ?>
+                                    <a href="../Controllers/UserController.php?action=edit&login=<?php echo $user->getLogin() ?>">
+                                        <span data-feather="edit"></span></a>
+                                <?php }
+                                if (HavePermission("User", "DELETE")) { ?>
+                                    <a href="../Controllers/UserController.php?action=delete&login=<?php echo $user->getLogin() ?>">
+                                        <span data-feather="trash-2"></span></a>
+                                <?php } ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -89,4 +103,3 @@ class UserShowAllView {
         <?php
     }
 }
-?>

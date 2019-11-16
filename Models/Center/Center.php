@@ -4,20 +4,20 @@ class Center
     private $id;
     private $university;
     private $name;
-    private $location;
+    private $building;
     private $user;
 
-    public function __construct($id=NULL, $university=NULL, $name=NULL, $location=NULL,$user=NULL){
+    public function __construct($id=NULL, $university=NULL, $name=NULL, $building=NULL, $user=NULL){
         if(!empty($id)) {
-            $this->constructEntity($id, $university, $name, $location,$user);
+            $this->constructEntity($id, $university, $name, $building,$user);
         }
     }
 
-    public function constructEntity($id=NULL, $university=NULL, $name=NULL, $location=NULL,$user=NULL) {
+    public function constructEntity($id=NULL, $university=NULL, $name=NULL, $building=NULL, $user=NULL) {
         $this->setId($id);
         $this->setUniversity($university);
         $this->setName($name);
-        $this->setLocation($location);
+        $this->setBuilding($building);
         $this->setUser($user);
     }
 
@@ -28,7 +28,11 @@ class Center
 
     public function setId($id)
     {
-        $this->id = $id;
+        if (empty($id) || strlen($id)>8) {
+            throw new ValidationException('Error de validación. Id incorrecto.');
+        } else {
+            $this->id = $id;
+        }
     }
 
     public function getUniversity()
@@ -38,7 +42,11 @@ class Center
 
     public function setUniversity($university)
     {
-        $this->university = $university;
+        if (empty($university) || strlen($university)>8) {
+            throw new ValidationException('Error de validación. Id universidad incorrecto.');
+        } else {
+            $this->university = $university;
+        }
     }
 
     public function getName()
@@ -48,17 +56,25 @@ class Center
 
     public function setName($name)
     {
-        $this->name = $name;
+        if (empty($name) || strlen($name)>30) {
+            throw new ValidationException('Error de validación. Nombre incorrecto.');
+        } else {
+            $this->name = $name;
+        }
     }
 
-    public function getLocation()
+    public function getBuilding()
     {
-        return $this->location;
+        return $this->building;
     }
 
-    public function setLocation($location)
+    public function setBuilding($building)
     {
-        $this->location = $location;
+        if (empty($building) || strlen($building)>8) {
+            throw new ValidationException('Error de validación. Id edificio incorrecto.');
+        } else {
+            $this->building = $building;
+        }
     }
 
     public function getUser()
@@ -68,7 +84,11 @@ class Center
 
     public function setUser($user)
     {
-        $this->user = $user;
+        if (empty($user) || strlen($user)>9) {
+            throw new ValidationException('Error de validación. Id usuario incorrecto.');
+        } else {
+            $this->user = $user;
+        }
     }
 
     public static function expose()

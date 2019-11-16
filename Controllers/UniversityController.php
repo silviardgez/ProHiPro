@@ -125,7 +125,7 @@ switch ($action) {
     case "search":
         if (HavePermission("University", "SHOWALL")) {
             if (!isset($_POST["submit"])) {
-                new UniversitySearchView($academicCourseData);
+                new UniversitySearchView($academicCourseData, $userData);
             } else {
                 try {
                     $university = new University();
@@ -134,6 +134,9 @@ switch ($action) {
                     }
                     if(!empty($_POST["name"])) {
                         $university->setName($_POST["name"]);
+                    }
+                    if(!empty($_POST["user_id"])) {
+                        $university->setUser($userDAO->show("login", $_POST["user_id"]));
                     }
                     showAllSearch($university);
                 } catch (DAOException $e) {

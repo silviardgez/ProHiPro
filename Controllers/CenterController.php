@@ -10,6 +10,7 @@ if (!IsAuthenticated()) {
 include_once '../Models/Center/CenterDAO.php';
 include_once '../Models/University/UniversityDAO.php';
 include_once '../Models/User/UserDAO.php';
+include_once '../Models/Building/BuildingDAO.php';
 include_once '../Models/Common/DAOException.php';
 include_once '../Views/Common/Head.php';
 include_once '../Views/Common/DefaultView.php';
@@ -29,10 +30,12 @@ include_once '../Functions/Pagination.php';
 $centerDAO = new CenterDAO();
 $universityDAO = new UniversityDAO();
 $userDAO = new UserDAO();
+$buildingDAO = new BuildingDAO();
 
 //Data required
 $universityData = $universityDAO->showAll();
 $userData = $userDAO->showAll();
+$buildingData = $buildingDAO->showAll();
 
 $centerPrimaryKey = "id";
 $value = $_REQUEST[$centerPrimaryKey];
@@ -42,14 +45,14 @@ switch ($action) {
     case "add":
         if (HavePermission("Center", "ADD")) {
             if (!isset($_POST["submit"])) {
-                new CenterAddView($universityData, $userData);
+                new CenterAddView($universityData, $userData,$buildingData);
             } else {
                 try {
                     $center = new Center();
                     $center->setUniversity($universityDAO->show("id", $_POST["university_id"]));
                     $center->setUser($userDAO->show("login", $_POST["user_id"]));
                     $center->setName($_POST["name"]);
-                    $center->setLocation($_POST["location"]);
+                    $center->setBuilding($buildingDAO->show("id",$_POST["building_id"]));
                     $centerDAO->add($center);
                     goToShowAllAndShowSuccess("Centro añadido correctamente.");
                 } catch (DAOException $e) {
@@ -105,13 +108,13 @@ switch ($action) {
             try {
                 $center = $centerDAO->show($centerPrimaryKey, $value);
                 if (!isset($_POST["submit"])) {
-                    new CenterEditView($center, $universityData, $userData);
+                    new CenterEditView($center, $universityData, $userData, $buildingData);
                 } else {
                     $center->setId($value);
                     $center->setUniversity($universityDAO->show("id", $_POST["university_id"]));
                     $center->setUser($userDAO->show("login", $_POST["user_id"]));
                     $center->setName($_POST["name"]);
-                    $center->setLocation($_POST["location"]);
+                    $center->setBuilding($buildingDAO->show("id",$_POST["building_id"]));
                     $universityDAO->edit($center);
                     goToShowAllAndShowSuccess("Centro editado correctamente.");
                 }
@@ -127,7 +130,7 @@ switch ($action) {
     case "search":
         if (HavePermission("Center", "SHOWALL")) {
             if (!isset($_POST["submit"])) {
-                new CenterSearchView($universityData);
+                new CenterSearchView($universityData, $buildingData, $userData);
             } else {
                 try {
                     $center = new Center();
@@ -137,8 +140,11 @@ switch ($action) {
                     if(!empty($_POST["name"])) {
                         $center->setName($_POST["name"]);
                     }
-                    if(!empty($_POST["location"])) {
-                        $center->setLocation($_POST["location"]);
+                    if(!empty($_POST["building_id"])) {
+                        $center->setBuilding($buildingDAO->show("id", $_POST["building_id"]));
+                    }
+                    if(!empty($_POST["user_id"])) {
+                        $center->setUser($userDAO->show("id", $_POST["user_id"]));
                     }
                     showAllSearch($center);
                 } catch (DAOException $e) {

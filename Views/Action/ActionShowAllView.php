@@ -62,12 +62,18 @@ class ActionShowAllView
                             <td><?php echo $action->getName() ?></td>
                             <td><?php echo $action->getDescription() ?></td>
                             <td class="row">
+                                <?php if (HavePermission("Action", "SHOWCURRENT")) { ?>
                                     <a href="../Controllers/ActionController.php?action=show&id=<?php echo $action->getId() ?>">
                                         <span data-feather="eye"></span></a>
+                                <?php }
+                                if (HavePermission("Action", "EDIT")) { ?>
                                     <a href="../Controllers/ActionController.php?action=edit&id=<?php echo $action->getId() ?>">
                                         <span data-feather="edit"></span></a>
+                                <?php }
+                                if (HavePermission("Action", "DELETE")) { ?>
                                     <a href="../Controllers/ActionController.php?action=delete&id=<?php echo $action->getId() ?>">
                                         <span data-feather="trash-2"></span></a>
+                                <?php } ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>

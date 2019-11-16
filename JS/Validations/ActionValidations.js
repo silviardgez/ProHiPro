@@ -39,7 +39,7 @@ function checkDescriptionEmptyAction(field) {
     }
 }
 
-function areUserFieldsCorrect() {
+function areActionFieldsCorrect() {
     form = $('#actionForm')[0];
     if(checkNameAction(form.elements[0]) && checkDescriptionAction(form.elements[1])) {
         return true;

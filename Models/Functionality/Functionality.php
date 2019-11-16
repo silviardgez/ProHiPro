@@ -20,7 +20,11 @@ class Functionality
     }
     public function setId($id)
     {
-        $this->id = $id;
+        if (empty($id) || strlen($id)>8) {
+            throw new ValidationException('Error de validación. Id incorrecto.');
+        } else {
+            $this->id = $id;
+        }
     }
     public function getName()
     {
@@ -29,7 +33,7 @@ class Functionality
     public function setName($name)
     {
         if (strlen($name)>60 || empty($name)) {
-            throw new ValidationException('Error de validación.');
+            throw new ValidationException('Error de validación.  Nombre incorrecto.');
         } else {
             $this->name = $name;
         }
@@ -41,7 +45,7 @@ class Functionality
     public function setDescription($description)
     {
         if (strlen($description)>100 || empty($description)) {
-            throw new ValidationException('Error de validación.');
+            throw new ValidationException('Error de validación.  Descripción incorrecta.');
         } else {
             $this->description = $description;
         }

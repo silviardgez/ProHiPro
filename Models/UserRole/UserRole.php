@@ -18,7 +18,11 @@ class UserRole
 
     public function setId($id)
     {
-        $this->id = $id;
+        if (empty($id) || strlen($id)>8) {
+            throw new ValidationException('Error de validación. Id incorrecto.');
+        } else {
+            $this->id = $id;
+        }
     }
 
     public function getRole()
@@ -28,7 +32,11 @@ class UserRole
 
     public function setRole($role)
     {
-        $this->role = $role;
+        if (empty($role) || strlen($role)>8) {
+            throw new ValidationException('Error de validación. Id role incorrecto.');
+        } else {
+            $this->role = $role;
+        }
     }
 
     public function getUser()
@@ -38,7 +46,11 @@ class UserRole
 
     public function setUser($user)
     {
-        $this->user = $user;
+        if (empty($user) || strlen($user)>9) {
+            throw new ValidationException('Error de validación. Id usuario incorrecto.');
+        } else {
+            $this->user = $user;
+        }
     }
 
     public static function expose()

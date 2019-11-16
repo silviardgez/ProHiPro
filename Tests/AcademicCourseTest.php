@@ -10,11 +10,13 @@ final class AcademicCourseTest extends TestCase
     protected static $academicCourseDAO;
     protected static $exampleAcademicCourse;
     public static function setUpBeforeClass(): void
+
     {
         initTestDB();
         self::$academicCourseDAO = new AcademicCourseDAO();
         self::$exampleAcademicCourse = new AcademicCourse(1, '50/51', 2050, 2051);
     }
+
     protected function tearDown(): void
     {
         try {
@@ -22,6 +24,7 @@ final class AcademicCourseTest extends TestCase
         } catch (Exception $e) {
         }
     }
+
     public static function tearDownAfterClass(): void
     {
         try {
@@ -29,6 +32,7 @@ final class AcademicCourseTest extends TestCase
         } catch (Exception $e) {
         }
     }
+
     public function testCanBeCreated()
     {
         $academicCourse = clone self::$exampleAcademicCourse;
@@ -37,6 +41,7 @@ final class AcademicCourseTest extends TestCase
             $academicCourse
         );
     }
+
     public function testCanBeAdded()
     {
         $academicCourse = clone self::$exampleAcademicCourse;
@@ -44,6 +49,7 @@ final class AcademicCourseTest extends TestCase
         $academicCourseCreated = self::$academicCourseDAO->show('academic_course_abbr', '50/51');
         $this->assertInstanceOf(AcademicCourse::class, $academicCourseCreated);
     }
+
     public function testCanBeUpdated()
     {
         $academicCourse = clone self::$exampleAcademicCourse;
@@ -56,6 +62,7 @@ final class AcademicCourseTest extends TestCase
         $this->assertEquals($academicCourseCreated->getStartYear(), 2051);
         self::$academicCourseDAO->delete('academic_course_abbr', '51/52');
     }
+
     public function testCanBeDeleted()
     {
         $academicCourse = clone self::$exampleAcademicCourse;
@@ -64,11 +71,13 @@ final class AcademicCourseTest extends TestCase
         $this->expectException(DAOException::class);
         $academicCourseCreated = self::$academicCourseDAO->show('academic_course_abbr', '50/51');
     }
+
     public function testCanShowNone()
     {
         $academicCourseCreated = self::$academicCourseDAO->showAll('academic_course_abbr', '50/51');
         $this->assertEmpty($academicCourseCreated);
     }
+
     public function testCanShowSeveral()
     {
         $academicCourse1 = clone self::$exampleAcademicCourse;

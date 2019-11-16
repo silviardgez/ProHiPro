@@ -1,21 +1,21 @@
 <?php
-class University
+class Building
 {
     private $id;
-    private $academic_course;
     private $name;
+    private $location;
     private $user;
 
-    public function __construct($id=NULL, $academicCourse=NULL, $name=NULL, $user=NULL){
+    public function __construct($id=NULL, $name=NULL, $location=NULL, $user=NULL){
         if(!empty($id)) {
-            $this->constructEntity($id, $academicCourse, $name, $user);
+            $this->constructEntity($id, $name, $location, $user);
         }
     }
 
-    public function constructEntity($id=NULL, $academicCourse=NULL, $name=NULL, $user=NULL) {
+    public function constructEntity($id=NULL,$name=NULL, $location=NULL, $user=NULL) {
         $this->setId($id);
-        $this->setAcademicCourse($academicCourse);
         $this->setName($name);
+        $this->setLocation($location);
         $this->setUser($user);
     }
 
@@ -33,17 +33,17 @@ class University
         }
     }
 
-    public function getAcademicCourse()
+    public function getUser()
     {
-        return $this->academic_course;
+        return $this->user;
     }
 
-    public function setAcademicCourse($academicCourse)
+    public function setUser($user)
     {
-        if (empty($academicCourse) || strlen($academicCourse)>8) {
-            throw new ValidationException('Error de validación. Id curso académico incorrecto.');
+        if (empty($user) || strlen($user)>9) {
+            throw new ValidationException('Error de validación. Usuario incorrecto.');
         } else {
-            $this->academic_course = $academicCourse;
+            $this->user = $user;
         }
     }
 
@@ -61,17 +61,17 @@ class University
         }
     }
 
-    public function getUser()
+    public function getLocation()
     {
-        return $this->user;
+        return $this->location;
     }
 
-    public function setUser($user)
+    public function setLocation($location)
     {
-        if (empty($user) || strlen($user)>9) {
-            throw new ValidationException('Error de validación. Id usuario incorrecto.');
+        if (empty($location) || strlen($location)>30) {
+            throw new ValidationException('Error de validación. Localización incorrecta.');
         } else {
-            $this->user = $user;
+            $this->location = $location;
         }
     }
 
