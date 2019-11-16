@@ -1,5 +1,3 @@
-USE `TEC`;
-
 INSERT INTO `ACTION` (`id`, `name`, `description`) VALUES
 ('1', 'ADD', 'ADD'),
 ('2', 'DELETE', 'DELETE'),
@@ -16,7 +14,8 @@ INSERT INTO `FUNCTIONALITY` (`id`, `name`, `description`) VALUES
 ('6', 'AcademicCourseManagement', 'AcademicCourseManagement'),
 ('7', 'FuncActionManagement', 'FuncActionManagement'),
 ('8', 'UserRoleManagement', 'UserRoleManagement'),
-('9', 'UniversityManagement', 'UniversityManagement');
+('9', 'UniversityManagement', 'UniversityManagement'),
+('10', 'CenterManagement', 'CenterManagement');
 
 
 INSERT INTO `FUNC_ACTION` (`id`,`functionality_id`, `action_id`) VALUES
@@ -64,7 +63,12 @@ INSERT INTO `FUNC_ACTION` (`id`,`functionality_id`, `action_id`) VALUES
 ('42','9','2'),
 ('43','9','3'),
 ('44','9','4'),
-('45','9','5');
+('45','9','5'),
+('46','10','1'),
+('47','10','2'),
+('48','10','3'),
+('49','10','4'),
+('50','10','5');
 
 INSERT INTO `USER` (`login`,`password`,`dni`, `name`,`surname`,`email`,`address`,`telephone`) VALUES
 ('admin','21232f297a57a5a743894a0e4a801fc3' , '111222333A','Administrador','Administrador', 'admin@admin.com', 'address', '666555444');
@@ -122,10 +126,14 @@ INSERT INTO `PERMISSION` (`role_id`,`func_action_id`) VALUES
 (1,'42'),
 (1,'43'),
 (1,'44'),
-(1,'45');
+(1,'45'),
+(1,'46'),
+(1,'47'),
+(1,'48'),
+(1,'49'),
+(1,'50');
 
 INSERT INTO `ACADEMIC_COURSE` (`id`, `academic_course_abbr`, `start_year`, `end_year`) VALUES
 (1, '18/19', '2018', '2019'),
 (2, '19/20', '2019', '2020'),
 (3, '20/21', '2020', '2021');
-
