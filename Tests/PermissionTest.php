@@ -3,17 +3,18 @@ declare (strict_types=1);
 
 use PHPUnit\Framework\TestCase;
 
-require_once '../Models/Permission/Permission.php';
-require_once '../Models/FuncAction/FuncAction.php';
-require_once '../Models/Action/Action.php';
-require_once '../Models/Functionality/Functionality.php';
-require_once '../Models/Role/Role.php';
-require_once '../Models/Permission/PermissionDAO.php';
-require_once '../Models/FuncAction/FuncActionDAO.php';
-require_once '../Models/Action/ActionDAO.php';
-require_once '../Models/Functionality/FunctionalityDAO.php';
-require_once '../Models/Role/RoleDAO.php';
-require_once '../Models/Common/DAOException.php';
+include_once '../Models/Permission/Permission.php';
+include_once '../Models/FuncAction/FuncAction.php';
+include_once '../Models/Action/Action.php';
+include_once '../Models/Functionality/Functionality.php';
+include_once '../Models/Role/Role.php';
+include_once '../Models/Permission/PermissionDAO.php';
+include_once '../Models/FuncAction/FuncActionDAO.php';
+include_once '../Models/Action/ActionDAO.php';
+include_once '../Models/Functionality/FunctionalityDAO.php';
+include_once '../Models/Role/RoleDAO.php';
+include_once '../Models/Common/DAOException.php';
+include_once './testDB.php';
 
 final class PermissionTest extends TestCase
 {
@@ -30,8 +31,7 @@ final class PermissionTest extends TestCase
 
     public static function setUpBeforeClass(): void
     {
-        shell_exec('mysqldump --opt --no-create-info  -u userTEC -ppassTEC TEC > ../dump.sql');
-        shell_exec('mysql -u userTEC -ppassTEC < ../build_database.sql');
+        initTestDB();
 
         self::$permissionDAO = new PermissionDAO();
         self::$funcActionDAO = new FuncActionDAO();
@@ -39,32 +39,38 @@ final class PermissionTest extends TestCase
         self::$functionalityDAO = new FunctionalityDAO();
         self::$roleDAO = new RoleDAO();
 
-        self::$actionDAO->add(new Action('2', 'Test', 'ADD'));
+        $action1 = new Action(2, 'Test1', 'ADD');
+        $action2 = new Action(3, 'Test2', 'SHOW');
+        $action3 = new Action(4, 'Test3', 'SHOWALL');
 
-        self::$functionalityDAO->add(new Functionality('1', 'Test', 'UsersManagement'));
-        self::$functionalityDAO->add(new Functionality('2', 'Test', 'RolesManagement'));
+        self::$actionDAO->add($action1);
+        self::$actionDAO->add($action2);
+        self::$actionDAO->add($action3);
 
-        self::$roleDAO->add(new Role('3', 'Test', 'Role to test'));
+        $functionality1 = new Functionality(1, 'Test1', 'UsersManagement');
+        $functionality2 = new Functionality(2, 'Test2', 'RolesManagement');
 
-        self::$funcActionDAO->add(new FuncAction(1, 2, 1));
-        self::$funcActionDAO->add(new FuncAction(2, 2, 2));
-        self::$funcActionDAO->add(new FuncAction(3, 2, 2));
-        self::$funcActionDAO->add(new FuncAction(4, 2, 2));
+        self::$functionalityDAO->add($functionality1);
+        self::$functionalityDAO->add($functionality2);
 
-        self::$examplePermission = new Permission(1, 3, 1);
+        $role = new Role(3, 'Test', 'Role to test');
 
-        self::$examplePermissionArray = array(
-            'submit' => true,
-            'idPermission' => 1,
-            'idRole' => 3,
-            'idFuncAction' => 1,
-        );
+        self::$roleDAO->add($role);
+
+        $func_action = new FuncAction(1, $action1, $functionality1);
+
+        self::$funcActionDAO->add($func_action);
+        self::$funcActionDAO->add(new FuncAction(2, $action1, $functionality2));
+        self::$funcActionDAO->add(new FuncAction(3, $action2, $functionality2));
+        self::$funcActionDAO->add(new FuncAction(4, $action3, $functionality2));
+
+        self::$examplePermission = new Permission(1, $role, $func_action);
     }
 
     protected function tearDown(): void
     {
         try {
-            self::$permissionDAO->delete('IdRole', 3);
+            self::$permissionDAO->delete('id', 1);
         } catch (Exception $e) {
         }
     }
@@ -72,8 +78,7 @@ final class PermissionTest extends TestCase
     public static function tearDownAfterClass(): void
     {
         try {
-            shell_exec('mysql -u userTEC -ppassTEC < ../build_database.sql');
-            shell_exec('mysql -u userTEC -ppassTEC TEC < ../dump.sql');
+            restoreDB();
         } catch (Exception $e) {
         }
     }
@@ -93,7 +98,7 @@ final class PermissionTest extends TestCase
     {
         $permission = clone self::$examplePermission;
         self::$permissionDAO->add($permission);
-        $permissionCreated = self::$permissionDAO->show('IdPermission', 1);
+        $permissionCreated = self::$permissionDAO->show('id', 1);
         $this->assertInstanceOf(Permission::class, $permissionCreated);
     }
 
@@ -102,10 +107,12 @@ final class PermissionTest extends TestCase
     {
         $permission = clone self::$examplePermission;
         self::$permissionDAO->add($permission);
-        $permission->setIdFuncAction(2);
+        $funcAction = self::$funcActionDAO->show('id', 1);
+        $funcAction->setId(2);
+        $permission->setFuncAction($funcAction);
         self::$permissionDAO->edit($permission);
-        $permissionCreated = self::$permissionDAO->show('IdPermission', 1);
-        $this->assertEquals($permissionCreated->getIdFuncAction(), 2);
+        $permissionCreated = self::$permissionDAO->show('id', 1);
+        $this->assertEquals($permissionCreated->getFuncAction()->getId(), 2);
     }
 
     public
@@ -113,16 +120,16 @@ final class PermissionTest extends TestCase
     {
         $permission = clone self::$examplePermission;
         self::$permissionDAO->add($permission);
-        self::$permissionDAO->delete('IdPermission', 1);
+        self::$permissionDAO->delete('id', 1);
 
         $this->expectException(DAOException::class);
-        $permissionCreated = self::$permissionDAO->show('IdPermission', 1);
+        $permissionCreated = self::$permissionDAO->show('id', 1);
     }
 
     public
     function testCanShowNone()
     {
-        $permissionCreated = self::$permissionDAO->showAll('IdPermission', 1);
+        $permissionCreated = self::$permissionDAO->showAll('id', 1);
         $this->assertEmpty($permissionCreated);
     }
 
@@ -130,80 +137,22 @@ final class PermissionTest extends TestCase
     function testCanShowSeveral()
     {
         $permission1 = clone self::$examplePermission;
-        $permission1->setIdPermission(2);
+        $permission1->setId(1);
         $permission2 = clone self::$examplePermission;
-        $permission2->setIdPermission(3);
+        $permission2->setId(2);
+        $permission2->setFuncAction(self::$funcActionDAO->show('id', 2));
         $permission3 = clone self::$examplePermission;
-        $permission3->setIdPermission(4);
+        $permission3->setId(3);
+        $permission3->setFuncAction(self::$funcActionDAO->show('id', 3));
 
         self::$permissionDAO->add($permission1);
         self::$permissionDAO->add($permission2);
         self::$permissionDAO->add($permission3);
 
-        $permissionCreated = self::$permissionDAO->showAll('IdFuncAction', 1);
+        $permissionCreated = self::$permissionDAO->showAll();
 
-        $this->assertTrue($permissionCreated[0]->getIdPermission() == 2);
-        $this->assertTrue($permissionCreated[1]->getIdPermission() == 3);
-        $this->assertTrue($permissionCreated[2]->getIdPermission() == 4);
-
-        self::$permissionDAO->delete('IdFuncAction', 1);
-    }
-
-    public
-    function testIntCanBeCreated()
-    {
-        $postData = self::$examplePermissionArray;
-        self::curlPost($postData, 'add', 1);
-        $permissionCreated = self::$permissionDAO->show('IdRole', 3);
-        $this->assertInstanceOf(Permission::class, $permissionCreated);
-    }
-
-    public
-    function testIntCanBeUpdated()
-    {
-        $permission = clone self::$examplePermission;
-        self::$permissionDAO->add($permission);
-        $permissionCreated = self::$permissionDAO->show('IdRole', 3);
-
-        $postData = self::$examplePermissionArray;
-        $postData['idFuncAction'] = 2;
-        self::curlPost($postData, "edit", $permissionCreated->getIdPermission());
-
-        $permissionCreated = self::$permissionDAO->show('IdRole', 3);
-        $this->assertEquals(2, $permissionCreated->getIdFuncAction());
-    }
-
-    public
-    function testIntCanBeDeleted()
-    {
-        $permission = clone self::$examplePermission;
-        self::$permissionDAO->add($permission);
-        $permissionCreated = self::$permissionDAO->show('IdRole', 3);
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt(
-            $ch,
-            CURLOPT_URL,
-            "http://localhost/Controllers/PermissionController.php?action=delete&IdPermission=" . $permissionCreated->getIdPermission() . "&confirm=true"
-        );
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_exec($ch);
-        curl_close($ch);
-
-        $this->expectException(DAOException::class);
-        $permissionCreated = self::$permissionDAO->show('IdRole', 3);
-    }
-
-    private
-    function curlPost($postData, $action, $id)
-    {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_URL, "http://localhost/Controllers/PermissionController.php?action=" . $action . "&IdPermission=" . $id);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        curl_exec($ch);
-        curl_close($ch);
+        $this->assertTrue($permissionCreated[0]->getId() == 1);
+        $this->assertTrue($permissionCreated[1]->getId() == 2);
+        $this->assertTrue($permissionCreated[2]->getId() == 3);
     }
 }
