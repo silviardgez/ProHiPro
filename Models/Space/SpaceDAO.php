@@ -14,7 +14,7 @@ class SpaceDAO
     }
 
     function showAll() {
-        $spaces_db = $this->defaultDAO->showAll("spacce");
+        $spaces_db = $this->defaultDAO->showAll("space");
         return $this->getSpacesFromDB($spaces_db);
     }
 
