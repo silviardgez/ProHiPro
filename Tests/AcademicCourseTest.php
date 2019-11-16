@@ -12,7 +12,6 @@ final class AcademicCourseTest extends TestCase
 {
     protected static $academicCourseDAO;
     protected static $exampleAcademicCourse;
-    protected static $exampleAcademicCourseArray;
 
     public static function setUpBeforeClass(): void
     {
@@ -20,13 +19,6 @@ final class AcademicCourseTest extends TestCase
 
         self::$academicCourseDAO = new AcademicCourseDAO();
         self::$exampleAcademicCourse = new AcademicCourse(1, '50/51', 2050, 2051);
-        self::$exampleAcademicCourseArray = array(
-            'submit' => true,
-            'id_academic_course' => 1,
-            'academic_course_abbr' => '50/51',
-            'start_year' => 2050,
-            'end_year' => 2051,
-        );
     }
 
     protected function tearDown(): void
