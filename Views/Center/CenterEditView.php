@@ -2,10 +2,12 @@
 class CenterEditView {
     private $universities;
     private $center;
+    private $users;
 
-    function __construct($centerData, $universities){
+    function __construct($centerData, $universities,$users){
         $this->universities = $universities;
         $this->center = $centerData;
+        $this->users=$users;
         $this->render();
     }
     function render(){
@@ -40,6 +42,17 @@ class CenterEditView {
                     <label for="location" data-translate="Localización"></label>
                     <input type="text" class="form-control" id="location" name="location" data-translate="Introducir localización"
                            value="<?php echo $this->center->getLocation() ?>">
+                </div>
+                <div class="form-group">
+                    <label for="user_id" data-translate="Responsable"></label>
+                    <select class="form-control" id="user_id" name="user_id"?>
+                        <?php foreach ($this->users as $user): ?>
+                            <option value="<?php echo $user->getId()?>"
+                                <?php if($user->getId() == $this->center->getUser()->getId()){echo 'selected="selected"';}?>>
+                                <?php echo $user->getName()." ".$user->getSurname(); ?>
+                            </option>
+                        <?php endforeach;?>
+                    </select>
                 </div>
                 <button name="submit" type="submit" class="btn btn-primary" data-translate="Enviar"></button>
             </form>

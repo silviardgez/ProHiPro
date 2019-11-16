@@ -9,6 +9,7 @@ if (!IsAuthenticated()) {
 
 include_once '../Models/University/UniversityDAO.php';
 include_once '../Models/AcademicCourse/AcademicCourseDAO.php';
+include_once '../Models/User/UserDAO.php';
 include_once '../Models/Common/DAOException.php';
 include_once '../Views/Common/Head.php';
 include_once '../Views/Common/DefaultView.php';
@@ -27,9 +28,11 @@ include_once '../Functions/Pagination.php';
 //DAOS
 $universityDAO = new UniversityDAO();
 $academicCourseDAO = new AcademicCourseDAO();
+$userDAO = new UserDAO();
 
 //Data required
 $academicCourseData = $academicCourseDAO->showAll();
+$userData = $userDAO->showAll();
 
 $universityPrimaryKey = "id";
 $value = $_REQUEST[$universityPrimaryKey];
@@ -39,11 +42,12 @@ switch ($action) {
     case "add":
         if (HavePermission("University", "ADD")) {
             if (!isset($_POST["submit"])) {
-                new UniversityAddView($academicCourseData);
+                new UniversityAddView($academicCourseData, $userData);
             } else {
                 try {
                     $university = new University();
                     $university->setAcademicCourse($academicCourseDAO->show("id", $_POST["academic_course_id"]));
+                    $university->setUser($userDAO->show("login", $_POST["user_id"]));
                     $university->setName($_POST["name"]);
                     $universityDAO->add($university);
                     goToShowAllAndShowSuccess("Universidad añadida correctamente.");
@@ -100,10 +104,11 @@ switch ($action) {
             try {
                 $university = $universityDAO->show($universityPrimaryKey, $value);
                 if (!isset($_POST["submit"])) {
-                    new UniversityEditView($university, $academicCourseData);
+                    new UniversityEditView($university, $academicCourseData,$userData);
                 } else {
                     $university->setId($value);
                     $university->setAcademicCourse($academicCourseDAO->show("id", $_POST["academic_course_id"]));
+                    $university->setUser($userDAO->show("login", $_POST["user_id"]));
                     $university->setName($_POST["name"]);
                     $universityDAO->edit($university);
                     goToShowAllAndShowSuccess("Universidad editada correctamente.");

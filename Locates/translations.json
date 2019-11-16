@@ -1110,6 +1110,10 @@
   "El atributo abreviatura contiene algún carácter no válido: %c.": {
     "en": "The abbreviate attribute contains some invalid character: %c.",
     "gl": "O atributo abreviatura contén algún caracter non válido: %c."
+  },
+  "Responsable": {
+    "en": "Owner",
+    "gl": "Responsable"
   }
 }
 

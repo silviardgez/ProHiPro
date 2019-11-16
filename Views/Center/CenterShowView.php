@@ -33,6 +33,11 @@ class CenterShowView {
                     <input type="text" class="form-control" id="location" name="location" data-translate="Introducir localización"
                            value="<?php echo $this->center->getLocation() ?>" readonly>
                 </div>
+                <div class="form-group">
+                    <label for="user_id" data-translate="Responsable"></label>
+                    <input type="text" class="form-control" id="user_id" name="user_id" data-translate="Responsable"
+                           value="<?php echo $this->center->getUser()->getName()." ".$this->center->getUser()->getSurname() ?>" readonly>
+                </div>
             </form>
         </main>
         <?php

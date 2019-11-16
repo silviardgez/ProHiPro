@@ -9,6 +9,7 @@ if (!IsAuthenticated()) {
 
 include_once '../Models/Center/CenterDAO.php';
 include_once '../Models/University/UniversityDAO.php';
+include_once '../Models/User/UserDAO.php';
 include_once '../Models/Common/DAOException.php';
 include_once '../Views/Common/Head.php';
 include_once '../Views/Common/DefaultView.php';
@@ -27,9 +28,11 @@ include_once '../Functions/Pagination.php';
 //DAOS
 $centerDAO = new CenterDAO();
 $universityDAO = new UniversityDAO();
+$userDAO = new UserDAO();
 
 //Data required
 $universityData = $universityDAO->showAll();
+$userData = $userDAO->showAll();
 
 $centerPrimaryKey = "id";
 $value = $_REQUEST[$centerPrimaryKey];
@@ -39,11 +42,12 @@ switch ($action) {
     case "add":
         if (HavePermission("Center", "ADD")) {
             if (!isset($_POST["submit"])) {
-                new CenterAddView($universityData);
+                new CenterAddView($universityData, $userData);
             } else {
                 try {
                     $center = new Center();
                     $center->setUniversity($universityDAO->show("id", $_POST["university_id"]));
+                    $center->setUser($userDAO->show("login", $_POST["user_id"]));
                     $center->setName($_POST["name"]);
                     $center->setLocation($_POST["location"]);
                     $centerDAO->add($center);
@@ -101,10 +105,11 @@ switch ($action) {
             try {
                 $center = $centerDAO->show($centerPrimaryKey, $value);
                 if (!isset($_POST["submit"])) {
-                    new CenterEditView($center, $universityData);
+                    new CenterEditView($center, $universityData, $userData);
                 } else {
                     $center->setId($value);
                     $center->setUniversity($universityDAO->show("id", $_POST["university_id"]));
+                    $center->setUser($userDAO->show("login", $_POST["user_id"]));
                     $center->setName($_POST["name"]);
                     $center->setLocation($_POST["location"]);
                     $universityDAO->edit($center);
