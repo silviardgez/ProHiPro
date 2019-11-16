@@ -1,12 +1,8 @@
 <?php
-class CenterAddView {
-    private $universities;
-    private $users;
+class SpaceAddView {
     private $buildings;
 
-    function __construct($universitiesData, $users, $buildingData){
-        $this->universities = $universitiesData;
-        $this->users=$users;
+    function __construct($buildingData){
         $this->buildings=$buildingData;
         $this->render();
     }
@@ -18,21 +14,13 @@ class CenterAddView {
         </head>
         <main role="main" class="margin-main ml-sm-auto px-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-3 border-bottom">
-                <h1 class="h2" data-translate="Insertar centro"></h1>
-                <a class="btn btn-primary" role="button" href="../Controllers/CenterController.php"><p data-translate="Volver"></p></a>
+                <h1 class="h2" data-translate="Insertar Espacio"></h1>
+                <a class="btn btn-primary" role="button" href="../Controllers/SpaceController.php"><p data-translate="Volver"></p></a>
             </div>
-            <form action='../Controllers/CenterController.php?action=add' method='POST'>
+            <form action='../Controllers/SpaceController.php?action=add' method='POST'>
                 <div class="form-group">
                     <label for="name" data-translate="Nombre"></label>
                     <input type="text" class="form-control" id="name" name="name" data-translate="Introducir nombre" required>
-                </div>
-                <div class="form-group">
-                    <label for="university_id" data-translate="Universidad"></label>
-                    <select class="form-control" id="university_id" name="university_id" required>
-                        <?php foreach ($this->universities as $university): ?>
-                            <option value="<?php echo $university->getId() ?>"><?php echo $university->getName() ?></option>
-                        <?php endforeach;?>
-                    </select>
                 </div>
                 <div class="form-group">
                     <label for="location" data-translate="Localización"></label>
@@ -42,12 +30,8 @@ class CenterAddView {
                         <?php endforeach;?>
                     </select>                </div>
                 <div class="form-group">
-                    <label for="user_id" data-translate="Responsable"></label>
-                    <select class="form-control" id="user_id" name="user_id" required>
-                        <?php foreach ($this->users as $user): ?>
-                            <option value="<?php echo $user->getId() ?>"><?php echo $user->getName()." ".$user->getSurname() ?></option>
-                        <?php endforeach;?>
-                    </select>
+                    <label for="capacity" data-translate="Capacidad"></label>
+                    <input type="number" min="0" max ="999" class="form-control" id="capacity" name="capacity" data-translate="Capacidad" required>
                 </div>
                 <button name="submit" type="submit" class="btn btn-primary" data-translate="Enviar"></button>
             </form>

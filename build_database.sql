@@ -144,12 +144,29 @@ CREATE TABLE `UNIVERSITY` (
   `id` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
   `academic_course_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
   `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
+  `user_id` varchar(9) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY(`id`, `academic_course_id`),
   FOREIGN KEY (`academic_course_id`)
-	REFERENCES `ACADEMIC_COURSE`(`id`)
+	REFERENCES `ACADEMIC_COURSE`(`id`),
+  FOREIGN KEY (`user_id`)
+    REFERENCES `USER`(`login`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 
 ALTER TABLE `UNIVERSITY` ADD UNIQUE KEY `uidx` (`academic_course_id`, `name`);
+-- --------------------------------------------------------
+-- --------------------------------------------------------
+-- TABLE STRUCTURE FOR TABLE `BUILDING`
+-- --------------------------------------------------------
+-- --------------------------------------------------------
+CREATE TABLE `BUILDING` (
+  `id` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,  
+  `location` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
+  `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
+  `user_id` varchar(9) COLLATE latin1_spanish_ci NOT NULL,
+  PRIMARY KEY(`Id`),
+  FOREIGN KEY (`user_id`)
+    REFERENCES `USER`(`login`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 -- TABLE STRUCTURE FOR TABLE `CENTER`
@@ -159,36 +176,30 @@ CREATE TABLE `CENTER` (
   `id` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
   `university_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
   `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
-  `location` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
+  `building_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
+  `user_id` varchar(9) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY(`id`),
   FOREIGN KEY (`university_id`)
-	REFERENCES `UNIVERSITY`(`id`)
+	REFERENCES `UNIVERSITY`(`id`),
+  FOREIGN KEY (`user_id`)
+    REFERENCES `USER`(`login`),
+  FOREIGN KEY (`building_id`)
+    REFERENCES `BUILDING`(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
--- --------------------------------------------------------
--- --------------------------------------------------------
--- TABLE STRUCTURE FOR TABLE `BUILDING`
--- --------------------------------------------------------
--- --------------------------------------------------------
-CREATE TABLE `BUILDING` (
-  `IdBuilding` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,  
-  `center_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
-  `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
-  PRIMARY KEY(`IdBuilding`, `center_id`),
-  FOREIGN KEY (`center_id`)
-	REFERENCES `CENTER`(`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 -- TABLE STRUCTURE FOR TABLE `SPACE`
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 CREATE TABLE `SPACE` (
-  `IdSpace` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,  
-  `IdBuilding` int(8) COLLATE latin1_spanish_ci NOT NULL,
+  `id` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,  
+  `building_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
   `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
-  PRIMARY KEY(`IdSpace`, `IdBuilding`),
-  FOREIGN KEY (`IdBuilding`) 
-	REFERENCES `BUILDING`(`IdBuilding`)  
+  `capacity` int(3) COLLATE latin1_spanish_ci NOT NULL,
+  PRIMARY KEY(`id`, `building_id`),
+  FOREIGN KEY (`building_id`) 
+	REFERENCES `BUILDING`(`id`)  
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 -- --------------------------------------------------------
 -- --------------------------------------------------------
@@ -284,7 +295,7 @@ CREATE TABLE `SCHEDULE` (
   `IdSubjectGroup` int(8) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY(`IdSchedule`, `IdSpace`, `IdTeacher`, `IdSubjectGroup`),
   FOREIGN KEY (`IdSpace`) 
-	REFERENCES `SPACE`(`IdSpace`),
+	REFERENCES `SPACE`(`id`),
   FOREIGN KEY (`IdTeacher`) 
 	REFERENCES `TEACHER`(`IdTeacher`),
   FOREIGN KEY (`IdSubjectGroup`) 
@@ -308,7 +319,9 @@ INSERT INTO `FUNCTIONALITY` (`id`, `name`, `description`) VALUES
 ('7', 'FuncActionManagement', 'FuncActionManagement'),
 ('8', 'UserRoleManagement', 'UserRoleManagement'),
 ('9', 'UniversityManagement', 'UniversityManagement'),
-('10', 'CenterManagement', 'CenterManagement');
+('10', 'CenterManagement', 'CenterManagement'),
+('11', 'BuildingManagement', 'BuildingManagement'),
+('12', 'SpaceManagement', 'SpaceManagement');
 
 
 INSERT INTO `FUNC_ACTION` (`id`,`functionality_id`, `action_id`) VALUES
@@ -361,7 +374,17 @@ INSERT INTO `FUNC_ACTION` (`id`,`functionality_id`, `action_id`) VALUES
 ('47','10','2'),
 ('48','10','3'),
 ('49','10','4'),
-('50','10','5');
+('50','10','5'),
+('51','11','1'),
+('52','11','2'),
+('53','11','3'),
+('54','11','4'),
+('55','11','5'),
+('56','12','1'),
+('57','12','2'),
+('58','12','3'),
+('59','12','4'),
+('60','12','5');
 
 INSERT INTO `USER` (`login`,`password`,`dni`, `name`,`surname`,`email`,`address`,`telephone`) VALUES
 ('admin','21232f297a57a5a743894a0e4a801fc3' , '111222333A','Administrador','Administrador', 'admin@admin.com', 'address', '666555444');
@@ -424,7 +447,17 @@ INSERT INTO `PERMISSION` (`role_id`,`func_action_id`) VALUES
 (1,'47'),
 (1,'48'),
 (1,'49'),
-(1,'50');
+(1,'50'),
+(1,'51'),
+(1,'52'),
+(1,'53'),
+(1,'54'),
+(1,'55'),
+(1,'56'),
+(1,'57'),
+(1,'58'),
+(1,'59'),
+(1,'60');
 
 INSERT INTO `ACADEMIC_COURSE` (`id`, `academic_course_abbr`, `start_year`, `end_year`) VALUES
 (1, '18/19', '2018', '2019'),

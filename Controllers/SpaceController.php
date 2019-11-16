@@ -7,18 +7,16 @@ if (!IsAuthenticated()) {
     header('Location:../index.php');
 }
 
-include_once '../Models/Center/CenterDAO.php';
-include_once '../Models/University/UniversityDAO.php';
-include_once '../Models/User/UserDAO.php';
 include_once '../Models/Building/BuildingDAO.php';
+include_once '../Models/Space/SpaceDAO.php';
 include_once '../Models/Common/DAOException.php';
 include_once '../Views/Common/Head.php';
 include_once '../Views/Common/DefaultView.php';
-include_once '../Views/Center/CenterShowAllView.php';
-include_once '../Views/Center/CenterAddView.php';
-include_once '../Views/Center/CenterShowView.php';
-include_once '../Views/Center/CenterEditView.php';
-include_once '../Views/Center/CenterSearchView.php';
+include_once '../Views/Space/SpaceShowAllView.php';
+include_once '../Views/Space/SpaceAddView.php';
+include_once '../Views/Space/SpaceShowView.php';
+include_once '../Views/Space/SpaceEditView.php';
+include_once '../Views/Space/SpaceSearchView.php';
 include_once '../Views/Common/PaginationView.php';
 include_once '../Functions/HavePermission.php';
 include_once '../Functions/OpenDeletionModal.php';
@@ -27,34 +25,29 @@ include_once '../Functions/Messages.php';
 include_once '../Functions/Pagination.php';
 
 //DAOS
-$centerDAO = new CenterDAO();
-$universityDAO = new UniversityDAO();
-$userDAO = new UserDAO();
 $buildingDAO = new BuildingDAO();
+$spaceDAO = new SpaceDAO();
 
 //Data required
-$universityData = $universityDAO->showAll();
-$userData = $userDAO->showAll();
 $buildingData = $buildingDAO->showAll();
 
-$centerPrimaryKey = "id";
-$value = $_REQUEST[$centerPrimaryKey];
+$spacePrimaryKey = "id";
+$value = $_REQUEST[$spacePrimaryKey];
 
 $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "";
 switch ($action) {
     case "add":
-        if (HavePermission("Center", "ADD")) {
+        if (HavePermission("Space", "ADD")) {
             if (!isset($_POST["submit"])) {
-                new SpaceAddView($universityData, $userData,$buildingData);
+                new SpaceAddView($buildingData);
             } else {
                 try {
-                    $center = new Center();
-                    $center->setUniversity($universityDAO->show("id", $_POST["university_id"]));
-                    $center->setUser($userDAO->show("login", $_POST["user_id"]));
-                    $center->setName($_POST["name"]);
-                    $center->setBuilding($buildingDAO->show("id",$_POST["building_id"]));
-                    $centerDAO->add($center);
-                    goToShowAllAndShowSuccess("Centro añadido correctamente.");
+                    $space = new Space();
+                    $space->setName($_POST["name"]);
+                    $space->setBuilding($buildingDAO->show("id",$_POST["building_id"]));
+                    $space->setCapacity($_POST["capacity"]);
+                    $spaceDAO->add($space);
+                    goToShowAllAndShowSuccess("Espacio añadido correctamente.");
                 } catch (DAOException $e) {
                     goToShowAllAndShowError($e->getMessage());
                 } catch (ValidationException $ve) {
@@ -66,21 +59,21 @@ switch ($action) {
         }
         break;
     case "delete":
-        if (HavePermission("Center", "DELETE")) {
+        if (HavePermission("Space", "DELETE")) {
             if (isset($_REQUEST["confirm"])) {
                 try {
-                    $centerDAO->delete($centerPrimaryKey, $value);
-                    goToShowAllAndShowSuccess("Centro eliminado correctamente.");
+                    $spaceDAO->delete($spacePrimaryKey, $value);
+                    goToShowAllAndShowSuccess("Espacio eliminado correctamente.");
                 } catch (DAOException $e) {
                     goToShowAllAndShowError($e->getMessage());
                 }
             } else {
                 try {
-                    $centerDAO->checkDependencies($value);
+                    $spaceDAO->checkDependencies($value);
                     showAll();
-                    openDeletionModal("Eliminar centro", "¿Está seguro de que desea eliminar " .
-                        "el centro %" . $value . "%? Esta acción es permanente y no se puede recuperar.",
-                        "../Controllers/CenterController.php?action=delete&id=" . $value . "&confirm=true");
+                    openDeletionModal("Eliminar espacio", "¿Está seguro de que desea eliminar " .
+                        "el espacio %" . $value . "%? Esta acción es permanente y no se puede recuperar.",
+                        "../Controllers/SpaceController.php?action=delete&id=" . $value . "&confirm=true");
                 } catch (DAOException $e) {
                     goToShowAllAndShowError($e->getMessage());
                 }
@@ -90,10 +83,10 @@ switch ($action) {
         }
         break;
     case "show":
-        if (HavePermission("Center", "SHOWCURRENT")) {
+        if (HavePermission("Space", "SHOWCURRENT")) {
             try {
-                $centerData = $centerDAO->show($centerPrimaryKey, $value);
-                new SpaceShowView($centerData);
+                $spaceData = $spaceDAO->show($spacePrimaryKey, $value);
+                new SpaceShowView($spaceData);
             } catch (DAOException $e) {
                 goToShowAllAndShowError($e->getMessage());
             } catch (ValidationException $ve) {
@@ -104,19 +97,18 @@ switch ($action) {
         }
         break;
     case "edit":
-        if (HavePermission("Center", "EDIT")) {
+        if (HavePermission("Space", "EDIT")) {
             try {
-                $center = $centerDAO->show($centerPrimaryKey, $value);
+                $space = $spaceDAO->show($spacePrimaryKey, $value);
                 if (!isset($_POST["submit"])) {
-                    new SpaceEditView($center, $universityData, $userData, $buildingData);
+                    new SpaceEditView($space, $buildingData);
                 } else {
-                    $center->setId($value);
-                    $center->setUniversity($universityDAO->show("id", $_POST["university_id"]));
-                    $center->setUser($userDAO->show("login", $_POST["user_id"]));
-                    $center->setName($_POST["name"]);
-                    $center->setBuilding($buildingDAO->show("id",$_POST["building_id"]));
-                    $universityDAO->edit($center);
-                    goToShowAllAndShowSuccess("Centro editado correctamente.");
+                    $space->setId($value);
+                    $space->setName($_POST["name"]);
+                    $space->setBuilding($buildingDAO->show("id",$_POST["building_id"]));
+                    $space->setCapacity($_POST["capacity"]);
+                    $spaceDAO->edit($space);
+                    goToShowAllAndShowSuccess("Espacio editado correctamente.");
                 }
             } catch (DAOException $e) {
                 goToShowAllAndShowError($e->getMessage());
@@ -128,19 +120,22 @@ switch ($action) {
         }
         break;
     case "search":
-        if (HavePermission("Center", "SHOWALL")) {
+        if (HavePermission("Space", "SHOWALL")) {
             if (!isset($_POST["submit"])) {
-                new SpaceSearchView($universityData);
+                new SpaceSearchView($buildingData);
             } else {
                 try {
-                    $center = new Center();
-                    if(!empty($_POST["university_id"])) {
-                        $center->setUniversity($universityDAO->show("id", $_POST["university_id"]));
-                    }
+                    $space = new Space();
                     if(!empty($_POST["name"])) {
-                        $center->setName($_POST["name"]);
+                        $space->setName($_POST["name"]);
                     }
-                    showAllSearch($center);
+                    if(!empty($_POST["capacity"])) {
+                        $space->setCapacity($_POST["capacity"]);
+                    }
+                    if(!empty($_POST["building_id"])) {
+                        $space->setBuilding($buildingDAO->show("id", $_POST["building_id"]));
+                    }
+                    showAllSearch($space);
                 } catch (DAOException $e) {
                     goToShowAllAndShowError($e->getMessage());
                 } catch (ValidationException $ve) {
@@ -161,14 +156,14 @@ function showAll() {
 }
 
 function showAllSearch($search) {
-    if (HavePermission("Center", "SHOWALL")) {
+    if (HavePermission("Space", "SHOWALL")) {
         try {
             $currentPage = getCurrentPage();
             $itemsPerPage = getItemsPerPage();
             $toSearch = getToSearch($search);
-            $totalCenters = $GLOBALS["centerDAO"]->countTotalCenters($toSearch);
-            $centersData = $GLOBALS["centerDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
-            new SpaceShowAllView($centersData, $itemsPerPage, $currentPage, $totalCenters, $toSearch);
+            $totalSpaces = $GLOBALS["spaceDAO"]->countTotalSpaces($toSearch);
+            $spacesData = $GLOBALS["spaceDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
+            new SpaceShowAllView($spacesData, $itemsPerPage, $currentPage, $totalSpaces, $toSearch);
         } catch (DAOException $e) {
             new SpaceShowAllView(array());
             errorMessage($e->getMessage());
