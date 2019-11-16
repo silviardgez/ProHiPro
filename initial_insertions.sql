@@ -15,7 +15,9 @@ INSERT INTO `FUNCTIONALITY` (`id`, `name`, `description`) VALUES
 ('7', 'FuncActionManagement', 'FuncActionManagement'),
 ('8', 'UserRoleManagement', 'UserRoleManagement'),
 ('9', 'UniversityManagement', 'UniversityManagement'),
-('10', 'CenterManagement', 'CenterManagement');
+('10', 'CenterManagement', 'CenterManagement'),
+('11', 'BuildingManagement', 'BuildingManagement'),
+('12', 'SpaceManagement', 'SpaceManagement');
 
 
 INSERT INTO `FUNC_ACTION` (`id`,`functionality_id`, `action_id`) VALUES
@@ -68,7 +70,17 @@ INSERT INTO `FUNC_ACTION` (`id`,`functionality_id`, `action_id`) VALUES
 ('47','10','2'),
 ('48','10','3'),
 ('49','10','4'),
-('50','10','5');
+('50','10','5'),
+('51','11','1'),
+('52','11','2'),
+('53','11','3'),
+('54','11','4'),
+('55','11','5'),
+('56','12','1'),
+('57','12','2'),
+('58','12','3'),
+('59','12','4'),
+('60','12','5');
 
 INSERT INTO `USER` (`login`,`password`,`dni`, `name`,`surname`,`email`,`address`,`telephone`) VALUES
 ('admin','21232f297a57a5a743894a0e4a801fc3' , '111222333A','Administrador','Administrador', 'admin@admin.com', 'address', '666555444');
@@ -131,9 +143,20 @@ INSERT INTO `PERMISSION` (`role_id`,`func_action_id`) VALUES
 (1,'47'),
 (1,'48'),
 (1,'49'),
-(1,'50');
+(1,'50'),
+(1,'51'),
+(1,'52'),
+(1,'53'),
+(1,'54'),
+(1,'55'),
+(1,'56'),
+(1,'57'),
+(1,'58'),
+(1,'59'),
+(1,'60');
 
 INSERT INTO `ACADEMIC_COURSE` (`id`, `academic_course_abbr`, `start_year`, `end_year`) VALUES
 (1, '18/19', '2018', '2019'),
 (2, '19/20', '2019', '2020'),
 (3, '20/21', '2020', '2021');
+
