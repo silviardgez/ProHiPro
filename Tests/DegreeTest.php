@@ -47,9 +47,13 @@ final class DegreeTest extends TestCase
         self::$universityDAO->add($university);
         $building = new Building(1, 'Edificio Politécnico', 'Ourense', $user);
         self::$buildingDAO->add($building);
-        $center = new Center(1, $university, 'ESEI', $building, $user);
-        self::$centerDAO->add($center);
-        self::$exampleDegree = new Degree(1, 'Ing. Informática', $center, 120, 'None', 240, $user);
+        $center1 = new Center(1, $university, 'ESEI', $building, $user);
+        $center2 = new Center(2, $university, 'Facultad de Ciencias', $building, $user);
+        $center3 = new Center(3, $university, 'Facultad de Letras', $building, $user);
+        self::$centerDAO->add($center1);
+        self::$centerDAO->add($center2);
+        self::$centerDAO->add($center3);
+        self::$exampleDegree = new Degree(1, 'Ing. Informática', $center1, 120, 'None', 240, $user);
     }
 
     protected function tearDown(): void
@@ -117,10 +121,10 @@ final class DegreeTest extends TestCase
         $degree1->setId(2);
         $degree2 = clone self::$exampleDegree;
         $degree2->setId(3);
-        $degree2->setUniversity(new University(2, '51/52', 2051, 2052));
+        $degree2->setCenter(self::$centerDAO->show('id', 2));
         $degree3 = clone self::$exampleDegree;
         $degree3->setId(4);
-        $degree3->setUniversity(new University(3, '52/53', 2052, 2053));
+        $degree3->setCenter(self::$centerDAO->show('id', 3));
 
 
         self::$degreeDAO->add($degree1);

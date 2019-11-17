@@ -130,15 +130,15 @@ switch ($action) {
     case "search":
         if (HavePermission("Degree", "SHOWALL")) {
             if (!isset($_POST["submit"])) {
-                new DegreeSearchView($centerData);
+                new DegreeSearchView($centerData, $userData);
             } else {
                 try {
                     $degree = new Degree();
                     if (!empty($_POST["name"])) {
                         $degree->setName($_POST["name"]);
                     }
-                    if (!empty($_POST["capacity"])) {
-                        $degree->setCapacity($_POST["capacity"]);
+                    if (!empty($_POST["user_id"])) {
+                        $degree->setUser($userDAO->show("login", $_POST["user_id"]));
                     }
                     if (!empty($_POST["center_id"])) {
                         $degree->setCenter($centerDAO->show("id", $_POST["center_id"]));
