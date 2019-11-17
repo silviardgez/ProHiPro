@@ -23,7 +23,11 @@ class Action
 
     public function setId($id)
     {
-        $this->id = $id;
+        if (empty($id) || strlen($id)>8) {
+            throw new ValidationException('Error de validación. Id incorrecto.');
+        } else {
+            $this->id = $id;
+        }
     }
 
     public function getName()

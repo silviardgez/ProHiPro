@@ -28,7 +28,11 @@ class Center
 
     public function setId($id)
     {
-        $this->id = $id;
+        if (empty($id) || strlen($id)>8) {
+            throw new ValidationException('Error de validación. Id incorrecto.');
+        } else {
+            $this->id = $id;
+        }
     }
 
     public function getUniversity()
@@ -38,7 +42,11 @@ class Center
 
     public function setUniversity($university)
     {
-        $this->university = $university;
+        if (empty($university) || strlen($university)>8) {
+            throw new ValidationException('Error de validación. Id universidad incorrecto.');
+        } else {
+            $this->university = $university;
+        }
     }
 
     public function getName()
@@ -48,7 +56,11 @@ class Center
 
     public function setName($name)
     {
-        $this->name = $name;
+        if (empty($name) || strlen($name)>30) {
+            throw new ValidationException('Error de validación. Nombre incorrecto.');
+        } else {
+            $this->name = $name;
+        }
     }
 
     public function getBuilding()
@@ -58,7 +70,11 @@ class Center
 
     public function setBuilding($building)
     {
-        $this->building = $building;
+        if (empty($building) || strlen($building)>8) {
+            throw new ValidationException('Error de validación. Id edificio incorrecto.');
+        } else {
+            $this->building = $building;
+        }
     }
 
     public function getUser()
@@ -68,7 +84,11 @@ class Center
 
     public function setUser($user)
     {
-        $this->user = $user;
+        if (empty($user) || strlen($user)>9) {
+            throw new ValidationException('Error de validación. Id usuario incorrecto.');
+        } else {
+            $this->user = $user;
+        }
     }
 
     public static function expose()

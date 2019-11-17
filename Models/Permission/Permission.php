@@ -18,7 +18,11 @@ class Permission
 
     public function setId($id)
     {
-        $this->id = $id;
+        if (empty($id) || strlen($id)>8) {
+            throw new ValidationException('Error de validación. Id incorrecto.');
+        } else {
+            $this->id = $id;
+        }
     }
 
     public function getRole()
@@ -28,7 +32,11 @@ class Permission
 
     public function setRole($role)
     {
-        $this->role = $role;
+        if (empty($role) || strlen($role)>8) {
+            throw new ValidationException('Error de validación. Role incorrecto.');
+        } else {
+            $this->role = $role;
+        }
     }
 
     public function getFuncAction()
@@ -38,7 +46,11 @@ class Permission
 
     public function setFuncAction($func_action)
     {
-        $this->func_action = $func_action;
+        if (empty($func_action) || strlen($func_action)>8) {
+            throw new ValidationException('Error de validación. Funcionalidad-Acción incorrecta.');
+        } else {
+            $this->func_action = $func_action;
+        }
     }
 
     public static function expose()

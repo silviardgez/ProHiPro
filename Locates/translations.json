@@ -1262,6 +1262,98 @@
   "No tienes permiso visualizar la entidad.": {
     "en": "You do not have permission to view the entity.",
     "gl": "Non tes permiso para visualizar a entidade."
-  }
+  },
+  "Error de validación. Login incorrecto.": {
+    "en": "Validation error. Login wrong.",
+    "gl": "Error de validación. Login incorrecto."
+  },
+  "Error de validación. Contraseña incorrecta.": {
+    "en": "Validation error. Password wrong.",
+    "gl": "Error de validación. Contrasinal incorrecto."
+  },
+  "Error de validación. DNI incorrecto.": {
+    "en": "Validation error. DNI wrong.",
+    "gl": "Error de validación. DNI incorrecto."
+  },
+  "Error de validación. Nombre incorrecto.": {
+    "en": "Validation error. Name wrong.",
+    "gl": "Error de validación. Nombre incorrecto."
+  },
+  "Error de validación. Apellido incorrecto.": {
+    "en": "Validation error. Surname wrong.",
+    "gl": "Error de validación. Apelido incorrecto."
+  },
+  "Error de validación. Email incorrecto.": {
+    "en": "Validation error. Email wrong.",
+    "gl": "Error de validación. Email incorrecto."
+  },
+  "Error de validación. Dirección incorrecta.": {
+    "en": "Validation error. Address wrong.",
+    "gl": "Error de validación. Dirección incorrecto."
+  },
+  "Error de validación. Teléfono incorrecto.": {
+    "en": "Validation error. Telephone wrong.",
+    "gl": "Error de validación. Teléfono incorrecto."
+  },
+  "Error de validación. Id incorrecto.": {
+    "en": "Validation error. Id wrong.",
+    "gl": "Error de validación. Id incorrecto."
+  },
+  "Error de validación. Descripción incorrecta.": {
+    "en": "Validation error. Description wrong.",
+    "gl": "Error de validación. Descripción incorrecta."
+  },
+  "Error de validación. Usuario incorrecto.": {
+    "en": "Validation error. User wrong.",
+    "gl": "Error de validación. Usuario incorrecto."
+  },
+  "Error de validación. Localización incorrecta.": {
+    "en": "Validation error. Location wrong.",
+    "gl": "Error de validación. Localización incorrecta."
+  },
+  "Error de validación. Id universidad incorrecto.": {
+    "en": "Validation error. University id wrong.",
+    "gl": "Error de validación. Id universidade incorrecto."
+  },
+  "Error de validación. Id edificio incorrecto.": {
+    "en": "Validation error. Building id wrong.",
+    "gl": "Error de validación. Id edificio incorrecto."
+  },
+  "Error de validación. Id usuario incorrecto.": {
+    "en": "Validation error. User id wrong.",
+    "gl": "Error de validación. Id usuario incorrecto."
+  },
+  "Error de validación. Acción incorrecta.": {
+    "en": "Validation error. Action wrong.",
+    "gl": "Error de validación. Acción incorrecta."
+  },
+  "Error de validación. Funcionalidad incorrecta.": {
+    "en": "Validation error. Functionality wrong.",
+    "gl": "Error de validación. Funcionalidade incorrecta."
+  },
+  "Error de validación. Role incorrecto.": {
+    "en": "Validation error. Role wrong.",
+    "gl": "Error de validación. Role incorrecto."
+  },
+  "Error de validación. Funcionalidad-Acción incorrecta.": {
+    "en": "Validation error. Functionality-Action wrong.",
+    "gl": "Error de validación. Funcionalidade-Acción incorrecta."
+  },
+  "Error de validación. Id edificio incorrecto.": {
+    "en": "Validation error. Building id wrong.",
+    "gl": "Error de validación. Id edicio incorrecto."
+  },
+  "Error de validación. Capacidad incorrecto.": {
+    "en": "Validation error. Capacity wrong.",
+    "gl": "Error de validación. Capacidade incorrecto."
+  },
+  "Error de validación. Id curso académico incorrecto.": {
+    "en": "Validation error. Academic course id wrong.",
+    "gl": "Error de validación. Id curso académico incorrecto."
+  },
+  "Error de validación. Id role incorrecto.": {
+    "en": "Validation error. Role id wrong.",
+    "gl": "Error de validación. Id role incorrecto."
+}
 }
 

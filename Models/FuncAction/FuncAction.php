@@ -18,7 +18,11 @@ class FuncAction
 
     public function setId($id)
     {
-        $this->id = $id;
+        if (empty($id) || strlen($id)>8) {
+            throw new ValidationException('Error de validación. Id incorrecto.');
+        } else {
+            $this->id = $id;
+        }
     }
 
     public function getAction()
@@ -28,7 +32,11 @@ class FuncAction
 
     public function setAction($action)
     {
-        $this->action = $action;
+        if (empty($action) || strlen($action)>8) {
+            throw new ValidationException('Error de validación. Acción incorrecta.');
+        } else {
+            $this->action = $action;
+        }
     }
 
     public function getFunctionality()
@@ -38,7 +46,11 @@ class FuncAction
 
     public function setFunctionality($functionality)
     {
-        $this->functionality = $functionality;
+        if (empty($functionality) || strlen($functionality)>8) {
+            throw new ValidationException('Error de validación. Funcionalidad incorrecta.');
+        } else {
+            $this->functionality = $functionality;
+        }
     }
 
     public static function expose()

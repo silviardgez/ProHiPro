@@ -26,7 +26,11 @@ class Building
 
     public function setId($id)
     {
-        $this->id = $id;
+        if (empty($id) || strlen($id)>8) {
+            throw new ValidationException('Error de validación. Id incorrecto.');
+        } else {
+            $this->id = $id;
+        }
     }
 
     public function getUser()
@@ -36,7 +40,11 @@ class Building
 
     public function setUser($user)
     {
-        $this->user = $user;
+        if (empty($user) || strlen($user)>9) {
+            throw new ValidationException('Error de validación. Usuario incorrecto.');
+        } else {
+            $this->user = $user;
+        }
     }
 
     public function getName()
@@ -46,7 +54,11 @@ class Building
 
     public function setName($name)
     {
-        $this->name = $name;
+        if (empty($name) || strlen($name)>30) {
+            throw new ValidationException('Error de validación. Nombre incorrecto.');
+        } else {
+            $this->name = $name;
+        }
     }
 
     public function getLocation()
@@ -56,7 +68,11 @@ class Building
 
     public function setLocation($location)
     {
-        $this->location = $location;
+        if (empty($location) || strlen($location)>30) {
+            throw new ValidationException('Error de validación. Localización incorrecta.');
+        } else {
+            $this->location = $location;
+        }
     }
 
     public static function expose()

@@ -26,7 +26,11 @@ class Space
 
     public function setId($id)
     {
-        $this->id = $id;
+        if (empty($id) || strlen($id) > 8) {
+            throw new ValidationException('Error de validación. Id incorrecto.');
+        } else {
+            $this->id = $id;
+        }
     }
 
     public function getName()
@@ -36,7 +40,11 @@ class Space
 
     public function setName($name)
     {
-        $this->name = $name;
+        if (empty($name) || strlen($name)>30) {
+            throw new ValidationException('Error de validación. Nombre incorrecto.');
+        } else {
+            $this->name = $name;
+        }
     }
 
     public function getBuilding()
@@ -46,7 +54,11 @@ class Space
 
     public function setBuilding($building)
     {
-        $this->building = $building;
+        if (empty($building) || strlen($building)>8) {
+            throw new ValidationException('Error de validación. Id edificio incorrecto.');
+        } else {
+            $this->building = $building;
+        }
     }
 
     public function getCapacity()
@@ -56,7 +68,11 @@ class Space
 
     public function setCapacity($capacity)
     {
-        $this->capacity = $capacity;
+        if (empty($capacity) || strlen($capacity)>3) {
+            throw new ValidationException('Error de validación. Capacidad incorrecta.');
+        } else {
+            $this->capacity = $capacity;
+        }
     }
 
     public static function expose()
