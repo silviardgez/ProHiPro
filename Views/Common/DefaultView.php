@@ -69,7 +69,7 @@
                                 </li>
 								<?php } ?>
 								<?php
-									if (HavePermission("Permission", "SHOWALL")) {
+									if (HavePermission("FuncAction", "SHOWALL")) {
 								?>
                                 <li class="nav-item">
                                     <a class="nav-link" href="../Controllers/FuncActionController.php">
@@ -78,7 +78,7 @@
                                 </li>
 								<?php } ?>
 								<?php
-									if (HavePermission("FuncAction", "SHOWALL")) {
+									if (HavePermission("Permission", "SHOWALL")) {
 								?>
                                 <li class="nav-item">
                                     <a class="nav-link" href="../Controllers/PermissionController.php">
