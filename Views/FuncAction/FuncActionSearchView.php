@@ -23,7 +23,7 @@ class FuncActionSearchView {
                 <div class="form-group">
                     <label for="action_id" data-translate="Acción"></label>
                     <select class="form-control" id="action_id" name="action_id">
-                        <option value=""></option>
+                        <option data-translate="Introducir acción" value=""></option>
                         <?php foreach ($this->actions as $action): ?>
                             <option value="<?php echo $action->getId()?>"><?php echo $action->getName() ?></option>
                         <?php endforeach;?>
@@ -32,7 +32,7 @@ class FuncActionSearchView {
                 <div class="form-group">
                     <label for="functionality_id" data-translate="Funcionalidad"></label>
                     <select class="form-control" id="functionality_id" name="functionality_id"?>
-                        <option value=""></option>
+                        <option data-translate="Introducir funcionalidad" value=""></option>
                         <?php foreach ($this->functionalities as $func): ?>
                             <option value="<?php echo $func->getId() ?>"><?php echo $func->getName() ?></option>
                         <?php endforeach;?>

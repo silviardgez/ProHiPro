@@ -22,7 +22,7 @@ class UserRoleSearchView {
                 <div class="form-group">
                     <label for="user_id" data-translate="Usuario"></label>
                     <select class="form-control" id="user_id" name="user_id">
-                        <option vale=""></option>
+                        <option data-translate="Introducir usuario" vale=""></option>
                         <?php foreach ($this->users as $user): ?>
                             <option value="<?php echo $user->getLogin()?>"><?php echo $user->getLogin() ?></option>
                         <?php endforeach;?>
@@ -31,7 +31,7 @@ class UserRoleSearchView {
                 <div class="form-group">
                     <label for="description" data-translate="Rol"></label>
                     <select class="form-control" id="role_id" name="role_id"?>
-                        <option vale=""></option>
+                        <option data-translate="Introducir rol" value=""></option>
                         <?php foreach ($this->roles as $role): ?>
                             <option value="<?php echo $role->getId() ?>"><?php echo $role->getName() ?></option>
                         <?php endforeach;?>

@@ -1227,6 +1227,26 @@
     "en": "Insert capacity",
     "gl": "Inserir capacidade"
   },
+  "Introducir acción": {
+    "en": "Insert action",
+    "gl": "Inserir acción"
+  },
+  "Introducir funcionalidad": {
+    "en": "Insert functionality",
+    "gl": "Inserir funcionalidade"
+  },
+  "Introducir rol": {
+    "en": "Insert role",
+    "gl": "Inserir rol"
+  },
+  "Introducir usuario": {
+    "en": "Insert user",
+    "gl": "Inserir usuario"
+  },
+  "Introducir acción-funcionalidad": {
+    "en": "Insert action-functionality",
+    "gl": "Inserir acción-funcionalidade"
+  },
   "Edificio": {
     "en": "Building",
     "gl": "Edificio"
