@@ -200,10 +200,14 @@ ALTER TABLE `SPACE` ADD UNIQUE KEY `uidx` (`building_id`, `name`);
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 CREATE TABLE `DEGREE` (
-  `IdDegree` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,  
-  `center_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
+  `id` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
   `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
-  PRIMARY KEY(`IdDegree`, `center_id`),
+  `center_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
+  `capacity` int(3) COLLATE latin1_spanish_ci NOT NULL,
+  `description` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
+  `credits` int(3) COLLATE latin1_spanish_ci NOT NULL,
+  `user_id` varchar(9) COLLATE latin1_spanish_ci NOT NULL,
+  PRIMARY KEY(`id`, `center_id`),
   FOREIGN KEY (`center_id`)
 	REFERENCES `CENTER`(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
@@ -214,12 +218,12 @@ CREATE TABLE `DEGREE` (
 -- --------------------------------------------------------
 CREATE TABLE `SUBJECT` (
   `IdSubject` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,  
-  `IdDegree` int(8) COLLATE latin1_spanish_ci NOT NULL,
+  `degree_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
   `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
   `description` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
-  PRIMARY KEY(`IdSubject`, `IdDegree`),
-  FOREIGN KEY (`IdDegree`) 
-	REFERENCES `DEGREE`(`IdDegree`)  
+  PRIMARY KEY(`IdSubject`, `degree_id`),
+  FOREIGN KEY (`degree_id`)
+	REFERENCES `DEGREE`(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 -- --------------------------------------------------------
 -- --------------------------------------------------------
