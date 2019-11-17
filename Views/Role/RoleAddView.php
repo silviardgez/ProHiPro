@@ -20,12 +20,12 @@ function render(){
             <div id="name-div" class="form-group">
                 <label for="name" data-translate="Nombre"></label>
                 <input type="text" class="form-control" id="name" name="name" data-translate="Introducir nombre" 
-				max-length="60" required oninput="checkNameRole(this);">
+				maxlength="60" required oninput="checkNameRole(this);">
             </div>
             <div id="description-div" class="form-group">
                 <label for="description" data-translate="Descripción"></label>
                 <input type="text" class="form-control" id="description" name="description" data-translate="Introducir descripción" 
-				max-length="100" required oninput="checkDescriptionRole(this);">
+				maxlength="100" required oninput="checkDescriptionRole(this);">
             </div>
             <button name="submit" type="submit" class="btn btn-primary" data-translate="Enviar"></button>
         </form>

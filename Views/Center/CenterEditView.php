@@ -17,17 +17,19 @@ class CenterEditView {
         <head>
             <link rel="stylesheet" href="../CSS/default.css" />
             <link rel="stylesheet" href="../CSS/forms.css" />
+            <script src="../JS/Validations/CenterValidations.js"></script>
         </head>
         <main role="main" class="margin-main ml-sm-auto px-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-3 border-bottom">
                 <h1 class="h2" data-translate="Editar centro '%<?php echo $this->center->getId() ?>%'"></h1>
                 <a class="btn btn-primary" role="button" href="../Controllers/CenterController.php"><p data-translate="Volver"></p></a>
             </div>
-            <form action='../Controllers/CenterController.php?action=edit&id=<?php echo $this->center->getId() ?>' method='POST'>
-                <div class="form-group">
+            <form id="centerForm" action='../Controllers/CenterController.php?action=edit&id=<?php echo $this->center->getId() ?>'
+                  method='POST' onsubmit="areCenterFieldsCorrect()">
+                <div id="name-div" class="form-group">
                     <label for="name" data-translate="Nombre"></label>
                     <input type="text" class="form-control" id="name" name="name" data-translate="Introducir nombre"
-                           value="<?php echo $this->center->getName() ?>" required>
+                           value="<?php echo $this->center->getName() ?>" required maxlength="30" oninput="checkNameCenter(this)">
                 </div>
                 <div class="form-group">
                     <label for="university_id" data-translate="Universidad"></label>

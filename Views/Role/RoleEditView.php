@@ -18,16 +18,19 @@ class RoleEditView {
                 <h1 class="h2" data-translate="Editar rol '%<?php echo $this->role->getId();?>%'"></h1>
                 <a class="btn btn-primary" role="button" href="../Controllers/RoleController.php" data-translate="Volver"></a>
             </div>
-            <form name = "actionForm" action='../Controllers/RoleController.php?action=edit&id=<?php echo $this->role->getId()?>' method='POST' onsubmit="return areRoleFieldsCorrect()">
+            <form name = "actionForm" action='../Controllers/RoleController.php?action=edit&id=<?php echo $this->role->getId()?>'
+                  method='POST' onsubmit="return areRoleFieldsCorrect()">
                 <div id="name-div" class="form-group">
                     <label for="name" data-translate="Nombre"></label>
                     <input type="text" class="form-control" id="name" name="name"
-                           value="<?php echo $this->role->getName() ?>" max-length="60" required oninput="checkNameRole(this);">
+                           value="<?php echo $this->role->getName() ?>" maxlength="60" required
+                           oninput="checkNameRole(this);">
                 </div>
                 <div id="description-div" class="form-group">
                     <label for="description" data-translate="Descripción"></label>
                     <input type="text" class="form-control" id="description" name="description"
-                           value="<?php echo $this->role->getDescription() ?>" max-length="100" required oninput="checkDescriptionRole(this);">
+                           value="<?php echo $this->role->getDescription() ?>" maxlength="100" required
+                           oninput="checkDescriptionRole(this);">
                 </div>
                 <button name="submit" type="submit" class="btn btn-primary" data-translate="Enviar"></button>
             </form>

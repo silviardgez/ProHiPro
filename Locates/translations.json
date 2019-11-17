@@ -1023,6 +1023,22 @@
     "en": "The surname attribute only supports alphabetic characters.",
     "gl": "O atributo apelido só admite caracteres alfabéticos."
   },
+  "El atributo localización no puede estar vacío.": {
+    "en": "The location attribute cannot be empty.",
+    "gl": "O atributo localización non pode estar baleiro."
+  },
+  "El atributo localización contiene algún carácter no válido: %c.": {
+    "en": "The location attribute contains some invalid character: %c.",
+    "gl": "O atributo localización contén algún caracter non válido: %c."
+  },
+  "El atributo localización puede tener una longitud máxima de %c.": {
+    "en": "The location attribute can have a maximum length of %c.",
+    "gl": "O atributo localización pode ter unha lonxitude máxima de %c."
+  },
+  "El atributo localización solo admite carácteres alfabéticos.": {
+    "en": "The location attribute only supports alphabetic characters.",
+    "gl": "O atributo localización só admite caracteres alfabéticos."
+  },
   "El atributo apellido no puede estar vacío.": {
     "en": "The surname attribute cannot be empty.",
     "gl": "O atributo apelido non pode estar baleiro."
@@ -1075,6 +1091,14 @@
     "en": "The description attribute can have a maximum length of %c.",
     "gl": "O atributo descripción pode ter unha lonxitude máxima de %c."
   },
+  "El atributo capacidad no puede estar vacío.": {
+    "en": "The capacity attribute cannot be empty.",
+    "gl": "O atributo capacidade non pode estar baleiro."
+  },
+  "El atributo capacidad puede tener una longitud máxima de %c.": {
+    "en": "The capacity attribute can have a maximum length of %c.",
+    "gl": "O atributo capacidade pode ter unha lonxitude máxima de %c."
+  },
   "El atributo descripción no puede estar vacío.": {
     "en": "The description attribute cannot be empty.",
     "gl": "O atributo descripción non pode estar baleiro."
@@ -1082,6 +1106,10 @@
   "El atributo descripción contiene algún carácter no válido: %c.": {
     "en": "The description attribute contains some invalid character: %c.",
     "gl": "O atributo descripción contén algún caracter non válido: %c."
+  },
+  "El atributo capacidad no puede ser mayor que %c.": {
+    "en": "The capacity attribute can have a maximum value of %c.",
+    "gl": "O atributo capacidade pode ter un valor máximo de %c."
   },
   "El atributo inicio no puede ser mayor que %c.": {
     "en": "The start attribute can have a maximum value of %c.",
@@ -1094,6 +1122,10 @@
   "El atributo inicio no puede ser menor que %c.": {
     "en": "The start attribute can have a minimum value of %c.",
     "gl": "O atributo inicio pode ter un valor mínimo de %c."
+  },
+  "El atributo capacidad no puede ser menor que %c.": {
+    "en": "The capacity attribute can have a minimum value of %c.",
+    "gl": "O atributo capacidade pode ter un valor mínimo de %c."
   },
   "El atributo fin no puede ser menor que %c.": {
     "en": "The end attribute can have a minimum value of %c.",

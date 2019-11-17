@@ -19,11 +19,14 @@ function render(){
         <form id="actionForm" name = "ADD"action='../Controllers/FunctionalityController.php?action=add' method='POST' onsubmit="return areFunctionalityFieldsCorrect()">
             <div id="name-div" class="form-group">
                 <label for="name" data-translate="Nombre"></label>
-                <input type="text" class="form-control" id="name" name="name" data-translate="Introducir nombre" max-length="60" required oninput="checkNameAction(this);">
+                <input type="text" class="form-control" id="name" name="name" data-translate="Introducir nombre"
+                       maxlength="60" required oninput="checkNameAction(this);">
             </div>
             <div id="description-div"  class="form-group">
                 <label for="description" data-translate="Descripción"></label>
-                <input type="text" class="form-control" id="description" name="description" data-translate="Introducir descripción" max-length="100" required oninput="checkDescriptionAction(this);">
+                <input type="text" class="form-control" id="description" name="description"
+                       data-translate="Introducir descripción" maxlength="100" required
+                       oninput="checkDescriptionAction(this);">
             </div>
             <button name="submit" type="submit" class="btn btn-primary" data-translate="Enviar"></button>
         </form>

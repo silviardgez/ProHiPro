@@ -21,12 +21,12 @@ class FunctionalitySearchView {
                 <div id="name-div" class="form-group">
                     <label for="name" data-translate="Nombre"></label>
                     <input type="text" class="form-control" id="name" name="name" data-translate="Introducir nombre"
-					max-length="60" oninput="checkNameEmptyFunctionality(this);">
+					maxlength="60" oninput="checkNameEmptyFunctionality(this);">
                 </div>
                 <div id="description-div" class="form-group">
                     <label for="description" data-translate="Descripción"></label>
                     <input type="text" class="form-control" id="description" name="description" data-translate="Introducir descripción"
-					max-length="100" oninput="checkDescriptionEmptyFunctionality(this);">
+					maxlength="100" oninput="checkDescriptionEmptyFunctionality(this);">
                 </div>
                 <button name="submit" type="submit" class="btn btn-primary" data-translate="Enviar"></button>
             </form>

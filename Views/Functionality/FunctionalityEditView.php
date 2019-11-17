@@ -23,12 +23,14 @@ class FunctionalityEditView {
                 <div id="name-div" class="form-group">
                     <label for="name" data-translate="Nombre"></label>
                     <input type="text" class="form-control" id="name" name="name"
-                           value="<?php echo $this->functionality->getName() ?>" required oninput="checkNameFunctionality(this);">
+                           value="<?php echo $this->functionality->getName() ?>" required maxlength="60"
+                           oninput="checkNameFunctionality(this);">
                 </div>
                 <div id="description-div" class="form-group">
                     <label for="description" data-translate="Descripción"></label>
                     <input type="text" class="form-control" id="description" name="description"
-                           value="<?php echo $this->functionality->getDescription() ?>" max-length="100" required oninput="checkDescriptionFunctionality(this);">
+                           value="<?php echo $this->functionality->getDescription() ?>" maxlength="100"
+                           required oninput="checkDescriptionFunctionality(this);">
                 </div>
                 <button name="submit" type="submit" class="btn btn-primary" data-translate="Enviar"></button>
             </form>
