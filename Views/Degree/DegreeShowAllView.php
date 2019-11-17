@@ -9,8 +9,9 @@ class DegreeShowAllView
     private $totalDegrees;
     private $totalPages;
     private $stringToSearch;
+    private $searching;
 
-    function __construct($degreesData, $itemsPerPage = NULL, $currentPage = NULL, $totalDegrees = NULL, $toSearch = NULL)
+    function __construct($degreesData, $itemsPerPage = NULL, $currentPage = NULL, $totalDegrees = NULL, $toSearch = NULL, $searching=false)
     {
         $this->degrees = $degreesData;
         $this->itemsPerPage = $itemsPerPage;
@@ -18,6 +19,7 @@ class DegreeShowAllView
         $this->totalDegrees = $totalDegrees;
         $this->totalPages = ceil($totalDegrees / $itemsPerPage);
         $this->stringToSearch = $toSearch;
+        $this->searching =$searching;
         $this->render();
     }
 
@@ -32,7 +34,7 @@ class DegreeShowAllView
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-degree pt-4 pb-2 mb-3">
                 <h1 class="h2" data-translate="Listado de titulaciones"></h1>
 
-                <?php if (!empty($this->stringToSearch)): ?>
+                <?php if ($this->searching): ?>
                     <a class="btn btn-primary" role="button" href="../Controllers/DegreeController.php">
                         <p data-translate="Volver"></p>
                     </a>

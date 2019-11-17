@@ -89,15 +89,27 @@ INSERT INTO `FUNC_ACTION` (`id`,`functionality_id`, `action_id`) VALUES
 ('65','13','5');
 
 INSERT INTO `USER` (`login`,`password`,`dni`, `name`,`surname`,`email`,`address`,`telephone`) VALUES
-('admin','21232f297a57a5a743894a0e4a801fc3' , '11122233A','Administrador','Administrador', 'admin@admin.com', 'address', '666555444');
+('admin','21232f297a57a5a743894a0e4a801fc3' , '11122233P','Administrador','Administrador', 'admin@admin.com', 'address', '666555444'),
+('gestuniv','21232f297a57a5a743894a0e4a801fc3' , '11122233P','GestUniv','GestUniv', 'GestUniv@GestUniv.com', 'address', '666555444'),
+('gestcent','21232f297a57a5a743894a0e4a801fc3' , '11122233P','GestCent','GestCent', 'GestCent@GestCent.com', 'address', '666555444'),
+('gestbuil','21232f297a57a5a743894a0e4a801fc3' , '11122233P','GestBuil','GestBuil', 'GestBuil@GestBuil.com', 'address', '666555444'),
+('gestdeg','21232f297a57a5a743894a0e4a801fc3' , '11122233P','GestDegree','GestDegree', 'GestDegree@GestDegree.com', 'address', '666555444');
 
 INSERT INTO `ROLE` (`id`, `name`, `description`) VALUES
 (1, 'Admin', 'Role with all permissions'),
-(2, 'BasicUser', 'Role with the basic permissions'),
-(3, 'Test', 'Role to test');
+(2, 'GestUniv', 'Role with University Owner permissions'),
+(3, 'GestCent', 'Role with Center Owner permissions'),
+(4, 'GestBuil', 'Role with Building Owner permissions'),
+(5, 'GestDegree', 'Role with Degree Owner permissions'),
+(6, 'BasicUser', 'Role with the basic permissions'),
+(7, 'Test', 'Role to test');
 
 INSERT INTO `USER_ROLE` (`user_id`,`role_id`) VALUES
-('admin', 1);
+('admin', 1),
+('gestuniv', 2),
+('gestcent', 3),
+('gestbuil', 4),
+('gestdeg', 5);
 
 INSERT INTO `PERMISSION` (`role_id`,`func_action_id`) VALUES
 (1,'1'),
@@ -164,7 +176,31 @@ INSERT INTO `PERMISSION` (`role_id`,`func_action_id`) VALUES
 (1,'62'),
 (1,'63'),
 (1,'64'),
-(1,'65');
+(1,'65'),
+(2,'46'),
+(2,'47'),
+(2,'48'),
+(2,'49'),
+(2,'50'),
+(2,'43'),
+(2,'44'),
+(2,'45'),
+(2,'51'),
+(2,'54'),
+(2,'55'),
+(3,'49'),
+(3,'50'),
+(3,'61'),
+(3,'62'),
+(3,'63'),
+(3,'64'),
+(3,'65'),
+(4,'52'),
+(4,'53'),
+(4,'54'),
+(4,'55'),
+(5,'64'),
+(5,'65');
 
 INSERT INTO `ACADEMIC_COURSE` (`id`, `academic_course_abbr`, `start_year`, `end_year`) VALUES
 (1, '18/19', '2018', '2019'),

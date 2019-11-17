@@ -9,8 +9,9 @@ class BuildingShowAllView
     private $totalBuildings;
     private $totalPages;
     private $stringToSearch;
+    private $searching;
 
-    function __construct($buildingsData, $itemsPerPage = NULL, $currentPage = NULL, $totalBuildings = NULL, $toSearch = NULL)
+    function __construct($buildingsData, $itemsPerPage = NULL, $currentPage = NULL, $totalBuildings = NULL, $toSearch = NULL, $searching=False)
     {
         $this->buildings = $buildingsData;
         $this->itemsPerPage = $itemsPerPage;
@@ -18,6 +19,7 @@ class BuildingShowAllView
         $this->totalBuildings = $totalBuildings;
         $this->totalPages = ceil($totalBuildings / $itemsPerPage);
         $this->stringToSearch = $toSearch;
+        $this->searching=$searching;
         $this->render();
     }
 
@@ -32,7 +34,7 @@ class BuildingShowAllView
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-3">
                 <h1 class="h2" data-translate="Listado de edificios"></h1>
 
-                <?php if (!empty($this->stringToSearch)): ?>
+                <?php if ($this->searching): ?>
                     <a class="btn btn-primary" role="button" href="../Controllers/BuildingController.php">
                         <p data-translate="Volver"></p>
                     </a>

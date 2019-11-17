@@ -19,6 +19,9 @@ include_once '../Views/Building/BuildingEditView.php';
 include_once '../Views/Building/BuildingSearchView.php';
 include_once '../Views/Common/PaginationView.php';
 include_once '../Functions/HavePermission.php';
+include_once '../Functions/IsAdmin.php';
+include_once '../Functions/IsUniversityOwner.php';
+include_once '../Functions/IsBuildingOwner.php';
 include_once '../Functions/OpenDeletionModal.php';
 include_once '../Functions/Redirect.php';
 include_once '../Functions/Messages.php';
@@ -60,23 +63,28 @@ switch ($action) {
         break;
     case "delete":
         if (HavePermission("Building", "DELETE")) {
-            if (isset($_REQUEST["confirm"])) {
-                try {
-                    $buildingDAO->delete($buildingPrimaryKey, $value);
-                    goToShowAllAndShowSuccess("Edificio eliminado correctamente.");
-                } catch (DAOException $e) {
-                    goToShowAllAndShowError($e->getMessage());
+            $building = $buildingDAO->show($buildingPrimaryKey, $value);
+            if(IsAdmin() || $building == IsBuildingOwner()) {
+                if (isset($_REQUEST["confirm"])) {
+                    try {
+                        $buildingDAO->delete($buildingPrimaryKey, $value);
+                        goToShowAllAndShowSuccess("Edificio eliminado correctamente.");
+                    } catch (DAOException $e) {
+                        goToShowAllAndShowError($e->getMessage());
+                    }
+                } else {
+                    try {
+                        $buildingDAO->checkDependencies($value);
+                        showAll();
+                        openDeletionModal("Eliminar edificio", "¿Está seguro de que desea eliminar " .
+                            "el edificio %" . $value . "%? Esta acción es permanente y no se puede recuperar.",
+                            "../Controllers/BuildingController.php?action=delete&id=" . $value . "&confirm=true");
+                    } catch (DAOException $e) {
+                        goToShowAllAndShowError($e->getMessage());
+                    }
                 }
-            } else {
-                try {
-                    $buildingDAO->checkDependencies($value);
-                    showAll();
-                    openDeletionModal("Eliminar edificio", "¿Está seguro de que desea eliminar " .
-                        "el edificio %" . $value . "%? Esta acción es permanente y no se puede recuperar.",
-                        "../Controllers/BuildingController.php?action=delete&id=" . $value . "&confirm=true");
-                } catch (DAOException $e) {
-                    goToShowAllAndShowError($e->getMessage());
-                }
+            }else {
+                goToShowAllAndShowError("No tienes permiso para eliminar.");
             }
         } else {
             goToShowAllAndShowError("No tienes permiso para eliminar.");
@@ -101,7 +109,11 @@ switch ($action) {
             try {
                 $building = $buildingDAO->show($buildingPrimaryKey, $value);
                 if (!isset($_POST["submit"])) {
-                    new BuildingEditView($building, $userData);
+                    if(IsAdmin() || $building == IsBuildingOwner()){
+                        new BuildingEditView($building, $userData);
+                    } else{
+                        goToShowAllAndShowError("No tienes permiso para editar.");
+                    }
                 } else {
                     $building->setId($value);
                     $building->setName($_POST["name"]);
@@ -160,12 +172,33 @@ function showAllSearch($search)
 {
     if (HavePermission("Building", "SHOWALL")) {
         try {
+            $searching=False;
+            if (!empty($search)) {
+                $searching = True;
+            }
+            if (!IsAdmin()) {
+                $userDAO = new UserDAO();
+                $building = new Building();
+                $university = IsUniversityOwner();
+                if(empty($university)){
+                    $building->setUser($userDAO->show("login", $_SESSION['login']));
+                    $test = IsBuildingOwner();
+                    if($test===false){
+                        new BuildingShowAllView(array());
+                    }else{
+                        $search = $building;
+                        $searching = False;
+                    }
+                }
+
+            }
+
             $currentPage = getCurrentPage();
             $itemsPerPage = getItemsPerPage();
             $toSearch = getToSearch($search);
             $totalBuildings = $GLOBALS["buildingDAO"]->countTotalBuildings($toSearch);
             $buildingsData = $GLOBALS["buildingDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
-            new BuildingShowAllView($buildingsData, $itemsPerPage, $currentPage, $totalBuildings, $toSearch);
+            new BuildingShowAllView($buildingsData, $itemsPerPage, $currentPage, $totalBuildings, $toSearch, $searching);
         } catch (DAOException $e) {
             new BuildingShowAllView(array());
             errorMessage($e->getMessage());

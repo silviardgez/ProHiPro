@@ -20,6 +20,9 @@ include_once '../Views/Degree/DegreeEditView.php';
 include_once '../Views/Degree/DegreeSearchView.php';
 include_once '../Views/Common/PaginationView.php';
 include_once '../Functions/HavePermission.php';
+include_once '../Functions/IsAdmin.php';
+include_once '../Functions/IsCenterOwner.php';
+include_once '../Functions/IsDegreeOwner.php';
 include_once '../Functions/OpenDeletionModal.php';
 include_once '../Functions/Redirect.php';
 include_once '../Functions/Messages.php';
@@ -42,6 +45,16 @@ switch ($action) {
     case "add":
         if (HavePermission("Degree", "ADD")) {
             if (!isset($_POST["submit"])) {
+                if(!IsAdmin()){
+                    $centers=[];
+                    foreach ($centerData as $center){
+                        if($center->getUser()->getId() == $_SESSION['login']){
+                            array_push($centers,$center);
+                        }
+                    }
+                    $centerData=$centers;
+
+                }
                 new DegreeAddView($centerData, $userData);
             } else {
                 try {
@@ -66,23 +79,28 @@ switch ($action) {
         break;
     case "delete":
         if (HavePermission("Degree", "DELETE")) {
-            if (isset($_REQUEST["confirm"])) {
-                try {
-                    $degreeDAO->delete($degreePrimaryKey, $value);
-                    goToShowAllAndShowSuccess("Titulación eliminada correctamente.");
-                } catch (DAOException $e) {
-                    goToShowAllAndShowError($e->getMessage());
+            $degree = $degreeDAO->show($degreePrimaryKey, $value);
+            if(IsAdmin() || $degree->getCenter() == IsCenterOwner()) {
+                if (isset($_REQUEST["confirm"])) {
+                    try {
+                        $degreeDAO->delete($degreePrimaryKey, $value);
+                        goToShowAllAndShowSuccess("Titulación eliminada correctamente.");
+                    } catch (DAOException $e) {
+                        goToShowAllAndShowError($e->getMessage());
+                    }
+                } else {
+                    try {
+                        $degreeDAO->checkDependencies($value);
+                        showAll();
+                        openDeletionModal("Eliminar titulación", "¿Está seguro de que desea eliminar " .
+                            "la titulación %" . $value . "%? Esta acción es permanente y no se puede recuperar.",
+                            "../Controllers/DegreeController.php?action=delete&id=" . $value . "&confirm=true");
+                    } catch (DAOException $e) {
+                        goToShowAllAndShowError($e->getMessage());
+                    }
                 }
-            } else {
-                try {
-                    $degreeDAO->checkDependencies($value);
-                    showAll();
-                    openDeletionModal("Eliminar titulación", "¿Está seguro de que desea eliminar " .
-                        "la titulación %" . $value . "%? Esta acción es permanente y no se puede recuperar.",
-                        "../Controllers/DegreeController.php?action=delete&id=" . $value . "&confirm=true");
-                } catch (DAOException $e) {
-                    goToShowAllAndShowError($e->getMessage());
-                }
+            }else {
+                goToShowAllAndShowError("No tienes permiso para eliminar.");
             }
         } else {
             goToShowAllAndShowError("No tienes permiso para eliminar.");
@@ -107,7 +125,20 @@ switch ($action) {
             try {
                 $degree = $degreeDAO->show($degreePrimaryKey, $value);
                 if (!isset($_POST["submit"])) {
-                    new DegreeEditView($degree, $centerData, $userData);
+                    if(!IsAdmin()){
+                        $centers=[];
+                        foreach ($centerData as $center){
+                            if($center->getUser()->getId() == $_SESSION['login']){
+                                array_push($centers,$center);
+                            }
+                        }
+                        $centerData=$centers;
+                    }
+                    if(IsAdmin() || $degree->getCenter() == IsCenterOwner() || $degree == IsDegreeOwner()){
+                        new DegreeEditView($degree, $centerData, $userData);
+                    } else{
+                        goToShowAllAndShowError("No tienes permiso para editar.");
+                    }
                 } else {
                     $degree->setName($_POST["name"]);
                     $degree->setCenter($centerDAO->show("id", $_POST["center_id"]));
@@ -167,13 +198,35 @@ function showAll()
 function showAllSearch($search)
 {
     if (HavePermission("Degree", "SHOWALL")) {
+        echo "AQUIIIIIIIIIIIIIII";
         try {
+            $searching=False;
+            if (!empty($search)) {
+                $searching = True;
+            }
+            if (!IsAdmin()) {
+                $userDAO = new UserDAO();
+                $degree = new Degree();
+                $center = IsCenterOwner();
+                if(empty($center)){
+                    $degree->setUser($userDAO->show("login", $_SESSION['login']));
+                    $test = IsDegreeOwner();
+                    if($test===false){
+                        new DegreeShowAllView(array());
+                    }else{
+                        $search = $degree;
+                        $searching = False;
+                    }
+                }
+
+            }
+
             $currentPage = getCurrentPage();
             $itemsPerPage = getItemsPerPage();
             $toSearch = getToSearch($search);
             $totalDegrees = $GLOBALS["degreeDAO"]->countTotalDegrees($toSearch);
             $degreesData = $GLOBALS["degreeDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
-            new DegreeShowAllView($degreesData, $itemsPerPage, $currentPage, $totalDegrees, $toSearch);
+            new DegreeShowAllView($degreesData, $itemsPerPage, $currentPage, $totalDegrees, $toSearch, $searching);
         } catch (DAOException $e) {
             new DegreeShowAllView(array());
             errorMessage($e->getMessage());

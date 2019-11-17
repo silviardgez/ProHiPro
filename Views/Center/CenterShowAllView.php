@@ -9,8 +9,9 @@ class CenterShowAllView
     private $totalCenters;
     private $totalPages;
     private $stringToSearch;
+    private $searching;
 
-    function __construct($centersData, $itemsPerPage = NULL, $currentPage = NULL, $totalCenters = NULL, $toSearch = NULL)
+    function __construct($centersData, $itemsPerPage = NULL, $currentPage = NULL, $totalCenters = NULL, $toSearch = NULL, $searching=False)
     {
         $this->centers = $centersData;
         $this->itemsPerPage = $itemsPerPage;
@@ -18,6 +19,7 @@ class CenterShowAllView
         $this->totalCenters = $totalCenters;
         $this->totalPages = ceil($totalCenters / $itemsPerPage);
         $this->stringToSearch = $toSearch;
+        $this->searching=$searching;
         $this->render();
     }
 
@@ -32,7 +34,7 @@ class CenterShowAllView
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-3">
                 <h1 class="h2" data-translate="Listado de centros"></h1>
 
-                <?php if (!empty($this->stringToSearch)): ?>
+                <?php if ($this->searching): ?>
                     <a class="btn btn-primary" role="button" href="../Controllers/CenterController.php">
                         <p data-translate="Volver"></p>
                     </a>

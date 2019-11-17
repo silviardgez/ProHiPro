@@ -9,8 +9,9 @@ class UniversityShowAllView
     private $totalUniversities;
     private $totalPages;
     private $stringToSearch;
+    private $searching;
 
-    function __construct($universitiesData, $itemsPerPage = NULL, $currentPage = NULL, $totalUniversities = NULL, $toSearch = NULL)
+    function __construct($universitiesData, $itemsPerPage = NULL, $currentPage = NULL, $totalUniversities = NULL, $toSearch = NULL, $searching = False)
     {
         $this->universities = $universitiesData;
         $this->itemsPerPage = $itemsPerPage;
@@ -18,6 +19,7 @@ class UniversityShowAllView
         $this->totalUniversities = $totalUniversities;
         $this->totalPages = ceil($totalUniversities / $itemsPerPage);
         $this->stringToSearch = $toSearch;
+        $this->searching = $searching;
         $this->render();
     }
 
@@ -32,7 +34,7 @@ class UniversityShowAllView
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-3">
                 <h1 class="h2" data-translate="Listado de universidades"></h1>
 
-                <?php if (!empty($this->stringToSearch)): ?>
+                <?php if ($this->searching): ?>
                     <a class="btn btn-primary" role="button" href="../Controllers/UniversityController.php">
                         <p data-translate="Volver"></p>
                     </a>
