@@ -75,11 +75,12 @@ class DegreeEditView
                     <input type="number" min="0" max="999" class="form-control" id="credits" name="credits"
                            data-translate="Introducir créditos"
                            value="<?php echo $this->degree->getCredits() ?>" required maxlength="3"
-                           oninput="checkCapacityDegree(this)">
+                           oninput="checkCreditsDegree(this)">
                 </div>
                 <div id="description-div" class="form-group">
                     <label for="description" data-translate="Descripción"></label>
                     <input type="text" class="form-control" id="description" name="description"
+                           data-translate="Introducir descripción"
                            value="<?php echo $this->degree->getDescription() ?>" max-length="100" required
                            oninput="checkDescriptionDegree(this);">
                 </div>

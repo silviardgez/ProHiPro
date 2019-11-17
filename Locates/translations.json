@@ -1386,6 +1386,74 @@
   "Error de validación. Id role incorrecto.": {
     "en": "Validation error. Role id wrong.",
     "gl": "Error de validación. Id role incorrecto."
-}
+  },
+  "Listado de titulaciones": {
+    "en": "Degrees list",
+    "gl": "Listado de titulacións"
+  },
+  "No se ha obtenido ninguna titulación": {
+    "en": "No degree has been obtained",
+    "gl": "Non se obtivo ningunha titulación"
+  },
+  "Centro": {
+    "en": "Center",
+    "gl": "Centro"
+  },
+  "Plazas": {
+    "en": "Capacity",
+    "gl": "Prazas"
+  },
+  "Créditos": {
+    "en": "Credits",
+    "gl": "Créditos"
+  },
+  "Añadir titulación": {
+    "en": "Add degree",
+    "gl": "Añadir titulación"
+  },
+  "Búsqueda de titulaciones": {
+    "en": "Search degrees",
+    "gl": "Búsqueda de titulacións"
+  },
+  "Editar titulación '%c'": {
+    "en": "Edit degree '%c'",
+    "gl": "Editar titulación '%c'"
+  },
+  "Introducir créditos": {
+    "en": "Insert credits",
+    "gl": "Introducir créditos"
+  },
+  "Titulación añadida correctamente.": {
+    "en": "Degree added successfully.",
+    "gl": "Titulación añadida correctamente."
+  },
+  "Titulación eliminada correctamente.": {
+    "en": "Degree deleted successfully",
+    "gl": "Titulación eliminada correctamente."
+  },
+  "Eliminar titulación": {
+    "en": "Delete degree",
+    "gl": "Eliminar titulación"
+  },
+  "¿Está seguro de que desea eliminar la titulación %c? Esta acción es permanente y no se puede recuperar.": {
+    "en": "Are you sure you want to delete the degree %c? This action is permanent and cannot be recovered.",
+    "gl": "Está seguro de que desexa eliminar a titulación %c? Esta acción é permanente e non se pode recuperar."
+  },
+  "Titulación editada correctamente.": {
+    "en":"Degree edited successfully",
+    "gl": "Titulación editada correctamente."
+  },
+  "Error de validación. Id centro incorrecto.": {
+    "en": "Validation error. Center id wrong.",
+    "gl": "Error de validación. Id centro incorrecto."
+  },
+  "Error de validación. Capacidad incorrecta.":{
+    "en": "Validation error. Capacity wrong.",
+    "gl": "Error de validación. Capacidad incorrecta."
+  },
+  "Error de validación. Créditos incorrectos.": {
+    "en": "Validation error. Credits wrong.",
+    "gl": "Error de validación. Créditos incorrectos."
+  }
 }
 

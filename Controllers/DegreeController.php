@@ -53,7 +53,7 @@ switch ($action) {
                     $degree->setCredits($_POST["credits"]);
                     $degree->setUser($userDAO->show("login", $_POST["user_id"]));
                     $degreeDAO->add($degree);
-                    goToShowAllAndShowSuccess("Espacio añadido correctamente.");
+                    goToShowAllAndShowSuccess("Titulación añadida correctamente.");
                 } catch (DAOException $e) {
                     goToShowAllAndShowError($e->getMessage());
                 } catch (ValidationException $ve) {
@@ -116,7 +116,7 @@ switch ($action) {
                     $degree->setCredits($_POST["credits"]);
                     $degree->setUser($userDAO->show("login", $_POST["user_id"]));
                     $degreeDAO->edit($degree);
-                    goToShowAllAndShowSuccess("Espacio editado correctamente.");
+                    goToShowAllAndShowSuccess("Titulación editada correctamente.");
                 }
             } catch (DAOException $e) {
                 goToShowAllAndShowError($e->getMessage());
