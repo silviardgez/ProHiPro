@@ -91,7 +91,7 @@ class Degree
 
     public function setDescription($description)
     {
-        if (empty($description) || strlen(description) > 500) {
+        if (empty($description) || strlen($description) > 50) {
             throw new ValidationException('Error de validación. Descripción incorrecta.');
         } else {
             $this->description = $description;
@@ -105,7 +105,7 @@ class Degree
 
     public function setCredits($credits)
     {
-        if (empty($credits) || strlen(credits) > 3) {
+        if (empty($credits) || strlen($credits) > 3) {
             throw new ValidationException('Error de validación. Créditos incorrectos.');
         } else {
             $this->credits = $credits;

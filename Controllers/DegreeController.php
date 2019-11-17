@@ -9,6 +9,7 @@ if (!IsAuthenticated()) {
 
 include_once '../Models/Center/CenterDAO.php';
 include_once '../Models/Degree/DegreeDAO.php';
+include_once '../Models/User/UserDAO.php';
 include_once '../Models/Common/DAOException.php';
 include_once '../Views/Common/Head.php';
 include_once '../Views/Common/DefaultView.php';
@@ -27,9 +28,11 @@ include_once '../Functions/Pagination.php';
 //DAOS
 $centerDAO = new CenterDAO();
 $degreeDAO = new DegreeDAO();
+$userDAO = new UserDAO();
 
 //Data required
 $centerData = $centerDAO->showAll();
+$userData = $userDAO->showAll();
 
 $degreePrimaryKey = "id";
 $value = $_REQUEST[$degreePrimaryKey];
@@ -39,13 +42,16 @@ switch ($action) {
     case "add":
         if (HavePermission("Degree", "ADD")) {
             if (!isset($_POST["submit"])) {
-                new DegreeAddView($centerData);
+                new DegreeAddView($centerData, $userData);
             } else {
                 try {
                     $degree = new Degree();
                     $degree->setName($_POST["name"]);
                     $degree->setCenter($centerDAO->show("id", $_POST["center_id"]));
                     $degree->setCapacity($_POST["capacity"]);
+                    $degree->setDescription($_POST["description"]);
+                    $degree->setCredits($_POST["credits"]);
+                    $degree->setUser($userDAO->show("login", $_POST["user_id"]));
                     $degreeDAO->add($degree);
                     goToShowAllAndShowSuccess("Espacio añadido correctamente.");
                 } catch (DAOException $e) {
@@ -63,7 +69,7 @@ switch ($action) {
             if (isset($_REQUEST["confirm"])) {
                 try {
                     $degreeDAO->delete($degreePrimaryKey, $value);
-                    goToShowAllAndShowSuccess("Espacio eliminado correctamente.");
+                    goToShowAllAndShowSuccess("Titulación eliminada correctamente.");
                 } catch (DAOException $e) {
                     goToShowAllAndShowError($e->getMessage());
                 }
@@ -71,8 +77,8 @@ switch ($action) {
                 try {
                     $degreeDAO->checkDependencies($value);
                     showAll();
-                    openDeletionModal("Eliminar espacio", "¿Está seguro de que desea eliminar " .
-                        "el espacio %" . $value . "%? Esta acción es permanente y no se puede recuperar.",
+                    openDeletionModal("Eliminar titulación", "¿Está seguro de que desea eliminar " .
+                        "la titulación %" . $value . "%? Esta acción es permanente y no se puede recuperar.",
                         "../Controllers/DegreeController.php?action=delete&id=" . $value . "&confirm=true");
                 } catch (DAOException $e) {
                     goToShowAllAndShowError($e->getMessage());
@@ -101,12 +107,14 @@ switch ($action) {
             try {
                 $degree = $degreeDAO->show($degreePrimaryKey, $value);
                 if (!isset($_POST["submit"])) {
-                    new DegreeEditView($degree, $centerData);
+                    new DegreeEditView($degree, $centerData, $userData);
                 } else {
-                    $degree->setId($value);
                     $degree->setName($_POST["name"]);
                     $degree->setCenter($centerDAO->show("id", $_POST["center_id"]));
                     $degree->setCapacity($_POST["capacity"]);
+                    $degree->setDescription($_POST["description"]);
+                    $degree->setCredits($_POST["credits"]);
+                    $degree->setUser($userDAO->show("login", $_POST["user_id"]));
                     $degreeDAO->edit($degree);
                     goToShowAllAndShowSuccess("Espacio editado correctamente.");
                 }

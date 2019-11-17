@@ -37,7 +37,7 @@ class DegreeDAO
     {
         $degree = $this->defaultDAO->show("degree", $key, $value);
         $center = $this->centerDAO->show("id", $degree["center_id"]);
-        $user = $this->userDAO->show("id", $degree["user_id"]);
+        $user = $this->userDAO->show("login", $degree["user_id"]);
         return new Degree($degree["id"], $degree["name"], $center, $degree["capacity"], $degree["description"], $degree["credits"], $user);
     }
 
@@ -72,7 +72,7 @@ class DegreeDAO
         $degrees = array();
         foreach ($degreesDB as $degree) {
             $center = $this->centerDAO->show("id", $degree["center_id"]);
-            $user = $this->userDAO->show("id", $degree["user_id"]);
+            $user = $this->userDAO->show("login", $degree["user_id"]);
             array_push($degrees, new Degree($degree["id"], $degree["name"], $center, $degree["capacity"], $degree["description"], $degree["credits"], $user));
         }
         return $degrees;

@@ -62,7 +62,6 @@ class DegreeShowAllView
                     <tbody>
                     <?php foreach ($this->degrees as $degree): ?>
                         <tr>
-                            ($id, $name, $center, $capacity, $description, $credits, $user)
                             <td><?php echo $degree->getName(); ?></td>
                             <td><?php echo $degree->getCenter()->getName(); ?></td>
                             <td><?php echo $degree->getCapacity(); ?></td>
