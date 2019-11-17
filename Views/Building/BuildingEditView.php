@@ -16,7 +16,7 @@ class BuildingEditView {
         </head>
         <main role="main" class="margin-main ml-sm-auto px-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-3 border-bottom">
-                <h1 class="h2" data-translate="Editar Edificio '%<?php echo $this->building->getId() ?>%'"></h1>
+                <h1 class="h2" data-translate="Editar edificio '%<?php echo $this->building->getId() ?>%'"></h1>
                 <a class="btn btn-primary" role="button" href="../Controllers/BuildingController.php"><p data-translate="Volver"></p></a>
             </div>
             <form action='../Controllers/BuildingController.php?action=edit&id=<?php echo $this->building->getId() ?>' method='POST'>

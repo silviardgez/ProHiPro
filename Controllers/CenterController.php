@@ -45,7 +45,7 @@ switch ($action) {
     case "add":
         if (HavePermission("Center", "ADD")) {
             if (!isset($_POST["submit"])) {
-                new SpaceAddView($universityData, $userData,$buildingData);
+                new CenterAddView($universityData, $userData,$buildingData);
             } else {
                 try {
                     $center = new Center();
@@ -93,7 +93,7 @@ switch ($action) {
         if (HavePermission("Center", "SHOWCURRENT")) {
             try {
                 $centerData = $centerDAO->show($centerPrimaryKey, $value);
-                new SpaceShowView($centerData);
+                new CenterShowView($centerData);
             } catch (DAOException $e) {
                 goToShowAllAndShowError($e->getMessage());
             } catch (ValidationException $ve) {
@@ -108,7 +108,7 @@ switch ($action) {
             try {
                 $center = $centerDAO->show($centerPrimaryKey, $value);
                 if (!isset($_POST["submit"])) {
-                    new SpaceEditView($center, $universityData, $userData, $buildingData);
+                    new CenterEditView($center, $universityData, $userData, $buildingData);
                 } else {
                     $center->setId($value);
                     $center->setUniversity($universityDAO->show("id", $_POST["university_id"]));
@@ -130,7 +130,7 @@ switch ($action) {
     case "search":
         if (HavePermission("Center", "SHOWALL")) {
             if (!isset($_POST["submit"])) {
-                new SpaceSearchView($universityData);
+                new CenterSearchView($universityData, $buildingData, $userData);
             } else {
                 try {
                     $center = new Center();
@@ -139,6 +139,12 @@ switch ($action) {
                     }
                     if(!empty($_POST["name"])) {
                         $center->setName($_POST["name"]);
+                    }
+                    if(!empty($_POST["building_id"])) {
+                        $center->setBuilding($buildingDAO->show("id", $_POST["building_id"]));
+                    }
+                    if(!empty($_POST["user_id"])) {
+                        $center->setUser($userDAO->show("id", $_POST["user_id"]));
                     }
                     showAllSearch($center);
                 } catch (DAOException $e) {
@@ -168,9 +174,9 @@ function showAllSearch($search) {
             $toSearch = getToSearch($search);
             $totalCenters = $GLOBALS["centerDAO"]->countTotalCenters($toSearch);
             $centersData = $GLOBALS["centerDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
-            new SpaceShowAllView($centersData, $itemsPerPage, $currentPage, $totalCenters, $toSearch);
+            new CenterShowAllView($centersData, $itemsPerPage, $currentPage, $totalCenters, $toSearch);
         } catch (DAOException $e) {
-            new SpaceShowAllView(array());
+            new CenterShowAllView(array());
             errorMessage($e->getMessage());
         }
     } else {

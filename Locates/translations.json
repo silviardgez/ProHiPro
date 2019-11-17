@@ -1139,7 +1139,7 @@
     "en": "No room has been obtained",
     "gl": "Non se obtuvo ningún espazo"
   },
-  "Insertar Espacio": {
+  "Insertar espacio": {
     "en": "Add room",
     "gl": "Engadir espazo"
   },
@@ -1187,7 +1187,7 @@
     "en": "No building has been obtained",
     "gl": "Non se obtuvo ningún edificio"
   },
-  "Insertar Edificio": {
+  "Insertar edificio": {
     "en": "Add building",
     "gl": "Engadir edificio"
   },
@@ -1203,7 +1203,7 @@
     "en": "Buildings search",
     "gl": "Procura de edificios"
   },
-  "Eliminar Edificio": {
+  "Eliminar edificio": {
     "en": "Delete building",
     "gl": "Eliminar edificio"
   },
@@ -1219,6 +1219,10 @@
     "en": "Insert building",
     "gl": "Inserir edificio"
   },
+  "Introducir responsable": {
+    "en": "Insert owner",
+    "gl": "Inserir responsable"
+  },
   "Introducir capacidad": {
     "en": "Insert capacity",
     "gl": "Inserir capacidade"
@@ -1228,8 +1232,12 @@
     "gl": "Edificio"
   },
   "Añadir espacio": {
-    "en": "Add Room",
+    "en": "Add room",
     "gl": "Engadir espazo"
+  },
+  "Añadir edificio": {
+    "en": "Add building",
+    "gl": "Engadir edificio"
   }
 }
 

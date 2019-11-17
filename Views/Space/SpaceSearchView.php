@@ -23,7 +23,7 @@ class SpaceSearchView {
                     <input type="text" class="form-control" id="name" name="name" data-translate="Introducir nombre">
                 </div>
                 <div class="form-group">
-                    <label for="university_id" data-translate="Localización"></label>
+                    <label for="building_id" data-translate="Edificio"></label>
                     <select class="form-control" id="building_id" name="building_id"?>
                         <option data-translate="Introducir edificio" value=""></option>
                         <?php foreach ($this->buildings as $building): ?>
@@ -32,7 +32,7 @@ class SpaceSearchView {
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="location" data-translate="Capacidad"></label>
+                    <label for="capacity" data-translate="Capacidad"></label>
                     <input type="number" min="0" max="999" class="form-control" id="capacity" name="capacity" data-translate="Introducir capacidad">
                 </div>
                 <button name="submit" type="submit" class="btn btn-primary" data-translate="Enviar"></button>

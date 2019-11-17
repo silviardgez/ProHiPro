@@ -21,7 +21,6 @@ class BuildingShowAllView {
         <head>
             <link rel="stylesheet" href="../CSS/default.css" />
             <link rel="stylesheet" href="../CSS/table.css" />
-            <?php echo "HOLAAAA";?>
         </head>
         <main role="main" class="margin-main ml-sm-auto px-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-3">
@@ -33,7 +32,7 @@ class BuildingShowAllView {
                     </a>
                 <?php else:?>
                     <a class="btn btn-success" role="button" href="../Controllers/BuildingController.php?action=add">
-                        <span data-feather="plus"></span><p data-translate="Añadir centro"></p>
+                        <span data-feather="plus"></span><p data-translate="Añadir edificio"></p>
                     </a>
                 <?php endif;?>
 
@@ -44,6 +43,7 @@ class BuildingShowAllView {
                     <tr>
                         <th><label data-translate="Nombre"></label></th>
                         <th><label data-translate="Localización"></label></th>
+                        <th><label data-translate="Responsable"></label></th>
                         <th class="actions-row"><label data-translate="Acciones"></label></th>
                     </tr>
                     </thead>
@@ -53,6 +53,7 @@ class BuildingShowAllView {
                         <tr>
                             <td><?php echo $building->getName() ;?></td>
                             <td><?php echo $building->getLocation() ;?></td>
+                            <td><?php echo $building->getUser()->getName() . " " . $building->getUser()->getSurname() ;?></td>
                             <td class="row">
                                 <a href="../Controllers/BuildingController.php?action=show&id=<?php echo $building->getId()?>">
                                     <span data-feather="eye"></span></a>

@@ -43,6 +43,7 @@ class UniversityShowAllView {
                     <tr>
                         <th><label data-translate="Nombre"></label></th>
                         <th><label data-translate="Curso académico"></label></th>
+                        <th><label data-translate="Responsable"></label></th>
                         <th class="actions-row"><label data-translate="Acciones"></label></th>
                     </tr>
                     </thead>
@@ -52,6 +53,7 @@ class UniversityShowAllView {
                         <tr>
                             <td><?php echo $university->getName() ;?></td>
                             <td><?php echo $university->getAcademicCourse()->getAcademicCourseAbbr() ;?></td>
+                            <td><?php echo $university->getUser()->getName() . " " . $university->getUser()->getSurname() ;?></td>
                             <td class="row">
                                 <a href="../Controllers/UniversityController.php?action=show&id=<?php echo $university->getId()?>">
                                     <span data-feather="eye"></span></a>

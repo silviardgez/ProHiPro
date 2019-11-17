@@ -1,9 +1,11 @@
 <?php
 class UniversitySearchView {
     private $academicCourses;
+    private $users;
 
-    function __construct($academicCourses){
+    function __construct($academicCourses, $usersData){
         $this->academicCourses = $academicCourses;
+        $this->users = $usersData;
         $this->render();
     }
     function render(){
@@ -29,6 +31,15 @@ class UniversitySearchView {
                         <?php foreach ($this->academicCourses as $academicCourse): ?>
                             <option value="<?php echo $academicCourse->getId() ?>"><?php echo $academicCourse->getAcademicCourseAbbr() ?></option>
                         <?php endforeach;?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="user_id" data-translate="Responsable"></label>
+                    <select class="form-control" id="user_id" name="user_id">
+                        <option data-translate="Introducir responsable" value=""></option>
+                        <?php foreach ($this->users as $user): ?>
+                            <option value="<?php echo $user->getId() ?>"><?php echo $user->getName()." ".$user->getSurname() ?></option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
                 <button name="submit" type="submit" class="btn btn-primary" data-translate="Enviar"></button>

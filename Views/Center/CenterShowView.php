@@ -29,8 +29,8 @@ class CenterShowView {
                            value="<?php echo $this->center->getUniversity()->getName() ?>" readonly>
                 </div>
                 <div class="form-group">
-                    <label for="location" data-translate="Localización"></label>
-                    <input type="text" class="form-control" id="location" name="location" data-translate="Introducir localización"
+                    <label for="building_id" data-translate="Edificio"></label>
+                    <input type="text" class="form-control" id="building_id" name="building_id" data-translate="Introducir edificio"
                            value="<?php echo $this->center->getBuilding()->getName() ?>" readonly>
                 </div>
                 <div class="form-group">

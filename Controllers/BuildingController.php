@@ -71,7 +71,7 @@ switch ($action) {
                 try {
                     $buildingDAO->checkDependencies($value);
                     showAll();
-                    openDeletionModal("Eliminar Edificio", "¿Está seguro de que desea eliminar " .
+                    openDeletionModal("Eliminar edificio", "¿Está seguro de que desea eliminar " .
                         "el edificio %" . $value . "%? Esta acción es permanente y no se puede recuperar.",
                         "../Controllers/BuildingController.php?action=delete&id=" . $value . "&confirm=true");
                 } catch (DAOException $e) {
@@ -122,7 +122,7 @@ switch ($action) {
     case "search":
         if (HavePermission("Building", "SHOWALL")) {
             if (!isset($_POST["submit"])) {
-                new BuildingSearchView();
+                new BuildingSearchView($userData);
             } else {
                 try {
                     $building = new Building();
@@ -131,6 +131,9 @@ switch ($action) {
                     }
                     if (!empty($_POST["location"])) {
                         $building->setLocation($_POST["location"]);
+                    }
+                    if(!empty($_POST["user_id"])) {
+                        $building->setUser($userDAO->show("login", $_POST["user_id"]));
                     }
                     showAllSearch($building);
                 } catch (DAOException $e) {

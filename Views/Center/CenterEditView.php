@@ -41,7 +41,7 @@ class CenterEditView {
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="location" data-translate="Localización"></label>
+                    <label for="building_id" data-translate="Edificio"></label>
                     <select class="form-control" id="building_id" name="building_id" required>
                         <?php foreach ($this->buildings as $building): ?>
                             <option value="<?php echo $building->getId()?>"

@@ -43,7 +43,8 @@ class CenterShowAllView {
                     <tr>
                         <th><label data-translate="Nombre"></label></th>
                         <th><label data-translate="Universidad"></label></th>
-                        <th><label data-translate="Localización"></label></th>
+                        <th><label data-translate="Edificio"></label></th>
+                        <th><label data-translate="Responsable"></label></th>
                         <th class="actions-row"><label data-translate="Acciones"></label></th>
                     </tr>
                     </thead>
@@ -54,6 +55,7 @@ class CenterShowAllView {
                             <td><?php echo $center->getName() ;?></td>
                             <td><?php echo $center->getUniversity()->getName() ;?></td>
                             <td><?php echo $center->getBuilding()->getName() ;?></td>
+                            <td><?php echo $center->getUser()->getName() . " " . $center->getUser()->getSurname();?></td>
                             <td class="row">
                                 <a href="../Controllers/CenterController.php?action=show&id=<?php echo $center->getId()?>">
                                     <span data-feather="eye"></span></a>
