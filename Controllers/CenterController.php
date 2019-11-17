@@ -21,6 +21,8 @@ include_once '../Views/Center/CenterEditView.php';
 include_once '../Views/Center/CenterSearchView.php';
 include_once '../Views/Common/PaginationView.php';
 include_once '../Functions/HavePermission.php';
+include_once '../Functions/IsAdmin.php';
+include_once '../Functions/IsUniversityOwner.php';
 include_once '../Functions/OpenDeletionModal.php';
 include_once '../Functions/Redirect.php';
 include_once '../Functions/Messages.php';
@@ -45,14 +47,24 @@ switch ($action) {
     case "add":
         if (HavePermission("Center", "ADD")) {
             if (!isset($_POST["submit"])) {
-                new CenterAddView($universityData, $userData,$buildingData);
+                if(!IsAdmin()){
+                    $universities=[];
+                    foreach ($universityData as $university){
+                        if($university->getUser()->getId() == $_SESSION['login']){
+                            array_push($universities,$university);
+                        }
+                    }
+                    $universityData=$universities;
+
+                }
+                new CenterAddView($universityData, $userData, $buildingData);
             } else {
                 try {
                     $center = new Center();
                     $center->setUniversity($universityDAO->show("id", $_POST["university_id"]));
                     $center->setUser($userDAO->show("login", $_POST["user_id"]));
                     $center->setName($_POST["name"]);
-                    $center->setBuilding($buildingDAO->show("id",$_POST["building_id"]));
+                    $center->setBuilding($buildingDAO->show("id", $_POST["building_id"]));
                     $centerDAO->add($center);
                     goToShowAllAndShowSuccess("Centro añadido correctamente.");
                 } catch (DAOException $e) {
@@ -67,23 +79,28 @@ switch ($action) {
         break;
     case "delete":
         if (HavePermission("Center", "DELETE")) {
-            if (isset($_REQUEST["confirm"])) {
-                try {
-                    $centerDAO->delete($centerPrimaryKey, $value);
-                    goToShowAllAndShowSuccess("Centro eliminado correctamente.");
-                } catch (DAOException $e) {
-                    goToShowAllAndShowError($e->getMessage());
+            $center = $centerDAO->show($centerPrimaryKey, $value);
+            if(IsAdmin() || $center->getUniversity() == IsUniversityOwner()) {
+                if (isset($_REQUEST["confirm"])) {
+                    try {
+                        $centerDAO->delete($centerPrimaryKey, $value);
+                        goToShowAllAndShowSuccess("Centro eliminado correctamente.");
+                    } catch (DAOException $e) {
+                        goToShowAllAndShowError($e->getMessage());
+                    }
+                } else {
+                    try {
+                        $centerDAO->checkDependencies($value);
+                        showAll();
+                        openDeletionModal("Eliminar centro", "¿Está seguro de que desea eliminar " .
+                            "el centro %" . $value . "%? Esta acción es permanente y no se puede recuperar.",
+                            "../Controllers/CenterController.php?action=delete&id=" . $value . "&confirm=true");
+                    } catch (DAOException $e) {
+                        goToShowAllAndShowError($e->getMessage());
+                    }
                 }
             } else {
-                try {
-                    $centerDAO->checkDependencies($value);
-                    showAll();
-                    openDeletionModal("Eliminar centro", "¿Está seguro de que desea eliminar " .
-                        "el centro %" . $value . "%? Esta acción es permanente y no se puede recuperar.",
-                        "../Controllers/CenterController.php?action=delete&id=" . $value . "&confirm=true");
-                } catch (DAOException $e) {
-                    goToShowAllAndShowError($e->getMessage());
-                }
+                goToShowAllAndShowError("No tienes permiso para eliminar.");
             }
         } else {
             goToShowAllAndShowError("No tienes permiso para eliminar.");
@@ -108,13 +125,27 @@ switch ($action) {
             try {
                 $center = $centerDAO->show($centerPrimaryKey, $value);
                 if (!isset($_POST["submit"])) {
-                    new CenterEditView($center, $universityData, $userData, $buildingData);
+                    if(!IsAdmin()){
+                        $universities=[];
+                        foreach ($universityData as $university){
+                            if($university->getUser()->getId() == $_SESSION['login']){
+                                array_push($universities,$university);
+                            }
+                        }
+                        $universityData=$universities;
+                    }
+                    if(IsAdmin() || $center->getUniversity() == IsUniversityOwner()){
+                        new CenterEditView($center, $universityData, $userData, $buildingData);
+                    } else{
+                        goToShowAllAndShowError("No tienes permiso para editar.");
+                    }
+
                 } else {
                     $center->setId($value);
                     $center->setUniversity($universityDAO->show("id", $_POST["university_id"]));
                     $center->setUser($userDAO->show("login", $_POST["user_id"]));
                     $center->setName($_POST["name"]);
-                    $center->setBuilding($buildingDAO->show("id",$_POST["building_id"]));
+                    $center->setBuilding($buildingDAO->show("id", $_POST["building_id"]));
                     $universityDAO->edit($center);
                     goToShowAllAndShowSuccess("Centro editado correctamente.");
                 }
@@ -123,7 +154,7 @@ switch ($action) {
             } catch (ValidationException $ve) {
                 goToShowAllAndShowError($ve->getMessage());
             }
-        } else{
+        } else {
             goToShowAllAndShowError("No tienes permiso para editar.");
         }
         break;
@@ -134,17 +165,14 @@ switch ($action) {
             } else {
                 try {
                     $center = new Center();
-                    if(!empty($_POST["university_id"])) {
+                    if (!empty($_POST["university_id"])) {
                         $center->setUniversity($universityDAO->show("id", $_POST["university_id"]));
                     }
-                    if(!empty($_POST["name"])) {
+                    if (!empty($_POST["name"])) {
                         $center->setName($_POST["name"]);
                     }
-                    if(!empty($_POST["building_id"])) {
+                    if (!empty($_POST["building_id"])) {
                         $center->setBuilding($buildingDAO->show("id", $_POST["building_id"]));
-                    }
-                    if(!empty($_POST["user_id"])) {
-                        $center->setUser($userDAO->show("id", $_POST["user_id"]));
                     }
                     showAllSearch($center);
                 } catch (DAOException $e) {
@@ -162,19 +190,37 @@ switch ($action) {
         break;
 }
 
-function showAll() {
+function showAll()
+{
     showAllSearch(NULL);
 }
 
-function showAllSearch($search) {
+function showAllSearch($search)
+{
     if (HavePermission("Center", "SHOWALL")) {
         try {
+            $searching=False;
+            if (!empty($search)) {
+                $searching = True;
+            }
+            if (!IsAdmin()) {
+                $userDAO = new UserDAO();
+                $center = new Center();
+                $university = IsUniversityOwner();
+                if(!empty($university)){
+                    $center->setUniversity($university);
+                }else{
+                    $center->setUser($userDAO->show("login", $_SESSION['login']));
+                }
+                $search = $center;
+                $searching = False;
+            }
             $currentPage = getCurrentPage();
             $itemsPerPage = getItemsPerPage();
             $toSearch = getToSearch($search);
             $totalCenters = $GLOBALS["centerDAO"]->countTotalCenters($toSearch);
             $centersData = $GLOBALS["centerDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
-            new CenterShowAllView($centersData, $itemsPerPage, $currentPage, $totalCenters, $toSearch);
+            new CenterShowAllView($centersData, $itemsPerPage, $currentPage, $totalCenters, $toSearch, $searching);
         } catch (DAOException $e) {
             new CenterShowAllView(array());
             errorMessage($e->getMessage());
@@ -184,12 +230,14 @@ function showAllSearch($search) {
     }
 }
 
-function goToShowAllAndShowError($message) {
+function goToShowAllAndShowError($message)
+{
     showAll();
     errorMessage($message);
 }
 
-function goToShowAllAndShowSuccess($message) {
+function goToShowAllAndShowSuccess($message)
+{
     showAll();
     successMessage($message);
 }

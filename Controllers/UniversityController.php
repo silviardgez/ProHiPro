@@ -20,6 +20,8 @@ include_once '../Views/University/UniversityEditView.php';
 include_once '../Views/University/UniversitySearchView.php';
 include_once '../Views/Common/PaginationView.php';
 include_once '../Functions/HavePermission.php';
+include_once '../Functions/IsUniversityOwner.php';
+include_once '../Functions/IsAdmin.php';
 include_once '../Functions/OpenDeletionModal.php';
 include_once '../Functions/Redirect.php';
 include_once '../Functions/Messages.php';
@@ -63,23 +65,28 @@ switch ($action) {
         break;
     case "delete":
         if (HavePermission("University", "DELETE")) {
-            if (isset($_REQUEST["confirm"])) {
-                try {
-                    $universityDAO->delete($universityPrimaryKey, $value);
-                    goToShowAllAndShowSuccess("Universidad eliminada correctamente.");
-                } catch (DAOException $e) {
-                    goToShowAllAndShowError($e->getMessage());
+            $university = $universityDAO->show($universityPrimaryKey, $value);
+            if(IsAdmin() || $university == IsUniversityOwner()) {
+                if (isset($_REQUEST["confirm"])) {
+                    try {
+                        $universityDAO->delete($universityPrimaryKey, $value);
+                        goToShowAllAndShowSuccess("Universidad eliminada correctamente.");
+                    } catch (DAOException $e) {
+                        goToShowAllAndShowError($e->getMessage());
+                    }
+                } else {
+                    try {
+                        $universityDAO->checkDependencies($value);
+                        showAll();
+                        openDeletionModal("Eliminar universidad", "¿Está seguro de que desea eliminar " .
+                            "la universidad %" . $value . "%? Esta acción es permanente y no se puede recuperar.",
+                            "../Controllers/UniversityController.php?action=delete&id=" . $value . "&confirm=true");
+                    } catch (DAOException $e) {
+                        goToShowAllAndShowError($e->getMessage());
+                    }
                 }
-            } else {
-                try {
-                    $universityDAO->checkDependencies($value);
-                    showAll();
-                    openDeletionModal("Eliminar universidad", "¿Está seguro de que desea eliminar " .
-                        "la universidad %" . $value . "%? Esta acción es permanente y no se puede recuperar.",
-                        "../Controllers/UniversityController.php?action=delete&id=" . $value . "&confirm=true");
-                } catch (DAOException $e) {
-                    goToShowAllAndShowError($e->getMessage());
-                }
+            }else {
+                goToShowAllAndShowError("No tienes permiso para eliminar.");
             }
         } else {
             goToShowAllAndShowError("No tienes permiso para eliminar.");
@@ -104,7 +111,11 @@ switch ($action) {
             try {
                 $university = $universityDAO->show($universityPrimaryKey, $value);
                 if (!isset($_POST["submit"])) {
-                    new UniversityEditView($university, $academicCourseData,$userData);
+                    if(IsAdmin() || $university == IsUniversityOwner()){
+                        new UniversityEditView($university, $academicCourseData,$userData);
+                    } else{
+                        goToShowAllAndShowError("No tienes permiso para editar.");
+                    }
                 } else {
                     $university->setId($value);
                     $university->setAcademicCourse($academicCourseDAO->show("id", $_POST["academic_course_id"]));
@@ -135,9 +146,6 @@ switch ($action) {
                     if(!empty($_POST["name"])) {
                         $university->setName($_POST["name"]);
                     }
-                    if(!empty($_POST["user_id"])) {
-                        $university->setUser($userDAO->show("login", $_POST["user_id"]));
-                    }
                     showAllSearch($university);
                 } catch (DAOException $e) {
                     goToShowAllAndShowError($e->getMessage());
@@ -161,12 +169,26 @@ function showAll() {
 function showAllSearch($search) {
     if (HavePermission("University", "SHOWALL")) {
         try {
+            $searching=False;
+            if (!empty($search)) {
+                $searching = True;
+            }
+            if (!IsAdmin()) {
+                $university = IsUniversityOwner();
+                if(!empty($university)){
+                    $search=$university;
+                }
+                else{
+                    new UniversityShowAllView(array());
+                }
+                $searching = False;
+            }
             $currentPage = getCurrentPage();
             $itemsPerPage = getItemsPerPage();
             $toSearch = getToSearch($search);
             $totalUniversities = $GLOBALS["universityDAO"]->countTotalUniversities($toSearch);
             $universitiesData = $GLOBALS["universityDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
-            new UniversityShowAllView($universitiesData, $itemsPerPage, $currentPage, $totalUniversities, $toSearch);
+            new UniversityShowAllView($universitiesData, $itemsPerPage, $currentPage, $totalUniversities, $toSearch, $searching);
         } catch (DAOException $e) {
             new UniversityShowAllView(array());
             errorMessage($e->getMessage());
