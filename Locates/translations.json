@@ -1258,6 +1258,10 @@
   "Añadir edificio": {
     "en": "Add building",
     "gl": "Engadir edificio"
+  },
+  "No tienes permiso visualizar la entidad.": {
+    "en": "You do not have permission to view the entity.",
+    "gl": "Non tes permiso para visualizar a entidade."
   }
 }
 
