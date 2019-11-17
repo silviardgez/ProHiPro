@@ -1,5 +1,8 @@
 <?php
-class BuildingShowAllView {
+include_once '../Functions/HavePermission.php';
+
+class BuildingShowAllView
+{
     private $buildings;
     private $itemsPerPage;
     private $currentPage;
@@ -7,16 +10,19 @@ class BuildingShowAllView {
     private $totalPages;
     private $stringToSearch;
 
-    function __construct($buildingsData, $itemsPerPage=NULL, $currentPage=NULL, $totalBuildings=NULL, $toSearch=NULL){
+    function __construct($buildingsData, $itemsPerPage = NULL, $currentPage = NULL, $totalBuildings = NULL, $toSearch = NULL)
+    {
         $this->buildings = $buildingsData;
         $this->itemsPerPage = $itemsPerPage;
         $this->currentPage = $currentPage;
         $this->totalBuildings = $totalBuildings;
-        $this->totalPages = ceil($totalBuildings/$itemsPerPage);
+        $this->totalPages = ceil($totalBuildings / $itemsPerPage);
         $this->stringToSearch = $toSearch;
         $this->render();
     }
-    function render(){
+
+    function render()
+    {
         ?>
         <head>
             <link rel="stylesheet" href="../CSS/default.css" />
@@ -30,11 +36,14 @@ class BuildingShowAllView {
                     <a class="btn btn-primary" role="button" href="../Controllers/BuildingController.php">
                         <p data-translate="Volver"></p>
                     </a>
-                <?php else:?>
-                    <a class="btn btn-success" role="button" href="../Controllers/BuildingController.php?action=add">
-                        <span data-feather="plus"></span><p data-translate="Añadir edificio"></p>
-                    </a>
-                <?php endif;?>
+                <?php else:
+                    if (HavePermission("Building", "ADD")): ?>
+                        <a class="btn btn-success" role="button"
+                           href="../Controllers/BuildingController.php?action=add">
+                            <span data-feather="plus"></span>
+                            <p data-translate="Añadir centro"></p>
+                        </a>
+                <?php endif; endif; ?>
 
             </div>
             <div class="table-responsive">
@@ -47,7 +56,7 @@ class BuildingShowAllView {
                         <th class="actions-row"><label data-translate="Acciones"></label></th>
                     </tr>
                     </thead>
-                    <?php if(!empty($this->buildings)):?>
+                    <?php if (!empty($this->buildings)): ?>
                     <tbody>
                     <?php foreach ($this->buildings as $building): ?>
                         <tr>
@@ -55,12 +64,18 @@ class BuildingShowAllView {
                             <td><?php echo $building->getLocation() ;?></td>
                             <td><?php echo $building->getUser()->getName() . " " . $building->getUser()->getSurname() ;?></td>
                             <td class="row">
-                                <a href="../Controllers/BuildingController.php?action=show&id=<?php echo $building->getId()?>">
-                                    <span data-feather="eye"></span></a>
-                                <a href="../Controllers/BuildingController.php?action=edit&id=<?php echo $building->getId()?>">
-                                    <span data-feather="edit"></span></a>
-                                <a href="../Controllers/BuildingController.php?action=delete&id=<?php echo $building->getId()?>">
-                                    <span data-feather="trash-2"></span></a>
+                                <? if (HavePermission("Building", "SHOWCURRENT")) { ?>
+                                    <a href="../Controllers/BuildingController.php?action=show&id=<?php echo $building->getId() ?>">
+                                        <span data-feather="eye"></span></a>
+                                <? }
+                                if (HavePermission("Building", "EDIT")) { ?>
+                                    <a href="../Controllers/BuildingController.php?action=edit&id=<?php echo $building->getId() ?>">
+                                        <span data-feather="edit"></span></a>
+                                <? }
+                                if (HavePermission("Building", "DELETE")) { ?>
+                                    <a href="../Controllers/BuildingController.php?action=delete&id=<?php echo $building->getId() ?>">
+                                        <span data-feather="trash-2"></span></a>
+                                <? } ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -72,7 +87,7 @@ class BuildingShowAllView {
                 <?php endif; ?>
 
                 <?php new PaginationView($this->itemsPerPage, $this->currentPage, $this->totalBuildings,
-                    "Building")?>
+                    "Building") ?>
 
             </div>
         </main>
@@ -85,4 +100,5 @@ class BuildingShowAllView {
         <?php
     }
 }
+
 ?>

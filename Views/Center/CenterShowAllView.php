@@ -1,5 +1,8 @@
 <?php
-class CenterShowAllView {
+include_once '../Functions/HavePermission.php';
+
+class CenterShowAllView
+{
     private $centers;
     private $itemsPerPage;
     private $currentPage;
@@ -7,20 +10,23 @@ class CenterShowAllView {
     private $totalPages;
     private $stringToSearch;
 
-    function __construct($centersData, $itemsPerPage=NULL, $currentPage=NULL, $totalCenters=NULL, $toSearch=NULL){
+    function __construct($centersData, $itemsPerPage = NULL, $currentPage = NULL, $totalCenters = NULL, $toSearch = NULL)
+    {
         $this->centers = $centersData;
         $this->itemsPerPage = $itemsPerPage;
         $this->currentPage = $currentPage;
         $this->totalCenters = $totalCenters;
-        $this->totalPages = ceil($totalCenters/$itemsPerPage);
+        $this->totalPages = ceil($totalCenters / $itemsPerPage);
         $this->stringToSearch = $toSearch;
         $this->render();
     }
-    function render(){
+
+    function render()
+    {
         ?>
         <head>
-            <link rel="stylesheet" href="../CSS/default.css" />
-            <link rel="stylesheet" href="../CSS/table.css" />
+            <link rel="stylesheet" href="../CSS/default.css"/>
+            <link rel="stylesheet" href="../CSS/table.css"/>
         </head>
         <main role="main" class="margin-main ml-sm-auto px-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-3">
@@ -30,11 +36,13 @@ class CenterShowAllView {
                     <a class="btn btn-primary" role="button" href="../Controllers/CenterController.php">
                         <p data-translate="Volver"></p>
                     </a>
-                <?php else:?>
-                    <a class="btn btn-success" role="button" href="../Controllers/CenterController.php?action=add">
-                        <span data-feather="plus"></span><p data-translate="Añadir centro"></p>
-                    </a>
-                <?php endif;?>
+                <?php else:
+                    if (HavePermission("Center", "ADD")): ?>
+                        <a class="btn btn-success" role="button" href="../Controllers/CenterController.php?action=add">
+                            <span data-feather="plus"></span>
+                            <p data-translate="Añadir centro"></p>
+                        </a>
+                    <?php endif; endif; ?>
 
             </div>
             <div class="table-responsive">
@@ -48,7 +56,7 @@ class CenterShowAllView {
                         <th class="actions-row"><label data-translate="Acciones"></label></th>
                     </tr>
                     </thead>
-                    <?php if(!empty($this->centers)):?>
+                    <?php if (!empty($this->centers)): ?>
                     <tbody>
                     <?php foreach ($this->centers as $center): ?>
                         <tr>
@@ -57,12 +65,18 @@ class CenterShowAllView {
                             <td><?php echo $center->getBuilding()->getName() ;?></td>
                             <td><?php echo $center->getUser()->getName() . " " . $center->getUser()->getSurname();?></td>
                             <td class="row">
-                                <a href="../Controllers/CenterController.php?action=show&id=<?php echo $center->getId()?>">
-                                    <span data-feather="eye"></span></a>
-                                <a href="../Controllers/CenterController.php?action=edit&id=<?php echo $center->getId()?>">
-                                    <span data-feather="edit"></span></a>
-                                <a href="../Controllers/CenterController.php?action=delete&id=<?php echo $center->getId()?>">
-                                    <span data-feather="trash-2"></span></a>
+                                <? if (HavePermission("Center", "SHOWCURRENT")) { ?>
+                                    <a href="../Controllers/CenterController.php?action=show&id=<?php echo $center->getId() ?>">
+                                        <span data-feather="eye"></span></a>
+                                <? }
+                                if (HavePermission("Center", "EDIT")) { ?>
+                                    <a href="../Controllers/CenterController.php?action=edit&id=<?php echo $center->getId() ?>">
+                                        <span data-feather="edit"></span></a>
+                                <? }
+                                if (HavePermission("Center", "DELETE")) { ?>
+                                    <a href="../Controllers/CenterController.php?action=delete&id=<?php echo $center->getId() ?>">
+                                        <span data-feather="trash-2"></span></a>
+                                <? } ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -74,7 +88,7 @@ class CenterShowAllView {
                 <?php endif; ?>
 
                 <?php new PaginationView($this->itemsPerPage, $this->currentPage, $this->totalCenters,
-                    "Center")?>
+                    "Center") ?>
 
             </div>
         </main>
@@ -87,4 +101,5 @@ class CenterShowAllView {
         <?php
     }
 }
+
 ?>
