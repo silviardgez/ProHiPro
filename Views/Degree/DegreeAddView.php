@@ -60,13 +60,13 @@ class DegreeAddView
                 <div id="credits-div" class="form-group">
                     <label for="credits" data-translate="Créditos"></label>
                     <input type="number" min="0" max="999" class="form-control" id="credits" name="credits"
-                           data-translate="Créditos" required maxlength="3" oninput="checkCapacityDegree(this)">
+                           data-translate="Créditos" required maxlength="3" oninput="checkCreditsDegree(this)">
                 </div>
                 <div id="description-div" class="form-group">
                     <label for="description" data-translate="Descripción"></label>
                     <input type="text" class="form-control" id="description" name="description"
                            data-translate="Introducir descripción"
-                           maxlength="50" required oninput="checkDescriptionAction(this);">
+                           maxlength="50" required oninput="checkDescriptionDegree(this);">
                 </div>
                 <button name="submit" type="submit" class="btn btn-primary" data-translate="Enviar"></button>
             </form>

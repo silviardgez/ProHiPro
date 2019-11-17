@@ -1454,6 +1454,30 @@
   "Error de validación. Créditos incorrectos.": {
     "en": "Validation error. Credits wrong.",
     "gl": "Error de validación. Créditos incorrectos."
+  },
+  "El atributo créditos no puede estar vacío.": {
+    "en": "The credits attribute cannot be empty.",
+    "gl": "O atributo créditos non pode estar baleiro"
+  },
+  "El atributo créditos puede tener una longitud máxima de %c.": {
+    "en": "The credits attribute can have a maximum length of %c.",
+    "gl": "O atributo créditos pode ter unha lonxitude máxima de %c."
+  },
+  "El atributo capacidad tiene que ser un dígito.": {
+    "en": "The capacity attribute has to be a digit.",
+    "gl": "O atributo capacidade ten que ser un díxito."
+  },
+  "El atributo créditos tiene que ser un dígito.": {
+    "en": "The credits attribute has to be a digit.",
+    "gl": "O atributo créditos ten que ser un díxito."
+  },
+  "El atributo créditos no puede ser mayor que %c.": {
+    "en": "The credits attribute can have a maximum value of %c.",
+    "gl": "O atributo créditos pode ter un valor máximo de %c."
+  },
+  "El atributo créditos no puede ser menor que %c.": {
+    "en": "The credits attribute can have a minimum value of %c.",
+    "gl": "O atributo créditos pode ter un valor mínimo de %c."
   }
 }
 
