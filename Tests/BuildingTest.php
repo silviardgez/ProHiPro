@@ -91,20 +91,21 @@ final class BuildingTest extends TestCase
     {
         $building1 = clone self::$exampleBuilding;
         $building1->setId(2);
+        $building1->setName('Edificio de física');
         $building2 = clone self::$exampleBuilding;
         $building2->setId(3);
+        $building2->setName('Edificio de derecho');
         $building3 = clone self::$exampleBuilding;
         $building3->setId(4);
+        $building3->setName('Edificio de educación');
 
 
         self::$buildingDAO->add($building1);
         self::$buildingDAO->add($building2);
         self::$buildingDAO->add($building3);
 
-        $universitiessCreated = self::$buildingDAO->showAll();
+        $buildingsCreated = self::$buildingDAO->showAll();
 
-        $this->assertTrue($universitiessCreated[0]->getId() == 2);
-        $this->assertTrue($universitiessCreated[1]->getId() == 3);
-        $this->assertTrue($universitiessCreated[2]->getId() == 4);
+        $this->assertTrue(count($buildingsCreated) == 3);
     }
 }
