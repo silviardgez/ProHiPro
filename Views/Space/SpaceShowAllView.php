@@ -63,18 +63,18 @@ class SpaceShowAllView
                             <td><?php echo $space->getBuilding()->getName(); ?></td>
                             <td><?php echo $space->getCapacity(); ?></td>
                             <td class="row">
-                                <? if (HavePermission("Space", "SHOWCURRENT")) { ?>
+                                <?php if (HavePermission("Space", "SHOWCURRENT")) { ?>
                                     <a href="../Controllers/SpaceController.php?action=show&id=<?php echo $space->getId() ?>">
                                         <span data-feather="eye"></span></a>
-                                <? }
+                                <?php }
                                 if (HavePermission("Space", "EDIT")) { ?>
                                     <a href="../Controllers/SpaceController.php?action=edit&id=<?php echo $space->getId() ?>">
                                         <span data-feather="edit"></span></a>
-                                <? }
+                                <?php }
                                 if (HavePermission("Space", "DELETE")) { ?>
                                     <a href="../Controllers/SpaceController.php?action=delete&id=<?php echo $space->getId() ?>">
                                         <span data-feather="trash-2"></span></a>
-                                <? } ?>
+                                <?php } ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>

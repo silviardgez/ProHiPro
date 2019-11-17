@@ -64,18 +64,18 @@ class UniversityShowAllView
                             <td><?php echo $university->getAcademicCourse()->getAcademicCourseAbbr() ;?></td>
                             <td><?php echo $university->getUser()->getName() . " " . $university->getUser()->getSurname() ;?></td>
                             <td class="row">
-                                <? if (HavePermission("University", "SHOWCURRENT")) { ?>
+                                <?php if (HavePermission("University", "SHOWCURRENT")) { ?>
                                     <a href="../Controllers/UniversityController.php?action=show&id=<?php echo $university->getId() ?>">
                                         <span data-feather="eye"></span></a>
-                                <? }
+                                <?php }
                                 if (HavePermission("University", "EDIT")) { ?>
                                     <a href="../Controllers/UniversityController.php?action=edit&id=<?php echo $university->getId() ?>">
                                         <span data-feather="edit"></span></a>
-                                <? }
+                                <?php }
                                 if (HavePermission("University", "DELETE")) { ?>
                                     <a href="../Controllers/UniversityController.php?action=delete&id=<?php echo $university->getId() ?>">
                                         <span data-feather="trash-2"></span></a>
-                                <? } ?>
+                                <?php } ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>

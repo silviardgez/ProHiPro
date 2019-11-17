@@ -44,12 +44,12 @@
                     <div id="sidebar-contents" class="sidebar-sticky">
                         <ul class="nav flex-column">
 						<?php
-							if (HavePermission("User", "SHOWALL") || 
+							if (HavePermission("User", "SHOWALL") ||
 							HavePermission("Permission", "SHOWALL" ||
 							HavePermission("FuncAction", "SHOWALL") ||
 							HavePermission("Action", "SHOWALL") ||
 							HavePermission("Functionality", "SHOWALL") ||
-							HavePermission("Role", "SHOWALL") || 
+							HavePermission("Role", "SHOWALL") ||
 							HavePermission("UserRole", "SHOWALL"))) {
 						?>
                             <li class="nav-item">
@@ -126,7 +126,7 @@
                             </li>
 							<?php } ?>
 						<?php
-							if (HavePermission("User", "SHOWALL")) {
+							if (HavePermission("Schedule", "SHOWALL")) {
 						?>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">
@@ -136,7 +136,9 @@
                             </li>
 						<?php } ?>
 						<?php
-							if (HavePermission("User", "SHOWALL")) {
+							if (HavePermission("Degree", "SHOWALL") ||
+                                HavePermission("Subject", "SHOWALL") ||
+                                HavePermission("SubjectGroup", "SHOWALL")) {
 						?>
                             <li class="nav-item">
                                 <a class="nav-link nav-collapse" data-toggle="collapse" aria-expanded="false"
@@ -145,26 +147,40 @@
                                     <p data-translate="Gestión de titulaciones"></p>
                                 </a>
                                 <ul class="flex-column collapse items-collapsed" id="collapseDegree">
+                                <?php
+                                    if (HavePermission("Degree", "SHOWALL")) {
+                                ?>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">
                                             <p data-translate="Titulaciones"></p>
                                         </a>
                                     </li>
+                                <?php } ?>
+                                <?php
+                                    if (HavePermission("Subject", "SHOWALL")) {
+                                ?>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">
                                             <p data-translate="Asignaturas"></p>
                                         </a>
                                     </li>
+                                <?php } ?>
+                                <?php
+                                    if (HavePermission("SubjectGroup", "SHOWALL")) {
+                                ?>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">
                                             <p data-translate="Grupos"></p>
                                         </a>
                                     </li>
+                                <?php } ?>
                                 </ul>
                             </li>
 						<?php } ?>
 						<?php
-							if (HavePermission("Departament", "SHOWALL")) {
+							if (HavePermission("Departament", "SHOWALL") ||
+                                HavePermission("Teacher", "SHOWALL") ||
+                                HavePermission("Tutorial", "SHOWALL")) {
 						?>
                             <li class="nav-item">
                                 <a class="nav-link nav-collapse" data-toggle="collapse" aria-expanded="false"
@@ -173,26 +189,41 @@
                                     <p data-translate="Gestión de departamentos"></p>
                                 </a>
                                 <ul class="flex-column collapse items-collapsed" id="collapseDepartment">
+                                <?php
+                                    if (HavePermission("Departament", "SHOWALL")) {
+                                ?>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">
                                             <p data-translate="Departamentos"></p>
                                         </a>
                                     </li>
+                                <?php } ?>
+                                <?php
+                                    if (HavePermission("Teacher", "SHOWALL")) {
+                                ?>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">
                                             <p data-translate="Profesores"></p>
                                         </a>
                                     </li>
+                                <?php } ?>
+                                <?php
+                                    if (HavePermission("Tutorial", "SHOWALL")) {
+                                ?>
                                     <li class="nav-item">
                                         <a class="nav-link" href="#">
                                             <p data-translate="Tutorías"></p>
                                         </a>
                                     </li>
+                                <?php } ?>
                                 </ul>
                             </li>
 						<?php } ?>
 						<?php
-							if (HavePermission("University", "SHOWALL")) {
+							if (HavePermission("University", "SHOWALL") ||
+                                HavePermission("Center", "SHOWALL") ||
+                                HavePermission("Building", "SHOWALL") ||
+                                HavePermission("Space", "SHOWALL")) {
 						?>
                             <li class="nav-item">
                                 <a class="nav-link nav-collapse" data-toggle="collapse" aria-expanded="false"
@@ -201,26 +232,42 @@
                                     <p data-translate="Gestión de universidades"></p>
                                 </a>
                                 <ul class="flex-column collapse items-collapsed" id="collapseUniversity">
+                                <?php
+                                    if (HavePermission("University", "SHOWALL")) {
+                                ?>
                                     <li class="nav-item">
                                         <a class="nav-link" href="../Controllers/UniversityController.php">
                                             <p data-translate="Universidades"></p>
                                         </a>
                                     </li>
+                                <?php } ?>
+                                <?php
+                                    if (HavePermission("Center", "SHOWALL")) {
+                                ?>
                                     <li class="nav-item">
                                         <a class="nav-link" href="../Controllers/CenterController.php">
                                             <p data-translate="Centros"></p>
                                         </a>
                                     </li>
+                                <?php } ?>
+                                <?php
+                                    if (HavePermission("Building", "SHOWALL")) {
+                                ?>
                                     <li class="nav-item">
                                         <a class="nav-link" href="../Controllers/BuildingController.php">
                                             <p data-translate="Edificios"></p>
                                         </a>
                                     </li>
+                                <?php } ?>
+                                <?php
+                                    if (HavePermission("Space", "SHOWALL")) {
+                                ?>
                                     <li class="nav-item">
                                         <a class="nav-link" href="../Controllers/SpaceController.php">
                                             <p data-translate="Espacios"></p>
                                         </a>
                                     </li>
+                                <?php } ?>
                                 </ul>
                             </li>
 						<?php } ?>

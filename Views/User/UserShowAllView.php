@@ -68,18 +68,18 @@ class UserShowAllView
                             <td><?php echo $user->getSurname() ?></td>
                             <td><?php echo $user->getEmail() ?></td>
                             <td class="row">
-                                <? if (HavePermission("User", "SHOWCURRENT")) { ?>
+                                <?php if (HavePermission("User", "SHOWCURRENT")) { ?>
                                     <a href="../Controllers/UserController.php?action=show&login=<?php echo $user->getLogin() ?>">
                                         <span data-feather="eye"></span></a>
-                                <? }
+                                <?php }
                                 if (HavePermission("User", "EDIT")) { ?>
                                     <a href="../Controllers/UserController.php?action=edit&login=<?php echo $user->getLogin() ?>">
                                         <span data-feather="edit"></span></a>
-                                <? }
+                                <?php }
                                 if (HavePermission("User", "DELETE")) { ?>
                                     <a href="../Controllers/UserController.php?action=delete&login=<?php echo $user->getLogin() ?>">
                                         <span data-feather="trash-2"></span></a>
-                                <? } ?>
+                                <?php } ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>

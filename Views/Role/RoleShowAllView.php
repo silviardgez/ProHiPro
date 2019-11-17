@@ -67,18 +67,18 @@ class RoleShowAllView
                             <td><?php echo $role->getName() ?></td>
                             <td><?php echo $role->getDescription() ?></td>
                             <td class="row">
-                                <? if (HavePermission("Role", "SHOWCURRENT")) { ?>
+                                <?php if (HavePermission("Role", "SHOWCURRENT")) { ?>
                                     <a href="../Controllers/RoleController.php?action=show&id=<?php echo $role->getId() ?>">
                                         <span data-feather="eye"></span></a>
-                                <? }
+                                <?php }
                                 if (HavePermission("Role", "EDIT")) { ?>
                                     <a href="../Controllers/RoleController.php?action=edit&id=<?php echo $role->getId() ?>">
                                         <span data-feather="edit"></span></a>
-                                <? }
+                                <?php }
                                 if (HavePermission("Role", "DELETE")) { ?>
                                     <a href="../Controllers/RoleController.php?action=delete&id=<?php echo $role->getId() ?>">
                                         <span data-feather="trash-2"></span></a>
-                                <? } ?>
+                                <?php } ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>

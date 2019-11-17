@@ -64,18 +64,18 @@ class BuildingShowAllView
                             <td><?php echo $building->getLocation() ;?></td>
                             <td><?php echo $building->getUser()->getName() . " " . $building->getUser()->getSurname() ;?></td>
                             <td class="row">
-                                <? if (HavePermission("Building", "SHOWCURRENT")) { ?>
+                                <?php if (HavePermission("Building", "SHOWCURRENT")) { ?>
                                     <a href="../Controllers/BuildingController.php?action=show&id=<?php echo $building->getId() ?>">
                                         <span data-feather="eye"></span></a>
-                                <? }
+                                <?php }
                                 if (HavePermission("Building", "EDIT")) { ?>
                                     <a href="../Controllers/BuildingController.php?action=edit&id=<?php echo $building->getId() ?>">
                                         <span data-feather="edit"></span></a>
-                                <? }
+                                <?php }
                                 if (HavePermission("Building", "DELETE")) { ?>
                                     <a href="../Controllers/BuildingController.php?action=delete&id=<?php echo $building->getId() ?>">
                                         <span data-feather="trash-2"></span></a>
-                                <? } ?>
+                                <?php } ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>

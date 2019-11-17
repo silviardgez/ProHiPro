@@ -69,18 +69,18 @@ class AcademicCourseShowAllView
                             <td><?php echo $academicCourse->getStartYear() ?></td>
                             <td><?php echo $academicCourse->getEndYear() ?></td>
                             <td class="row">
-                                <? if (HavePermission("AcademicCourse", "SHOWCURRENT")) { ?>
+                                <?php if (HavePermission("AcademicCourse", "SHOWCURRENT")) { ?>
                                     <a href="../Controllers/AcademicCourseController.php?action=show&id=<?php echo $academicCourse->getId() ?>">
                                         <span data-feather="eye"></span></a>
-                                <? }
+                                <?php }
                                 if (HavePermission("AcademicCourse", "EDIT")) { ?>
                                     <a href="../Controllers/AcademicCourseController.php?action=edit&id=<?php echo $academicCourse->getId() ?>">
                                         <span data-feather="edit"></span></a>
-                                <? }
+                                <?php }
                                 if (HavePermission("AcademicCourse", "DELETE")) { ?>
                                     <a href="../Controllers/AcademicCourseController.php?action=delete&id=<?php echo $academicCourse->getId() ?>">
                                         <span data-feather="trash-2"></span></a>
-                                <? } ?>
+                                <?php } ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>

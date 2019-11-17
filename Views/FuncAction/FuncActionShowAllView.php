@@ -60,18 +60,18 @@ class FuncActionShowAllView
                             <td><?php echo $funcAction->getAction()->getName(); ?></td>
                             <td><?php echo $funcAction->getFunctionality()->getName(); ?></td>
                             <td class="row">
-                                <? if (HavePermission("FuncAction", "SHOWCURRENT")) { ?>
+                                <?php if (HavePermission("FuncAction", "SHOWCURRENT")) { ?>
                                     <a href="../Controllers/FuncActionController.php?action=show&id=<?php echo $funcAction->getId() ?>">
                                         <span data-feather="eye"></span></a>
-                                <? }
+                                <?php }
                                 if (HavePermission("FuncAction", "EDIT")) { ?>
                                     <a href="../Controllers/FuncActionController.php?action=edit&id=<?php echo $funcAction->getId() ?>">
                                         <span data-feather="edit"></span></a>
-                                <? }
+                                <?php }
                                 if (HavePermission("FuncAction", "DELETE")) { ?>
                                     <a href="../Controllers/FuncActionController.php?action=delete&id=<?php echo $funcAction->getId() ?>">
                                         <span data-feather="trash-2"></span></a>
-                                <? } ?>
+                                <?php } ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>

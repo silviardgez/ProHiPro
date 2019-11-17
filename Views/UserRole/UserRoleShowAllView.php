@@ -62,18 +62,18 @@ class UserRoleShowAllView
                             <td><?php echo $userRole->getUser()->getLogin(); ?></td>
                             <td><?php echo $userRole->getRole()->getName(); ?></td>
                             <td class="row">
-                                <? if (HavePermission("UserRole", "SHOWCURRENT")) { ?>
+                                <?php if (HavePermission("UserRole", "SHOWCURRENT")) { ?>
                                     <a href="../Controllers/UserRoleController.php?action=show&id=<?php echo $userRole->getId() ?>">
                                         <span data-feather="eye"></span></a>
-                                <? }
+                                <?php }
                                 if (HavePermission("UserRole", "EDIT")) { ?>
                                     <a href="../Controllers/UserRoleController.php?action=edit&id=<?php echo $userRole->getId() ?>">
                                         <span data-feather="edit"></span></a>
-                                <? }
+                                <?php }
                                 if (HavePermission("UserRole", "DELETE")) { ?>
                                     <a href="../Controllers/UserRoleController.php?action=delete&id=<?php echo $userRole->getId() ?>">
                                         <span data-feather="trash-2"></span></a>
-                                <? } ?>
+                                <?php } ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>

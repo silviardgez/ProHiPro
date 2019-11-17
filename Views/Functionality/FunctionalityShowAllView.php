@@ -68,18 +68,18 @@ class FunctionalityShowAllView
                             <td><?php echo $functionality->getName() ?></td>
                             <td><?php echo $functionality->getDescription() ?></td>
                             <td class="row">
-                                <? if (HavePermission("Functionality", "SHOWCURRENT")) { ?>
+                                <?php if (HavePermission("Functionality", "SHOWCURRENT")) { ?>
                                     <a href="../Controllers/FunctionalityController.php?action=show&id=<?php echo $functionality->getId() ?>">
                                         <span data-feather="eye"></span></a>
-                                <? }
+                                <?php }
                                 if (HavePermission("Functionality", "EDIT")) { ?>
                                     <a href="../Controllers/FunctionalityController.php?action=edit&id=<?php echo $functionality->getId() ?>">
                                         <span data-feather="edit"></span></a>
-                                <? }
+                                <?php }
                                 if (HavePermission("Functionality", "DELETE")) { ?>
                                     <a href="../Controllers/FunctionalityController.php?action=delete&id=<?php echo $functionality->getId() ?>">
                                         <span data-feather="trash-2"></span></a>
-                                <? } ?>
+                                <?php } ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>

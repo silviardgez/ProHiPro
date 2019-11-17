@@ -65,18 +65,18 @@ class CenterShowAllView
                             <td><?php echo $center->getBuilding()->getName() ;?></td>
                             <td><?php echo $center->getUser()->getName() . " " . $center->getUser()->getSurname();?></td>
                             <td class="row">
-                                <? if (HavePermission("Center", "SHOWCURRENT")) { ?>
+                                <?php if (HavePermission("Center", "SHOWCURRENT")) { ?>
                                     <a href="../Controllers/CenterController.php?action=show&id=<?php echo $center->getId() ?>">
                                         <span data-feather="eye"></span></a>
-                                <? }
+                                <?php }
                                 if (HavePermission("Center", "EDIT")) { ?>
                                     <a href="../Controllers/CenterController.php?action=edit&id=<?php echo $center->getId() ?>">
                                         <span data-feather="edit"></span></a>
-                                <? }
+                                <?php }
                                 if (HavePermission("Center", "DELETE")) { ?>
                                     <a href="../Controllers/CenterController.php?action=delete&id=<?php echo $center->getId() ?>">
                                         <span data-feather="trash-2"></span></a>
-                                <? } ?>
+                                <?php } ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>

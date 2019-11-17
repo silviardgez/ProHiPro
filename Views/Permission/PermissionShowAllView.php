@@ -63,18 +63,18 @@ class PermissionShowAllView
                             <td><?php echo $permission->getFuncAction()->getFunctionality()->getName(); ?></td>
 
                             <td class="row">
-                                <? if (HavePermission("Permission", "SHOWCURRENT")) { ?>
+                                <?php if (HavePermission("Permission", "SHOWCURRENT")) { ?>
                                     <a href="../Controllers/PermissionController.php?action=show&id=<?php echo $permission->getId() ?>">
                                         <span data-feather="eye"></span></a>
-                                <? }
+                                <?php }
                                 if (HavePermission("Permission", "EDIT")) { ?>
                                     <a href="../Controllers/PermissionController.php?action=edit&id=<?php echo $permission->getId() ?>">
                                         <span data-feather="edit"></span></a>
-                                <? }
+                                <?php }
                                 if (HavePermission("Permission", "DELETE")) { ?>
                                     <a href="../Controllers/PermissionController.php?action=delete&id=<?php echo $permission->getId() ?>">
                                         <span data-feather="trash-2"></span></a>
-                                <? } ?>
+                                <?php } ?>
                             </td>
                         </tr>
                     <?php endforeach; ?>
