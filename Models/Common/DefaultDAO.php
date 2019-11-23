@@ -228,7 +228,7 @@ class DefaultDAO
     private function checkValueType($value)
     {
         $valueToReturn = $value;
-        if (empty($value)) {
+        if (empty($value) && $value !== 0) {
             $valueToReturn = "NULL";
         } elseif (!is_int($value)) {
             $valueToReturn = "'" . $value . "'";
@@ -320,17 +320,14 @@ class DefaultDAO
         $sqlSelect = "";
         $sqlWhere = "";
         foreach ($columns as $column) {
-            if ($column["COLUMN_NAME"] != "id") {
-                if(empty($sqlSelect)) {
-                    $sqlSelect .= "SELECT a0." . $column["COLUMN_NAME"];
-                } else {
-                    $sqlSelect .= ", a0." . $column["COLUMN_NAME"];
-                }
-                if (empty($sqlWhere)) {
-                    $sqlWhere .= " WHERE (a0." . $column["COLUMN_NAME"] . " LIKE '%" . $stringToSearch . "%')";
-                } else {
-                    $sqlWhere .= " OR (a0." . $column["COLUMN_NAME"] . " LIKE '%" . $stringToSearch . "%')";
-                }
+            if(empty($sqlSelect)) {
+                $sqlSelect .= "SELECT a0." . $column["COLUMN_NAME"];
+            } else {
+                $sqlSelect .= ", a0." . $column["COLUMN_NAME"];
+            } if (empty($sqlWhere)) {
+                $sqlWhere .= " WHERE (a0." . $column["COLUMN_NAME"] . " LIKE '%" . $stringToSearch . "%')";
+            } else {
+                $sqlWhere .= " OR (a0." . $column["COLUMN_NAME"] . " LIKE '%" . $stringToSearch . "%')";
             }
         }
 

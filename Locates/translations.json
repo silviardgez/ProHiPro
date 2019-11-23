@@ -1478,6 +1478,18 @@
   "El atributo créditos no puede ser menor que %c.": {
     "en": "The credits attribute can have a minimum value of %c.",
     "gl": "O atributo créditos pode ter un valor mínimo de %c."
+  },
+  "Despacho": {
+    "en": "Office",
+    "gl": "Despacho"
+  },
+  "Sí": {
+    "en": "Yes",
+    "gl": "Si"
+  },
+  "No": {
+    "en": "No",
+    "gl": "Non"
   }
 }
 

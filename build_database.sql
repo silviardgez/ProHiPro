@@ -189,6 +189,7 @@ CREATE TABLE `SPACE` (
   `building_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
   `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
   `capacity` int(3) COLLATE latin1_spanish_ci NOT NULL,
+  `office` bit COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY(`id`, `building_id`),
   FOREIGN KEY (`building_id`) 
 	REFERENCES `BUILDING`(`id`)  

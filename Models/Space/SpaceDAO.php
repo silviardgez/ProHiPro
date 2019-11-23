@@ -29,7 +29,7 @@ class SpaceDAO
     function show($key, $value) {
         $space = $this->defaultDAO->show("space", $key, $value);
         $building = $this->buildingDAO->show("id", $space["building_id"]);
-        return new Space($space["id"], $space["name"], $building, $space["capacity"]);
+        return new Space($space["id"], $space["name"], $building, $space["capacity"], $space["office"]);
     }
 
     function edit($space) {
@@ -45,6 +45,13 @@ class SpaceDAO
         return $this->getSpacesFromDB($spaces_db);
     }
 
+    function showAllOffices() {
+        $spaces = $this->showAll();
+        var_dump(array_filter($spaces, function($v, $k) {
+            return $k == "office" && $v == true;
+        }, ARRAY_FILTER_USE_BOTH));
+    }
+
     function countTotalSpaces($stringToSearch) {
         return $this->defaultDAO->countTotalEntries(new Space(), $stringToSearch);
     }
@@ -57,7 +64,7 @@ class SpaceDAO
         $spaces = array();
         foreach ($spacesDB as $space) {
             $building = $this->buildingDAO->show("id", $space["building_id"]);
-            array_push($spaces, new Space($space["id"], $space["name"], $building,$space["capacity"]));
+            array_push($spaces, new Space($space["id"], $space["name"], $building, $space["capacity"], $space["office"]));
         }
         return $spaces;
     }

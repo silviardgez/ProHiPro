@@ -58,6 +58,7 @@ class SpaceShowAllView
                         <th><label data-translate="Nombre"></label></th>
                         <th><label data-translate="Edificio"></label></th>
                         <th><label data-translate="Capacidad"></label></th>
+                        <th><label data-translate="Despacho"></label></th>
                         <th class="actions-row"><label data-translate="Acciones"></label></th>
                     </tr>
                     </thead>
@@ -68,6 +69,11 @@ class SpaceShowAllView
                             <td><?php echo $space->getName(); ?></td>
                             <td><?php echo $space->getBuilding()->getName(); ?></td>
                             <td><?php echo $space->getCapacity(); ?></td>
+                            <?php if($space->isOffice()): ?>
+                            <td data-translate="Sí"></td>
+                            <?php else: ?>
+                            <td data-translate="No"></td>
+                            <?php endif; ?>
                             <td class="row">
                                 <?php if (HavePermission("Space", "SHOWCURRENT")) { ?>
                                     <a href="../Controllers/SpaceController.php?action=show&id=<?php echo $space->getId() ?>">

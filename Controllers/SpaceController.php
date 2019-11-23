@@ -46,6 +46,11 @@ switch ($action) {
                     $space->setName($_POST["name"]);
                     $space->setBuilding($buildingDAO->show("id",$_POST["building_id"]));
                     $space->setCapacity($_POST["capacity"]);
+                    if (isset($_POST["office"])) {
+                        $space->setOffice(1);
+                    } else {
+                        $space->setOffice(0);
+                    }
                     $spaceDAO->add($space);
                     goToShowAllAndShowSuccess("Espacio añadido correctamente.");
                 } catch (DAOException $e) {
@@ -107,6 +112,7 @@ switch ($action) {
                     $space->setName($_POST["name"]);
                     $space->setBuilding($buildingDAO->show("id",$_POST["building_id"]));
                     $space->setCapacity($_POST["capacity"]);
+                    $space->setOffice($_POST["office"]);
                     $spaceDAO->edit($space);
                     goToShowAllAndShowSuccess("Espacio editado correctamente.");
                 }
@@ -134,6 +140,9 @@ switch ($action) {
                     }
                     if(!empty($_POST["building_id"])) {
                         $space->setBuilding($buildingDAO->show("id", $_POST["building_id"]));
+                    }
+                    if(!empty($_POST["office"])) {
+                        $space->setOffice($_POST["office"]);
                     }
                     showAllSearch($space);
                 } catch (DAOException $e) {

@@ -19,3 +19,10 @@ h1 label {
 .message-error p {
     margin-bottom: 0;
 }
+
+.office-checkbox {
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin-left: 10px;
+}
