@@ -44,6 +44,17 @@ class TeacherDAO
         return new Teacher($teacher["id"], $user, $teacher["dedication"], $space);
     }
 
+    function teachersBySpace($spaceId) {
+        $totalTeachers = $this->showAll();
+        $teachersToReturn = array();
+        foreach ($totalTeachers as $teacher) {
+            if (!empty($teacher->getSpace()) && $teacher->getSpace()->getId() == $spaceId) {
+                array_push($teachersToReturn, $teacher);
+            }
+        }
+        return $teachersToReturn;
+    }
+
     function edit($teacher)
     {
         $this->defaultDAO->edit($teacher, "id");

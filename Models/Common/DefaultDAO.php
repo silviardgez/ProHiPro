@@ -261,4 +261,56 @@ class DefaultDAO
     private function getTableName($entity) {
         return strtoupper(preg_replace('/\B([A-Z])/', '_$1', get_class($entity)));
     }
+
+    private function getJoinSearch($entity, $stringToSearch) {
+        $sql = "SELECT COLUMN_NAME, REFERENCED_TABLE_NAME, REFERENCED_COLUMN_NAME FROM 
+                INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = '" . $this->getTableName($entity) ."' AND 
+                REFERENCED_TABLE_NAME IS NOT NULL";
+
+        $sqlColumns = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = N'" .
+            $this->getTableName($entity) . "'";
+        $columns = $this->getArrayFromSqlQuery($sqlColumns);
+        $sqlSelect = "";
+        $sqlWhere = "";
+        foreach ($columns as $column) {
+            if(empty($sqlSelect)) {
+                $sqlSelect .= "SELECT a0." . $column["COLUMN_NAME"];
+            } else {
+                $sqlSelect .= ", a0." . $column["COLUMN_NAME"];
+            } if (empty($sqlWhere)) {
+                $sqlWhere .= " WHERE (a0." . $column["COLUMN_NAME"] . " LIKE '%" . $stringToSearch . "%')";
+            } else {
+                $sqlWhere .= " OR (a0." . $column["COLUMN_NAME"] . " LIKE '%" . $stringToSearch . "%')";
+            }
+        }
+
+        $tables = $this->getArrayFromSqlQuery($sql);
+        $sqlTables = " FROM " . $this->getTableName($entity) . " a0";
+        $i = 1;
+        foreach ($tables as $table) {
+            $sqlTables .= " LEFT JOIN " . $table["REFERENCED_TABLE_NAME"] . " a" . $i . " ON a0." . $table["COLUMN_NAME"] .
+                " = a" . $i . "." . $table["REFERENCED_COLUMN_NAME"];
+
+            $sqlColumnsOfTable = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = N'" .
+                $table["REFERENCED_TABLE_NAME"] . "'";
+            $columnsOfTable = $this->getArrayFromSqlQuery($sqlColumnsOfTable);
+            foreach ($columnsOfTable as $columnTable) {
+                if ($columnTable["COLUMN_NAME"] != "id") {
+                    if (empty($sqlSelect)) {
+                        $sqlSelect .= "SELECT a" . $i . "." . $columnTable["COLUMN_NAME"];
+                    } else {
+                        $sqlSelect .= ", a" . $i . "." . $columnTable["COLUMN_NAME"];
+                    }
+                    if (empty($sqlWhere)) {
+                        $sqlWhere .= " WHERE (a" . $i . "." . $columnTable["COLUMN_NAME"] . " LIKE '%" . $stringToSearch . "%')";
+                    } else {
+                        $sqlWhere .= " OR (a" . $i . "." . $columnTable["COLUMN_NAME"] . " LIKE '%" . $stringToSearch . "%')";
+                    }
+                }
+            }
+            $i++;
+        }
+        return $sqlSelect . $sqlTables . $sqlWhere;
+    }
+
 }

@@ -1,12 +1,14 @@
 <?php
 include_once '../Models/Common/DefaultDAO.php';
 include_once '../Models/Building/BuildingDAO.php';
+include_once '../Models/Teacher/TeacherDAO.php';
 include_once 'Space.php';
 
 class SpaceDAO
 {
     private $defaultDAO;
     private $buildingDAO;
+    private $teacherDAO;
 
     public function __construct() {
         $this->defaultDAO = new DefaultDAO();
@@ -45,6 +47,32 @@ class SpaceDAO
         return $this->getSpacesFromDB($spaces_db);
     }
 
+    function showAllOffices() {
+        $spaces = $this->showAll();
+        $spacesToReturn = array();
+        foreach ($spaces as $space) {
+            if ($space->isOffice()) {
+                array_push($spacesToReturn, $space);
+            }
+        }
+        return $spacesToReturn;
+    }
+
+    // Only shows the office with free space. If it is full, cannot be assigned a teacher
+    function showAllFreeOffices() {
+        $this->teacherDAO = new TeacherDAO();
+        $totalSpaces = $this->showAllOffices();
+        $spacesToReturn = array();
+        foreach ($totalSpaces as $space) {
+            $teachersAssigned = count($this->teacherDAO->teachersBySpace($space->getId()));
+            if($teachersAssigned < $space->getCapacity()) {
+                array_push($spacesToReturn, $space);
+            }
+        }
+
+        return $spacesToReturn;
+    }
+    
     function countTotalSpaces($stringToSearch) {
         return $this->defaultDAO->countTotalEntries(new Space(), $stringToSearch);
     }

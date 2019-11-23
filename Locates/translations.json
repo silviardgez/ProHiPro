@@ -183,6 +183,10 @@
     "en": "Add action",
     "gl": "Engadir acción"
   },
+  "Insertar profesor": {
+    "en": "Add teacher",
+    "gl": "Engadir profesor"
+  },
   "Insertar funcionalidad": {
     "en": "Add functionality",
     "gl": "Insertar funcionalidade"
@@ -206,6 +210,14 @@
   "Introducir año de fin": {
     "en": "Add end year",
     "gl": "Engadir ano de fin"
+  },
+  "Introducir dedicación": {
+    "en": "Add dedication",
+    "gl": "Engadir adicación"
+  },
+  "Introducir despacho": {
+    "en": "Add office",
+    "gl": "Engadir despacho"
   },
   "Curso académico": {
     "en": "Academic course",
@@ -471,9 +483,17 @@
     "en": "Academic course added successfully.",
     "gl": "Curso académico engadido correctamente."
   },
+  "Profesor añadido correctamente.": {
+    "en": "Teacher added successfully.",
+    "gl": "Profesor engadido correctamente."
+  },
   "Curso académico eliminado correctamente.": {
     "en": "Academic course deleted successfully.",
     "gl": "Curso académico eliminado correctamente."
+  },
+  "Profesor eliminado correctamente.": {
+    "en": "Teacher deleted successfully.",
+    "gl": "Profesor eliminado correctamente."
   },
   "Centro eliminado correctamente.": {
     "en": "Center deleted successfully.",
@@ -687,6 +707,10 @@
     "en": "Delete department",
     "gl": "Eliminar departamento"
   },
+  "Eliminar profesor": {
+    "en": "Delete teacher",
+    "gl": "Eliminar profesor"
+  },
   "Búsqueda de centros": {
     "en": "Centers search",
     "gl": "Procura de centros"
@@ -746,6 +770,10 @@
   "¿Está seguro de que desea eliminar el usuario %c? Esta acción es permanente y no se puede recuperar.": {
     "en": "Are you sure you want to delete the user %c? This action is permanent and cannot be recovered.",
     "gl": "Está seguro de que desexa eliminar o usuario %c? Esta acción é permanente e non se pode recuperar."
+  },
+  "¿Está seguro de que desea eliminar el profesor %c? Esta acción es permanente y no se puede recuperar.": {
+    "en": "Are you sure you want to delete the teacher %c? This action is permanent and cannot be recovered.",
+    "gl": "Está seguro de que desexa eliminar o profesor %c? Esta acción é permanente e non se pode recuperar."
   },
   "¿Está seguro de que desea eliminar el departamento %c? Esta acción es permanente y no se puede recuperar.": {
     "en": "Are you sure you want to delete the department %c? This action is permanent and cannot be recovered.",
@@ -950,6 +978,22 @@
   "El atributo dni contiene algún carácter no válido: %c.": {
     "en": "The dni attribute contains some invalid character: %c.",
     "gl": "O atributo dni contén algún caracter non válido: %c."
+  },
+  "El atributo dedicación puede tener una longitud máxima de %c.": {
+    "en": "The dedication attribute can have a maximum length of %c.",
+    "gl": "O atributo adicación pode ter unha lonxitude máxima de %c."
+  },
+  "El atributo dedicación no puede tener espacios en blanco.": {
+    "en": "The dedication attribute cannot have blanks.",
+    "gl": "O atributo adicación non pode ter espazos en branco."
+  },
+  "El atributo dedicación no puede estar vacío.": {
+    "en": "The dedication attribute cannot be empty.",
+    "gl": "O atributo adicación non pode estar baleiro"
+  },
+  "El atributo dedicación contiene algún carácter no válido: %c.": {
+    "en": "The dedication attribute contains some invalid character: %c.",
+    "gl": "O atributo adicación contén algún caracter non válido: %c."
   },
   "El atributo código contiene algún carácter no válido: %c.": {
     "en": "The code attribute contains some invalid character: %c.",
@@ -1183,6 +1227,10 @@
     "en": "Room edited successfully.",
     "gl": "Espazo editado correctamente."
   },
+  "Profesor editado correctamente.": {
+    "en": "Teacher edited successfully.",
+    "gl": "Profesor editado correctamente."
+  },
   "Departamento editado correctamente.": {
     "en": "Department edited successfully.",
     "gl": "Departamento editado correctamente."
@@ -1195,9 +1243,17 @@
     "en": "Departments list",
     "gl": "Listado de departamentos"
   },
+  "Listado de profesores": {
+    "en": "Teachers list",
+    "gl": "Listado de profesores"
+  },
   "No se ha obtenido ningún espacio": {
     "en": "No room has been obtained",
     "gl": "Non se obtuvo ningún espazo"
+  },
+  "No se ha obtenido ningún profesor": {
+    "en": "No teacher has been obtained",
+    "gl": "Non se obtuvo ningún profesor"
   },
   "Insertar espacio": {
     "en": "Add room",
@@ -1219,9 +1275,25 @@
     "en": "Department '%c'",
     "gl": "Departamento '%c'"
   },
+  "Profesor '%c'": {
+    "en": "Teacher '%c'",
+    "gl": "Profesor '%c'"
+  },
+  "Editar profesor '%c'": {
+    "en": "Edit teacher '%c'",
+    "gl": "Editar profesor '%c'"
+  },
   "Búsqueda de espacios": {
     "en": "Rooms search",
     "gl": "Procura de espazo"
+  },
+  "Búsqueda de departamentos": {
+    "en": "Departments search",
+    "gl": "Procura de departamentos"
+  },
+  "Búsqueda de profesores": {
+    "en": "Teachers search",
+    "gl": "Procura de profesores"
   },
   "Eliminar Espacio": {
     "en": "Delete room",
@@ -1323,9 +1395,21 @@
     "en": "Add room",
     "gl": "Engadir espazo"
   },
+  "No asignado": {
+    "en": "Not assigned",
+    "gl": "Non asignado"
+  },
+  "Añadir profesor": {
+    "en": "Add teacher",
+    "gl": "Engadir profesor"
+  },
   "Añadir edificio": {
     "en": "Add building",
     "gl": "Engadir edificio"
+  },
+  "Dedicación": {
+    "en": "Dedication",
+    "gl": "Adicación"
   },
   "Añadir departamento": {
     "en": "Add department",
