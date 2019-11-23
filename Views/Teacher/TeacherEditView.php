@@ -51,16 +51,19 @@ class TeacherEditView
                 </div>
                 <div class="form-group">
                     <label for="space_id" data-translate="Despacho"></label>
-                    <select class="form-control" id="space_id" name="space_id" ?>
+                    <select class="form-control" id="space_id" name="space_id">
                         <option data-translate="Introducir despacho" value=""></option>
                         <?php foreach ($this->spaces as $space): ?>
                             <option value="<?php echo $space->getId() ?>"
-                                <?php if ($space->getId() == $this->teacher->getSpace()->getId()) {
-                                    echo 'selected="selected"';
-                                } ?>>
-                                <?php echo $space->getName(); ?>
-                            </option>
+                                <?php if (!empty($this->teacher->getSpace()) && $space->getId() == $this->teacher->getSpace()->getId()) {
+                                echo 'selected="selected"';
+                            } ?>>
+                                <?php echo $space->getName(); ?></option>
                         <?php endforeach; ?>
+                        <?php if (!in_array($this->teacher->getSpace())): ?>
+                            <option value="<?php echo $this->teacher->getSpace()->getId() ?>" selected>
+                                <?php echo $this->teacher->getSpace()->getName() ?></option>
+                        <?php endif; ?>
                     </select>
                 </div>
                 <button name="submit" type="submit" class="btn btn-primary" data-translate="Enviar"></button>
