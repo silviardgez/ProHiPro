@@ -335,7 +335,7 @@ class DefaultDAO
         $sqlTables = " FROM " . $this->getTableName($entity) . " a0";
         $i = 1;
         foreach ($tables as $table) {
-            $sqlTables .= " INNER JOIN " . $table["REFERENCED_TABLE_NAME"] . " a" . $i . " ON a0." . $table["COLUMN_NAME"] .
+            $sqlTables .= " LEFT JOIN " . $table["REFERENCED_TABLE_NAME"] . " a" . $i . " ON a0." . $table["COLUMN_NAME"] .
                 " = a" . $i . "." . $table["REFERENCED_COLUMN_NAME"];
 
             $sqlColumnsOfTable = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = N'" .

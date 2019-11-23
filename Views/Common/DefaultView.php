@@ -202,7 +202,7 @@
                                     if (HavePermission("Teacher", "SHOWALL")) {
                                 ?>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">
+                                        <a class="nav-link" href="../Controllers/TeacherController.php">
                                             <p data-translate="Profesores"></p>
                                         </a>
                                     </li>
