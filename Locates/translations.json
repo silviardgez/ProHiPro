@@ -331,6 +331,10 @@
     "en": "Screw",
     "gl": "Parafuso"
   },
+  "Introducir nombre de usuario": {
+    "en": "Add user name",
+    "gl": "Introducir nome de usuario"
+  },
   "Introducir contraseña": {
     "en": "Add password",
     "gl": "Introducir contrasinal"
@@ -1659,6 +1663,10 @@
     "en": "Validation error. Functionality-Action wrong.",
     "gl": "Error de validación. Funcionalidade-Acción incorrecta."
   },
+  "Error de validación. Id edificio incorrecto.": {
+    "en": "Validation error. Building id wrong.",
+    "gl": "Error de validación. Id edicio incorrecto."
+  },
   "Error de validación. Capacidad incorrecto.": {
     "en": "Validation error. Capacity wrong.",
     "gl": "Error de validación. Capacidade incorrecto."
@@ -1852,4 +1860,3 @@
     "gl": "Inserir número de horas impartidas"
   }
 }
-

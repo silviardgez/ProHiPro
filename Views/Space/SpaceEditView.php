@@ -45,6 +45,11 @@ class SpaceEditView {
                     <input type="number" min="0" max="999" class="form-control" id="capacity" name="capacity" data-translate="Introducir capacidad"
                            value="<?php echo $this->space->getCapacity() ?>" required maxlength="3" oninput="checkCapacitySpace(this)">
                 </div>
+                <div class="form-group">
+                    <label for="office" data-translate="Despacho"></label>
+                    <input type="checkbox" class="office-checkbox" id="office" name="office"
+                           <?php if($this->space->isOffice()) echo "checked"?>>
+                </div>
                 <button name="submit" type="submit" class="btn btn-primary" data-translate="Enviar"></button>
             </form>
         </main>

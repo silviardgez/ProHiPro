@@ -16,7 +16,7 @@ class SpaceDAO
     }
 
     function showAll() {
-        $spaces_db = $this->defaultDAO->showAll("spacce");
+        $spaces_db = $this->defaultDAO->showAll("space");
         return $this->getSpacesFromDB($spaces_db);
     }
 
@@ -31,7 +31,7 @@ class SpaceDAO
     function show($key, $value) {
         $space = $this->defaultDAO->show("space", $key, $value);
         $building = $this->buildingDAO->show("id", $space["building_id"]);
-        return new Space($space["id"], $space["name"], $building, $space["capacity"]);
+        return new Space($space["id"], $space["name"], $building, $space["capacity"], $space["office"]);
     }
 
     function edit($space) {
@@ -85,7 +85,7 @@ class SpaceDAO
         $spaces = array();
         foreach ($spacesDB as $space) {
             $building = $this->buildingDAO->show("id", $space["building_id"]);
-            array_push($spaces, new Space($space["id"], $space["name"], $building,$space["capacity"]));
+            array_push($spaces, new Space($space["id"], $space["name"], $building, $space["capacity"], $space["office"]));
         }
         return $spaces;
     }

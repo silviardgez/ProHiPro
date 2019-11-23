@@ -81,7 +81,7 @@ class DegreeEditView
                     <label for="description" data-translate="Descripción"></label>
                     <input type="text" class="form-control" id="description" name="description"
                            data-translate="Introducir descripción"
-                           value="<?php echo $this->degree->getDescription() ?>" max-length="100" required
+                           value="<?php echo $this->degree->getDescription() ?>" maxlength="100" required
                            oninput="checkDescriptionDegree(this);">
                 </div>
                 <button name="submit" type="submit" class="btn btn-primary" data-translate="Enviar"></button>

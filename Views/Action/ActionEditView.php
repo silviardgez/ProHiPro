@@ -23,12 +23,12 @@ class ActionEditView {
                 <div id="name-div" class="form-group">
                     <label for="name" data-translate="Nombre"></label>
                     <input type="text" class="form-control" id="name" name="name"
-                           value="<?php echo $this->action->getName() ?>" max-length="60" required oninput="checkNameAction(this);">
+                           value="<?php echo $this->action->getName() ?>" maxlength="60" required oninput="checkNameAction(this);">
                 </div>
                 <div id="description-div" class="form-group">
                     <label for="description" data-translate="Descripción"></label>
                     <input type="text" class="form-control" id="description" name="description"
-                           value="<?php echo $this->action->getDescription() ?>" max-length="100" required oninput="checkDescriptionAction(this);">
+                           value="<?php echo $this->action->getDescription() ?>" maxlength="100" required oninput="checkDescriptionAction(this);">
                 </div>
                 <button name="submit" type="submit" class="btn btn-primary" data-translate="Enviar"></button>
             </form>

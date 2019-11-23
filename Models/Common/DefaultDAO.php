@@ -134,8 +134,14 @@ class DefaultDAO
         }
     }
     function countTotalEntries($entity, $stringToSearch) {
-        $sql = "SELECT COUNT(*) FROM " . $this->getTableName($entity);
-        $sql .= $this->obtainWhereClauseToSearch($entity, $stringToSearch);
+        $sql = "SELECT COUNT(*) ";
+        $sqlWhere = $this->obtainWhereClauseToSearch($entity, $stringToSearch);
+        if (preg_match("/SELECT/i", $sqlWhere)) {
+            $sql .= strstr($sqlWhere, 'FROM');
+        } else {
+            $sql .= "FROM " . $this->getTableName($entity);
+            $sql .= $sqlWhere;
+        }
         if (!($result = $this->mysqli->query($sql))) {
             throw new DAOException('Error de conexión con la base de datos.');
         } else {
@@ -167,8 +173,13 @@ class DefaultDAO
     }
     function showAllPaged($currentPage, $itemsPerPage, $entity, $stringToSearch) {
         $startBlock = ($currentPage - 1) * $itemsPerPage;
-        $sql = "SELECT * FROM " . $this->getTableName($entity);
-        $sql .= $this->obtainWhereClauseToSearch($entity, $stringToSearch);
+        $sqlWhere = $this->obtainWhereClauseToSearch($entity, $stringToSearch);
+        if (preg_match("/SELECT/i", $sqlWhere)) {
+            $sql = $sqlWhere;
+        } else {
+            $sql = "SELECT * FROM " . $this->getTableName($entity);
+            $sql .= $sqlWhere;
+        }
         $sql .= " LIMIT " . $startBlock . "," . $itemsPerPage;
         return $this->getArrayFromSqlQuery($sql);
     }
@@ -188,7 +199,7 @@ class DefaultDAO
     private function checkValueType($value)
     {
         $valueToReturn = $value;
-        if (empty($value)) {
+        if (empty($value) && $value !== 0) {
             $valueToReturn = "NULL";
         } elseif (!is_int($value)) {
             $valueToReturn = "'" . $value . "'";
@@ -212,12 +223,14 @@ class DefaultDAO
         $sql = "";
         if(get_class($stringToSearch) == "DefaultDAO" || empty(get_class($stringToSearch))) {
             if (!is_null($stringToSearch)) {
-                $sqlWhere = $this->getSearchConsult($entity, $stringToSearch);
-                $sql = " WHERE " . $sqlWhere;
+                $sqlWhere = $this->getJoinSearch($entity, $stringToSearch);
+                $sql = $sqlWhere;
             }
         } else {
             $sqlWhere = $this->getSearchConsultWithEntity($stringToSearch);
-            $sql = " WHERE " . $sqlWhere;
+            if (!empty($sqlWhere)) {
+                $sql = " WHERE " . $sqlWhere;
+            }
         }
         return $sql;
     }

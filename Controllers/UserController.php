@@ -171,8 +171,8 @@ function showAllSearch($search) {
             $currentPage = getCurrentPage();
             $itemsPerPage = getItemsPerPage();
             $toSearch = getToSearch($search);
-            $totalUsers = $GLOBALS["userDAO"]->countTotalUsers($toSearch);
             $usersData = $GLOBALS["userDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
+            $totalUsers = $GLOBALS["userDAO"]->countTotalUsers($toSearch);
             new UserShowAllView($usersData, $itemsPerPage, $currentPage, $totalUsers, $toSearch);
         } catch (DAOException $e) {
             new UserShowAllView(array());

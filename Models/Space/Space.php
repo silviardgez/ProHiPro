@@ -5,18 +5,20 @@ class Space
     private $name;
     private $building;
     private $capacity;
+    private $office;
 
-    public function __construct($id=NULL, $name=NULL, $building=NULL, $capacity=NULL){
+    public function __construct($id=NULL, $name=NULL, $building=NULL, $capacity=NULL, $office=NULL){
         if(!empty($id)) {
-            $this->constructEntity($id, $name, $building,$capacity);
+            $this->constructEntity($id, $name, $building, $capacity, $office);
         }
     }
 
-    public function constructEntity($id=NULL, $name=NULL, $building=NULL, $capacity=NULL) {
+    public function constructEntity($id=NULL, $name=NULL, $building=NULL, $capacity=NULL, $office=NULL) {
         $this->setId($id);
         $this->setName($name);
         $this->setBuilding($building);
         $this->setCapacity($capacity);
+        $this->setOffice($office);
     }
 
     public function getId()
@@ -73,6 +75,26 @@ class Space
         } else {
             $this->capacity = $capacity;
         }
+    }
+
+    public function isOffice()
+    {
+        return $this->office;
+    }
+
+    public function setOffice($office)
+    {
+        $office = boolval($office) ? boolval($office) : false;
+        if (is_bool($office)) {
+            $this->office = (int) $office;
+        } else {
+            throw new ValidationException('Error de validación. Despacho indicado de forma incorrecta.');
+        }
+    }
+
+    public function getOffice()
+    {
+        return $this->office;
     }
 
     public static function expose()

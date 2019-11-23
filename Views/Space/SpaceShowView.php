@@ -33,6 +33,11 @@ class SpaceShowView {
                     <input type="text" class="form-control" id="user_id" name="user_id" data-translate="Responsable"
                            value="<?php echo $this->space->getCapacity() ?>" readonly>
                 </div>
+                <div class="form-group">
+                    <label for="office" data-translate="Despacho"></label>
+                    <input type="checkbox" class="office-checkbox" id="office" name="office"
+                        <?php if($this->space->isOffice()) echo "checked"?> onclick="return false;">
+                </div>
             </form>
         </main>
         <?php

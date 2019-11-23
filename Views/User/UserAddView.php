@@ -18,47 +18,47 @@ class UserAddView {
             <form id="userForm" action='../Controllers/UserController.php?action=add' method='POST' onsubmit="return areUserFieldsCorrect()">
                 <div id="login-div" class="form-group">
                     <label for="login" data-translate="Login"></label>
-                    <input type="text" class="form-control" id="login" name="login" max-length="9" data-translate="Introducir nombre de usuario"
+                    <input type="text" class="form-control" id="login" name="login" maxlength="9" data-translate="Introducir nombre de usuario"
                            required oninput="checkLoginUser(this);">
                 </div>
                 <div id="password-div" class="form-group">
                     <label for="password1" data-translate="Contraseña"></label>
-                    <input type="password" class="form-control" id="password1" name="password" max-length="20" data-translate="Introducir contraseña"
+                    <input type="password" class="form-control" id="password1" name="password" maxlength="20" data-translate="Introducir contraseña"
                            required oninput="checkPasswordUser(this);" >
                 </div>
                 <div id="confirm-password-div" class="form-group">
                     <label for="password2" data-translate="Confirmar contraseña"></label>
-                    <input type="password" class="form-control" id="password2" max-length="20" data-translate="Confirmar contraseña"
+                    <input type="password" class="form-control" id="password2" maxlength="20" data-translate="Confirmar contraseña"
                            required oninput="checkConfirmPasswordUser(this);">
                 </div>
                 <div id="dni-div" class="form-group">
                     <label for="dni" data-translate="DNI"></label>
-                    <input type="text" class="form-control" id="dni" name="dni" max-length="9" data-translate="Introducir DNI"
+                    <input type="text" class="form-control" id="dni" name="dni" maxlength="9" data-translate="Introducir DNI"
                            required oninput="checkDniUser(this);">
                 </div>
                 <div id="name-div" class="form-group">
                     <label for="name" data-translate="Nombre"></label>
-                    <input type="text" class="form-control" id="name" name="name" max-length="30" data-translate="Introducir nombre"
+                    <input type="text" class="form-control" id="name" name="name" maxlength="30" data-translate="Introducir nombre"
                            required oninput="checkNameUser(this);">
                 </div>
                 <div id="surname-div" class="form-group">
                     <label for="surname" data-translate="Apellido"></label>
-                    <input type="text" class="form-control" id="surname" name="surname" max-length="50" data-translate="Introducir apellido"
+                    <input type="text" class="form-control" id="surname" name="surname" maxlength="50" data-translate="Introducir apellido"
                            required oninput="checkSurnameUser(this);">
                 </div>
                 <div id="email-div" class="form-group">
                     <label for="email" data-translate="Email"></label>
-                    <input type="email" class="form-control" id="email" name="email" max-length="40" data-translate="Introducir email"
+                    <input type="email" class="form-control" id="email" name="email" maxlength="40" data-translate="Introducir email"
                            required oninput="checkEmailUser(this);">
                 </div>
                 <div id="address-div" class="form-group">
                     <label for="address" data-translate="Dirección">Dirección</label>
-                    <input type="text" class="form-control" id="address" name="address" max-length="60" data-translate="Introducir dirección"
+                    <input type="text" class="form-control" id="address" name="address" maxlength="60" data-translate="Introducir dirección"
                            required oninput="checkAddressUser(this);">
                 </div>
                 <div id="telephone-div" class="form-group">
                     <label for="telephone"  data-translate="Teléfono"></label>
-                    <input type="text" class="form-control" id="telephone" name="telephone" max-length="11" data-translate="Introducir teléfono"
+                    <input type="text" class="form-control" id="telephone" name="telephone" maxlength="11" data-translate="Introducir teléfono"
                            required oninput="checkTelephoneUser(this);">
                 </div>
                 <button id="btn-add-user" name="submit" type="submit" class="btn btn-primary" data-translate="Enviar"></button>

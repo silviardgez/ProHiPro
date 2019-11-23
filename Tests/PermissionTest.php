@@ -24,9 +24,7 @@ final class PermissionTest extends TestCase
     protected static $exampleFuncAction;
     public static function setUpBeforeClass(): void
     {
-        shell_exec('mysqldump --opt --no-create-info  -u userTEC -ppassTEC TEC > ../dump.sql');
-        shell_exec('mysql -u userTEC -ppassTEC < ../build_database.sql');
-
+        initTestDB();
         self::$permissionDAO = new PermissionDAO();
         self::$funcActionDAO = new FuncActionDAO();
         self::$actionDAO = new ActionDAO();
@@ -61,8 +59,7 @@ final class PermissionTest extends TestCase
     public static function tearDownAfterClass(): void
     {
         try {
-            shell_exec('mysql -u userTEC -ppassTEC < ../build_database.sql');
-            shell_exec('mysql -u userTEC -ppassTEC TEC < ../dump.sql');
+            restoreDB();
         } catch (Exception $e) {
         }
     }
@@ -121,13 +118,10 @@ final class PermissionTest extends TestCase
         $permission3 = clone self::$examplePermission;
         $permission3->setId(3);
         $permission3->setFuncAction(self::$funcActionDAO->show('id', 3));
-
         self::$permissionDAO->add($permission1);
         self::$permissionDAO->add($permission2);
         self::$permissionDAO->add($permission3);
-
         $permissionCreated = self::$permissionDAO->showAll();
-
         $this->assertTrue(count($permissionCreated) == 3);
     }
 }

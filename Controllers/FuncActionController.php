@@ -151,8 +151,8 @@ function showAllSearch($search)
             $currentPage = getCurrentPage();
             $itemsPerPage = getItemsPerPage();
             $toSearch = getToSearch($search);
-            $totalFuncActions = $GLOBALS["funcActionDAO"]->countTotalFuncActions($toSearch);
             $funcActionsData = $GLOBALS["funcActionDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
+            $totalFuncActions = $GLOBALS["funcActionDAO"]->countTotalFuncActions($toSearch);
             new FuncActionShowAllView($funcActionsData, $itemsPerPage, $currentPage, $totalFuncActions, $toSearch);
         } catch (DAOException $e) {
             new FuncActionShowAllView(array());

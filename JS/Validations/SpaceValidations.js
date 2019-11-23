@@ -1,7 +1,7 @@
 function checkNameSpace(field) {
     const name = "nombre";
     if ((toret = checkEmpty(field, name)) === "" && (toret = checkLength(field,'30', name)) === ""
-        && (toret = checkText(field,'30', name)) === "" && (toret = checkAlphabetical(field,'30', name)) === "") {
+        && (toret = checkText(field,'30', name)) === "") {
         deleteMessage(name);
         return true;
     } else {
