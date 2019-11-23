@@ -5,6 +5,13 @@ function withOutWhiteSpaces(field, name) {
     return ""; 
 }
 
+function checkStartsWith(field, start, name) {
+    if (!field.value.startsWith(start)) {
+        return 'El atributo ' + name + ' debe comenzar por %' + start + '%.';
+    }
+    return "";
+}
+
 function checkEmpty(field, name) {
 
     if (field.value == null || field.value.length == 0 || /^\s+$/.test(field.value)) {

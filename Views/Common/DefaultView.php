@@ -178,7 +178,7 @@
                             </li>
 						<?php } ?>
 						<?php
-							if (HavePermission("Departament", "SHOWALL") ||
+							if (HavePermission("Department", "SHOWALL") ||
                                 HavePermission("Teacher", "SHOWALL") ||
                                 HavePermission("Tutorial", "SHOWALL")) {
 						?>
@@ -190,10 +190,10 @@
                                 </a>
                                 <ul class="flex-column collapse items-collapsed" id="collapseDepartment">
                                 <?php
-                                    if (HavePermission("Departament", "SHOWALL")) {
+                                    if (HavePermission("Department", "SHOWALL")) {
                                 ?>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">
+                                        <a class="nav-link" href="../Controllers/DepartmentController.php">
                                             <p data-translate="Departamentos"></p>
                                         </a>
                                     </li>

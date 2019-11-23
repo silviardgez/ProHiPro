@@ -219,6 +219,10 @@
     "en": "Center added successfully.",
     "gl": "Centro engadido correctamente."
   },
+  "Departamento añadido correctamente.": {
+    "en": "Department added successfully.",
+    "gl": "Departamento engadido correctamente."
+  },
   "INFORMACIÓN": {
     "en": "INFO",
     "gl": "INFORMACIÓN"
@@ -426,6 +430,10 @@
   "Insertar rol": {
     "en": "Add role",
     "gl": "Insertar rol"
+  },
+  "Introducir profesor responsable": {
+    "en": "Add responsible teacher",
+    "gl": "Inserir profesor responsable"
   },
   "Insertar centro": {
     "en": "Add center",
@@ -687,6 +695,10 @@
     "en": "Delete academic course",
     "gl": "Eliminar curso académico"
   },
+  "Eliminar departamento": {
+    "en": "Delete department",
+    "gl": "Eliminar departamento"
+  },
   "Búsqueda de centros": {
     "en": "Centers search",
     "gl": "Procura de centros"
@@ -746,6 +758,10 @@
   "¿Está seguro de que desea eliminar el usuario %c? Esta acción es permanente y no se puede recuperar.": {
     "en": "Are you sure you want to delete the user %c? This action is permanent and cannot be recovered.",
     "gl": "Está seguro de que desexa eliminar o usuario %c? Esta acción é permanente e non se pode recuperar."
+  },
+  "¿Está seguro de que desea eliminar el departamento %c? Esta acción es permanente y no se puede recuperar.": {
+    "en": "Are you sure you want to delete the department %c? This action is permanent and cannot be recovered.",
+    "gl": "Está seguro de que desexa eliminar o departamento %c? Esta acción é permanente e non se pode recuperar."
   },
   "¿Está seguro de que desea eliminar el centro %c? Esta acción es permanente y no se puede recuperar.": {
     "en": "Are you sure you want to delete the center %c? This action is permanent and cannot be recovered.",
@@ -947,6 +963,10 @@
     "en": "The dni attribute contains some invalid character: %c.",
     "gl": "O atributo dni contén algún caracter non válido: %c."
   },
+  "El atributo código contiene algún carácter no válido: %c.": {
+    "en": "The code attribute contains some invalid character: %c.",
+    "gl": "O atributo código contén algún caracter non válido: %c."
+  },
   "El atributo login puede tener una longitud máxima de %c.": {
     "en": "The login attribute can have a maximum length of %c.",
     "gl": "O atributo login pode ter unha lonxitude máxima de %c."
@@ -1147,6 +1167,14 @@
     "en": "Owner",
     "gl": "Responsable"
   },
+  "Profesor responsable": {
+    "en": "Responsible teacher",
+    "gl": "Profesor responsable"
+  },
+  "Código": {
+    "en": "Code",
+    "gl": "Código"
+  },
   "Espacio añadido correctamente.": {
     "en": "Room added successfully.",
     "gl": "Espazo engadido correctamente."
@@ -1154,6 +1182,10 @@
   "Espacio eliminado correctamente.": {
     "en": "Room deleted successfully.",
     "gl": "Espazo eliminado correctamente."
+  },
+  "Departamento eliminado correctamente.": {
+    "en": "Department deleted successfully.",
+    "gl": "Departamento eliminado correctamente."
   },
   "Eliminar espacio": {
     "en": "Delete room",
@@ -1163,9 +1195,17 @@
     "en": "Room edited successfully.",
     "gl": "Espazo editado correctamente."
   },
+  "Departamento editado correctamente.": {
+    "en": "Department edited successfully.",
+    "gl": "Departamento editado correctamente."
+  },
   "Listado de espacios": {
     "en": "Room list",
     "gl": "Listado de espacios"
+  },
+  "Listado de departamentos": {
+    "en": "Departments list",
+    "gl": "Listado de departamentos"
   },
   "No se ha obtenido ningún espacio": {
     "en": "No room has been obtained",
@@ -1182,6 +1222,14 @@
   "Editar espacio '%c'": {
     "en": "Edit room '%c'",
     "gl": "Editar espazo '%c'"
+  },
+  "Editar departamento '%c'": {
+    "en": "Edit department '%c'",
+    "gl": "Editar departamento '%c'"
+  },
+  "Departamento '%c'": {
+    "en": "Department '%c'",
+    "gl": "Departamento '%c'"
   },
   "Búsqueda de espacios": {
     "en": "Rooms search",
@@ -1235,10 +1283,6 @@
     "en": "Buildings search",
     "gl": "Procura de edificios"
   },
-  "Eliminar edificio": {
-    "en": "Delete building",
-    "gl": "Eliminar edificio"
-  },
   "¿Está seguro de que desea eliminar el edificio %c? Esta acción es permanente y no se puede recuperar.": {
     "en": "Are you sure you want to delete the building %c? This action is permanent and cannot be recovered.",
     "gl": "Está seguro de que desexa eliminar o edificio %c? Esta acción é permanente e non se pode recuperar."
@@ -1258,6 +1302,14 @@
   "Introducir capacidad": {
     "en": "Insert capacity",
     "gl": "Inserir capacidade"
+  },
+  "Insertar departamento": {
+    "en": "Insert department",
+    "gl": "Insertar departamento"
+  },
+  "Introducir código": {
+    "en": "Insert code",
+    "gl": "Inserir código"
   },
   "Introducir acción": {
     "en": "Insert action",
@@ -1291,6 +1343,10 @@
     "en": "Add building",
     "gl": "Engadir edificio"
   },
+  "Añadir departamento": {
+    "en": "Add department",
+    "gl": "Engadir departamento"
+  },
   "No tienes permiso visualizar la entidad.": {
     "en": "You do not have permission to view the entity.",
     "gl": "Non tes permiso para visualizar a entidade."
@@ -1298,6 +1354,22 @@
   "Error de validación. Login incorrecto.": {
     "en": "Validation error. Login wrong.",
     "gl": "Error de validación. Login incorrecto."
+  },
+  "Error de validación. Código incorrecto.": {
+    "en": "Validation error. Code wrong.",
+    "gl": "Error de validación. Código incorrecto."
+  },
+  "Error de validación. Profesor incorrecto.": {
+    "en": "Validation error. Teacher wrong.",
+    "gl": "Error de validación. Profesor incorrecto."
+  },
+  "Error de validación. Espacio incorrecto.": {
+    "en": "Validation error. Space wrong.",
+    "gl": "Error de validación. Espacio incorrecto."
+  },
+  "Error de validación. Dedicación incorrecta.": {
+    "en": "Validation error. Dedication wrong.",
+    "gl": "Error de validación. Adicación incorrecta."
   },
   "Error de validación. Contraseña incorrecta.": {
     "en": "Validation error. Password wrong.",
@@ -1395,6 +1467,10 @@
     "en": "No degree has been obtained",
     "gl": "Non se obtivo ningunha titulación"
   },
+  "No se ha obtenido ningún departamento": {
+    "en": "No department has been obtained",
+    "gl": "Non se obtivo ningún departamento"
+  },
   "Centro": {
     "en": "Center",
     "gl": "Centro"
@@ -1462,6 +1538,18 @@
   "El atributo créditos puede tener una longitud máxima de %c.": {
     "en": "The credits attribute can have a maximum length of %c.",
     "gl": "O atributo créditos pode ter unha lonxitude máxima de %c."
+  },
+  "El atributo código no puede estar vacío.": {
+    "en": "The code attribute cannot be empty.",
+    "gl": "O atributo código non pode estar baleiro"
+  },
+  "El atributo código debe comenzar por %c.": {
+    "en": "The code attribute must start with %c.",
+    "gl": "O atributo código debe comezar por %c."
+  },
+  "El atributo código puede tener una longitud máxima de %c.": {
+    "en": "The code attribute can have a maximum length of %c.",
+    "gl": "O atributo code pode ter unha lonxitude máxima de %c."
   },
   "El atributo capacidad tiene que ser un dígito.": {
     "en": "The capacity attribute has to be a digit.",
