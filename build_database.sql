@@ -214,33 +214,6 @@ CREATE TABLE `DEGREE` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 -- --------------------------------------------------------
 -- --------------------------------------------------------
--- TABLE STRUCTURE FOR TABLE `SUBJECT`
--- --------------------------------------------------------
--- --------------------------------------------------------
-CREATE TABLE `SUBJECT` (
-  `id` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
-  `degree_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
-  `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
-  `description` varchar(50) COLLATE latin1_spanish_ci NOT NULL,
-  PRIMARY KEY(`id`, `degree_id`),
-  FOREIGN KEY (`degree_id`)
-	REFERENCES `DEGREE`(`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
--- --------------------------------------------------------
--- --------------------------------------------------------
--- TABLE STRUCTURE FOR TABLE `SUBJECT_GROUP`
--- --------------------------------------------------------
--- --------------------------------------------------------
-CREATE TABLE `SUBJECT_GROUP` (
-  `id` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
-  `subject_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
-  `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
-  PRIMARY KEY(`id`, `subject_id`),
-  FOREIGN KEY (`subject_id`)
-	REFERENCES `SUBJECT`(`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
--- --------------------------------------------------------
--- --------------------------------------------------------
 -- TABLE STRUCTURE FOR TABLE `TEACHER`
 -- --------------------------------------------------------
 -- --------------------------------------------------------
@@ -257,20 +230,6 @@ CREATE TABLE `TEACHER` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 -- --------------------------------------------------------
 -- --------------------------------------------------------
--- TABLE STRUCTURE FOR TABLE `TUTORIAL`
--- --------------------------------------------------------
--- --------------------------------------------------------
-CREATE TABLE `TUTORIAL` (
-  `IdTutorial` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
-  `teacher_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
-  `start_date` datetime COLLATE latin1_spanish_ci NOT NULL,
-  `end_date` datetime COLLATE latin1_spanish_ci NOT NULL,
-  PRIMARY KEY(`IdTutorial`, `teacher_id`),
-  FOREIGN KEY (`teacher_id`)
-	REFERENCES `TEACHER`(`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
--- --------------------------------------------------------
--- --------------------------------------------------------
 -- TABLE STRUCTURE FOR TABLE `DEPARTMENT`
 -- --------------------------------------------------------
 -- --------------------------------------------------------
@@ -280,6 +239,65 @@ CREATE TABLE `DEPARTMENT` (
   `teacher_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
   `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY(`id`),
+  FOREIGN KEY (`teacher_id`)
+	REFERENCES `TEACHER`(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+-- --------------------------------------------------------
+-- --------------------------------------------------------
+-- TABLE STRUCTURE FOR TABLE `SUBJECT`
+-- --------------------------------------------------------
+-- --------------------------------------------------------
+CREATE TABLE `SUBJECT` (
+  `id` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
+  `code` varchar(10) COLLATE latin1_spanish_ci NOT NULL UNIQUE,
+  `content` varchar(100) COLLATE latin1_spanish_ci NOT NULL,
+  `type` varchar(2) COLLATE latin1_spanish_ci NOT NULL,
+  `department_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
+  `area` varchar(5) COLLATE latin1_spanish_ci NOT NULL,
+  `course` varchar(10) COLLATE latin1_spanish_ci NOT NULL,
+  `quarter` varchar(3) COLLATE latin1_spanish_ci NOT NULL,
+  `credits` varchar(5) COLLATE latin1_spanish_ci NOT NULL,
+  `new_registration` int(3) COLLATE latin1_spanish_ci NOT NULL,
+  `repeaters` int(3) COLLATE latin1_spanish_ci NOT NULL,
+  `effective_students` int(3) COLLATE latin1_spanish_ci NOT NULL,
+  `enrolled_hours` varchar(8) COLLATE latin1_spanish_ci NOT NULL,
+  `taught_hours` varchar(5) COLLATE latin1_spanish_ci NOT NULL,
+  `hours` varchar(5) COLLATE latin1_spanish_ci NOT NULL,
+  `students` int(3) COLLATE latin1_spanish_ci NOT NULL,
+  `degree_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
+  `teacher_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
+  PRIMARY KEY(`id`),
+  FOREIGN KEY (`degree_id`)
+	REFERENCES `DEGREE`(`id`),
+  FOREIGN KEY (`department_id`)
+    REFERENCES `DEPARTMENT`(`id`),
+  FOREIGN KEY (`teacher_id`)
+    REFERENCES `TEACHER`(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+-- --------------------------------------------------------
+-- --------------------------------------------------------
+-- TABLE STRUCTURE FOR TABLE `SUBJECT_GROUP`
+-- --------------------------------------------------------
+-- --------------------------------------------------------
+CREATE TABLE `SUBJECT_GROUP` (
+  `id` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
+  `subject_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
+  `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
+  PRIMARY KEY(`id`, `subject_id`),
+  FOREIGN KEY (`subject_id`)
+	REFERENCES `SUBJECT`(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+-- --------------------------------------------------------
+-- --------------------------------------------------------
+-- TABLE STRUCTURE FOR TABLE `TUTORIAL`
+-- --------------------------------------------------------
+-- --------------------------------------------------------
+CREATE TABLE `TUTORIAL` (
+  `IdTutorial` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
+  `teacher_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
+  `start_date` datetime COLLATE latin1_spanish_ci NOT NULL,
+  `end_date` datetime COLLATE latin1_spanish_ci NOT NULL,
+  PRIMARY KEY(`IdTutorial`, `teacher_id`),
   FOREIGN KEY (`teacher_id`)
 	REFERENCES `TEACHER`(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
@@ -300,4 +318,21 @@ CREATE TABLE `SCHEDULE` (
 	REFERENCES `TEACHER`(`id`),
   FOREIGN KEY (`subject_group_id`)
 	REFERENCES `SUBJECT_GROUP`(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+-- --------------------------------------------------------
+-- --------------------------------------------------------
+-- TABLE STRUCTURE FOR TABLE `SUBJECT_TEACHER`
+-- --------------------------------------------------------
+-- --------------------------------------------------------
+CREATE TABLE `SUBJECT_TEACHER` (
+  `id` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
+  `subject_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
+  `teacher_id` int(8) COLLATE latin1_spanish_ci NOT NULL UNIQUE,
+  `hours` int(2) COLLATE latin1_spanish_ci NOT NULL,
+  PRIMARY KEY(`id`),
+  FOREIGN KEY (`subject_id`)
+	REFERENCES `SUBJECT`(`id`),
+  FOREIGN KEY (`teacher_id`)
+	REFERENCES `TEACHER`(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
