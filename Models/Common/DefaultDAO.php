@@ -156,8 +156,14 @@ class DefaultDAO
     }
 
     function countTotalEntries($entity, $stringToSearch) {
-        $sql = "SELECT COUNT(*) FROM " . $this->getTableName($entity);
-        $sql .= $this->obtainWhereClauseToSearch($entity, $stringToSearch);
+        $sql = "SELECT COUNT(*) ";
+        $sqlWhere = $this->obtainWhereClauseToSearch($entity, $stringToSearch);
+        if (preg_match("/SELECT/i", $sqlWhere)) {
+            $sql .= strstr($sqlWhere, 'FROM');
+        } else {
+            $sql .= "FROM " . $this->getTableName($entity);
+            $sql .= $sqlWhere;
+        }
         if (!($result = $this->mysqli->query($sql))) {
             throw new DAOException('Error de conexión con la base de datos.');
         } else {
@@ -194,8 +200,13 @@ class DefaultDAO
 
     function showAllPaged($currentPage, $itemsPerPage, $entity, $stringToSearch) {
         $startBlock = ($currentPage - 1) * $itemsPerPage;
-        $sql = "SELECT * FROM " . $this->getTableName($entity);
-        $sql .= $this->obtainWhereClauseToSearch($entity, $stringToSearch);
+        $sqlWhere = $this->obtainWhereClauseToSearch($entity, $stringToSearch);
+        if (preg_match("/SELECT/i", $sqlWhere)) {
+            $sql = $sqlWhere;
+        } else {
+            $sql = "SELECT * FROM " . $this->getTableName($entity);
+            $sql .= $sqlWhere;
+        }
         $sql .= " LIMIT " . $startBlock . "," . $itemsPerPage;
         return $this->getArrayFromSqlQuery($sql);
     }
@@ -243,12 +254,14 @@ class DefaultDAO
         $sql = "";
         if(get_class($stringToSearch) == "DefaultDAO" || empty(get_class($stringToSearch))) {
             if (!is_null($stringToSearch)) {
-                $sqlWhere = $this->getSearchConsult($entity, $stringToSearch);
-                $sql = " WHERE " . $sqlWhere;
+                $sqlWhere = $this->getJoinSearch($entity, $stringToSearch);
+                $sql = $sqlWhere;
             }
         } else {
             $sqlWhere = $this->getSearchConsultWithEntity($stringToSearch);
-            $sql = " WHERE " . $sqlWhere;
+            if (!empty($sqlWhere)) {
+                $sql = " WHERE " . $sqlWhere;
+            }
         }
         return $sql;
     }
@@ -294,6 +307,60 @@ class DefaultDAO
 
     private function getTableName($entity) {
         return strtoupper(preg_replace('/\B([A-Z])/', '_$1', get_class($entity)));
+    }
+
+    private function getJoinSearch($entity, $stringToSearch) {
+        $sql = "SELECT COLUMN_NAME, REFERENCED_TABLE_NAME, REFERENCED_COLUMN_NAME FROM 
+                INFORMATION_SCHEMA.KEY_COLUMN_USAGE WHERE TABLE_NAME = '" . $this->getTableName($entity) ."' AND 
+                REFERENCED_TABLE_NAME IS NOT NULL";
+
+        $sqlColumns = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = N'" .
+            $this->getTableName($entity) . "'";
+        $columns = $this->getArrayFromSqlQuery($sqlColumns);
+        $sqlSelect = "";
+        $sqlWhere = "";
+        foreach ($columns as $column) {
+            if ($column["COLUMN_NAME"] != "id") {
+                if(empty($sqlSelect)) {
+                    $sqlSelect .= "SELECT a0." . $column["COLUMN_NAME"];
+                } else {
+                    $sqlSelect .= ", a0." . $column["COLUMN_NAME"];
+                }
+                if (empty($sqlWhere)) {
+                    $sqlWhere .= " WHERE (a0." . $column["COLUMN_NAME"] . " LIKE '%" . $stringToSearch . "%')";
+                } else {
+                    $sqlWhere .= " OR (a0." . $column["COLUMN_NAME"] . " LIKE '%" . $stringToSearch . "%')";
+                }
+            }
+        }
+
+        $tables = $this->getArrayFromSqlQuery($sql);
+        $sqlTables = " FROM " . $this->getTableName($entity) . " a0";
+        $i = 1;
+        foreach ($tables as $table) {
+            $sqlTables .= " INNER JOIN " . $table["REFERENCED_TABLE_NAME"] . " a" . $i . " ON a0." . $table["COLUMN_NAME"] .
+                " = a" . $i . "." . $table["REFERENCED_COLUMN_NAME"];
+
+            $sqlColumnsOfTable = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = N'" .
+                $table["REFERENCED_TABLE_NAME"] . "'";
+            $columnsOfTable = $this->getArrayFromSqlQuery($sqlColumnsOfTable);
+            foreach ($columnsOfTable as $columnTable) {
+                if ($columnTable["COLUMN_NAME"] != "id") {
+                    if (empty($sqlSelect)) {
+                        $sqlSelect .= "SELECT a" . $i . "." . $columnTable["COLUMN_NAME"];
+                    } else {
+                        $sqlSelect .= ", a" . $i . "." . $columnTable["COLUMN_NAME"];
+                    }
+                    if (empty($sqlWhere)) {
+                        $sqlWhere .= " WHERE (a" . $i . "." . $columnTable["COLUMN_NAME"] . " LIKE '%" . $stringToSearch . "%')";
+                    } else {
+                        $sqlWhere .= " OR (a" . $i . "." . $columnTable["COLUMN_NAME"] . " LIKE '%" . $stringToSearch . "%')";
+                    }
+                }
+            }
+            $i++;
+        }
+        return $sqlSelect . $sqlTables . $sqlWhere;
     }
 
 }
