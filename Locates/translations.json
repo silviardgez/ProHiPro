@@ -1251,6 +1251,14 @@
     "en": "The start attribute can have a minimum value of %c.",
     "gl": "O atributo inicio pode ter un valor mínimo de %c."
   },
+  "El atributo horas no puede ser mayor que %c.": {
+    "en": "The hours attribute can have a maximum value of %c.",
+    "gl": "O atributo horas pode ter un valor máximo de %c."
+  },
+  "El atributo horas no puede ser menor que %c.": {
+    "en": "The hours attribute can have a minimum value of %c.",
+    "gl": "O atributo horas pode ter un valor mínimo de %c."
+  },
   "El atributo capacidad no puede ser menor que %c.": {
     "en": "The capacity attribute can have a minimum value of %c.",
     "gl": "O atributo capacidade pode ter un valor mínimo de %c."
@@ -1762,6 +1770,14 @@
   "El atributo créditos puede tener una longitud máxima de %c.": {
     "en": "The credits attribute can have a maximum length of %c.",
     "gl": "O atributo créditos pode ter unha lonxitude máxima de %c."
+  },
+  "El atributo horas no puede estar vacío.": {
+    "en": "The hours attribute cannot be empty.",
+    "gl": "O atributo horas non pode estar baleiro"
+  },
+  "El atributo horas puede tener una longitud máxima de %c.": {
+    "en": "The hours attribute can have a maximum length of %c.",
+    "gl": "O atributo horas pode ter unha lonxitude máxima de %c."
   },
   "El atributo código no puede estar vacío.": {
     "en": "The code attribute cannot be empty.",
