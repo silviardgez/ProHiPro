@@ -72,7 +72,7 @@ class SpaceDAO
 
         return $spacesToReturn;
     }
-    
+
     function countTotalSpaces($stringToSearch) {
         return $this->defaultDAO->countTotalEntries(new Space(), $stringToSearch);
     }

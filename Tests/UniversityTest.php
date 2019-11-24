@@ -112,11 +112,10 @@ final class UniversityTest extends TestCase
         self::$universityDAO->add($university2);
         self::$universityDAO->add($university3);
 
-        $universitiessCreated = self::$universityDAO->showAll();
+        $universitiesCreated = self::$universityDAO->showAll();
 
-        $this->assertTrue($universitiessCreated[0]->getId() == 2);
-        $this->assertTrue($universitiessCreated[1]->getId() == 3);
-        $this->assertTrue($universitiessCreated[2]->getId() == 4);
+        $this->assertTrue(count($universitiesCreated) == 3);
+
     }
 
 }

@@ -34,8 +34,7 @@ final class UserTest extends TestCase
     public static function tearDownAfterClass(): void
     {
         try {
-            shell_exec('mysql -u userTEC -ppassTEC < ../build_database.sql');
-            shell_exec('mysql -u userTEC -ppassTEC TEC < ../dump.sql');
+            restoreDB();
         } catch (Exception $e) {
         }
     }
@@ -98,11 +97,7 @@ final class UserTest extends TestCase
 
         $usersCreated = self::$userDAO->showAll("name", "test");
 
-        $this->assertTrue($usersCreated[0]->getLogin() == '_test_1');
-        $this->assertTrue($usersCreated[1]->getLogin() == '_test_2');
-        $this->assertTrue($usersCreated[2]->getLogin() == '_test_3');
-
-        self::$userDAO->delete('name', 'test');
+        $this->assertTrue(count($usersCreated) == 3);
     }
 
     public function testIntCanBeCreated()

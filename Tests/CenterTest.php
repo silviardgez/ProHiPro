@@ -121,9 +121,8 @@ final class CenterTest extends TestCase
         self::$centerDAO->add($center2);
         self::$centerDAO->add($center3);
 
-        $universitiessCreated = self::$centerDAO->showAll();
-        $this->assertTrue($universitiessCreated[0]->getId() == 2);
-        $this->assertTrue($universitiessCreated[1]->getId() == 3);
-        $this->assertTrue($universitiessCreated[2]->getId() == 4);
+        $centersCreated = self::$centerDAO->showAll();
+
+        $this->assertTrue(count($centersCreated) == 3);
     }
 }
