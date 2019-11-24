@@ -160,7 +160,7 @@
                                     if (HavePermission("Subject", "SHOWALL")) {
                                 ?>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">
+                                        <a class="nav-link" href="../Controllers/SubjectController.php">
                                             <p data-translate="Asignaturas"></p>
                                         </a>
                                     </li>

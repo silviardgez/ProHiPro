@@ -123,6 +123,34 @@
     "en": "Enter username",
     "gl": "Introducir nome de usuario"
   },
+  "Introducir contenido": {
+    "en": "Enter content",
+    "gl": "Inserir contido"
+  },
+  "Introducir departamento": {
+    "en": "Enter department",
+    "gl": "Inserir departamento"
+  },
+  "Introducir titulación": {
+    "en": "Enter degree",
+    "gl": "Inserir titulación"
+  },
+  "Introducir tipo": {
+    "en": "Enter type",
+    "gl": "Inserir tipo"
+  },
+  "Introducir área": {
+    "en": "Enter area",
+    "gl": "Inserir area"
+  },
+  "Introducir curso": {
+    "en": "Enter course",
+    "gl": "Inserir curso"
+  },
+  "Introducir cuatrimestre": {
+    "en": "Enter quarter",
+    "gl": "Inserir cuatrimestre"
+  },
   "Listado de cursos académicos": {
     "en": "Academic courses list",
     "gl": "Listado de cursos académicos"
@@ -157,23 +185,23 @@
   },
   "No se ha obtenido ningún curso académico": {
     "en": "No academic course has been obtained",
-    "gl": "Non se obtuvo ningún curso académico"
+    "gl": "Non se obtivo ningún curso académico"
   },
   "No se ha obtenido ningún centro": {
     "en": "No center has been obtained",
-    "gl": "Non se obtuvo ningún centro"
+    "gl": "Non se obtivo ningún centro"
   },
   "No se ha obtenido ninguna universidad": {
     "en": "No university has been obtained",
-    "gl": "Non se obtuvo ningunha universidade"
+    "gl": "Non se obtivo ningunha universidade"
   },
   "No se ha obtenido ningún usuario": {
     "en": "No user has been obtained",
-    "gl": "Non se obtuvo ningún usuario"
+    "gl": "Non se obtivo ningún usuario"
   },
   "No se ha obtenido ninguna acción": {
     "en": "No action has been obtained",
-    "gl": "Non se obtuvo ningunha acción"
+    "gl": "Non se obtivo ningunha acción"
   },
   "Volver": {
     "en": "Back",
@@ -331,10 +359,6 @@
     "en": "Add university",
     "gl": "Introducir universidade"
   },
-  "Introducir nombre de usuario": {
-    "en": "Add user name",
-    "gl": "Introducir nome de usuario"
-  },
   "Introducir dirección": {
     "en": "Add address",
     "gl": "Introducir dirección"
@@ -387,21 +411,45 @@
     "en": "Actions-functionalities list",
     "gl": "Listado de acciones-funcionalidades"
   },
+  "Listado de asignaturas": {
+    "en": "Subjects list",
+    "gl": "Listado de materias"
+  },
   "Añadir acción-funcionalidad": {
     "en": "Add action-functionality",
     "gl": "Engadir acción-funcionalidade"
   },
-  "Funcionalidad": {
-    "en": "Functionality",
-    "gl": "Funcionalidade"
+  "Contenido": {
+    "en": "Content",
+    "gl": "Contido"
+  },
+  "Tipo": {
+    "en": "Type",
+    "gl": "Tipo"
+  },
+  "Área": {
+    "en": "Area",
+    "gl": "Area"
+  },
+  "Curso": {
+    "en": "Course",
+    "gl": "Curso"
+  },
+  "Cuatrimestre": {
+    "en": "Quarter",
+    "gl": "Cuatrimestre"
   },
   "No se ha obtenido ninguna funcionalidad.": {
     "en": "No functionality has been obtained.",
+    "gl": "Non se obtivo ningunha funcionalidade."
+  },
+  "No se ha obtenido ninguna asignatura.": {
+    "en": "No subject has been obtained.",
     "gl": "Funcionalidade"
   },
   "No se ha obtenido ninguna acción-funcionalidad.": {
     "en": "No action-functionality has been obtained.",
-    "gl": "Non se obtuvo ninguna acción-funcionalidade."
+    "gl": "Non se obtivo ningunha acción-funcionalidade."
   },
   "Acción Funcionalidad": {
     "en": "Action Functionality",
@@ -431,9 +479,13 @@
     "en": "Add permission",
     "gl": "Engadir permiso"
   },
+  "Añadir asignatura": {
+    "en": "Add subject",
+    "gl": "Engadir materia"
+  },
   "No se ha obtenido ningún permiso": {
     "en": "No permission has been obtained",
-    "gl": "Non se obtuvo ningún permiso"
+    "gl": "Non se obtivo ningún permiso"
   },
   "El permiso no existe": {
     "en": "Permission does not exist",
@@ -459,13 +511,17 @@
     "en": "User",
     "gl": "Usuario"
   },
+  "Titulación": {
+    "en": "Degree",
+    "gl": "Titulación"
+  },
   "Asignar rol a usuario": {
     "en": "Assign role to user",
     "gl": "Asignar rol a usuario"
   },
   "No se ha obtenido ningún rol": {
     "en": "No role has been obtained",
-    "gl": "Non se obtuvo ningún rol"
+    "gl": "Non se obtivo ningún rol"
   },
   "El rol no existe": {
     "en": "Role does not exist",
@@ -711,6 +767,10 @@
     "en": "Users search",
     "gl": "Procura de usuarios"
   },
+  "Búsqueda de asignaturas": {
+    "en": "Subject search",
+    "gl": "Procura de materias"
+  },
   "Eliminar curso académico": {
     "en": "Delete academic course",
     "gl": "Eliminar curso académico"
@@ -718,6 +778,10 @@
   "Eliminar departamento": {
     "en": "Delete department",
     "gl": "Eliminar departamento"
+  },
+  "Departamento": {
+    "en": "Department",
+    "gl": "Departamento"
   },
   "Eliminar profesor": {
     "en": "Delete teacher",
@@ -877,7 +941,7 @@
   },
   "No se ha obtenido ninguna acción-funcionalidad": {
     "en": "No action-functionality has been obtained",
-    "gl": "Non se obtuvo ningunha acción-funcionalidade"
+    "gl": "Non se obtivo ningunha acción-funcionalidade"
   },
   "Acción-funcionalidad '%c'": {
     "en": "Action-funcionality '%c'",
@@ -1215,6 +1279,22 @@
     "en": "Responsible teacher",
     "gl": "Profesor responsable"
   },
+  "Profesores de %c": {
+    "en": "Teachers of %c",
+    "gl": "Profesores de %c"
+  },
+  "Asignar profesor": {
+    "en": "Assign teacher",
+    "gl": "Asignar profesor"
+  },
+  "Horas": {
+    "en": "Hours",
+    "gl": "Horas"
+  },
+  "Introducir horas": {
+    "en": "Insert hours",
+    "gl": "Inserir horas"
+  },
   "Código": {
     "en": "Code",
     "gl": "Código"
@@ -1261,15 +1341,19 @@
   },
   "No se ha obtenido ningún espacio": {
     "en": "No room has been obtained",
-    "gl": "Non se obtuvo ningún espazo"
+    "gl": "Non se obtivo ningún espazo"
   },
   "No se ha obtenido ningún profesor": {
     "en": "No teacher has been obtained",
-    "gl": "Non se obtuvo ningún profesor"
+    "gl": "Non se obtivo ningún profesor"
   },
   "Insertar espacio": {
     "en": "Add room",
     "gl": "Engadir espazo"
+  },
+  "Insertar asignatura": {
+    "en": "Add subject",
+    "gl": "Engadir asignatura"
   },
   "Espacio '%c'": {
     "en": "Room '%c'",
@@ -1315,6 +1399,14 @@
     "en": "Are you sure you want to delete the room %c? This action is permanent and cannot be recovered.",
     "gl": "Está seguro de que desexa eliminar o espazo %c? Esta acción é permanente e non se pode recuperar."
   },
+  "¿Está seguro de que desea eliminar el profesor %c de esta asignatura? Esta acción es permanente y no se puede recuperar.": {
+    "en": "Are you sure you want to delete the teacher %c from this subject? This action is permanent and cannot be recovered.",
+    "gl": "Está seguro de que desexa eliminar o profesor %c de esta materia? Esta acción é permanente e non se pode recuperar."
+  },
+  "¿Está seguro de que desea eliminar la asignatura %c? Esta acción es permanente y no se puede recuperar.": {
+    "en": "Are you sure you want to delete the subject %c? This action is permanent and cannot be recovered.",
+    "gl": "Está seguro de que desexa eliminar a materia %c? Esta acción é permanente e non se pode recuperar."
+  },
   "Edificio añadido correctamente.": {
     "en": "Building added successfully.",
     "gl": "Edificio engadido correctamente."
@@ -1327,6 +1419,10 @@
     "en": "Delete building",
     "gl": "Eliminar edificio"
   },
+  "Eliminar asignatura": {
+    "en": "Delete subject",
+    "gl": "Eliminar materia"
+  },
   "Edificio editado correctamente.": {
     "en": "Building edited successfully.",
     "gl": "Edificio editado correctamente."
@@ -1337,7 +1433,7 @@
   },
   "No se ha obtenido ningún edificio": {
     "en": "No building has been obtained",
-    "gl": "Non se obtuvo ningún edificio"
+    "gl": "Non se obtivo ningún edificio"
   },
   "Insertar edificio": {
     "en": "Add building",
@@ -1350,6 +1446,18 @@
   "Editar edificio '%c'": {
     "en": "Edit building '%c'",
     "gl": "Editar edificio '%c'"
+  },
+  "Editar asignatura '%c'": {
+    "en": "Edit subject '%c'",
+    "gl": "Editar materia '%c'"
+  },
+  "Editar asignación de profesor": {
+    "en": "Edit teacher assignment",
+    "gl": "Editar asignación de profesor"
+  },
+  "Asignatura '%c'": {
+    "en": "Subject '%c'",
+    "gl": "Materia '%c'"
   },
   "Búsqueda de edificios": {
     "en": "Buildings search",
@@ -1366,6 +1474,22 @@
   "Introducir edificio": {
     "en": "Insert building",
     "gl": "Inserir edificio"
+  },
+  "Introducir número de horas": {
+    "en": "Insert hours number",
+    "gl": "Inserir número de horas"
+  },
+  "Introducir estudiantes": {
+    "en": "Insert students",
+    "gl": "Inserir estudantes"
+  },
+  "Número de horas": {
+    "en": "Hours number",
+    "gl": "Número de horas"
+  },
+  "Estudiantes": {
+    "en": "Students",
+    "gl": "Estudantes"
   },
   "Introducir responsable": {
     "en": "Insert owner",
@@ -1418,6 +1542,10 @@
   "Añadir profesor": {
     "en": "Add teacher",
     "gl": "Engadir profesor"
+  },
+  "Profesor": {
+    "en": "Teacher",
+    "gl": "Profesor"
   },
   "Añadir edificio": {
     "en": "Add building",
@@ -1581,15 +1709,23 @@
   },
   "Introducir créditos": {
     "en": "Insert credits",
-    "gl": "Introducir créditos"
+    "gl": "Inserir créditos"
   },
   "Titulación añadida correctamente.": {
     "en": "Degree added successfully.",
     "gl": "Titulación añadida correctamente."
   },
+  "Asignatura añadida correctamente.": {
+    "en": "Subject added successfully.",
+    "gl": "Materia añadida correctamente."
+  },
   "Titulación eliminada correctamente.": {
     "en": "Degree deleted successfully",
     "gl": "Titulación eliminada correctamente."
+  },
+  "Asignatura eliminada correctamente.": {
+    "en": "Subject deleted successfully",
+    "gl": "Materia eliminada correctamente."
   },
   "Eliminar titulación": {
     "en": "Delete degree",
@@ -1602,6 +1738,10 @@
   "Titulación editada correctamente.": {
     "en":"Degree edited successfully",
     "gl": "Titulación editada correctamente."
+  },
+  "Asignatura editada correctamente.": {
+    "en":"Subject edited successfully",
+    "gl": "Materia editada correctamente."
   },
   "Error de validación. Id centro incorrecto.": {
     "en": "Validation error. Center id wrong.",
@@ -1662,6 +1802,46 @@
   "No": {
     "en": "No",
     "gl": "Non"
+  },
+  "Número de nueva matrícula": {
+    "en": "New registration number",
+    "gl": "Número de nova matrícula"
+  },
+  "Introducir número de nueva matrícula": {
+    "en": "Insert new registration number",
+    "gl": "Inserir número de nova matrícula"
+  },
+  "Número de repetidores": {
+    "en": "Repeaters number",
+    "gl": "Número de repetidores"
+  },
+  "Número de alumnos efectivos": {
+    "en": "Effective students number",
+    "gl": "Número de alumnos efectivos"
+  },
+  "Número de horas matriculadas": {
+    "en": "Registration hours number",
+    "gl": "Número de horas matriculadas"
+  },
+  "Número de horas impartidas": {
+    "en": "Taught hours number",
+    "gl": "Número de horas impartidas"
+  },
+  "Introducir número de repetidores": {
+    "en": "Insert repeaters number",
+    "gl": "Inserir número de repetidores"
+  },
+  "Introducir número de alumnos efectivos": {
+    "en": "Insert effective students number",
+    "gl": "Inserir número de alumnos efectivos"
+  },
+  "Introducir número de horas matriculadas": {
+    "en": "Insert registration hours number",
+    "gl": "Inserir número de horas matriculadas"
+  },
+  "Introducir número de horas impartidas": {
+    "en": "Insert taught hours number",
+    "gl": "Inserir número de horas impartidas"
   }
 }
 
