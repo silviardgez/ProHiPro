@@ -118,12 +118,13 @@ final class PermissionTest extends TestCase
         $permission3 = clone self::$examplePermission;
         $permission3->setId(3);
         $permission3->setFuncAction(self::$funcActionDAO->show('id', 3));
+
         self::$permissionDAO->add($permission1);
         self::$permissionDAO->add($permission2);
         self::$permissionDAO->add($permission3);
+
         $permissionCreated = self::$permissionDAO->showAll();
-        $this->assertTrue($permissionCreated[0]->getId() == 1);
-        $this->assertTrue($permissionCreated[1]->getId() == 2);
-        $this->assertTrue($permissionCreated[2]->getId() == 3);
+
+        $this->assertTrue(count($permissionCreated) == 3);
     }
 }

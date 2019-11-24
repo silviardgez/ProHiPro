@@ -105,8 +105,6 @@ final class AcademicCourseTest extends TestCase
         $this->assertTrue($academicCoursesCreated[1]->getId() == 2);
         $this->assertTrue($academicCoursesCreated[2]->getId() == 3);
 
-        self::$academicCourseDAO->delete('academic_course_abbr', '51/52');
-        self::$academicCourseDAO->delete('academic_course_abbr', '52/53');
-        self::$academicCourseDAO->delete('academic_course_abbr', '53/54');
+        $this->assertTrue(count($academicCoursesCreated) == 3);
     }
 }

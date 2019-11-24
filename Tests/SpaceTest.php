@@ -113,10 +113,9 @@ final class SpaceTest extends TestCase
         self::$spaceDAO->add($space2);
         self::$spaceDAO->add($space3);
 
-        $universitiessCreated = self::$spaceDAO->showAll();
+        $spacesCreated = self::$spaceDAO->showAll();
 
-        $this->assertTrue($universitiessCreated[0]->getId() == 2);
-        $this->assertTrue($universitiessCreated[1]->getId() == 3);
-        $this->assertTrue($universitiessCreated[2]->getId() == 4);
+        $this->assertTrue(count($spacesCreated) == 3);
+
     }
 }

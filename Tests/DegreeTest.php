@@ -131,10 +131,8 @@ final class DegreeTest extends TestCase
         self::$degreeDAO->add($degree2);
         self::$degreeDAO->add($degree3);
 
-        $universitiessCreated = self::$degreeDAO->showAll();
+        $degreesCreated = self::$degreeDAO->showAll();
 
-        $this->assertTrue($universitiessCreated[0]->getId() == 2);
-        $this->assertTrue($universitiessCreated[1]->getId() == 3);
-        $this->assertTrue($universitiessCreated[2]->getId() == 4);
+        $this->assertTrue(count($degreesCreated) == 3);
     }
 }
