@@ -98,7 +98,7 @@ switch ($action) {
                 goToShowAllAndShowError($ve->getMessage());
             }
         } else {
-            goToShowAllAndShowError("No tienes permiso visualizar la entidad.");
+            goToShowAllAndShowError("No tienes permiso para visualizar la entidad.");
         }
         break;
     case "edit":
