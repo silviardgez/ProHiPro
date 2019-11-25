@@ -19,13 +19,13 @@ class ActionSearchView {
                   onsubmit="return areActionSearchFieldsCorrect()">
                 <div id="name-div" class="form-group">
                     <label for="name" data-translate="Nombre"></label>
-                    <input type="text" class="form-control" id="name" name="name" data-translate="Introducir nombre"
-                           maxlength="60" oninput="checkNameEmptyAction(this);">
+                    <input type="text" class="form-control" id="name" name="name" data-translate="Introducir nombre" 
+					maxlength="60" oninput="checkNameEmptyAction(this);">
                 </div>
                 <div id="description-div" id="description-div"  class="form-group">
                     <label for="description" data-translate="Descripción"></label>
-                    <input type="text" class="form-control" id="description" name="description" data-translate="Introducir descripción"
-                           maxlength="100" oninput="checkDescriptionEmptyAction(this);">
+                    <input type="text" class="form-control" id="description" name="description" data-translate="Introducir descripción" 
+					maxlength="100" oninput="checkDescriptionEmptyAction(this);">
                 </div>
                 <button name="submit" type="submit" class="btn btn-primary" data-translate="Enviar"></button>
             </form>

@@ -8,7 +8,8 @@ class SpaceShowAllView
     private $totalSpaces;
     private $totalPages;
     private $stringToSearch;
-    function __construct($spacesData, $itemsPerPage = NULL, $currentPage = NULL, $totalSpaces = NULL, $toSearch = NULL)
+    private $searching;
+    function __construct($spacesData, $itemsPerPage = NULL, $currentPage = NULL, $totalSpaces = NULL, $toSearch = NULL, $searching = false)
     {
         $this->spaces = $spacesData;
         $this->itemsPerPage = $itemsPerPage;
@@ -16,6 +17,7 @@ class SpaceShowAllView
         $this->totalSpaces = $totalSpaces;
         $this->totalPages = ceil($totalSpaces / $itemsPerPage);
         $this->stringToSearch = $toSearch;
+        $this->searching = $searching;
         $this->render();
     }
     function render()
@@ -35,7 +37,7 @@ class SpaceShowAllView
                     <button name="submit" type="submit" class="btn btn-primary" data-translate="Buscar"></button>
                 </form>
 
-                <?php if (!empty($this->stringToSearch)): ?>
+                <?php if ($this->searching): ?>
                     <a class="btn btn-primary" role="button" href="../Controllers/SpaceController.php">
                         <p data-translate="Volver"></p>
                     </a>
@@ -66,7 +68,7 @@ class SpaceShowAllView
                             <td><?php echo $space->getName(); ?></td>
                             <td><?php echo $space->getBuilding()->getName(); ?></td>
                             <td><?php echo $space->getCapacity(); ?></td>
-                            <?php if($space->isOffice()): ?>
+                            <?php if ($space->isOffice()): ?>
                                 <td data-translate="Sí"></td>
                             <?php else: ?>
                                 <td data-translate="No"></td>

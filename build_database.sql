@@ -209,6 +209,8 @@ CREATE TABLE `DEGREE` (
   `credits` int(3) COLLATE latin1_spanish_ci NOT NULL,
   `user_id` varchar(9) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY(`id`, `center_id`),
+  FOREIGN KEY (`user_id`)
+    REFERENCES `USER`(`login`),
   FOREIGN KEY (`center_id`)
 	REFERENCES `CENTER`(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
@@ -293,13 +295,28 @@ CREATE TABLE `SUBJECT_GROUP` (
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 CREATE TABLE `TUTORIAL` (
-  `IdTutorial` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
+  `id` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
   `teacher_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
-  `start_date` datetime COLLATE latin1_spanish_ci NOT NULL,
-  `end_date` datetime COLLATE latin1_spanish_ci NOT NULL,
-  PRIMARY KEY(`IdTutorial`, `teacher_id`),
+  `space_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
+  `total_hours` int(3) COLLATE latin1_spanish_ci NOT NULL,
+  PRIMARY KEY(`id`, `teacher_id`),
   FOREIGN KEY (`teacher_id`)
-	REFERENCES `TEACHER`(`id`)
+	REFERENCES `TEACHER`(`id`),
+  FOREIGN KEY (`space_id`)
+	REFERENCES `SPACE`(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+-- --------------------------------------------------------
+-- --------------------------------------------------------
+-- TABLE STRUCTURE FOR TABLE `DEPARTMENT`
+-- --------------------------------------------------------
+-- --------------------------------------------------------
+CREATE TABLE `DEPARTMENT` (
+  `IdDepartment` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,  
+  `IdResponsable` int(8) COLLATE latin1_spanish_ci NOT NULL,
+  `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
+  PRIMARY KEY(`IdDepartment`, `IdResponsable`),
+  FOREIGN KEY (`IdResponsable`) 
+	REFERENCES `TEACHER`(`IdTeacher`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 -- --------------------------------------------------------
 -- --------------------------------------------------------

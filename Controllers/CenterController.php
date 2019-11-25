@@ -23,6 +23,7 @@ include_once '../Views/Common/PaginationView.php';
 include_once '../Functions/HavePermission.php';
 include_once '../Functions/IsAdmin.php';
 include_once '../Functions/IsUniversityOwner.php';
+include_once '../Functions/IsCenterOwner.php';
 include_once '../Functions/OpenDeletionModal.php';
 include_once '../Functions/Redirect.php';
 include_once '../Functions/Messages.php';
@@ -200,6 +201,9 @@ function showAllSearch($search)
     if (HavePermission("Center", "SHOWALL")) {
         try {
             $searching=False;
+            $break=false;
+            $test=null;
+            $university=null;
             if (!empty($search)) {
                 $searching = True;
             }
@@ -207,20 +211,57 @@ function showAllSearch($search)
                 $userDAO = new UserDAO();
                 $center = new Center();
                 $university = IsUniversityOwner();
-                if(!empty($university)){
-                    $center->setUniversity($university);
-                }else{
+                if(empty($university)){
                     $center->setUser($userDAO->show("login", $_SESSION['login']));
+                    $test=IsCenterOwner();
+                    if($test ===false){
+                        $break=true;
+                        new CenterShowAllView(array());
+                    } else{
+                        $search=$center;
+                        $searching=false;
+                    }
+                }else{
+                    $test=array();
+                    $cen=new Center();
+                    foreach ($university as $univ){
+                        $cen->setUniversity($univ);
+                        array_push($test, $cen);
+                    }
                 }
-                $search = $center;
-                $searching = False;
+
             }
-            $currentPage = getCurrentPage();
-            $itemsPerPage = getItemsPerPage();
-            $toSearch = getToSearch($search);
-            $totalCenters = $GLOBALS["centerDAO"]->countTotalCenters($toSearch);
-            $centersData = $GLOBALS["centerDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
-            new CenterShowAllView($centersData, $itemsPerPage, $currentPage, $totalCenters, $toSearch, $searching);
+
+            if(!$break){
+                $currentPage = getCurrentPage();
+                $itemsPerPage = getItemsPerPage();
+                $totalCenters=0;
+
+                if(!empty($test) && count($test)==1){
+                    $search = $test[0];
+                    $toSearch = getToSearch($search);
+                    $totalCenters = $GLOBALS["centerDAO"]->countTotalCenters($toSearch);
+                    $centersData = $GLOBALS["centerDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
+                    new CenterShowAllView($centersData, $itemsPerPage, $currentPage, $totalCenters, $toSearch, $searching);
+                } elseif (count($test)>1){
+                    $centersData =array();
+                    foreach ($test as $cent){
+                        $search=$cent;
+                        $toSearch = getToSearch($search);
+                        $totalCenters += $GLOBALS["centerDAO"]->countTotalCenters($toSearch);
+                        $data = $GLOBALS["centerDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
+                        foreach ($data as $dat){
+                            array_push($centersData, $dat);
+                        }
+                    }
+                    new CenterShowAllView($centersData, $itemsPerPage, $currentPage, $totalCenters, $toSearch, $searching);
+                } else{
+                    $toSearch = getToSearch($search);
+                    $totalCenters = $GLOBALS["centerDAO"]->countTotalCenters($toSearch);
+                    $centersData = $GLOBALS["centerDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
+                    new CenterShowAllView($centersData, $itemsPerPage, $currentPage, $totalCenters, $toSearch, $searching);
+                }
+            }
         } catch (DAOException $e) {
             new CenterShowAllView(array());
             errorMessage($e->getMessage());

@@ -50,7 +50,7 @@ class UniversityEditView
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="user_id" data-translate="Curso académico"></label>
+                    <label for="user_id" data-translate="Responsable"></label>
                     <select class="form-control" id="user_id" name="user_id" ?>
                         <?php foreach ($this->users as $user): ?>
                             <option value="<?php echo $user->getId() ?>"

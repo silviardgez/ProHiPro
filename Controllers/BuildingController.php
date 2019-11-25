@@ -64,7 +64,7 @@ switch ($action) {
     case "delete":
         if (HavePermission("Building", "DELETE")) {
             $building = $buildingDAO->show($buildingPrimaryKey, $value);
-            if(IsAdmin() || $building == IsBuildingOwner()) {
+            if (IsAdmin() || in_array($building, IsBuildingOwner())) {
                 if (isset($_REQUEST["confirm"])) {
                     try {
                         $buildingDAO->delete($buildingPrimaryKey, $value);
@@ -83,7 +83,7 @@ switch ($action) {
                         goToShowAllAndShowError($e->getMessage());
                     }
                 }
-            }else {
+            } else {
                 goToShowAllAndShowError("No tienes permiso para eliminar.");
             }
         } else {
@@ -109,10 +109,10 @@ switch ($action) {
             try {
                 $building = $buildingDAO->show($buildingPrimaryKey, $value);
                 if (!isset($_POST["submit"])) {
-                    if(IsAdmin() || $building == IsBuildingOwner()){
+                    if (IsAdmin() || in_array($building, IsBuildingOwner())) {
                         new BuildingEditView($building, $userData);
-                    } else{
-                        goToShowAllAndShowError("No tienes permiso para editar.");
+                    } else {
+                        goToShowAllAndShowError("No tienes permiso para editar. AQUI");
                     }
                 } else {
                     $building->setId($value);
@@ -144,7 +144,7 @@ switch ($action) {
                     if (!empty($_POST["location"])) {
                         $building->setLocation($_POST["location"]);
                     }
-                    if(!empty($_POST["user_id"])) {
+                    if (!empty($_POST["user_id"])) {
                         $building->setUser($userDAO->show("login", $_POST["user_id"]));
                     }
                     showAllSearch($building);
@@ -172,7 +172,8 @@ function showAllSearch($search)
 {
     if (HavePermission("Building", "SHOWALL")) {
         try {
-            $searching=False;
+            $break = false;
+            $searching = False;
             if (!empty($search)) {
                 $searching = True;
             }
@@ -180,12 +181,13 @@ function showAllSearch($search)
                 $userDAO = new UserDAO();
                 $building = new Building();
                 $university = IsUniversityOwner();
-                if(empty($university)){
+                if (empty($university)) {
                     $building->setUser($userDAO->show("login", $_SESSION['login']));
                     $test = IsBuildingOwner();
-                    if($test===false){
+                    if ($test === false) {
+                        $break = true;
                         new BuildingShowAllView(array());
-                    }else{
+                    } else {
                         $search = $building;
                         $searching = False;
                     }
@@ -193,12 +195,37 @@ function showAllSearch($search)
 
             }
 
-            $currentPage = getCurrentPage();
-            $itemsPerPage = getItemsPerPage();
-            $toSearch = getToSearch($search);
-            $totalBuildings = $GLOBALS["buildingDAO"]->countTotalBuildings($toSearch);
-            $buildingsData = $GLOBALS["buildingDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
-            new BuildingShowAllView($buildingsData, $itemsPerPage, $currentPage, $totalBuildings, $toSearch, $searching);
+            if (!$break) {
+                $currentPage = getCurrentPage();
+                $itemsPerPage = getItemsPerPage();
+                $totalBuildings = 0;
+
+                if (!empty($test) && count($test) == 1) {
+                    $search = $test[0];
+                    $toSearch = getToSearch($search);
+                    $totalBuildings = $GLOBALS["buildingDAO"]->countTotalBuildings($toSearch);
+                    $buildingsData = $GLOBALS["buildingDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
+                    new BuildingShowAllView($buildingsData, $itemsPerPage, $currentPage, $totalBuildings, $toSearch, $searching);
+                } elseif (count($test) > 1) {
+                    $buildingsData = array();
+                    foreach ($test as $buil) {
+                        $search = $buil;
+                        $toSearch = getToSearch($search);
+                        $totalBuildings += $GLOBALS["buildingDAO"]->countTotalBuildings($toSearch);
+                        $data = $GLOBALS["buildingDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
+                        foreach ($data as $dat) {
+                            array_push($buildingsData, $dat);
+                        }
+                    }
+                    new BuildingShowAllView($buildingsData, $itemsPerPage, $currentPage, $totalBuildings, $toSearch, $searching);
+                } else{
+                    $toSearch = getToSearch($search);
+                    $totalBuildings = $GLOBALS["buildingDAO"]->countTotalBuildings($toSearch);
+                    $buildingsData = $GLOBALS["buildingDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
+                    new BuildingShowAllView($buildingsData, $itemsPerPage, $currentPage, $totalBuildings, $toSearch, $searching);
+                }
+            }
+
         } catch (DAOException $e) {
             new BuildingShowAllView(array());
             errorMessage($e->getMessage());

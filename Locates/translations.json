@@ -263,6 +263,14 @@
     "en": "Department added successfully.",
     "gl": "Departamento engadido correctamente."
   },
+  "Tutoría añadida correctamente.": {
+    "en": "Tutorial added successfully.",
+    "gl": "Tutoría engadida correctamente."
+  },
+  "Tutoría eliminada correctamente.": {
+    "en": "Tutorial deleted successfully.",
+    "gl": "Tutoría eliminada correctamente."
+  },
   "INFORMACIÓN": {
     "en": "INFO",
     "gl": "INFORMACIÓN"
@@ -1431,6 +1439,10 @@
     "en": "Delete subject",
     "gl": "Eliminar materia"
   },
+  "Eliminar tutoría": {
+    "en": "Delete tutorial",
+    "gl": "Eliminar tutoría"
+  },
   "Edificio editado correctamente.": {
     "en": "Building edited successfully.",
     "gl": "Edificio editado correctamente."
@@ -1459,6 +1471,10 @@
     "en": "Edit subject '%c'",
     "gl": "Editar materia '%c'"
   },
+  "Editar tutoría '%c'": {
+    "en": "Edit tutorial '%c'",
+    "gl": "Editar tutoría '%c'"
+  },
   "Editar asignación de profesor": {
     "en": "Edit teacher assignment",
     "gl": "Editar asignación de profesor"
@@ -1467,6 +1483,10 @@
     "en": "Subject '%c'",
     "gl": "Materia '%c'"
   },
+  "Tutoría '%c'": {
+    "en": "Tutorial '%c'",
+    "gl": "Tutoría '%c'"
+  },
   "Búsqueda de edificios": {
     "en": "Buildings search",
     "gl": "Procura de edificios"
@@ -1474,6 +1494,10 @@
   "¿Está seguro de que desea eliminar el edificio %c? Esta acción es permanente y no se puede recuperar.": {
     "en": "Are you sure you want to delete the building %c? This action is permanent and cannot be recovered.",
     "gl": "Está seguro de que desexa eliminar o edificio %c? Esta acción é permanente e non se pode recuperar."
+  },
+  "¿Está seguro de que desea eliminar la tutoría %c? Esta acción es permanente y no se puede recuperar.": {
+    "en": "Are you sure you want to delete the tutorial %c? This action is permanent and cannot be recovered.",
+    "gl": "Está seguro de que desexa eliminar a tutoría %c? Esta acción é permanente e non se pode recuperar."
   },
   "Capacidad": {
     "en": "Capacity",
@@ -1490,6 +1514,10 @@
   "Introducir estudiantes": {
     "en": "Insert students",
     "gl": "Inserir estudantes"
+  },
+  "Introducir espacio": {
+    "en": "Insert space",
+    "gl": "Inserir espazo"
   },
   "Número de horas": {
     "en": "Hours number",
@@ -1751,6 +1779,10 @@
     "en":"Subject edited successfully",
     "gl": "Materia editada correctamente."
   },
+  "Tutoría editada correctamente.": {
+    "en":"Tutorial edited successfully",
+    "gl": "Tutoría editada correctamente."
+  },
   "Error de validación. Id centro incorrecto.": {
     "en": "Validation error. Center id wrong.",
     "gl": "Error de validación. Id centro incorrecto."
@@ -1776,6 +1808,14 @@
     "gl": "O atributo horas non pode estar baleiro"
   },
   "El atributo horas puede tener una longitud máxima de %c.": {
+    "en": "The hours attribute can have a maximum length of %c.",
+    "gl": "O atributo horas pode ter unha lonxitude máxima de %c."
+  },
+  "El atributo total_horas no puede estar vacío.": {
+    "en": "The hours attribute cannot be empty.",
+    "gl": "O atributo horas non pode estar baleiro"
+  },
+  "El atributo horas_horas puede tener una longitud máxima de %c.": {
     "en": "The hours attribute can have a maximum length of %c.",
     "gl": "O atributo horas pode ter unha lonxitude máxima de %c."
   },
@@ -1858,5 +1898,29 @@
   "Introducir número de horas impartidas": {
     "en": "Insert taught hours number",
     "gl": "Inserir número de horas impartidas"
+  },
+  "Espacio de tutorías": {
+    "en": "Tutorial space",
+    "gl": "Espacio de tutorías"
+  },
+  "No se ha obtenido ninguna tutoría.": {
+    "en": "No tutorial has been obtained.",
+    "gl": "Non se obtivo ningunha tutoría."
+  },
+  "Listado de tutorías": {
+    "en": "Tutorials list",
+    "gl": "Listado de tutorías"
+  },
+  "Espacio": {
+    "en": "Space",
+    "gl": "Espazo"
+  },
+  "Añadir tutoría": {
+    "en": "Add tutorial",
+    "gl": "Engadir tutoría"
+  },
+  "No es profesor.": {
+    "en": "You aren't teacher",
+    "gl": "Non é profesor"
   }
 }
