@@ -12,7 +12,7 @@ function HavePermission($controller, $act)
             if($userRole->getUser()->getLogin() ==  $_SESSION['login']) {
                 $permissions = $permissionDAO->showAll();
                 foreach ($permissions as $permission) {
-                    if ($permission->getRole()->getId() == $userRole->getId()) {
+                    if ($permission->getRole()->getId() == $userRole->getRole()->getId()) {
                         if ($permission->getFuncAction()->getFunctionality()->getName() ==
                             $controller . "Management" && $permission->getFuncAction()->getAction()->getName() == $act) {
                             return true;

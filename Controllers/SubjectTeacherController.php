@@ -120,12 +120,13 @@ function showAll() {
 function showAllSearch($search) {
     if (HavePermission("SubjectTeacher", "SHOWALL")) {
         try {
+            print_r($search->getSubject()->getCode());
             $currentPage = getCurrentPage();
             $itemsPerPage = getItemsPerPage();
             $toSearch = getToSearch($search);
             $totalTeachers = $GLOBALS["subjectTeacherDAO"]->countTotalSubjectTeachers($toSearch);
             $teachersData = $GLOBALS["subjectTeacherDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
-            new SubjectTeacherShowAllView($teachersData, $itemsPerPage, $currentPage, $totalTeachers, $toSearch);
+            new SubjectTeacherShowAllView($teachersData, $itemsPerPage, $currentPage, $totalTeachers, $toSearch, $search->getSubject());
         } catch (DAOException $e) {
             new SubjectTeacherShowAllView(array());
             errorMessage($e->getMessage());
