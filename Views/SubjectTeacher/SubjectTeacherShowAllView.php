@@ -9,8 +9,9 @@ class SubjectTeacherShowAllView
     private $totalTeachers;
     private $totalPages;
     private $stringToSearch;
+    private $subject;
 
-    function __construct($subjectTeachers, $itemsPerPage = NULL, $currentPage = NULL, $totalTeachers = NULL, $toSearch = NULL)
+    function __construct($subjectTeachers, $itemsPerPage = NULL, $currentPage = NULL, $totalTeachers = NULL, $toSearch = NULL, $subject = NULL)
     {
         $this->subjectTeachers = $subjectTeachers;
         $this->itemsPerPage = $itemsPerPage;
@@ -18,6 +19,7 @@ class SubjectTeacherShowAllView
         $this->totalTeachers = $totalTeachers;
         $this->totalPages = ceil($totalTeachers / $itemsPerPage);
         $this->stringToSearch = $toSearch;
+        $this->subject = $subject;
         $this->render();
     }
 
@@ -30,15 +32,16 @@ class SubjectTeacherShowAllView
         </head>
         <main role="main" class="margin-main ml-sm-auto px-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-3">
-                <h1 class="h2" data-translate="Profesores de %<?php echo $this->subjectTeachers[0]->getSubject()->getCode(); ?>%"></h1>
+                <h1 class="h2"
+                    data-translate="Profesores de %<?php echo $this->subject->getCode(); ?>%"></h1>
 
                 <?php if (HavePermission("SubjectTeacher", "ADD")): ?>
-                        <a class="btn btn-success btn-subject" role="button"
-                           href="../Controllers/SubjectTeacherController.php?action=add&subject_id=<?php echo $this->subjectTeachers[0]->getSubject()->getId(); ?>">
-                            <span data-feather="plus"></span>
-                            <p data-translate="Asignar profesor"></p>
-                        </a>
-                    <?php endif;?>
+                    <a class="btn btn-success btn-subject" role="button"
+                       href="../Controllers/SubjectTeacherController.php?action=add&subject_id=<?php echo $this->subject->getId(); ?>">
+                        <span data-feather="plus"></span>
+                        <p data-translate="Asignar profesor"></p>
+                    </a>
+                <?php endif; ?>
                 <a class="btn btn-primary" role="button" href="../Controllers/SubjectController.php">
                     <p data-translate="Volver"></p>
                 </a>
@@ -57,8 +60,8 @@ class SubjectTeacherShowAllView
                     <tbody>
                     <?php foreach ($this->subjectTeachers as $subjectTeacher): ?>
                         <tr>
-                            <td><?php echo $subjectTeacher->getTeacher()->getUser()->getName() . " " . $subjectTeacher->getTeacher()->getUser()->getSurname() ;?></td>
-                            <td><?php echo $subjectTeacher->getHours()?></td>
+                            <td><?php echo $subjectTeacher->getTeacher()->getUser()->getName() . " " . $subjectTeacher->getTeacher()->getUser()->getSurname(); ?></td>
+                            <td><?php echo $subjectTeacher->getHours() ?></td>
                             <td class="row">
                                 <?php if (HavePermission("Center", "EDIT")) { ?>
                                     <a href="../Controllers/SubjectTeacherController.php?action=edit&id=<?php echo $subjectTeacher->getId() ?>&subject_id=<?php echo $subjectTeacher->getSubject()->getId() ?>">
