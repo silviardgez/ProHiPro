@@ -118,7 +118,10 @@ INSERT INTO `USER` (`login`,`password`,`dni`, `name`,`surname`,`email`,`address`
 ('gestuniv','21232f297a57a5a743894a0e4a801fc3' , '11122233P','GestUniv','GestUniv', 'GestUniv@GestUniv.com', 'address', '666555444'),
 ('gestcent','21232f297a57a5a743894a0e4a801fc3' , '11122233P','GestCent','GestCent', 'GestCent@GestCent.com', 'address', '666555444'),
 ('gestbuil','21232f297a57a5a743894a0e4a801fc3' , '11122233P','GestBuil','GestBuil', 'GestBuil@GestBuil.com', 'address', '666555444'),
-('gestdeg','21232f297a57a5a743894a0e4a801fc3' , '11122233P','GestDegree','GestDegree', 'GestDegree@GestDegree.com', 'address', '666555444');
+('gestdeg','21232f297a57a5a743894a0e4a801fc3' , '11122233P','GestDegree','GestDegree', 'GestDegree@GestDegree.com', 'address', '666555444'),
+('gestdep','21232f297a57a5a743894a0e4a801fc3' , '11122233P','GestDepartment','GestDepartment', 'GestDepartment@GestDepartment.com', 'address', '666555444'),
+('gestsub','21232f297a57a5a743894a0e4a801fc3' , '11122233P','GestSubject','GestSubject', 'GestSubject@GestSubject.com', 'address', '666555444'),
+('teacher','21232f297a57a5a743894a0e4a801fc3' , '11122233P','Teacher','Teacher', 'teacher@teacher.com', 'address', '666555444');
 
 INSERT INTO `ROLE` (`id`, `name`, `description`) VALUES
 (1, 'Admin', 'Role with all permissions'),
@@ -126,15 +129,20 @@ INSERT INTO `ROLE` (`id`, `name`, `description`) VALUES
 (3, 'GestCent', 'Role with Center Owner permissions'),
 (4, 'GestBuil', 'Role with Building Owner permissions'),
 (5, 'GestDegree', 'Role with Degree Owner permissions'),
-(6, 'BasicUser', 'Role with the basic permissions'),
-(7, 'Test', 'Role to test');
+(6, 'GestDepartment', 'Role with Department Owner permissions'),
+(7, 'Teacher', 'Role with Teacher permissions'),
+(8, 'BasicUser', 'Role with the basic permissions'),
+(9, 'Test', 'Role to test');
 
 INSERT INTO `USER_ROLE` (`user_id`,`role_id`) VALUES
 ('admin', 1),
 ('gestuniv', 2),
 ('gestcent', 3),
 ('gestbuil', 4),
-('gestdeg', 5);
+('gestdeg', 5),
+('gestdep', 6),
+('gestsub', 7),
+('teacher', 7);
 
 INSERT INTO `PERMISSION` (`role_id`,`func_action_id`) VALUES
 (1,'1'),
@@ -233,6 +241,16 @@ INSERT INTO `PERMISSION` (`role_id`,`func_action_id`) VALUES
 (2,'51'),
 (2,'54'),
 (2,'55'),
+(2,'66'),
+(2,'67'),
+(2,'68'),
+(2,'69'),
+(2,'70'),
+(2,'71'),
+(2,'72'),
+(2,'73'),
+(2,'74'),
+(2,'75'),
 (3,'49'),
 (3,'50'),
 (3,'61'),
@@ -244,8 +262,32 @@ INSERT INTO `PERMISSION` (`role_id`,`func_action_id`) VALUES
 (4,'53'),
 (4,'54'),
 (4,'55'),
+(4,'56'),
+(4,'57'),
+(4,'58'),
+(4,'59'),
+(4,'60'),
 (5,'64'),
-(5,'65');
+(5,'65'),
+(6,'71'),
+(6,'72'),
+(6,'73'),
+(6,'74'),
+(6,'75'),
+(6,'76'),
+(6,'77'),
+(6,'78'),
+(6,'79'),
+(6,'80'),
+(6,'81'),
+(6,'82'),
+(6,'83'),
+(6,'84'),
+(6,'85'),
+(7,'78'),
+(7,'79'),
+(7,'80'),
+(7,'85');
 
 INSERT INTO `ACADEMIC_COURSE` (`id`, `academic_course_abbr`, `start_year`, `end_year`) VALUES
 (1, '18/19', '2018', '2019'),

@@ -125,7 +125,7 @@ function showAllSearch($search) {
             $toSearch = getToSearch($search);
             $totalTeachers = $GLOBALS["subjectTeacherDAO"]->countTotalSubjectTeachers($toSearch);
             $teachersData = $GLOBALS["subjectTeacherDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
-            new SubjectTeacherShowAllView($teachersData, $itemsPerPage, $currentPage, $totalTeachers, $toSearch);
+            new SubjectTeacherShowAllView($teachersData, $itemsPerPage, $currentPage, $totalTeachers, $toSearch, $search->getSubject());
         } catch (DAOException $e) {
             new SubjectTeacherShowAllView(array());
             errorMessage($e->getMessage());
