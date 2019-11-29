@@ -168,7 +168,7 @@
                                     if (HavePermission("SubjectGroup", "SHOWALL")) {
                                 ?>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">
+                                        <a class="nav-link" href="../Controllers/GroupController.php">
                                             <p data-translate="Grupos"></p>
                                         </a>
                                     </li>

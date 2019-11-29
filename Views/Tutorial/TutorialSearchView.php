@@ -22,7 +22,7 @@ class TutorialSearchView
         </head>
         <main role="main" class="margin-main ml-sm-auto px-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-4 pb-2 mb-3 border-bottom">
-                <h1 class="h2" data-translate="Búsqueda de asignaturas"></h1>
+                <h1 class="h2" data-translate="Búsqueda de tutorías"></h1>
                 <a class="btn btn-primary" role="button" href="../Controllers/TutorialController.php"><p
                         data-translate="Volver"></p></a>
             </div>

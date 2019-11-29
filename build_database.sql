@@ -285,6 +285,7 @@ CREATE TABLE `SUBJECT_GROUP` (
   `id` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
   `subject_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
   `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
+  `capacity` int(3) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY(`id`, `subject_id`),
   FOREIGN KEY (`subject_id`)
 	REFERENCES `SUBJECT`(`id`)

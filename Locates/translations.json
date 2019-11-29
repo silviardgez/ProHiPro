@@ -119,10 +119,6 @@
     "en": "Repeat password",
     "gl": "Confirmar contrasinal"
   },
-  "Introducir nombre de usuario": {
-    "en": "Enter username",
-    "gl": "Introducir nome de usuario"
-  },
   "Introducir contenido": {
     "en": "Enter content",
     "gl": "Inserir contido"
@@ -203,6 +199,10 @@
     "en": "No action has been obtained",
     "gl": "Non se obtivo ningunha acción"
   },
+  "No se ha obtenido ningún grupo": {
+    "en": "No group has been obtained",
+    "gl": "Non se obtivo ningún grupo"
+  },
   "Volver": {
     "en": "Back",
     "gl": "Volver"
@@ -222,6 +222,10 @@
   "Insertar funcionalidad": {
     "en": "Add functionality",
     "gl": "Insertar funcionalidade"
+  },
+  "Insertar grupo": {
+    "en": "Add group",
+    "gl": "Engadir grupo"
   },
   "Enviar": {
     "en": "Send",
@@ -422,6 +426,10 @@
   "Listado de asignaturas": {
     "en": "Subjects list",
     "gl": "Listado de materias"
+  },
+  "Listado de grupos": {
+    "en": "Groups list",
+    "gl": "Listado de grupos"
   },
   "Añadir acción-funcionalidad": {
     "en": "Add action-functionality",
@@ -1059,6 +1067,14 @@
     "en": "The dni attribute cannot be empty.",
     "gl": "O atributo dni non pode estar baleiro"
   },
+  "El atributo horas matriculadas no puede estar vacío.": {
+    "en": "The enrolled hours attribute cannot be empty.",
+    "gl": "O atributo horas matriculadas non pode estar baleiro"
+  },
+  "El atributo horas impartidas no puede estar vacío.": {
+    "en": "The hours taught attribute cannot be empty.",
+    "gl": "O atributo horas impartadas non pode estar baleiro"
+  },
   "El atributo dni contiene algún carácter no válido: %c.": {
     "en": "The dni attribute contains some invalid character: %c.",
     "gl": "O atributo dni contén algún caracter non válido: %c."
@@ -1070,6 +1086,14 @@
   "El atributo dedicación no puede tener espacios en blanco.": {
     "en": "The dedication attribute cannot have blanks.",
     "gl": "O atributo adicación non pode ter espazos en branco."
+  },
+  "El atributo horas impartidas no puede tener espacios en blanco.": {
+    "en": "The hours taught attribute cannot have blanks.",
+    "gl": "O atributo horas impartidas non pode ter espazos en branco."
+  },
+  "El atributo horas matriculadas no puede tener espacios en blanco.": {
+    "en": "The enrolled hours attribute cannot have blanks.",
+    "gl": "O atributo horas matriculadas non pode ter espazos en branco."
   },
   "El atributo dedicación no puede estar vacío.": {
     "en": "The dedication attribute cannot be empty.",
@@ -1095,6 +1119,22 @@
     "en": "The login attribute cannot be empty.",
     "gl": "O atributo dni non pode estar baleiro."
   },
+  "El atributo tipo no puede estar vacío.": {
+    "en": "The type attribute cannot be empty.",
+    "gl": "O atributo tipo non pode estar baleiro."
+  },
+  "El atributo area no puede estar vacío.": {
+    "en": "The area attribute cannot be empty.",
+    "gl": "O atributo area non pode estar baleiro."
+  },
+  "El atributo curso no puede estar vacío.": {
+    "en": "The curse attribute cannot be empty.",
+    "gl": "O atributo curso non pode estar baleiro."
+  },
+  "El atributo cuatrimestre no puede estar vacío.": {
+    "en": "The quarter attribute cannot be empty.",
+    "gl": "O atributo cuatrimestre non pode estar baleiro."
+  },
   "El atributo login contiene algún carácter no válido: %c.": {
     "en": "The login attribute contains some invalid character: %c.",
     "gl": "O atributo login contén algún caracter non válido: %c."
@@ -1111,6 +1151,18 @@
     "en": "The password attribute cannot be empty.",
     "gl": "O atributo contrasinal dni non pode estar baleiro."
   },
+  "El atributo efectivos no puede estar vacío.": {
+    "en": "The effective attribute cannot be empty.",
+    "gl": "O atributo efectivos dni non pode estar baleiro."
+  },
+  "El atributo repetidores no puede estar vacío.": {
+    "en": "The repeaters attribute cannot be empty.",
+    "gl": "O atributo repetidores dni non pode estar baleiro."
+  },
+  "El atributo contenido no puede estar vacío.": {
+    "en": "The content attribute cannot be empty.",
+    "gl": "O atributo contenido dni non pode estar baleiro."
+  },
   "El atributo contraseña contiene algún carácter no válido: %c.": {
     "en": "The password attribute contains some invalid character: %c.",
     "gl": "O atributo contrasinal contén algún caracter non válido: %c."
@@ -1121,11 +1173,43 @@
   },
   "El atributo confirmación de contraseña no puede tener espacios en blanco.": {
     "en": "The confirm password attribute cannot have blanks.",
-    "gl": "O atributo confirmación de contrasinal dni non pode ter espazos en branco."
+    "gl": "O atributo confirmación de contrasinal non pode ter espazos en branco."
+  },
+  "El atributo código no puede tener espacios en blanco.": {
+    "en": "The code attribute cannot have blanks.",
+    "gl": "O atributo código non pode ter espazos en branco."
+  },
+  "El atributo repetidores no puede tener espacios en blanco.": {
+    "en": "The repeaters attribute cannot have blanks.",
+    "gl": "O atributo repetidores non pode ter espazos en branco."
+  },
+  "El atributo curso no puede tener espacios en blanco.": {
+    "en": "The curse attribute cannot have blanks.",
+    "gl": "O atributo curso non pode ter espazos en branco."
+  },
+  "El atributo area no puede tener espacios en blanco.": {
+    "en": "The area attribute cannot have blanks.",
+    "gl": "O atributo area non pode ter espazos en branco."
+  },
+  "El atributo cuatrimestre no puede tener espacios en blanco.": {
+    "en": "The quarter attribute cannot have blanks.",
+    "gl": "O atributo cuatrimestre non pode ter espazos en branco."
+  },
+  "El atributo tipo no puede tener espacios en blanco.": {
+    "en": "The type attribute cannot have blanks.",
+    "gl": "O atributo tipo non pode ter espazos en branco."
+  },
+  "El atributo contenido no puede tener espacios en blanco.": {
+    "en": "The content attribute cannot have blanks.",
+    "gl": "O atributo contenido non pode ter espazos en branco."
   },
   "El atributo confirmación de contraseña no puede estar vacío.": {
     "en": "The confirm password attribute cannot be empty.",
     "gl": "O atributo confirmación de contrasinal dni non pode estar baleiro."
+  },
+  "El atributo nombre no puede tener espacios en blanco.": {
+    "en": "The name attribute cannot have blanks.",
+    "gl": "O atributo nombre non pode ter espazos en branco."
   },
   "El atributo confirmación de contraseña contiene algún carácter no válido: %c.": {
     "en": "The confirm password attribute contains some invalid character: %c.",
@@ -1146,6 +1230,10 @@
   "El atributo nombre no puede estar vacío.": {
     "en": "The name attribute cannot be empty.",
     "gl": "O atributo nome non pode estar baleiro."
+  },
+  "El atributo horas totales no puede estar vacío.": {
+    "en": "The total hours attribute cannot be empty.",
+    "gl": "O atributo horas totales non pode estar baleiro."
   },
   "El atributo nombre contiene algún carácter no válido: %c.": {
     "en": "The name attribute contains some invalid character: %c.",
@@ -1443,6 +1531,10 @@
     "en": "Delete tutorial",
     "gl": "Eliminar tutoría"
   },
+  "Eliminar grupo": {
+    "en": "Delete group",
+    "gl": "Eliminar grupo"
+  },
   "Edificio editado correctamente.": {
     "en": "Building edited successfully.",
     "gl": "Edificio editado correctamente."
@@ -1475,6 +1567,10 @@
     "en": "Edit tutorial '%c'",
     "gl": "Editar tutoría '%c'"
   },
+  "Editar grupo '%c'": {
+    "en": "Edit group '%c'",
+    "gl": "Editar grupo '%c'"
+  },
   "Editar asignación de profesor": {
     "en": "Edit teacher assignment",
     "gl": "Editar asignación de profesor"
@@ -1487,6 +1583,10 @@
     "en": "Tutorial '%c'",
     "gl": "Tutoría '%c'"
   },
+  "Grupo '%c'": {
+    "en": "Group '%c'",
+    "gl": "Grupo '%c'"
+  },
   "Búsqueda de edificios": {
     "en": "Buildings search",
     "gl": "Procura de edificios"
@@ -1498,6 +1598,10 @@
   "¿Está seguro de que desea eliminar la tutoría %c? Esta acción es permanente y no se puede recuperar.": {
     "en": "Are you sure you want to delete the tutorial %c? This action is permanent and cannot be recovered.",
     "gl": "Está seguro de que desexa eliminar a tutoría %c? Esta acción é permanente e non se pode recuperar."
+  },
+  "¿Está seguro de que desea eliminar el grupo %c? Esta acción es permanente y no se puede recuperar.": {
+    "en": "Are you sure you want to delete the group %c? This action is permanent and cannot be recovered.",
+    "gl": "Está seguro de que desexa eliminar o grupo %c? Esta acción é permanente e non se pode recuperar."
   },
   "Capacidad": {
     "en": "Capacity",
@@ -1558,6 +1662,10 @@
   "Introducir usuario": {
     "en": "Insert user",
     "gl": "Inserir usuario"
+  },
+  "Introducir asignatura": {
+    "en": "Insert subject",
+    "gl": "Inserir asignatura"
   },
   "Introducir acción-funcionalidad": {
     "en": "Insert action-functionality",
@@ -1691,10 +1799,6 @@
     "en": "Validation error. Functionality-Action wrong.",
     "gl": "Error de validación. Funcionalidade-Acción incorrecta."
   },
-  "Error de validación. Id edificio incorrecto.": {
-    "en": "Validation error. Building id wrong.",
-    "gl": "Error de validación. Id edicio incorrecto."
-  },
   "Error de validación. Capacidad incorrecto.": {
     "en": "Validation error. Capacity wrong.",
     "gl": "Error de validación. Capacidade incorrecto."
@@ -1739,6 +1843,14 @@
     "en": "Search degrees",
     "gl": "Búsqueda de titulacións"
   },
+  "Búsqueda de grupos": {
+    "en": "Search groups",
+    "gl": "Búsqueda de grupos"
+  },
+  "Búsqueda de tutorías": {
+    "en": "Search tutorials",
+    "gl": "Búsqueda de tutorías"
+  },
   "Editar titulación '%c'": {
     "en": "Edit degree '%c'",
     "gl": "Editar titulación '%c'"
@@ -1754,6 +1866,14 @@
   "Asignatura añadida correctamente.": {
     "en": "Subject added successfully.",
     "gl": "Materia añadida correctamente."
+  },
+  "Grupo añadido correctamente.": {
+    "en": "Group added successfully.",
+    "gl": "Grupo añadido correctamente."
+  },
+  "Grupo eliminado correctamente.": {
+    "en": "Group deleted successfully",
+    "gl": "Grupo eliminado correctamente."
   },
   "Titulación eliminada correctamente.": {
     "en": "Degree deleted successfully",
@@ -1783,6 +1903,10 @@
     "en":"Tutorial edited successfully",
     "gl": "Tutoría editada correctamente."
   },
+  "Grupo editado correctamente.": {
+    "en":"Group edited successfully",
+    "gl": "Grupo editado correctamente."
+  },
   "Error de validación. Id centro incorrecto.": {
     "en": "Validation error. Center id wrong.",
     "gl": "Error de validación. Id centro incorrecto."
@@ -1795,9 +1919,17 @@
     "en": "Validation error. Credits wrong.",
     "gl": "Error de validación. Créditos incorrectos."
   },
+  "Error de validación. Horas incorrectas.": {
+    "en": "Validation error. Hours wrong.",
+    "gl": "Error de validación. Horas incorrectas."
+  },
   "El atributo créditos no puede estar vacío.": {
     "en": "The credits attribute cannot be empty.",
     "gl": "O atributo créditos non pode estar baleiro"
+  },
+  "El atributo estudiantes no puede estar vacío.": {
+    "en": "The students attribute cannot be empty.",
+    "gl": "O atributo estudiantes non pode estar baleiro"
   },
   "El atributo créditos puede tener una longitud máxima de %c.": {
     "en": "The credits attribute can have a maximum length of %c.",
@@ -1835,6 +1967,18 @@
     "en": "The capacity attribute has to be a digit.",
     "gl": "O atributo capacidade ten que ser un díxito."
   },
+  "El atributo horas tiene que ser un dígito.": {
+    "en": "The hours attribute has to be a digit.",
+    "gl": "O atributo horas ten que ser un díxito."
+  },
+  "El atributo horas totales tiene que ser un dígito.": {
+    "en": "The total hours attribute has to be a digit.",
+    "gl": "O atributo horas totales ten que ser un díxito."
+  },
+  "El atributo estudiantes tiene que ser un dígito.": {
+    "en": "The students attribute has to be a digit.",
+    "gl": "O atributo estudiantes ten que ser un díxito."
+  },
   "El atributo créditos tiene que ser un dígito.": {
     "en": "The credits attribute has to be a digit.",
     "gl": "O atributo créditos ten que ser un díxito."
@@ -1846,6 +1990,14 @@
   "El atributo créditos no puede ser menor que %c.": {
     "en": "The credits attribute can have a minimum value of %c.",
     "gl": "O atributo créditos pode ter un valor mínimo de %c."
+  },
+  "El atributo efectivos tiene que ser un dígito.": {
+    "en": "The efectives attribute has to be a digit.",
+    "gl": "O atributo efectivos ten que ser un díxito."
+  },
+  "El atributo repetidores tiene que ser un dígito.": {
+    "en": "The efectives attribute has to be a digit.",
+    "gl": "O atributo repetidores ten que ser un díxito."
   },
   "Despacho": {
     "en": "Office",
@@ -1922,5 +2074,17 @@
   "No es profesor.": {
     "en": "You aren't teacher",
     "gl": "Non é profesor"
+  },
+  "Añadir grupo": {
+    "en": "Add group",
+    "gl": "Engadir grupo"
+  },
+  "Insertar tutoría": {
+    "en": "Add tutorial",
+    "gl": "Engadir tutoría"
+  },
+  "Asignatura": {
+    "en": "Subject",
+    "gl": "Asignatura"
   }
 }
