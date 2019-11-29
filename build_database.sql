@@ -293,13 +293,15 @@ CREATE TABLE `SUBJECT_GROUP` (
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 CREATE TABLE `TUTORIAL` (
-  `IdTutorial` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
+  `id` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
   `teacher_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
-  `start_date` datetime COLLATE latin1_spanish_ci NOT NULL,
-  `end_date` datetime COLLATE latin1_spanish_ci NOT NULL,
-  PRIMARY KEY(`IdTutorial`, `teacher_id`),
+  `space_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
+  `total_hours` int(3) COLLATE latin1_spanish_ci NOT NULL,
+  PRIMARY KEY(`id`, `teacher_id`),
   FOREIGN KEY (`teacher_id`)
-	REFERENCES `TEACHER`(`id`)
+	REFERENCES `TEACHER`(`id`),
+  FOREIGN KEY (`space_id`)
+	REFERENCES `SPACE`(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 -- --------------------------------------------------------
 -- --------------------------------------------------------

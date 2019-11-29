@@ -211,7 +211,7 @@
                                     if (HavePermission("Tutorial", "SHOWALL")) {
                                 ?>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">
+                                        <a class="nav-link" href="../Controllers/TutorialController.php">
                                             <p data-translate="Tutorías"></p>
                                         </a>
                                     </li>
