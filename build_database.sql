@@ -148,7 +148,7 @@ ALTER TABLE `UNIVERSITY` ADD UNIQUE KEY `uidx` (`academic_course_id`, `name`);
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 CREATE TABLE `BUILDING` (
-  `id` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,  
+  `id` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
   `location` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
   `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
   `user_id` varchar(9) COLLATE latin1_spanish_ci NOT NULL,
@@ -185,14 +185,14 @@ ALTER TABLE `CENTER` ADD UNIQUE KEY `uidx` (`university_id`, `name`, `user_id`);
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 CREATE TABLE `SPACE` (
-  `id` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,  
+  `id` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
   `building_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
   `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
   `capacity` int(3) COLLATE latin1_spanish_ci NOT NULL,
   `office` bit COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY(`id`, `building_id`),
-  FOREIGN KEY (`building_id`) 
-	REFERENCES `BUILDING`(`id`)  
+  FOREIGN KEY (`building_id`)
+	REFERENCES `BUILDING`(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
 ALTER TABLE `SPACE` ADD UNIQUE KEY `uidx` (`building_id`, `name`);
 -- --------------------------------------------------------
@@ -283,6 +283,7 @@ CREATE TABLE `SUBJECT_GROUP` (
   `id` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
   `subject_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
   `name` varchar(30) COLLATE latin1_spanish_ci NOT NULL,
+  `capacity` int(3) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY(`id`, `subject_id`),
   FOREIGN KEY (`subject_id`)
 	REFERENCES `SUBJECT`(`id`)
@@ -309,7 +310,7 @@ CREATE TABLE `TUTORIAL` (
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 CREATE TABLE `SCHEDULE` (
-  `IdSchedule` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,  
+  `IdSchedule` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
   `space_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
   `teacher_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
   `subject_group_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
