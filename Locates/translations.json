@@ -1918,6 +1918,10 @@
   "Añadir tutoría": {
     "en": "Add tutorial",
     "gl": "Engadir tutoría"
+  },
+  "No es profesor.": {
+    "en": "You aren't teacher",
+    "gl": "Non é profesor"
   }
 }
 

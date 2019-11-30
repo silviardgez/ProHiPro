@@ -20,6 +20,9 @@ include_once '../Views/Tutorial/TutorialEditView.php';
 include_once '../Views/Tutorial/TutorialSearchView.php';
 include_once '../Views/Common/PaginationView.php';
 include_once '../Functions/HavePermission.php';
+include_once '../Functions/IsAdmin.php';
+include_once '../Functions/IsTeacher.php';
+include_once '../Functions/IsTutorialOwner.php';
 include_once '../Functions/OpenDeletionModal.php';
 include_once '../Functions/Redirect.php';
 include_once '../Functions/Messages.php';
@@ -40,8 +43,17 @@ $value = $_REQUEST[$tutorialPrimaryKey];
 $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "";
 switch ($action) {
     case "add":
-        if (HavePermission("Tutorial", "ADD")) {
+        if (HavePermission("Tutorial", "ADD") && (IsTeacher() or IsAdmin())) {
             if (!isset($_POST["submit"])) {
+                if(!IsAdmin()){
+                    $teachers=array();
+                    foreach ($teacherData as $teach){
+                        if($teach->getUser()->getLogin() == $_SESSION['login']){
+                            array_push($teachers,$teach);
+                        }
+                    }
+                    $teacherData=$teachers;
+                }
                 new TutorialAddView($teacherData, $spaceData);
             } else {
                 try {
@@ -62,7 +74,7 @@ switch ($action) {
         }
         break;
     case "delete":
-        if (HavePermission("Tutorial", "DELETE")) {
+        if (HavePermission("Tutorial", "DELETE")&& (IsTeacher() or IsAdmin())) {
             $tutorial = $tutorialDAO->show($tutorialPrimaryKey, $value);
             if (isset($_REQUEST["confirm"])) {
                 try {
@@ -101,10 +113,19 @@ switch ($action) {
         }
         break;
     case "edit":
-        if (HavePermission("Tutorial", "EDIT")) {
+        if (HavePermission("Tutorial", "EDIT")&& (IsTeacher() or IsAdmin())) {
             try {
                 $tutorial = $tutorialDAO->show($tutorialPrimaryKey, $value);
                 if (!isset($_POST["submit"])) {
+                    if(!IsAdmin()){
+                        $teachers=array();
+                        foreach ($teacherData as $teach){
+                            if($teach->getUser()->getLogin() == $_SESSION['login']){
+                                array_push($teachers,$teach);
+                            }
+                        }
+                        $teacherData=$teachers;
+                    }
                     new TutorialEditView($tutorial, $teacherData, $spaceData);
                 } else {
                     $tutorial->setId($value);
@@ -162,12 +183,58 @@ function showAll() {
 function showAllSearch($search) {
     if (HavePermission("Tutorial", "SHOWALL")) {
         try {
-            $currentPage = getCurrentPage();
-            $itemsPerPage = getItemsPerPage();
-            $toSearch = getToSearch($search);
-            $totalTutorials = $GLOBALS["tutorialDAO"]->countTotalTutorials($toSearch);
-            $tutorialsData = $GLOBALS["tutorialDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
-            new TutorialShowAllView($tutorialsData, $itemsPerPage, $currentPage, $totalTutorials, $toSearch);
+            $break = false;
+            $searching=false;
+
+            if(!empty($search)){
+                $searching=true;
+            }
+            if(!IsTeacher() && !IsAdmin()){
+                new TutorialShowAllView(array());
+                errorMessage("No es profesor.");
+                $break=true;
+            }
+            if(!IsAdmin() and !$break){
+                $test = IsTutorialOwner();
+                if(empty($test)){
+                    $break=true;
+                    new TutorialShowAllView(array());
+                }else{
+                    $toret=$test;
+                    $searching=false;
+                }
+            }
+            if(!$break){
+                $currentPage = getCurrentPage();
+                $itemsPerPage = getItemsPerPage();
+                $totalTutorials=0;
+
+                if(!empty($toret) && count($toret)==1){
+                    $search=$toret[0];
+                    $toSearch = getToSearch($search);
+                    $totalTutorials = $GLOBALS["tutorialDAO"]->countTotalTutorials($toSearch);
+                    $tutorialsData = $GLOBALS["tutorialDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
+                    new TutorialShowAllView($tutorialsData, $itemsPerPage, $currentPage, $totalTutorials, $toSearch, $searching);
+                }elseif (count($toret)>1){
+                    $tutorialsData=array();
+                    foreach ($toret as $tut){
+                        $search=$tut;
+                        $toSearch = getToSearch($search);
+                        $totalTutorials += $GLOBALS["tutorialDAO"]->countTotalTutorials($toSearch);
+                        $data = $GLOBALS["tutorialDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
+                        foreach ($data as $dat){
+                            array_push($tutorialsData,$dat);
+                        }
+                    }
+                    new TutorialShowAllView($tutorialsData, $itemsPerPage, $currentPage, $totalTutorials, $toSearch, $searching);
+                }else{
+                    $toSearch = getToSearch($search);
+                    $totalTutorials = $GLOBALS["tutorialDAO"]->countTotalTutorials($toSearch);
+                    $tutorialsData = $GLOBALS["tutorialDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
+                    new TutorialShowAllView($tutorialsData, $itemsPerPage, $currentPage, $totalTutorials, $toSearch, $searching);
+                }
+            }
+
         } catch (DAOException $e) {
             new TutorialShowAllView(array());
             errorMessage($e->getMessage());

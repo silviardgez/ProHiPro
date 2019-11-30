@@ -80,7 +80,7 @@ switch ($action) {
     case "delete":
         if (HavePermission("Degree", "DELETE")) {
             $degree = $degreeDAO->show($degreePrimaryKey, $value);
-            if(IsAdmin() || $degree->getCenter() == IsCenterOwner()) {
+            if(IsAdmin() || in_array($degree->getCenter(), IsCenterOwner())) {
                 if (isset($_REQUEST["confirm"])) {
                     try {
                         $degreeDAO->delete($degreePrimaryKey, $value);
@@ -134,7 +134,7 @@ switch ($action) {
                         }
                         $centerData=$centers;
                     }
-                    if(IsAdmin() || $degree->getCenter() == IsCenterOwner() || $degree == IsDegreeOwner()){
+                    if(IsAdmin() || in_array($degree->getCenter(), IsCenterOwner()) || in_array($degree, IsDegreeOwner())){
                         new DegreeEditView($degree, $centerData, $userData);
                     } else{
                         goToShowAllAndShowError("No tienes permiso para editar.");
@@ -201,6 +201,9 @@ function showAllSearch($search)
         echo "AQUIIIIIIIIIIIIIII";
         try {
             $searching=False;
+            $break=false;
+            $test=null;
+            $center=null;
             if (!empty($search)) {
                 $searching = True;
             }
@@ -212,21 +215,54 @@ function showAllSearch($search)
                     $degree->setUser($userDAO->show("login", $_SESSION['login']));
                     $test = IsDegreeOwner();
                     if($test===false){
+                        $break = true;
                         new DegreeShowAllView(array());
                     }else{
                         $search = $degree;
                         $searching = False;
                     }
+                }else{
+                    $test=array();
+                    $deg = new Degree();
+                    foreach ($center as $cent){
+                        $deg->setCenter($cent);
+                        array_push($test,$deg);
+                    }
                 }
 
             }
 
-            $currentPage = getCurrentPage();
-            $itemsPerPage = getItemsPerPage();
-            $toSearch = getToSearch($search);
-            $totalDegrees = $GLOBALS["degreeDAO"]->countTotalDegrees($toSearch);
-            $degreesData = $GLOBALS["degreeDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
-            new DegreeShowAllView($degreesData, $itemsPerPage, $currentPage, $totalDegrees, $toSearch, $searching);
+            if(!$break){
+                $currentPage = getCurrentPage();
+                $itemsPerPage = getItemsPerPage();
+                $totalDegrees=0;
+
+                if(!empty($test) && count($test)==1){
+                    $search=$test[0];
+                    $toSearch = getToSearch($search);
+                    $totalDegrees = $GLOBALS["degreeDAO"]->countTotalDegrees($toSearch);
+                    $degreesData = $GLOBALS["degreeDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
+                    new DegreeShowAllView($degreesData, $itemsPerPage, $currentPage, $totalDegrees, $toSearch, $searching);
+                } elseif (count($test)>1){
+                    $degreesData=array();
+                    foreach ($test as $deg){
+                        $search=$deg;
+                        $toSearch = getToSearch($search);
+                        $totalDegrees += $GLOBALS["degreeDAO"]->countTotalDegrees($toSearch);
+                        $data = $GLOBALS["degreeDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
+                        foreach ($data as $dat){
+                            array_push($degreesData,$dat);
+                        }
+                    }
+                    new DegreeShowAllView($degreesData, $itemsPerPage, $currentPage, $totalDegrees, $toSearch, $searching);
+                } else{
+                    $toSearch = getToSearch($search);
+                    $totalDegrees = $GLOBALS["degreeDAO"]->countTotalDegrees($toSearch);
+                    $degreesData = $GLOBALS["degreeDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
+                    new DegreeShowAllView($degreesData, $itemsPerPage, $currentPage, $totalDegrees, $toSearch, $searching);
+                }
+            }
+
         } catch (DAOException $e) {
             new DegreeShowAllView(array());
             errorMessage($e->getMessage());

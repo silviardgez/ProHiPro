@@ -1,19 +1,23 @@
 <?php
-include_once  "../Models/Center/CenterDAO.php";
+include_once "../Models/Center/CenterDAO.php";
 
 function IsCenterOwner()
 {
+    $toret = array();
     $centerDAO = new CenterDAO();
-    try{
+    try {
         $centers = $centerDAO->showAll();
-        foreach ($centers as $center){
-            if($center->getUser()->getId() == $_SESSION['login']){
-                return $center;
+        foreach ($centers as $center) {
+            if ($center->getUser()->getId() == $_SESSION['login']) {
+                array_push($toret, $center);
             }
         }
-        return false;
-    }
-    catch (DAOException $e){
+        if (empty($toret)) {
+            return false;
+        } else {
+            return $toret;
+        }
+    } catch (DAOException $e) {
         return false;
     }
 }

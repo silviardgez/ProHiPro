@@ -141,10 +141,9 @@ INSERT INTO `ROLE` (`id`, `name`, `description`) VALUES
 (3, 'GestCent', 'Role with Center Owner permissions'),
 (4, 'GestBuil', 'Role with Building Owner permissions'),
 (5, 'GestDegree', 'Role with Degree Owner permissions'),
-(6, 'GestDepartment', 'Role with Department Owner permissions'),
-(7, 'Teacher', 'Role with Teacher permissions'),
-(8, 'BasicUser', 'Role with the basic permissions'),
-(9, 'Test', 'Role to test');
+(6, 'Teacher', 'Role with Teacher permissions'),
+(7, 'BasicUser', 'Role with the basic permissions'),
+(8, 'Test', 'Role to test');
 
 INSERT INTO `USER_ROLE` (`user_id`,`role_id`) VALUES
 ('admin', 1),
@@ -153,8 +152,8 @@ INSERT INTO `USER_ROLE` (`user_id`,`role_id`) VALUES
 ('gestbuil', 4),
 ('gestdeg', 5),
 ('gestdep', 6),
-('gestsub', 7),
-('teacher', 7);
+('gestsub', 6),
+('teacher', 6);
 
 INSERT INTO `PERMISSION` (`role_id`,`func_action_id`) VALUES
 (1,'1'),
@@ -291,6 +290,12 @@ INSERT INTO `PERMISSION` (`role_id`,`func_action_id`) VALUES
 (4,'60'),
 (5,'64'),
 (5,'65'),
+(5,'74'),
+(5,'75'),
+(5,'79'),
+(5,'80'),
+(6,'69'),
+(6,'70'),
 (6,'71'),
 (6,'72'),
 (6,'73'),
@@ -306,20 +311,16 @@ INSERT INTO `PERMISSION` (`role_id`,`func_action_id`) VALUES
 (6,'83'),
 (6,'84'),
 (6,'85'),
-(7,'78'),
-(7,'79'),
-(7,'80'),
-(7,'85'),
-(7,'86'),
-(7,'87'),
-(7,'88'),
-(7,'89'),
-(7,'90'),
-(7,'91'),
-(7,'92'),
-(7,'93'),
-(7,'94'),
-(7,'95');
+(6,'86'),
+(6,'87'),
+(6,'88'),
+(6,'89'),
+(6,'90'),
+(6,'91'),
+(6,'92'),
+(6,'93'),
+(6,'94'),
+(6,'95');
 
 INSERT INTO `ACADEMIC_COURSE` (`id`, `academic_course_abbr`, `start_year`, `end_year`) VALUES
 (1, '18/19', '2018', '2019'),
