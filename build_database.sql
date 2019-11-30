@@ -209,6 +209,8 @@ CREATE TABLE `DEGREE` (
   `credits` int(3) COLLATE latin1_spanish_ci NOT NULL,
   `user_id` varchar(9) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY(`id`, `center_id`),
+  FOREIGN KEY (`user_id`)
+    REFERENCES `USER`(`login`),
   FOREIGN KEY (`center_id`)
 	REFERENCES `CENTER`(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;

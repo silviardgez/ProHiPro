@@ -19,6 +19,8 @@ include_once '../Views/Space/SpaceEditView.php';
 include_once '../Views/Space/SpaceSearchView.php';
 include_once '../Views/Common/PaginationView.php';
 include_once '../Functions/HavePermission.php';
+include_once '../Functions/IsAdmin.php';
+include_once '../Functions/IsBuildingOwner.php';
 include_once '../Functions/OpenDeletionModal.php';
 include_once '../Functions/Redirect.php';
 include_once '../Functions/Messages.php';
@@ -39,12 +41,17 @@ switch ($action) {
     case "add":
         if (HavePermission("Space", "ADD")) {
             if (!isset($_POST["submit"])) {
-                new SpaceAddView($buildingData);
+                if(IsBuildingOwner()!=false){
+                    new SpaceAddView(IsBuildingOwner());
+                }else{
+                    new SpaceAddView([]);
+                }
+
             } else {
                 try {
                     $space = new Space();
                     $space->setName($_POST["name"]);
-                    $space->setBuilding($buildingDAO->show("id",$_POST["building_id"]));
+                    $space->setBuilding($buildingDAO->show("id", $_POST["building_id"]));
                     $space->setCapacity($_POST["capacity"]);
                     if (isset($_POST["office"])) {
                         $space->setOffice(1);
@@ -106,11 +113,15 @@ switch ($action) {
             try {
                 $space = $spaceDAO->show($spacePrimaryKey, $value);
                 if (!isset($_POST["submit"])) {
-                    new SpaceEditView($space, $buildingData);
+                    if(IsBuildingOwner()!=false){
+                        new SpaceEditView($space, IsBuildingOwner());
+                    }else{
+                        new SpaceEditView($space, [$space->getBuilding()]);
+                    }
                 } else {
                     $space->setId($value);
                     $space->setName($_POST["name"]);
-                    $space->setBuilding($buildingDAO->show("id",$_POST["building_id"]));
+                    $space->setBuilding($buildingDAO->show("id", $_POST["building_id"]));
                     $space->setCapacity($_POST["capacity"]);
                     $space->setOffice($_POST["office"]);
                     $spaceDAO->edit($space);
@@ -121,7 +132,7 @@ switch ($action) {
             } catch (ValidationException $ve) {
                 goToShowAllAndShowError($ve->getMessage());
             }
-        } else{
+        } else {
             goToShowAllAndShowError("No tienes permiso para editar.");
         }
         break;
@@ -132,16 +143,16 @@ switch ($action) {
             } else {
                 try {
                     $space = new Space();
-                    if(!empty($_POST["name"])) {
+                    if (!empty($_POST["name"])) {
                         $space->setName($_POST["name"]);
                     }
-                    if(!empty($_POST["capacity"])) {
+                    if (!empty($_POST["capacity"])) {
                         $space->setCapacity($_POST["capacity"]);
                     }
-                    if(!empty($_POST["building_id"])) {
+                    if (!empty($_POST["building_id"])) {
                         $space->setBuilding($buildingDAO->show("id", $_POST["building_id"]));
                     }
-                    if(!empty($_POST["office"])) {
+                    if (!empty($_POST["office"])) {
                         $space->setOffice($_POST["office"]);
                     }
                     showAllSearch($space);
@@ -160,34 +171,87 @@ switch ($action) {
         break;
 }
 
-function showAll() {
+function showAll()
+{
     showAllSearch(NULL);
 }
 
-function showAllSearch($search) {
+function showAllSearch($search)
+{
     if (HavePermission("Space", "SHOWALL")) {
         try {
-            $currentPage = getCurrentPage();
-            $itemsPerPage = getItemsPerPage();
-            $toSearch = getToSearch($search);
-            $totalSpaces = $GLOBALS["spaceDAO"]->countTotalSpaces($toSearch);
-            $spacesData = $GLOBALS["spaceDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
-            new SpaceShowAllView($spacesData, $itemsPerPage, $currentPage, $totalSpaces, $toSearch);
-        } catch (DAOException $e) {
-            new SpaceShowAllView(array());
-            errorMessage($e->getMessage());
+
+            $break = false;
+            $searching = False;
+            if (!empty($search)) {
+                $searching = True;
+            }
+            if (!IsAdmin()) {
+                $space = new Space();
+                $test = IsBuildingOwner();
+                if ($test === false) {
+                    new SpaceShowAllView(array());
+                    $break = true;
+                } else {
+                    $searching = False;
+                }
+            }
+
+            if (!$break) {
+                $currentPage = getCurrentPage();
+                $itemsPerPage = getItemsPerPage();
+                $totalSpaces=0;
+
+                if(!empty($test) && count($test)==1){
+                    $space->setBuilding($test[0]);
+                    $search = $space;
+                    $toSearch = getToSearch($search);
+                    $totalSpaces = $GLOBALS["spaceDAO"]->countTotalSpaces($toSearch);
+                    $spacesData = $GLOBALS["spaceDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
+                    new SpaceShowAllView($spacesData, $itemsPerPage, $currentPage, $totalSpaces, $toSearch, $searching);
+                } elseif(count($test)>1) {
+                    $spacesData = array();
+                    foreach ($test as $spac){
+                        $space->setBuilding($spac);
+                        $search = $space;
+                        $toSearch = getToSearch($search);
+                        $totalSpaces += $GLOBALS["spaceDAO"]->countTotalSpaces($toSearch);
+                        $data = $GLOBALS["spaceDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
+                        foreach ($data as $dat){
+                            array_push($spacesData,$dat);
+                        }
+                    }
+                    new SpaceShowAllView($spacesData, $itemsPerPage, $currentPage, $totalSpaces, $toSearch, $searching);
+                } else{
+                    $toSearch = getToSearch($search);
+                    $totalSpaces = $GLOBALS["spaceDAO"]->countTotalSpaces($toSearch);
+                    $spacesData = $GLOBALS["spaceDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
+                    new SpaceShowAllView($spacesData, $itemsPerPage, $currentPage, $totalSpaces, $toSearch, $searching);
+                }
+
+            }
+
         }
-    } else {
-        accessDenied();
+catch
+    (DAOException $e) {
+    new SpaceShowAllView(array());
+    errorMessage($e->getMessage());
+}
     }
+
+else {
+    accessDenied();
+}
 }
 
-function goToShowAllAndShowError($message) {
+function goToShowAllAndShowError($message)
+{
     showAll();
     errorMessage($message);
 }
 
-function goToShowAllAndShowSuccess($message) {
+function goToShowAllAndShowSuccess($message)
+{
     showAll();
     successMessage($message);
 }

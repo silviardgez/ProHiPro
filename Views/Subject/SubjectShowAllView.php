@@ -9,8 +9,9 @@ class SubjectShowAllView
     private $totalSubjects;
     private $totalPages;
     private $stringToSearch;
+    private $searching;
 
-    function __construct($subjects, $itemsPerPage = NULL, $currentPage = NULL, $totalSubjects = NULL, $toSearch = NULL)
+    function __construct($subjects, $itemsPerPage = NULL, $currentPage = NULL, $totalSubjects = NULL, $toSearch = NULL, $searching=false)
     {
         $this->subjects = $subjects;
         $this->itemsPerPage = $itemsPerPage;
@@ -18,6 +19,7 @@ class SubjectShowAllView
         $this->totalSubjects = $totalSubjects;
         $this->totalPages = ceil($totalSubjects / $itemsPerPage);
         $this->stringToSearch = $toSearch;
+        $this->searching=$searching;
         $this->render();
     }
 
@@ -38,7 +40,7 @@ class SubjectShowAllView
                     <button name="submit" type="submit" class="btn btn-primary" data-translate="Buscar"></button>
                 </form>
 
-                <?php if (!empty($this->stringToSearch)): ?>
+                <?php if ($this->searching): ?>
                     <a class="btn btn-primary" role="button" href="../Controllers/SubjectController.php">
                         <p data-translate="Volver"></p>
                     </a>

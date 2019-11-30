@@ -9,8 +9,9 @@ class SpaceShowAllView
     private $totalSpaces;
     private $totalPages;
     private $stringToSearch;
+    private $searching;
 
-    function __construct($spacesData, $itemsPerPage = NULL, $currentPage = NULL, $totalSpaces = NULL, $toSearch = NULL)
+    function __construct($spacesData, $itemsPerPage = NULL, $currentPage = NULL, $totalSpaces = NULL, $toSearch = NULL, $searching = false)
     {
         $this->spaces = $spacesData;
         $this->itemsPerPage = $itemsPerPage;
@@ -18,6 +19,7 @@ class SpaceShowAllView
         $this->totalSpaces = $totalSpaces;
         $this->totalPages = ceil($totalSpaces / $itemsPerPage);
         $this->stringToSearch = $toSearch;
+        $this->searching = $searching;
         $this->render();
     }
 
@@ -38,17 +40,17 @@ class SpaceShowAllView
                     <button name="submit" type="submit" class="btn btn-primary" data-translate="Buscar"></button>
                 </form>
 
-                <?php if (!empty($this->stringToSearch)): ?>
+                <?php if ($this->searching): ?>
                     <a class="btn btn-primary" role="button" href="../Controllers/SpaceController.php">
                         <p data-translate="Volver"></p>
                     </a>
                 <?php else:
-                if (HavePermission("Space", "ADD")): ?>
-                    <a class="btn btn-success" role="button" href="../Controllers/SpaceController.php?action=add">
-                        <span data-feather="plus"></span>
-                        <p data-translate="Añadir espacio"></p>
-                    </a>
-                <?php endif; endif; ?>
+                    if (HavePermission("Space", "ADD")): ?>
+                        <a class="btn btn-success" role="button" href="../Controllers/SpaceController.php?action=add">
+                            <span data-feather="plus"></span>
+                            <p data-translate="Añadir espacio"></p>
+                        </a>
+                    <?php endif; endif; ?>
 
             </div>
             <div class="table-responsive">
@@ -69,10 +71,10 @@ class SpaceShowAllView
                             <td><?php echo $space->getName(); ?></td>
                             <td><?php echo $space->getBuilding()->getName(); ?></td>
                             <td><?php echo $space->getCapacity(); ?></td>
-                            <?php if($space->isOffice()): ?>
-                            <td data-translate="Sí"></td>
+                            <?php if ($space->isOffice()): ?>
+                                <td data-translate="Sí"></td>
                             <?php else: ?>
-                            <td data-translate="No"></td>
+                                <td data-translate="No"></td>
                             <?php endif; ?>
                             <td class="row">
                                 <?php if (HavePermission("Space", "SHOWCURRENT")) { ?>

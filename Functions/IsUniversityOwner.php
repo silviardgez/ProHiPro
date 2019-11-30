@@ -1,16 +1,22 @@
 <?php
 include_once  "../Models/University/UniversityDAO.php";
+include_once "../Models/University/University.php";
 function IsUniversityOwner()
 {
+    $toret = array();
     $universityDAO = new UniversityDAO();
     try{
         $universities = $universityDAO->showAll();
         foreach ($universities as $university){
             if($university->getUser()->getId() == $_SESSION['login']){
-                return $university;
+                array_push($toret, $university);
             }
         }
-        return false;
+        if (empty($toret)) {
+            return false;
+        } else {
+            return $toret;
+        }
     }
     catch (DAOException $e){
         return false;

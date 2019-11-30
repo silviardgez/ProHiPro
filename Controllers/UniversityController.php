@@ -66,7 +66,7 @@ switch ($action) {
     case "delete":
         if (HavePermission("University", "DELETE")) {
             $university = $universityDAO->show($universityPrimaryKey, $value);
-            if(IsAdmin() || $university == IsUniversityOwner()) {
+            if (IsAdmin() || $university == IsUniversityOwner()) {
                 if (isset($_REQUEST["confirm"])) {
                     try {
                         $universityDAO->delete($universityPrimaryKey, $value);
@@ -85,7 +85,7 @@ switch ($action) {
                         goToShowAllAndShowError($e->getMessage());
                     }
                 }
-            }else {
+            } else {
                 goToShowAllAndShowError("No tienes permiso para eliminar.");
             }
         } else {
@@ -111,9 +111,9 @@ switch ($action) {
             try {
                 $university = $universityDAO->show($universityPrimaryKey, $value);
                 if (!isset($_POST["submit"])) {
-                    if(IsAdmin() || $university == IsUniversityOwner()){
-                        new UniversityEditView($university, $academicCourseData,$userData);
-                    } else{
+                    if (IsAdmin() || $university == IsUniversityOwner()) {
+                        new UniversityEditView($university, $academicCourseData, $userData);
+                    } else {
                         goToShowAllAndShowError("No tienes permiso para editar.");
                     }
                 } else {
@@ -129,7 +129,7 @@ switch ($action) {
             } catch (ValidationException $ve) {
                 goToShowAllAndShowError($ve->getMessage());
             }
-        } else{
+        } else {
             goToShowAllAndShowError("No tienes permiso para editar.");
         }
         break;
@@ -140,10 +140,10 @@ switch ($action) {
             } else {
                 try {
                     $university = new University();
-                    if(!empty($_POST["academic_course_id"])) {
+                    if (!empty($_POST["academic_course_id"])) {
                         $university->setAcademicCourse($academicCourseDAO->show("id", $_POST["academic_course_id"]));
                     }
-                    if(!empty($_POST["name"])) {
+                    if (!empty($_POST["name"])) {
                         $university->setName($_POST["name"]);
                     }
                     showAllSearch($university);
@@ -162,33 +162,60 @@ switch ($action) {
         break;
 }
 
-function showAll() {
+function showAll()
+{
     showAllSearch(NULL);
 }
 
-function showAllSearch($search) {
+function showAllSearch($search)
+{
     if (HavePermission("University", "SHOWALL")) {
         try {
-            $searching=False;
+            $searching = False;
+            $break = false;
             if (!empty($search)) {
                 $searching = True;
             }
             if (!IsAdmin()) {
-                $university = IsUniversityOwner();
-                if(!empty($university)){
-                    $search=$university;
-                }
-                else{
+                $universities = IsUniversityOwner();
+                if (!empty($universities)) {
+                    $searching = False;
+                } else {
                     new UniversityShowAllView(array());
+                    $break = true;
                 }
-                $searching = False;
+
             }
-            $currentPage = getCurrentPage();
-            $itemsPerPage = getItemsPerPage();
-            $toSearch = getToSearch($search);
-            $totalUniversities = $GLOBALS["universityDAO"]->countTotalUniversities($toSearch);
-            $universitiesData = $GLOBALS["universityDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
-            new UniversityShowAllView($universitiesData, $itemsPerPage, $currentPage, $totalUniversities, $toSearch, $searching);
+            if (!$break) {
+                $currentPage = getCurrentPage();
+                $itemsPerPage = getItemsPerPage();
+                $totalUniversities = 0;
+
+                if (!empty($universities) && count($universities) == 1) {
+                    $search = $universities[0];
+                    $toSearch = getToSearch($search);
+                    $totalUniversities = $GLOBALS["universityDAO"]->countTotalUniversities($toSearch);
+                    $universitiesData = $GLOBALS["universityDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
+                    new UniversityShowAllView($universitiesData, $itemsPerPage, $currentPage, $totalUniversities, $toSearch, $searching);
+                } elseif (count($universities) > 1) {
+                    $universitiesData = array();
+                    foreach ($universities as $uni) {
+                        $search = $uni;
+                        $toSearch = getToSearch($search);
+                        $totalUniversities += $GLOBALS["universityDAO"]->countTotalUniversities($toSearch);
+                        $data = $GLOBALS["universityDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
+                        foreach ($data as $dat) {
+                            array_push($universitiesData, $dat);
+                        }
+                    }
+                    new UniversityShowAllView($universitiesData, $itemsPerPage, $currentPage, $totalUniversities, $toSearch, $searching);
+                } else {
+                    $toSearch = getToSearch($search);
+                    $totalUniversities = $GLOBALS["universityDAO"]->countTotalUniversities($toSearch);
+                    $universitiesData = $GLOBALS["universityDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
+                    new UniversityShowAllView($universitiesData, $itemsPerPage, $currentPage, $totalUniversities, $toSearch, $searching);
+                }
+            }
         } catch (DAOException $e) {
             new UniversityShowAllView(array());
             errorMessage($e->getMessage());
@@ -198,12 +225,14 @@ function showAllSearch($search) {
     }
 }
 
-function goToShowAllAndShowError($message) {
+function goToShowAllAndShowError($message)
+{
     showAll();
     errorMessage($message);
 }
 
-function goToShowAllAndShowSuccess($message) {
+function goToShowAllAndShowSuccess($message)
+{
     showAll();
     successMessage($message);
 }

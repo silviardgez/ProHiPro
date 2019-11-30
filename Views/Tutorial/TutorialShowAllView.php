@@ -9,8 +9,9 @@ class TutorialShowAllView
     private $totalTutorials;
     private $totalPages;
     private $stringToSearch;
+    private $searching;
 
-    function __construct($tutorials, $itemsPerPage = NULL, $currentPage = NULL, $totalTutorials = NULL, $toSearch = NULL)
+    function __construct($tutorials, $itemsPerPage = NULL, $currentPage = NULL, $totalTutorials = NULL, $toSearch = NULL, $searching=false)
     {
         $this->tutorials = $tutorials;
         $this->itemsPerPage = $itemsPerPage;
@@ -18,6 +19,7 @@ class TutorialShowAllView
         $this->totalTutorials = $totalTutorials;
         $this->totalPages = ceil($totalTutorials / $itemsPerPage);
         $this->stringToSearch = $toSearch;
+        $this->searching=$searching;
         $this->render();
     }
 
@@ -38,7 +40,7 @@ class TutorialShowAllView
                     <button name="submit" type="submit" class="btn btn-primary" data-translate="Buscar"></button>
                 </form>
 
-                <?php if (!empty($this->stringToSearch)): ?>
+                <?php if ($this->searching): ?>
                     <a class="btn btn-primary" role="button" href="../Controllers/TutorialController.php">
                         <p data-translate="Volver"></p>
                     </a>
