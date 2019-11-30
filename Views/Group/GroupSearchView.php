@@ -26,9 +26,9 @@ class GroupSearchView {
                            maxlength="30" oninput="checkNameEmptyGroup(this)">
                 </div>
                 <div class="form-group">
-                    <label for="subject_id" data-translate="Edificio"></label>
+                    <label for="subject_id" data-translate="Asignatura"></label>
                     <select class="form-control" id="subject_id" name="subject_id"?>
-                        <option data-translate="Introducir edificio" value=""></option>
+                        <option data-translate="Introducir asignatura" value=""></option>
                         <?php foreach ($this->subjects as $subject): ?>
                             <option value="<?php echo $subject->getId() ?>"><?php echo $subject->getName() ?></option>
                         <?php endforeach;?>

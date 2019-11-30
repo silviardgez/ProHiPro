@@ -47,7 +47,7 @@ switch ($action) {
                     $group->setName($_POST["name"]);
                     $group->setCapacity($_POST["capacity"]);
                     $groupDAO->add($group);
-                    goToShowAllAndShowSuccess("Asignatura añadida correctamente.");
+                    goToShowAllAndShowSuccess("Grupo añadido correctamente.");
                 } catch (DAOException $e) {
                     goToShowAllAndShowError($e->getMessage());
                 } catch (ValidationException $ve) {
