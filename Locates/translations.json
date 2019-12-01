@@ -119,10 +119,6 @@
     "en": "Repeat password",
     "gl": "Confirmar contrasinal"
   },
-  "Introducir nombre de usuario": {
-    "en": "Enter username",
-    "gl": "Introducir nome de usuario"
-  },
   "Introducir contenido": {
     "en": "Enter content",
     "gl": "Inserir contido"
@@ -203,6 +199,10 @@
     "en": "No action has been obtained",
     "gl": "Non se obtivo ningunha acción"
   },
+  "No se ha obtenido ningún grupo": {
+    "en": "No group has been obtained",
+    "gl": "Non se obtivo ningún grupo"
+  },
   "Volver": {
     "en": "Back",
     "gl": "Volver"
@@ -222,6 +222,10 @@
   "Insertar funcionalidad": {
     "en": "Add functionality",
     "gl": "Insertar funcionalidade"
+  },
+  "Insertar grupo": {
+    "en": "Add group",
+    "gl": "Engadir grupo"
   },
   "Enviar": {
     "en": "Send",
@@ -422,6 +426,10 @@
   "Listado de asignaturas": {
     "en": "Subjects list",
     "gl": "Listado de materias"
+  },
+  "Listado de grupos": {
+    "en": "Groups list",
+    "gl": "Listado de grupos"
   },
   "Añadir acción-funcionalidad": {
     "en": "Add action-functionality",
@@ -1443,6 +1451,10 @@
     "en": "Delete tutorial",
     "gl": "Eliminar tutoría"
   },
+  "Eliminar grupo": {
+    "en": "Delete group",
+    "gl": "Eliminar grupo"
+  },
   "Edificio editado correctamente.": {
     "en": "Building edited successfully.",
     "gl": "Edificio editado correctamente."
@@ -1475,6 +1487,10 @@
     "en": "Edit tutorial '%c'",
     "gl": "Editar tutoría '%c'"
   },
+  "Editar grupo '%c'": {
+    "en": "Edit group '%c'",
+    "gl": "Editar grupo '%c'"
+  },
   "Editar asignación de profesor": {
     "en": "Edit teacher assignment",
     "gl": "Editar asignación de profesor"
@@ -1487,6 +1503,10 @@
     "en": "Tutorial '%c'",
     "gl": "Tutoría '%c'"
   },
+  "Grupo '%c'": {
+    "en": "Group '%c'",
+    "gl": "Grupo '%c'"
+  },
   "Búsqueda de edificios": {
     "en": "Buildings search",
     "gl": "Procura de edificios"
@@ -1498,6 +1518,10 @@
   "¿Está seguro de que desea eliminar la tutoría %c? Esta acción es permanente y no se puede recuperar.": {
     "en": "Are you sure you want to delete the tutorial %c? This action is permanent and cannot be recovered.",
     "gl": "Está seguro de que desexa eliminar a tutoría %c? Esta acción é permanente e non se pode recuperar."
+  },
+  "¿Está seguro de que desea eliminar el grupo %c? Esta acción es permanente y no se puede recuperar.": {
+    "en": "Are you sure you want to delete the group %c? This action is permanent and cannot be recovered.",
+    "gl": "Está seguro de que desexa eliminar o grupo %c? Esta acción é permanente e non se pode recuperar."
   },
   "Capacidad": {
     "en": "Capacity",
@@ -1558,6 +1582,10 @@
   "Introducir usuario": {
     "en": "Insert user",
     "gl": "Inserir usuario"
+  },
+  "Introducir asignatura": {
+    "en": "Insert subject",
+    "gl": "Inserir asignatura"
   },
   "Introducir acción-funcionalidad": {
     "en": "Insert action-functionality",
@@ -1691,10 +1719,6 @@
     "en": "Validation error. Functionality-Action wrong.",
     "gl": "Error de validación. Funcionalidade-Acción incorrecta."
   },
-  "Error de validación. Id edificio incorrecto.": {
-    "en": "Validation error. Building id wrong.",
-    "gl": "Error de validación. Id edicio incorrecto."
-  },
   "Error de validación. Capacidad incorrecto.": {
     "en": "Validation error. Capacity wrong.",
     "gl": "Error de validación. Capacidade incorrecto."
@@ -1739,6 +1763,10 @@
     "en": "Search degrees",
     "gl": "Búsqueda de titulacións"
   },
+  "Búsqueda de grupos": {
+    "en": "Search groups",
+    "gl": "Búsqueda de grupos"
+  },
   "Editar titulación '%c'": {
     "en": "Edit degree '%c'",
     "gl": "Editar titulación '%c'"
@@ -1754,6 +1782,14 @@
   "Asignatura añadida correctamente.": {
     "en": "Subject added successfully.",
     "gl": "Materia añadida correctamente."
+  },
+  "Grupo añadido correctamente.": {
+    "en": "Group added successfully.",
+    "gl": "Grupo añadido correctamente."
+  },
+  "Grupo eliminado correctamente.": {
+    "en": "Group deleted successfully",
+    "gl": "Grupo eliminado correctamente."
   },
   "Titulación eliminada correctamente.": {
     "en": "Degree deleted successfully",
@@ -1783,6 +1819,10 @@
     "en":"Tutorial edited successfully",
     "gl": "Tutoría editada correctamente."
   },
+  "Grupo editado correctamente.": {
+    "en":"Group edited successfully",
+    "gl": "Grupo editado correctamente."
+  },
   "Error de validación. Id centro incorrecto.": {
     "en": "Validation error. Center id wrong.",
     "gl": "Error de validación. Id centro incorrecto."
@@ -1794,6 +1834,10 @@
   "Error de validación. Créditos incorrectos.": {
     "en": "Validation error. Credits wrong.",
     "gl": "Error de validación. Créditos incorrectos."
+  },
+  "Error de validación. Horas incorrectas.": {
+    "en": "Validation error. Hours wrong.",
+    "gl": "Error de validación. Horas incorrectas."
   },
   "El atributo créditos no puede estar vacío.": {
     "en": "The credits attribute cannot be empty.",
@@ -1922,6 +1966,22 @@
   "No es profesor.": {
     "en": "You aren't teacher",
     "gl": "Non é profesor"
+  },
+  "Añadir grupo": {
+    "en": "Add group",
+    "gl": "Engadir grupo"
+  },
+  "Añadir tutoría": {
+    "en": "Add tutorial",
+    "gl": "Engadir tutoría"
+  },
+  "Insertar tutoría": {
+    "en": "Add tutorial",
+    "gl": "Engadir tutoría"
+  },
+  "Asignatura": {
+    "en": "Subject",
+    "gl": "Asignatura"
   }
 }
 

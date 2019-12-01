@@ -37,7 +37,6 @@ class UserDAO
     }
 
     function canBeLogged($login, $password) {
-        echo $login;
         $result = $this->show("login", $login);
         if (!is_null($result)){
             if ($result->getPassword() != md5($password)){

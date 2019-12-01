@@ -10,8 +10,9 @@ class SubjectTeacherShowAllView
     private $totalPages;
     private $stringToSearch;
     private $subject;
+    private $permission;
 
-    function __construct($subjectTeachers, $itemsPerPage = NULL, $currentPage = NULL, $totalTeachers = NULL, $toSearch = NULL, $subject = NULL)
+    function __construct($subjectTeachers, $itemsPerPage = NULL, $currentPage = NULL, $totalTeachers = NULL, $toSearch = NULL, $subject = NULL, $permission=false)
     {
         $this->subjectTeachers = $subjectTeachers;
         $this->itemsPerPage = $itemsPerPage;
@@ -20,6 +21,7 @@ class SubjectTeacherShowAllView
         $this->totalPages = ceil($totalTeachers / $itemsPerPage);
         $this->stringToSearch = $toSearch;
         $this->subject = $subject;
+        $this->permission=$permission;
         $this->render();
     }
 
@@ -35,7 +37,7 @@ class SubjectTeacherShowAllView
                 <h1 class="h2"
                     data-translate="Profesores de %<?php echo $this->subject->getCode(); ?>%"></h1>
 
-                <?php if (HavePermission("SubjectTeacher", "ADD")): ?>
+                <?php if (HavePermission("SubjectTeacher", "ADD") && $this->permission): ?>
                     <a class="btn btn-success btn-subject" role="button"
                        href="../Controllers/SubjectTeacherController.php?action=add&subject_id=<?php echo $this->subject->getId(); ?>">
                         <span data-feather="plus"></span>

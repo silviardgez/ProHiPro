@@ -18,6 +18,8 @@ include_once '../Views/SubjectTeacher/SubjectTeacherAddView.php';
 include_once '../Views/SubjectTeacher/SubjectTeacherEditView.php';
 include_once '../Views/Common/PaginationView.php';
 include_once '../Functions/HavePermission.php';
+include_once '../Functions/IsAdmin.php';
+include_once '../Functions/IsDepartmentOwner.php';
 include_once '../Functions/OpenDeletionModal.php';
 include_once '../Functions/Redirect.php';
 include_once '../Functions/Messages.php';
@@ -120,12 +122,17 @@ function showAll() {
 function showAllSearch($search) {
     if (HavePermission("SubjectTeacher", "SHOWALL")) {
         try {
+            $permission=false;
+            if(IsAdmin() or IsDepartmentOwner() or $search->getSubject()->getTeacher()->getUser()->getlogin() == $_SESSION['login']){
+                $permission=true;
+            }
+            print_r($search->getSubject()->getCode());
             $currentPage = getCurrentPage();
             $itemsPerPage = getItemsPerPage();
             $toSearch = getToSearch($search);
             $totalTeachers = $GLOBALS["subjectTeacherDAO"]->countTotalSubjectTeachers($toSearch);
             $teachersData = $GLOBALS["subjectTeacherDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
-            new SubjectTeacherShowAllView($teachersData, $itemsPerPage, $currentPage, $totalTeachers, $toSearch, $search->getSubject());
+            new SubjectTeacherShowAllView($teachersData, $itemsPerPage, $currentPage, $totalTeachers, $toSearch, $search->getSubject(),$permission);
         } catch (DAOException $e) {
             new SubjectTeacherShowAllView(array());
             errorMessage($e->getMessage());

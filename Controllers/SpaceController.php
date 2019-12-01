@@ -43,7 +43,10 @@ switch ($action) {
             if (!isset($_POST["submit"])) {
                 if(IsBuildingOwner()!=false){
                     new SpaceAddView(IsBuildingOwner());
-                }else{
+                }elseif (IsAdmin()){
+                    new SpaceAddView($buildingData);
+                }
+                else{
                     new SpaceAddView([]);
                 }
 
@@ -115,7 +118,10 @@ switch ($action) {
                 if (!isset($_POST["submit"])) {
                     if(IsBuildingOwner()!=false){
                         new SpaceEditView($space, IsBuildingOwner());
-                    }else{
+                    }elseif (IsAdmin()){
+                        new SpaceEditView($space,$buildingData);
+                    }
+                    else{
                         new SpaceEditView($space, [$space->getBuilding()]);
                     }
                 } else {

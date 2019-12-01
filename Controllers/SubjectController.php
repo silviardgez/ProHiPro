@@ -243,6 +243,7 @@ function showAllSearch($search)
         try {
             $break = false;
             $searching=false;
+            $departmentOwner=false;
             if(!empty($search)){
                 $searching=true;
             }
@@ -269,6 +270,7 @@ function showAllSearch($search)
                         $toret = $test;
                     }
                 } else {
+                    $departmentOwner=true;
                     $toret = array();
                     $sub = new Subject();
                     foreach ($department as $dep) {
@@ -288,6 +290,8 @@ function showAllSearch($search)
                         }
                     }
                 }
+            }else{
+                $departmentOwner=true;
             }
 
 
@@ -301,7 +305,7 @@ function showAllSearch($search)
                     $toSearch = getToSearch($search);
                     $totalSubjects = $GLOBALS["subjectDAO"]->countTotalSubjects($toSearch);
                     $subjectsData = $GLOBALS["subjectDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
-                    new SubjectShowAllView(unique_array($subjectsData), $itemsPerPage, $currentPage, $totalSubjects, $toSearch, $searching);
+                    new SubjectShowAllView(unique_array($subjectsData), $itemsPerPage, $currentPage, $totalSubjects, $toSearch, $searching,$departmentOwner);
                 } elseif (count($toret) > 1) {
                     $subjectsData = array();
                     foreach ($toret as $sub) {
@@ -313,12 +317,12 @@ function showAllSearch($search)
                             array_push($subjectsData, $dat);
                         }
                     }
-                    new SubjectShowAllView(unique_array($subjectsData), $itemsPerPage, $currentPage, $totalSubjects, $toSearch, $searching);
+                    new SubjectShowAllView(unique_array($subjectsData), $itemsPerPage, $currentPage, $totalSubjects, $toSearch, $searching,$departmentOwner);
                 } else {
                     $toSearch = getToSearch($search);
                     $totalSubjects = $GLOBALS["subjectDAO"]->countTotalSubjects($toSearch);
                     $subjectsData = $GLOBALS["subjectDAO"]->showAllPaged($currentPage, $itemsPerPage, $toSearch);
-                    new SubjectShowAllView($subjectsData, $itemsPerPage, $currentPage, $totalSubjects, $toSearch, $searching);
+                    new SubjectShowAllView($subjectsData, $itemsPerPage, $currentPage, $totalSubjects, $toSearch, $searching,$departmentOwner);
                 }
             }
 

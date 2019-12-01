@@ -57,7 +57,12 @@ class Tutorial
 
     public function setTotalHours($total_hours)
     {
-        $this->total_hours = $total_hours;
+        if (empty($total_hours) || strlen($total_hours) > 3) {
+            throw new ValidationException('Error de validación. Horas incorrectas.');
+        }else{
+            $this->total_hours = $total_hours;
+        }
+
     }
 
 

@@ -10,8 +10,9 @@ class SubjectShowAllView
     private $totalPages;
     private $stringToSearch;
     private $searching;
+    private $departmentOwner;
 
-    function __construct($subjects, $itemsPerPage = NULL, $currentPage = NULL, $totalSubjects = NULL, $toSearch = NULL, $searching=false)
+    function __construct($subjects, $itemsPerPage = NULL, $currentPage = NULL, $totalSubjects = NULL, $toSearch = NULL, $searching=false, $departmentOwner=false)
     {
         $this->subjects = $subjects;
         $this->itemsPerPage = $itemsPerPage;
@@ -20,6 +21,7 @@ class SubjectShowAllView
         $this->totalPages = ceil($totalSubjects / $itemsPerPage);
         $this->stringToSearch = $toSearch;
         $this->searching=$searching;
+        $this->departmentOwner=$departmentOwner;
         $this->render();
     }
 
@@ -39,12 +41,11 @@ class SubjectShowAllView
                     <input type="text" class="form-control" id="search" name="search" data-translate="Texto a buscar">
                     <button name="submit" type="submit" class="btn btn-primary" data-translate="Buscar"></button>
                 </form>
-
                 <?php if ($this->searching): ?>
                     <a class="btn btn-primary" role="button" href="../Controllers/SubjectController.php">
                         <p data-translate="Volver"></p>
                     </a>
-                <?php else:
+                <?php elseif($this->departmentOwner):
                     if (HavePermission("Subject", "ADD")): ?>
                         <a class="btn btn-success" role="button" href="../Controllers/SubjectController.php?action=add">
                             <span data-feather="plus"></span>
@@ -88,11 +89,11 @@ class SubjectShowAllView
                                     <a href="../Controllers/SubjectController.php?action=show&id=<?php echo $subject->getId() ?>">
                                         <span data-feather="eye"></span></a>
                                 <?php }
-                                if (HavePermission("Subject", "EDIT")) { ?>
+                                if (HavePermission("Subject", "EDIT") && ($this->departmentOwner || $subject->getTeacher()->getUser()->getLogin() == $_SESSION['login'])) { ?>
                                     <a href="../Controllers/SubjectController.php?action=edit&id=<?php echo $subject->getId() ?>">
                                         <span data-feather="edit"></span></a>
                                 <?php }
-                                if (HavePermission("Subject", "DELETE")) { ?>
+                                if (HavePermission("Subject", "DELETE") && ($this->departmentOwner || $subject->getTeacher()->getUser()->getLogin() == $_SESSION['login'])) { ?>
                                     <a href="../Controllers/SubjectController.php?action=delete&id=<?php echo $subject->getId() ?>">
                                         <span data-feather="trash-2"></span></a>
                                 <?php } ?>
