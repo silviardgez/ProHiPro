@@ -83,8 +83,6 @@ class TutorialShowAllView
                                     <a href="../Controllers/TutorialController.php?action=delete&id=<?php echo $tutorial->getId() ?>">
                                         <span data-feather="trash-2"></span></a>
                                 <?php } ?>
-                                <a href="../Controllers/TutorialTeacherController.php?tutorial_id=<?php echo $tutorial->getId() ?>">
-                                    <i class="fas fa-chalkboard-teacher"></i></a>
 
                             </td>
                         </tr>
