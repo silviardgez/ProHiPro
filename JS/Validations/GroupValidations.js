@@ -1,5 +1,5 @@
 function checkNameGroup(field) {
-    const name = "name";
+    const name = "nombre";
     const nameDiv = "name";
     if ((toret = checkEmpty(field, name)) === "" && (toret = withOutWhiteSpaces(field, name)) === ""
         && (toret = checkLength(field,'10', name)) === "" && (toret = checkText(field,'10', name)) === "") {
@@ -20,13 +20,14 @@ function checkNameEmptyGroup(field) {
 }
 
 function checkCapacityGroup(field) {
-    const name = "capacity";
+    const name = "capacidad";
+    const nameDiv = "capacity";
     if ((toret = checkEmpty(field, name)) === "" && (toret = checkInteger(field,0, 999, name)) === ""
         && (toret = checkLength(field,'3', name)) === "") {
         deleteMessage(name);
         return true;
     } else {
-        showMessage('capacity-div', name, toret, field);
+        showMessage('capacity-div', nameDiv, toret, field);
         return false;
     }
 }
@@ -40,7 +41,7 @@ function checkCapacityEmptyGroup(field) {
 }
 
 function areGroupFieldsCorrect() {
-    const form = $('#tutorialForm')[0];
+    const form = $('#groupForm')[0];
     if(checkNameGroup(form.elements[0]) && checkCapacityGroup(form.elements[2])) {
         return true;
     } else {
@@ -49,7 +50,7 @@ function areGroupFieldsCorrect() {
 }
 
 function areGroupSearchFieldsCorrect() {
-    const form = $('#subjectSearchForm')[0];
+    const form = $('#groupSearchForm')[0];
     if(checkNameEmptyGroup(form.elements[0]) && checkCapacityEmptyGroup(form.elements[2])){
         return true;
     } else {

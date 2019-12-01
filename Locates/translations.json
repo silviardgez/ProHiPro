@@ -1067,6 +1067,14 @@
     "en": "The dni attribute cannot be empty.",
     "gl": "O atributo dni non pode estar baleiro"
   },
+  "El atributo horas matriculadas no puede estar vacío.": {
+    "en": "The enrolled hours attribute cannot be empty.",
+    "gl": "O atributo horas matriculadas non pode estar baleiro"
+  },
+  "El atributo horas impartidas no puede estar vacío.": {
+    "en": "The hours taught attribute cannot be empty.",
+    "gl": "O atributo horas impartadas non pode estar baleiro"
+  },
   "El atributo dni contiene algún carácter no válido: %c.": {
     "en": "The dni attribute contains some invalid character: %c.",
     "gl": "O atributo dni contén algún caracter non válido: %c."
@@ -1078,6 +1086,14 @@
   "El atributo dedicación no puede tener espacios en blanco.": {
     "en": "The dedication attribute cannot have blanks.",
     "gl": "O atributo adicación non pode ter espazos en branco."
+  },
+  "El atributo horas impartidas no puede tener espacios en blanco.": {
+    "en": "The hours taught attribute cannot have blanks.",
+    "gl": "O atributo horas impartidas non pode ter espazos en branco."
+  },
+  "El atributo horas matriculadas no puede tener espacios en blanco.": {
+    "en": "The enrolled hours attribute cannot have blanks.",
+    "gl": "O atributo horas matriculadas non pode ter espazos en branco."
   },
   "El atributo dedicación no puede estar vacío.": {
     "en": "The dedication attribute cannot be empty.",
@@ -1103,6 +1119,22 @@
     "en": "The login attribute cannot be empty.",
     "gl": "O atributo dni non pode estar baleiro."
   },
+  "El atributo tipo no puede estar vacío.": {
+    "en": "The type attribute cannot be empty.",
+    "gl": "O atributo tipo non pode estar baleiro."
+  },
+  "El atributo area no puede estar vacío.": {
+    "en": "The area attribute cannot be empty.",
+    "gl": "O atributo area non pode estar baleiro."
+  },
+  "El atributo curso no puede estar vacío.": {
+    "en": "The curse attribute cannot be empty.",
+    "gl": "O atributo curso non pode estar baleiro."
+  },
+  "El atributo cuatrimestre no puede estar vacío.": {
+    "en": "The quarter attribute cannot be empty.",
+    "gl": "O atributo cuatrimestre non pode estar baleiro."
+  },
   "El atributo login contiene algún carácter no válido: %c.": {
     "en": "The login attribute contains some invalid character: %c.",
     "gl": "O atributo login contén algún caracter non válido: %c."
@@ -1119,6 +1151,18 @@
     "en": "The password attribute cannot be empty.",
     "gl": "O atributo contrasinal dni non pode estar baleiro."
   },
+  "El atributo efectivos no puede estar vacío.": {
+    "en": "The effective attribute cannot be empty.",
+    "gl": "O atributo efectivos dni non pode estar baleiro."
+  },
+  "El atributo repetidores no puede estar vacío.": {
+    "en": "The repeaters attribute cannot be empty.",
+    "gl": "O atributo repetidores dni non pode estar baleiro."
+  },
+  "El atributo contenido no puede estar vacío.": {
+    "en": "The content attribute cannot be empty.",
+    "gl": "O atributo contenido dni non pode estar baleiro."
+  },
   "El atributo contraseña contiene algún carácter no válido: %c.": {
     "en": "The password attribute contains some invalid character: %c.",
     "gl": "O atributo contrasinal contén algún caracter non válido: %c."
@@ -1129,11 +1173,43 @@
   },
   "El atributo confirmación de contraseña no puede tener espacios en blanco.": {
     "en": "The confirm password attribute cannot have blanks.",
-    "gl": "O atributo confirmación de contrasinal dni non pode ter espazos en branco."
+    "gl": "O atributo confirmación de contrasinal non pode ter espazos en branco."
+  },
+  "El atributo código no puede tener espacios en blanco.": {
+    "en": "The code attribute cannot have blanks.",
+    "gl": "O atributo código non pode ter espazos en branco."
+  },
+  "El atributo repetidores no puede tener espacios en blanco.": {
+    "en": "The repeaters attribute cannot have blanks.",
+    "gl": "O atributo repetidores non pode ter espazos en branco."
+  },
+  "El atributo curso no puede tener espacios en blanco.": {
+    "en": "The curse attribute cannot have blanks.",
+    "gl": "O atributo curso non pode ter espazos en branco."
+  },
+  "El atributo area no puede tener espacios en blanco.": {
+    "en": "The area attribute cannot have blanks.",
+    "gl": "O atributo area non pode ter espazos en branco."
+  },
+  "El atributo cuatrimestre no puede tener espacios en blanco.": {
+    "en": "The quarter attribute cannot have blanks.",
+    "gl": "O atributo cuatrimestre non pode ter espazos en branco."
+  },
+  "El atributo tipo no puede tener espacios en blanco.": {
+    "en": "The type attribute cannot have blanks.",
+    "gl": "O atributo tipo non pode ter espazos en branco."
+  },
+  "El atributo contenido no puede tener espacios en blanco.": {
+    "en": "The content attribute cannot have blanks.",
+    "gl": "O atributo contenido non pode ter espazos en branco."
   },
   "El atributo confirmación de contraseña no puede estar vacío.": {
     "en": "The confirm password attribute cannot be empty.",
     "gl": "O atributo confirmación de contrasinal dni non pode estar baleiro."
+  },
+  "El atributo nombre no puede tener espacios en blanco.": {
+    "en": "The name attribute cannot have blanks.",
+    "gl": "O atributo nombre non pode ter espazos en branco."
   },
   "El atributo confirmación de contraseña contiene algún carácter no válido: %c.": {
     "en": "The confirm password attribute contains some invalid character: %c.",
@@ -1154,6 +1230,10 @@
   "El atributo nombre no puede estar vacío.": {
     "en": "The name attribute cannot be empty.",
     "gl": "O atributo nome non pode estar baleiro."
+  },
+  "El atributo horas totales no puede estar vacío.": {
+    "en": "The total hours attribute cannot be empty.",
+    "gl": "O atributo horas totales non pode estar baleiro."
   },
   "El atributo nombre contiene algún carácter no válido: %c.": {
     "en": "The name attribute contains some invalid character: %c.",
@@ -1767,6 +1847,10 @@
     "en": "Search groups",
     "gl": "Búsqueda de grupos"
   },
+  "Búsqueda de tutorías": {
+    "en": "Search tutorials",
+    "gl": "Búsqueda de tutorías"
+  },
   "Editar titulación '%c'": {
     "en": "Edit degree '%c'",
     "gl": "Editar titulación '%c'"
@@ -1843,6 +1927,10 @@
     "en": "The credits attribute cannot be empty.",
     "gl": "O atributo créditos non pode estar baleiro"
   },
+  "El atributo estudiantes no puede estar vacío.": {
+    "en": "The students attribute cannot be empty.",
+    "gl": "O atributo estudiantes non pode estar baleiro"
+  },
   "El atributo créditos puede tener una longitud máxima de %c.": {
     "en": "The credits attribute can have a maximum length of %c.",
     "gl": "O atributo créditos pode ter unha lonxitude máxima de %c."
@@ -1879,6 +1967,18 @@
     "en": "The capacity attribute has to be a digit.",
     "gl": "O atributo capacidade ten que ser un díxito."
   },
+  "El atributo horas tiene que ser un dígito.": {
+    "en": "The hours attribute has to be a digit.",
+    "gl": "O atributo horas ten que ser un díxito."
+  },
+  "El atributo horas totales tiene que ser un dígito.": {
+    "en": "The total hours attribute has to be a digit.",
+    "gl": "O atributo horas totales ten que ser un díxito."
+  },
+  "El atributo estudiantes tiene que ser un dígito.": {
+    "en": "The students attribute has to be a digit.",
+    "gl": "O atributo estudiantes ten que ser un díxito."
+  },
   "El atributo créditos tiene que ser un dígito.": {
     "en": "The credits attribute has to be a digit.",
     "gl": "O atributo créditos ten que ser un díxito."
@@ -1890,6 +1990,14 @@
   "El atributo créditos no puede ser menor que %c.": {
     "en": "The credits attribute can have a minimum value of %c.",
     "gl": "O atributo créditos pode ter un valor mínimo de %c."
+  },
+  "El atributo efectivos tiene que ser un dígito.": {
+    "en": "The efectives attribute has to be a digit.",
+    "gl": "O atributo efectivos ten que ser un díxito."
+  },
+  "El atributo repetidores tiene que ser un dígito.": {
+    "en": "The efectives attribute has to be a digit.",
+    "gl": "O atributo repetidores ten que ser un díxito."
   },
   "Despacho": {
     "en": "Office",
