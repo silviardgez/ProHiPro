@@ -267,7 +267,7 @@ CREATE TABLE `SUBJECT` (
   `hours` varchar(5) COLLATE latin1_spanish_ci NOT NULL,
   `students` int(3) COLLATE latin1_spanish_ci NOT NULL,
   `degree_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
-  `teacher_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
+  `teacher_id` int(8) COLLATE latin1_spanish_ci NULL,
   PRIMARY KEY(`id`),
   FOREIGN KEY (`degree_id`)
 	REFERENCES `DEGREE`(`id`),

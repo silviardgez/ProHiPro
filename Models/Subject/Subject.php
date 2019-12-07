@@ -1,4 +1,5 @@
 <?php
+
 class Subject
 {
     private $id;
@@ -20,19 +21,21 @@ class Subject
     private $degree;
     private $teacher;
 
-    public function __construct($id=NULL, $code=NULL, $content=NULL, $type=NULL, $department=NULL, $area=NULL, $course=NULL,
-            $quarter=NULL, $credits=NULL, $newRegistration=NULL, $repeaters=NULL, $effectiveStudents=NULL, $enrolledHours=NULL,
-            $taughtHours=NULL, $hours=NULL, $students=NULL, $degree=NULL, $teacher=NULL){
-        if(!empty($id)) {
+    public function __construct($id = NULL, $code = NULL, $content = NULL, $type = NULL, $department = NULL, $area = NULL, $course = NULL,
+                                $quarter = NULL, $credits = NULL, $newRegistration = NULL, $repeaters = NULL, $effectiveStudents = NULL, $enrolledHours = NULL,
+                                $taughtHours = NULL, $hours = NULL, $students = NULL, $degree = NULL, $teacher = NULL)
+    {
+        if (!empty($id)) {
             $this->constructEntity($id, $code, $content, $type, $department, $area, $course, $quarter, $credits,
-                                $newRegistration, $repeaters, $effectiveStudents, $enrolledHours, $taughtHours,
-                                $hours, $students, $degree, $teacher);
+                $newRegistration, $repeaters, $effectiveStudents, $enrolledHours, $taughtHours,
+                $hours, $students, $degree, $teacher);
         }
     }
 
-    public function constructEntity($id=NULL, $code=NULL, $content=NULL, $type=NULL, $department=NULL, $area=NULL, $course=NULL,
-                                $quarter=NULL, $credits=NULL, $newRegistration=NULL, $repeaters=NULL, $effectiveStudents=NULL,
-                                $enrolledHours=NULL, $taughtHours=NULL, $hours=NULL, $students=NULL, $degree=NULL, $teacher=NULL){
+    public function constructEntity($id = NULL, $code = NULL, $content = NULL, $type = NULL, $department = NULL, $area = NULL, $course = NULL,
+                                    $quarter = NULL, $credits = NULL, $newRegistration = NULL, $repeaters = NULL, $effectiveStudents = NULL,
+                                    $enrolledHours = NULL, $taughtHours = NULL, $hours = NULL, $students = NULL, $degree = NULL, $teacher = NULL)
+    {
 
         $this->setId($id);
         $this->setCode($code);
@@ -54,11 +57,13 @@ class Subject
         $this->setTeacher($teacher);
     }
 
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function setId($id) {
+    public function setId($id)
+    {
         $this->id = $id;
     }
 
@@ -229,7 +234,11 @@ class Subject
 
     public function setTeacher($teacher)
     {
-        $this->teacher = $teacher;
+        if ($teacher == NULL) {
+            $this->teacher = new Teacher();
+        } else {
+            $this->teacher = $teacher;
+        }
     }
 
     public static function expose()

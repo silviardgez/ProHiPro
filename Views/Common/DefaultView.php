@@ -295,7 +295,7 @@
 							if (HavePermission("PDA", "SHOWALL")) {
 						?>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="../Controllers/PDAController.php">
                                     <span class="fas fa-file-alt"></span>
                                     PDA
                                 </a>

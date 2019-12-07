@@ -2102,6 +2102,18 @@
   "POD añadido correctamente. Se han producido %c errores": {
     "en": "POD added successfully. There have been %c errors",
     "gl": "POD engadido satisfactoriamente. Producironse %c erros"
+  },
+  "Insertar PDA": {
+    "en": "Insert PDA",
+    "gl": "Engadir PDA"
+  },
+  "PDA": {
+    "en": "PDA",
+    "gl": "PDA"
+  },
+  "PDA añadido correctamente. Se han producido %c errores": {
+    "en": "PDA added successfully. There have been %c errors",
+    "gl": "PDA engadido satisfactoriamente. Producironse %c erros"
   }
 }
 
