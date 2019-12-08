@@ -75,6 +75,7 @@ final class PDATest extends TestCase
         self::$departmentDAO->add(new Department(5, 'D00x10', 'Informática', $teacher));
         self::$departmentDAO->add(new Department(6, 'D00x11', 'Informática', $teacher));
         self::$departmentDAO->add(new Department(7, 'D00x13', 'Informática', $teacher));
+        self::$departmentDAO->add(new Department(8, 'D00h04', 'Informática', $teacher));
 
         $academicCourse = new AcademicCourse(1, '50/51', 2050, 2051);
         self::$academicCourseDAO->add($academicCourse);
@@ -108,48 +109,70 @@ final class PDATest extends TestCase
     {
         foreach ($subjects as $subject_data) {
             $subject_data = preg_split('/\n/', trim($subject_data));
-            print_r($subject_data);
 
             $code = substr($subject_data[0], 0, 7);
             $content = substr($subject_data[0], 9);
-            if (sizeof($subject_data) == 16 && !is_int(intval($subject_data[15]))) {
-                $content = substr($subject_data[0], 9) . ' ' . $subject_data[15];
+            unset($subject_data[0]);
+
+            $subject_data = join(" ", $subject_data);
+            $subject_data = utf8_decode(preg_replace('/Â /', ' ', utf8_encode(trim($subject_data))));
+            $subject_data = preg_split('/\s/', utf8_encode(trim($subject_data)));
+
+            if (!is_numeric($subject_data[sizeof($subject_data) - 1])) {
+                $content = $content . ' ' . $subject_data[sizeof($subject_data) - 1];
             }
-            $type = substr($subject_data[1], 0, 2);
-            $department = substr($subject_data[1], 4, 6);
-            $area = substr($subject_data[1], 12);
-            $quarter = substr($subject_data[2], 0, 1);
-            $credits = intval($subject_data[3]);
-            $newRegistration = intval($subject_data[4]);
-            $repeaters = intval($subject_data[5]);
-            $effectiveStudents = intval($subject_data[6]);
-            $enrolledHours = $subject_data[9];
-            $taughtHours = $subject_data[10];
-            $hours = $credits * 25;
+
+            $reindex = 0;
+
+            if ($subject_data[1][0] != 'D') {
+                $reindex = 1;
+                foreach ($subject_data as $datum) {
+                    if ($datum[0] == 'D') {
+                        $department = $datum;
+                    }
+                }
+            } else {
+                $department = $subject_data[1];
+            }
+
+            $type = $subject_data[0];
+            $area = $subject_data[2 - $reindex];
+            $quarter = $subject_data[3 - $reindex][0];
+            $credits = intval($subject_data[4 - $reindex]);
+            $newRegistration = intval($subject_data[5 - $reindex]);
+            $repeaters = intval($subject_data[6 - $reindex]);
+            $effectiveStudents = intval($subject_data[7 - $reindex]);
+            $enrolledHours = $subject_data[15 - $reindex];
+            $taughtHours = $subject_data[16 - $reindex];
+            $hours = (string)$credits * 25;
             $students = $newRegistration + $repeaters;
 
-            $subject = new Subject();
-            $subject->setCode($code);
-            $subject->setContent($content);
-            $subject->setType($type);
-            $subject->setDepartment(self::$departmentDAO->show("code", $department));
-            $subject->setArea($area);
-            $subject->setCourse($course);
-            $subject->setQuarter($quarter);
-            $subject->setCredits($credits);
-            $subject->setNewRegistration($newRegistration);
-            $subject->setRepeaters($repeaters);
-            $subject->setEffectiveStudents($effectiveStudents);
-            $subject->setEnrolledHours($enrolledHours);
-            $subject->setTaughtHours($taughtHours);
-            $subject->setHours($hours);
-            $subject->setStudents($students);
-            $subject->setDegree(self::$degreeDAO->show("name", $degree));
-            $subject->setTeacher(NULL);
+            try {
+                $subject = new Subject();
+                $subject->setCode($code);
+                $subject->setContent($content);
+                $subject->setType($type);
+                $subject->setDepartment(self::$departmentDAO->show("code", $department));
+                $subject->setArea($area);
+                $subject->setCourse($course);
+                $subject->setQuarter($quarter);
+                $subject->setCredits($credits);
+                $subject->setNewRegistration($newRegistration);
+                $subject->setRepeaters($repeaters);
+                $subject->setEffectiveStudents($effectiveStudents);
+                $subject->setEnrolledHours($enrolledHours);
+                $subject->setTaughtHours($taughtHours);
+                $subject->setHours($hours);
+                $subject->setStudents($students);
+                $subject->setDegree(self::$degreeDAO->show("name", $degree));
+                $subject->setTeacher(NULL);
 
-            print_r($subject);
 
-            self::$subjectDAO->add($subject);
+                self::$subjectDAO->add($subject);
+            } catch (Exception $e) {
+                print_r($subject_data);
+            }
+
         }
     }
 
