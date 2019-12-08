@@ -3,6 +3,7 @@ include_once '../Models/Common/DefaultDAO.php';
 include_once '../Models/Degree/DegreeDAO.php';
 include_once '../Models/Department/DepartmentDAO.php';
 include_once '../Models/Teacher/TeacherDAO.php';
+include_once '../Models/Teacher/Teacher.php';
 include_once 'Subject.php';
 
 class SubjectDAO
@@ -81,7 +82,11 @@ class SubjectDAO
         foreach ($subjects_db as $subject) {
             $degree = $this->degreeDAO->show("id", $subject["degree_id"]);
             $department = $this->departmentDAO->show("id", $subject["department_id"]);
-            $teacher = $this->teacherDAO->show("id", $subject["teacher_id"]);
+            if ($subject["teacher_id"] != NULL){
+                $teacher = $this->teacherDAO->show("id", $subject["teacher_id"]);
+            } else {
+                $teacher = new Teacher();
+            }
             array_push($subjects, new Subject($subject["id"], $subject["code"], $subject["content"],
                 $subject["type"], $department, $subject["area"], $subject["course"], $subject["quarter"],
                 $subject["credits"], $subject["new_registration"], $subject["repeaters"], $subject["effective_students"],

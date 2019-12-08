@@ -100,7 +100,7 @@ final class PDATest extends TestCase
     {
         try {
             exec("rm files/pda-output*");
-//            restoreDB();
+            restoreDB();
         } catch (Exception $e) {
         }
     }
@@ -170,13 +170,12 @@ final class PDATest extends TestCase
 
                 self::$subjectDAO->add($subject);
             } catch (Exception $e) {
-                print_r($subject_data);
             }
 
         }
     }
 
-    public function testCanBeParsed()
+    public function testCanCreateSubjects()
     {
         $htmlContent = file_get_contents("files/pda-outputs.html");
         $DOM = new DOMDocument('1.0', 'UTF-8');
@@ -206,5 +205,9 @@ final class PDATest extends TestCase
         self::loadCourse($subjects_2y, 2, $degree);
         self::loadCourse($subjects_3y, 3, $degree);
         self::loadCourse($subjects_4y, 4, $degree);
+
+        $subjectsCreated = self::$subjectDAO->showAll();
+
+        $this->assertTrue(count($subjectsCreated) == 40);
     }
 }
