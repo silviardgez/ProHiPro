@@ -333,7 +333,7 @@ CREATE TABLE `SCHEDULE` (
 CREATE TABLE `SUBJECT_TEACHER` (
   `id` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
   `subject_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
-  `teacher_id` int(8) COLLATE latin1_spanish_ci NOT NULL UNIQUE,
+  `teacher_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
   `hours` int(2) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY(`id`),
   FOREIGN KEY (`subject_id`)
@@ -341,4 +341,7 @@ CREATE TABLE `SUBJECT_TEACHER` (
   FOREIGN KEY (`teacher_id`)
 	REFERENCES `TEACHER`(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+
+CREATE UNIQUE INDEX uidx_pid
+ON `SUBJECT_TEACHER` (`subject_id`,`teacher_id`); 
 

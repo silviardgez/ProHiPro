@@ -284,7 +284,7 @@
                         </ul>
 						<?php
 							if (HavePermission("PDA", "SHOWALL") ||
-								HavePermission("POD", "SHOWALL") ||
+								HavePermission("PodReader", "SHOWALL") ||
 								HavePermission("Report", "SHOWALL")) {
 						?>
                         <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
@@ -302,10 +302,10 @@
                             </li>
 						<?php } ?>
 						<?php
-							if (HavePermission("POD", "SHOWALL")) {
+							if (HavePermission("PodReader", "SHOWALL")) {
 						?>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="../Controllers/PodReaderController.php">
                                     <span class="fas fa-file-alt"></span>
                                     POD
                                 </a>

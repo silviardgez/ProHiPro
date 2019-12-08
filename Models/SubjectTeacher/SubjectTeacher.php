@@ -69,7 +69,11 @@ class SubjectTeacher
     public function setHours($hours)
     {
         if (empty($hours) || strlen($hours)>2) {
-            throw new ValidationException('Error de validación. Horas incorrectas.');
+            if($hours==0){
+                $this->hours = $hours;
+            }else{
+                throw new ValidationException('Error de validación. Horas incorrectas.');
+            }
         } else {
             $this->hours = $hours;
         }

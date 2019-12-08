@@ -24,7 +24,9 @@ INSERT INTO `FUNCTIONALITY` (`id`, `name`, `description`) VALUES
 ('16', 'SubjectManagement', 'SubjectManagement'),
 ('17', 'SubjectTeacherManagement', 'SubjectTeacherManagement'),
 ('18', 'SubjectGroupManagement', 'SubjectGroupManagement'),
-('19', 'TutorialManagement', 'TutorialManagement');
+('19', 'TutorialManagement', 'TutorialManagement'),
+('20', 'PodReaderManagement', 'PodReaderManagement'),
+('21', 'PDAManagement', 'PDAManagement');
 
 
 
@@ -123,7 +125,11 @@ INSERT INTO `FUNC_ACTION` (`id`,`functionality_id`, `action_id`) VALUES
 ('92','19','2'),
 ('93','19','3'),
 ('94','19','4'),
-('95','19','5');
+('95','19','5'),
+('96','20','1'),
+('97','20','5'),
+('98','21','1'),
+('99','21','5');
 
 INSERT INTO `USER` (`login`,`password`,`dni`, `name`,`surname`,`email`,`address`,`telephone`) VALUES
 ('admin','21232f297a57a5a743894a0e4a801fc3' , '11122233P','Administrador','Administrador', 'admin@admin.com', 'address', '666555444'),
@@ -251,6 +257,10 @@ INSERT INTO `PERMISSION` (`role_id`,`func_action_id`) VALUES
 (1,'93'),
 (1,'94'),
 (1,'95'),
+(1,'96'),
+(1,'97'),
+(1,'98'),
+(1,'99'),
 (2,'46'),
 (2,'47'),
 (2,'48'),
