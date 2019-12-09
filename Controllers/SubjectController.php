@@ -274,26 +274,27 @@ function showAllSearch($search)
                     $toret = array();
                     $sub = new Subject();
                     foreach ($department as $dep) {
+                        $sub = new Subject();
                         $sub->setDepartment($dep);
                         array_push($toret, $sub);
                     }
-                    $sub = IsSubjectOwner();
-                    if (!empty($sub)) {
-                        foreach ($sub as $s) {
-                            array_push($toret, $s);
+                    $sub1 = IsSubjectOwner();
+                    if (!empty($sub1)) {
+                        foreach ($sub1 as $s1) {
+                            array_push($toret, $s1);
                         }
                     }
-                    $sub = IsSubjectTeacher();
-                    if (!empty($sub)) {
-                        foreach ($sub as $s) {
-                            array_push($toret, $s);
+
+                    $sub2 = IsSubjectTeacher();
+                    if (!empty($sub2)) {
+                        foreach ($sub2 as $s2) {
+                            array_push($toret, $s2);
                         }
                     }
                 }
             }else{
                 $departmentOwner=true;
             }
-
 
             if (!$break) {
                 $currentPage = getCurrentPage();

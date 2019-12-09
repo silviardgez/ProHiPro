@@ -167,7 +167,6 @@ function loadCourse($subjects, $course, $degree)
 
     foreach ($subjects as $subject_data) {
         $subject_data = preg_split('/\n/', trim($subject_data));
-        print_r($subject_data);
 
 
         $code = substr($subject_data[0], 0, 7);
@@ -211,7 +210,7 @@ function loadCourse($subjects, $course, $degree)
         try {
             $subject = new Subject();
             $department = $departmentDAO->show("code", $department);
-            $degree = $degreeDAO->show("name", $degree);
+            $degree_obj = $degreeDAO->show("name", $degree);
 
             $subject->setCode($code);
             $subject->setContent($content);
@@ -228,7 +227,7 @@ function loadCourse($subjects, $course, $degree)
             $subject->setTaughtHours($taughtHours);
             $subject->setHours($hours);
             $subject->setStudents($students);
-            $subject->setDegree($degree);
+            $subject->setDegree($degree_obj);
             $subject->setTeacher(NULL);
 
             $subjectDAO->add($subject);

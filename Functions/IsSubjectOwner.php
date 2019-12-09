@@ -9,7 +9,7 @@ function IsSubjectOwner()
     try {
         $subjects = $subjectDAO->showAll();
         foreach ($subjects as $subject) {
-            if ($subject->getTeacher()->getUser()->getId() == $_SESSION['login']) {
+            if (!empty($subject->getTeacher()->getUser()) && $subject->getTeacher()->getUser()->getId() == $_SESSION['login']) {
                 array_push($toret, $subject);
             }
         }

@@ -82,18 +82,22 @@ class SubjectShowAllView
                             <td><?php echo $subject->getQuarter() ;?></td>
                             <td><?php echo $subject->getCredits() ;?></td>
                             <td><?php echo $subject->getDegree()->getName() ;?></td>
-                            <td><?php echo $subject->getTeacher()->getUser()->getName() . " " .
-                                    $subject->getTeacher()->getUser()->getSurname() ;?></td>
+                            <?php if(!empty($subject->getTeacher()->getUser())): ?>
+                                <td><?php echo $subject->getTeacher()->getUser()->getName() . " " .
+                                        $subject->getTeacher()->getUser()->getSurname() ;?></td>
+                            <?php else:?>
+                                <td data-translate="No asignado"></td>
+                            <?php endif; ?>
                             <td class="row">
                                 <?php if (HavePermission("Subject", "SHOWCURRENT")) { ?>
                                     <a href="../Controllers/SubjectController.php?action=show&id=<?php echo $subject->getId() ?>">
                                         <span data-feather="eye"></span></a>
                                 <?php }
-                                if (HavePermission("Subject", "EDIT") && ($this->departmentOwner || $subject->getTeacher()->getUser()->getLogin() == $_SESSION['login'])) { ?>
+                                if (HavePermission("Subject", "EDIT") && ($this->departmentOwner || (!empty($subject->getTeacher()->getUser())  && $subject->getTeacher()->getUser()->getLogin() == $_SESSION['login']))) { ?>
                                     <a href="../Controllers/SubjectController.php?action=edit&id=<?php echo $subject->getId() ?>">
                                         <span data-feather="edit"></span></a>
                                 <?php }
-                                if (HavePermission("Subject", "DELETE") && ($this->departmentOwner || $subject->getTeacher()->getUser()->getLogin() == $_SESSION['login'])) { ?>
+                                if (HavePermission("Subject", "DELETE") && ($this->departmentOwner || (!empty($subject->getTeacher()->getUser()) && $subject->getTeacher()->getUser()->getLogin() == $_SESSION['login']))) { ?>
                                     <a href="../Controllers/SubjectController.php?action=delete&id=<?php echo $subject->getId() ?>">
                                         <span data-feather="trash-2"></span></a>
                                 <?php } ?>
