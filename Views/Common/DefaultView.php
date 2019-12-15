@@ -126,16 +126,6 @@
                             </li>
 							<?php } ?>
 						<?php
-							if (HavePermission("Schedule", "SHOWALL")) {
-						?>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <span class="far fa-calendar"></span>
-                                    <p data-translate="Gestión de horarios"></p>
-                                </a>
-                            </li>
-						<?php } ?>
-						<?php
 							if (HavePermission("Degree", "SHOWALL") ||
                                 HavePermission("Subject", "SHOWALL") ||
                                 HavePermission("SubjectGroup", "SHOWALL")) {

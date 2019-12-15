@@ -49,7 +49,7 @@ class BuildingShowAllView
                         <a class="btn btn-success" role="button"
                            href="../Controllers/BuildingController.php?action=add">
                             <span data-feather="plus"></span>
-                            <p data-translate="Añadir centro"></p>
+                            <p data-translate="Añadir edificio"></p>
                         </a>
                 <?php endif; endif; ?>
 

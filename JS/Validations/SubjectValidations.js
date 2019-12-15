@@ -20,9 +20,29 @@ function checkCodeEmptySubject(field) {
     }
 }
 
+function checkAcronymSubject(field) {
+    const name = "acrónimo";
+    const nameDiv = "acronym";
+    if ((toret = checkLength(field,'8', name)) === "" && (toret = checkText(field,'8', name)) === "") {
+        deleteMessage(nameDiv);
+        return true;
+    } else {
+        showMessage('acronym-div', nameDiv, toret, field);
+        return false;
+    }
+}
+
+function checkAcronymEmptySubject(field) {
+    if (field.value.length > 0) {
+        return checkAcronymSubject(field);
+    } else {
+        return true;
+    }
+}
+
 function checkContentSubject(field) {
     const name = "contenido";
-    if ((toret = checkEmpty(field, name)) === "" && (toret = withOutWhiteSpaces(field, name)) === ""
+    if ((toret = checkEmpty(field, name)) === ""
         && (toret = checkLength(field,'100', name)) === "" && (toret = checkText(field,'100', name)) === "") {
         deleteMessage(name);
         return true;

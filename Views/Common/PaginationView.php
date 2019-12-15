@@ -8,14 +8,18 @@ class PaginationView
     private $controllerName;
     private $url;
 
-    function __construct($itemsPerPage, $currentPage, $totalItems, $controllerName)
+    function __construct($itemsPerPage, $currentPage, $totalItems, $controllerName, $url=NULL)
     {
         $this->itemsPerPage = $itemsPerPage;
         $this->currentPage = $currentPage;
         $this->totalItems = $totalItems;
         $this->totalPages = ceil($totalItems / $itemsPerPage);
         $this->controllerName = $controllerName;
-        $this->url = "../Controllers/". $controllerName . "Controller.php";
+        if ($controllerName === "Schedule") {
+            $this->url = $url;
+        } else {
+            $this->url = "../Controllers/" . $controllerName . "Controller.php?";
+        }
         $this->render();
     }
 
@@ -27,7 +31,7 @@ class PaginationView
             <?php if ($this->totalItems > 0): ?>
                 <!-- Search -->
                 <a class="btn btn-primary button-specific-search" role="button"
-                   href="<?php echo $this->url ?>?action=search">
+                   href="<?php echo $this->url ?>action=search">
                     <span data-feather="search"></span>
                     <p class="btn-show-view" data-translate="Búsqueda específica"></p>
                 </a>
@@ -50,7 +54,7 @@ class PaginationView
                             <li class="page-item">
                                 <?php endif; ?>
                                 <a class="page-link"
-                                   href="<?php echo $this->url ?>?currentPage=<?php echo $this->currentPage - 1 ?>&itemsPerPage=<?php echo $this->itemsPerPage ?>">
+                                   href="<?php echo $this->url ?>currentPage=<?php echo $this->currentPage - 1 ?>&itemsPerPage=<?php echo $this->itemsPerPage ?>">
                                     <span aria-hidden="true">&laquo;</span>
                                 </a>
                             </li>
@@ -61,7 +65,7 @@ class PaginationView
                                     <li class="page-item">
                                 <?php endif; ?>
                                 <a class="page-link"
-                                   href="<?php echo $this->url ?>?currentPage=<?php echo $i ?>&itemsPerPage=<?php echo $this->itemsPerPage ?>">
+                                   href="<?php echo $this->url ?>currentPage=<?php echo $i ?>&itemsPerPage=<?php echo $this->itemsPerPage ?>">
                                     <?php echo $i ?></a>
                                 </li>
                             <?php endfor; ?>
@@ -71,7 +75,7 @@ class PaginationView
                             <li class="page-item">
                                 <?php endif; ?>
                                 <a class="page-link"
-                                   href="<?php echo $this->url ?>?currentPage=<?php echo $this->currentPage + 1 ?>&itemsPerPage=<?php echo $this->itemsPerPage ?>">
+                                   href="<?php echo $this->url ?>currentPage=<?php echo $this->currentPage + 1 ?>&itemsPerPage=<?php echo $this->itemsPerPage ?>">
                                     <span aria-hidden="true">&raquo;</span>
                                 </a>
                             </li>

@@ -35,6 +35,11 @@ class SubjectSearchView
                     <input type="text" class="form-control" id="code" name="code" data-translate="Introducir código"
                            maxlength="10" oninput="checkCodeEmptySubject(this)">
                 </div>
+                <div id="acronym-div" class="form-group">
+                    <label for="content" data-translate="Acrónimo"></label>
+                    <input type="text" class="form-control" id="acronym" name="acronym" data-translate="Introducir acrónimo"
+                           maxlength="8" oninput="checkAcronymEmptySubject(this)">
+                </div>
                 <div id="content-div" class="form-group">
                     <label for="content" data-translate="Contenido"></label>
                     <input type="text" class="form-control" id="content" name="content" data-translate="Introducir contenido"

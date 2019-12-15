@@ -168,6 +168,9 @@ switch ($action) {
                     if (!empty($_POST["code"])) {
                         $subject->setCode($_POST["content"]);
                     }
+                    if (!empty($_POST["acronym"])) {
+                        $subject->setAcronym($_POST["acronym"], NULL);
+                    }
                     if (!empty($_POST["content"])) {
                         $subject->setContent($_POST["content"]);
                     }

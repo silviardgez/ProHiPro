@@ -47,7 +47,7 @@ class SubjectDAO
                         $subject["area"], $subject["course"], $subject["quarter"], $subject["credits"],
                         $subject["new_registration"], $subject["repeaters"], $subject["effective_students"],
                         $subject["enrolled_hours"], $subject["taught_hours"], $subject["hours"],
-                        $subject["students"], $degree, $teacher);
+                        $subject["students"], $degree, $teacher, $subject["acronym"]);
     }
 
     function edit($subject)
@@ -91,7 +91,7 @@ class SubjectDAO
                 $subject["type"], $department, $subject["area"], $subject["course"], $subject["quarter"],
                 $subject["credits"], $subject["new_registration"], $subject["repeaters"], $subject["effective_students"],
                 $subject["enrolled_hours"], $subject["taught_hours"], $subject["hours"], $subject["students"],
-                $degree, $teacher));
+                $degree, $teacher, $subject["acronym"]));
         }
         return $subjects;
     }

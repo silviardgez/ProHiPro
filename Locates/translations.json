@@ -215,6 +215,10 @@
     "en": "Add action",
     "gl": "Engadir acción"
   },
+  "Insertar horario": {
+    "en": "Add schedule",
+    "gl": "Engadir horario"
+  },
   "Insertar profesor": {
     "en": "Add teacher",
     "gl": "Engadir profesor"
@@ -263,6 +267,10 @@
     "en": "Center added successfully.",
     "gl": "Centro engadido correctamente."
   },
+  "Horario añadido correctamente.": {
+    "en": "Schedule added successfully.",
+    "gl": "Horario engadido correctamente."
+  },
   "Departamento añadido correctamente.": {
     "en": "Department added successfully.",
     "gl": "Departamento engadido correctamente."
@@ -274,6 +282,10 @@
   "Tutoría eliminada correctamente.": {
     "en": "Tutorial deleted successfully.",
     "gl": "Tutoría eliminada correctamente."
+  },
+  "Horario eliminado correctamente.": {
+    "en": "Schedule deleted successfully.",
+    "gl": "Horario eliminado correctamente."
   },
   "INFORMACIÓN": {
     "en": "INFO",
@@ -515,6 +527,14 @@
     "en": "Add responsible teacher",
     "gl": "Inserir profesor responsable"
   },
+  "Introducir profesor": {
+    "en": "Add teacher",
+    "gl": "Inserir profesor"
+  },
+  "Introducir aula": {
+    "en": "Add classroom",
+    "gl": "Inserir aula"
+  },
   "Insertar centro": {
     "en": "Add center",
     "gl": "Insertar centro"
@@ -558,6 +578,10 @@
   "Introducir id de rol": {
     "en": "Add role id",
     "gl": "Introducir id de rol"
+  },
+  "Introducir grupo": {
+    "en": "Add group",
+    "gl": "Inserir grupo"
   },
   "Introducir localización": {
     "en": "Add location",
@@ -735,6 +759,10 @@
     "en": "Edit permission assignment",
     "gl": "Editar asignación de permiso"
   },
+  "Editar por rango": {
+    "en": "Edit by range",
+    "gl": "Editar por rango"
+  },
   "Editar universidad '%c'": {
     "en": "Edit university '%c'",
     "gl": "Editar universidad '%c'"
@@ -783,6 +811,10 @@
     "en": "Users search",
     "gl": "Procura de usuarios"
   },
+  "Búsqueda de horarios": {
+    "en": "Schedules search",
+    "gl": "Procura de horarios"
+  },
   "Búsqueda de asignaturas": {
     "en": "Subject search",
     "gl": "Procura de materias"
@@ -794,6 +826,10 @@
   "Eliminar departamento": {
     "en": "Delete department",
     "gl": "Eliminar departamento"
+  },
+  "Eliminar horario": {
+    "en": "Delete schedule",
+    "gl": "Eliminar horario"
   },
   "Departamento": {
     "en": "Department",
@@ -862,6 +898,10 @@
   "¿Está seguro de que desea eliminar el usuario %c? Esta acción es permanente y no se puede recuperar.": {
     "en": "Are you sure you want to delete the user %c? This action is permanent and cannot be recovered.",
     "gl": "Está seguro de que desexa eliminar o usuario %c? Esta acción é permanente e non se pode recuperar."
+  },
+  "¿Está seguro de que desea eliminar el horario %c? Esta acción es permanente y no se puede recuperar.": {
+    "en": "Are you sure you want to delete the schedule %c? This action is permanent and cannot be recovered.",
+    "gl": "Está seguro de que desexa eliminar o horario %c? Esta acción é permanente e non se pode recuperar."
   },
   "¿Está seguro de que desea eliminar el profesor %c? Esta acción es permanente y no se puede recuperar.": {
     "en": "Are you sure you want to delete the teacher %c? This action is permanent and cannot be recovered.",
@@ -1227,6 +1267,14 @@
     "en": "The name attribute only supports alphabetic characters.",
     "gl": "O atributo nome só admite caracteres alfabéticos."
   },
+  "El atributo acrónimo puede tener una longitud máxima de %c.": {
+    "en": "The acronym attribute can have a maximum length of %c.",
+    "gl": "O atributo acrónimo pode ter unha lonxitude máxima de %c."
+  },
+  "El atributo acrónimo solo admite carácteres alfabéticos.": {
+    "en": "The acronym attribute only supports alphabetic characters.",
+    "gl": "O atributo acrónimo só admite caracteres alfabéticos."
+  },
   "El atributo nombre no puede estar vacío.": {
     "en": "The name attribute cannot be empty.",
     "gl": "O atributo nome non pode estar baleiro."
@@ -1399,6 +1447,10 @@
     "en": "Insert hours",
     "gl": "Inserir horas"
   },
+  "Introducir acrónimo": {
+    "en": "Insert acronym",
+    "gl": "Inserir acrónimo"
+  },
   "Código": {
     "en": "Code",
     "gl": "Código"
@@ -1423,6 +1475,10 @@
     "en": "Room edited successfully.",
     "gl": "Espazo editado correctamente."
   },
+  "Horario editado correctamente.": {
+    "en": "Schedule edited successfully.",
+    "gl": "Horario editado correctamente."
+  },
   "Profesor editado correctamente.": {
     "en": "Teacher edited successfully.",
     "gl": "Profesor editado correctamente."
@@ -1434,6 +1490,10 @@
   "Listado de espacios": {
     "en": "Room list",
     "gl": "Listado de espacios"
+  },
+  "Horarios de la asignatura %c": {
+    "en": "Schedules of subject %c",
+    "gl": "Horarios da materia %c"
   },
   "Listado de departamentos": {
     "en": "Departments list",
@@ -1678,6 +1738,10 @@
   "Añadir espacio": {
     "en": "Add room",
     "gl": "Engadir espazo"
+  },
+  "Añadir horario": {
+    "en": "Add schedule",
+    "gl": "Engadir horario"
   },
   "No asignado": {
     "en": "Not assigned",
@@ -2079,10 +2143,6 @@
     "en": "Add group",
     "gl": "Engadir grupo"
   },
-  "Añadir tutoría": {
-    "en": "Add tutorial",
-    "gl": "Engadir tutoría"
-  },
   "Insertar tutoría": {
     "en": "Add tutorial",
     "gl": "Engadir tutoría"
@@ -2114,6 +2174,74 @@
   "PDA añadido correctamente. Se han producido %c errores": {
     "en": "PDA added successfully. There have been %c errors",
     "gl": "PDA engadido satisfactoriamente. Producironse %c erros"
+  },
+  "Acrónimo": {
+    "en": "Acronym",
+    "gl": "Acrónimo"
+  },
+  "Grupo": {
+    "en": "Group",
+    "gl": "Grupo"
+  },
+  "Día": {
+    "en": "Day",
+    "gl": "Día"
+  },
+  "Hora de inicio": {
+    "en": "Start hour",
+    "gl": "Hora de inicio"
+  },
+  "Hora de fin": {
+    "en": "End hour",
+    "gl": "Hora de fin"
+  },
+  "Día de inicio": {
+    "en": "Start day",
+    "gl": "Día de inicio"
+  },
+  "Día de fin": {
+    "en": "End day",
+    "gl": "Día de fin"
+  },
+  "Aula": {
+    "en": "Classroom",
+    "gl": "Aula"
+  },
+  "Horarios": {
+    "en": "Schedules",
+    "gl": "Horarios"
+  },
+  "El aula %c está ocupada los días %c": {
+    "en": "Classroom %c is busy on days %c",
+    "gl": "A aula %c está ocupada os días %c"
+  },
+  "El profesor %c está ocupado los días %c": {
+    "en": "Professor %c is busy on days %c",
+    "gl": "O mestre %c está ocupado os días %c"
+  },
+  "Error al insertar horario": {
+    "en": "Error when add schedule",
+    "gl": "Erro ao insertar horario"
+  },
+  "Ignorar días ocupados e insertar los demás": {
+    "en": "Ignore busy days and insert the rest",
+    "gl": "Ignorar días ocupados e insertar os demáis"
+  },
+  "Cancelar todo": {
+    "en": "Cancel all",
+    "gl": "Cancelar todo"
+  },
+  "No se ha obtenido ningún horario para esta asignatura": {
+    "en": "No schedule has been obtained for this subject",
+    "gl": "Non se obtivo ningún horario para esta materia"
+  },
+  "Horario '%c'": {
+    "en": "Schedule '%c'",
+    "gl": "Horario '%c'"
+  },
+  "Editar horario '%c'": {
+    "en": "Edit schedule '%c'",
+    "gl": "Editar horario '%c'"
   }
 }
 

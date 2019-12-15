@@ -79,7 +79,7 @@ final class GroupTest extends TestCase
         $degree = new Degree(1, 'Grado en Ing. Inf.', $center, 120, 'Grado', 240, $user);
         $degreeDAO->add($degree);
 
-        $subject = new Subject(1, 188899, 'Test', 'A', $department, 'Inf', 1, 1, 6, 60, 30, 90, 150, 100, 50, 150, $degree, $teacher);
+        $subject = new Subject(1, 188899, 'Test', 'A', $department, 'Inf', 1, 1, 6, 60, 30, 90, 150, 100, 50, 150, $degree, $teacher,'ACR');
         self::$subjectDAO->add($subject);
 
         self::$exampleGroup = new SubjectGroup(1, $subject, 'Grupo 1', 30);

@@ -90,11 +90,13 @@ final class PODTest extends TestCase
         $degree = new Degree(1, 'Grao en Traballo Social', $center, 120, 'Grado', 240, $user1);
         self::$degreeDAO->add($degree);
 
-        $subject1 = new Subject(1, 'G110934', 'Test', 'A', $department, 'Inf', 1, 1, 6, 60, 30, 90, 150, 100, 50, 150, $degree, $teacher1);
-        $subject2 = new Subject(2, 'G110406', 'Test', 'A', $department, 'Inf', 1, 1, 6, 60, 30, 90, 150, 100, 50, 150, $degree, $teacher1);
-        $subject3 = new Subject(3, 'G120507', 'Test', 'A', $department, 'Inf', 1, 1, 6, 60, 30, 90, 150, 100, 50, 150, $degree, $teacher1);
-        $subject4 = new Subject(4, 'G220902', 'Test', 'A', $department, 'Inf', 1, 1, 6, 60, 30, 90, 150, 100, 50, 150, $degree, $teacher1);
-        $subject5 = new Subject(5, 'G110901', 'Test', 'A', $department, 'Inf', 1, 1, 6, 60, 30, 90, 150, 100, 50, 150, $degree, $teacher1);
+
+        $subject1 = new Subject(1, 'G110934', 'Test', 'A', $department, 'Inf', 1, 1, 6, 60, 30, 90, 150, 100, 50, 150, $degree, $teacher1,'ACR');
+        $subject2 = new Subject(2, 'G110406', 'Test', 'A', $department, 'Inf', 1, 1, 6, 60, 30, 90, 150, 100, 50, 150, $degree, $teacher1,'ACR');
+        $subject3 = new Subject(3, 'G120507', 'Test', 'A', $department, 'Inf', 1, 1, 6, 60, 30, 90, 150, 100, 50, 150, $degree, $teacher1,'ACR');
+        $subject4 = new Subject(4, 'G220902', 'Test', 'A', $department, 'Inf', 1, 1, 6, 60, 30, 90, 150, 100, 50, 150, $degree, $teacher1,'ACR');
+        $subject5 = new Subject(5, 'G110901', 'Test', 'A', $department, 'Inf', 1, 1, 6, 60, 30, 90, 150, 100, 50, 150, $degree, $teacher1,'ACR');
+
         self::$subjectDAO->add($subject1);
         self::$subjectDAO->add($subject2);
         self::$subjectDAO->add($subject3);

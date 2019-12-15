@@ -60,3 +60,13 @@ form button {
     margin-left: auto !important;
     margin-right: 8px !important;
 }
+
+.btn-schedule {
+    text-align: center;
+    vertical-align: middle !important;
+}
+
+.btn-subject-actions {
+    height: 4rem;
+    align-items: center;
+}

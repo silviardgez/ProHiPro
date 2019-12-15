@@ -13,6 +13,8 @@ include_once '../Models/University/University.php';
 include_once '../Models/Center/Center.php';
 include_once '../Models/Degree/Degree.php';
 include_once '../Models/Subject/Subject.php';
+include_once '../Models/Group/SubjectGroup.php';
+include_once '../Models/Schedule/Schedule.php';
 include_once '../Models/User/UserDAO.php';
 include_once '../Models/Building/BuildingDAO.php';
 include_once '../Models/Teacher/TeacherDAO.php';
@@ -23,29 +25,33 @@ include_once '../Models/University/UniversityDAO.php';
 include_once '../Models/Center/CenterDAO.php';
 include_once '../Models/Degree/DegreeDAO.php';
 include_once '../Models/Subject/SubjectDAO.php';
+include_once '../Models/Group/GroupDAO.php';
+include_once '../Models/Schedule/ScheduleDAO.php';
 include_once '../Models/Common/DAOException.php';
 include_once './testDB.php';
 
-final class SubjectTest extends TestCase
+final class ScheduleTest extends TestCase
 {
     protected static $userDAO;
     protected static $spaceDAO;
     protected static $buildingDAO;
     protected static $teacherDAO;
-    protected static $subjectDAO;
+    protected static $scheduleDAO;
     protected static $departmentDAO;
     protected static $academicCourseDAO;
     protected static $universityDAO;
     protected static $centerDAO;
     protected static $degreeDAO;
-    protected static $exampleSubject;
+    protected static $exampleSchedule;
 
     public static function setUpBeforeClass(): void
     {
         initTestDB();
 
 
-        self::$subjectDAO = new SubjectDAO();
+        $subjectDAO = new SubjectDAO();
+        $groupDAO = new GroupDAO();
+        self::$scheduleDAO = new ScheduleDAO();
         self::$userDAO = new UserDAO();
         self::$spaceDAO = new SpaceDAO();
         self::$buildingDAO = new BuildingDAO();
@@ -84,13 +90,19 @@ final class SubjectTest extends TestCase
         $degree = new Degree(1, 'Grado en Ing. Inf.', $center, 120, 'Grado', 240, $user);
         self::$degreeDAO->add($degree);
 
-        self::$exampleSubject = new Subject(1, 188899, 'Test', 'A', $department, 'Inf', 1, 1, 6, 60, 30, 90, 150, 100, 50, 150, $degree, $teacher, 'ACR');
+        $subject= new Subject(1, 188899, 'Test', 'A', $department, 'Inf', 1, 1, 6, 60, 30, 90, 150, 100, 50, 150, $degree, $teacher, 'ACR');
+        $subjectDAO->add($subject);
+
+        $group = new SubjectGroup(1, $subject, 'Grupo 1', 30);
+        $groupDAO->add($group);
+
+        self::$exampleSchedule = new Schedule(1, $space, $teacher, $group, '12:00:00', '14:00:00', date("2019-12-28"));
     }
 
     protected function tearDown(): void
     {
         try {
-            self::$subjectDAO->delete('id', 1);
+            self::$scheduleDAO->delete('id', 1);
         } catch (Exception $e) {
         }
     }
@@ -105,66 +117,66 @@ final class SubjectTest extends TestCase
 
     public function testCanBeCreated()
     {
-        $subject = clone self::$exampleSubject;
+        $schedule = clone self::$exampleSchedule;
         $this->assertInstanceOf(
-            Subject::class,
-            $subject
+            Schedule::class,
+            $schedule
         );
     }
 
     public function testCanBeAdded()
     {
-        $subject = clone self::$exampleSubject;
-        self::$subjectDAO->add($subject);
-        $subjectCreated = self::$subjectDAO->show("id", 1);
-        $this->assertInstanceOf(Subject::class, $subjectCreated);
+        $schedule = clone self::$exampleSchedule;
+        self::$scheduleDAO->add($schedule);
+        $scheduleCreated = self::$scheduleDAO->show("id", 1);
+        $this->assertInstanceOf(Schedule::class, $scheduleCreated);
     }
 
     public function testCanBeUpdated()
     {
-        $subject = clone self::$exampleSubject;
-        self::$subjectDAO->add($subject);
-        $subject->setQuarter(2);
-        self::$subjectDAO->edit($subject);
-        $subjectCreated = self::$subjectDAO->show("id", 1);
-        $this->assertEquals($subjectCreated->getQuarter(), 2);
+        $schedule = clone self::$exampleSchedule;
+        self::$scheduleDAO->add($schedule);
+        $schedule->setEndHour('13:30:00');
+        self::$scheduleDAO->edit($schedule);
+        $scheduleCreated = self::$scheduleDAO->show("id", 1);
+        $this->assertEquals($scheduleCreated->getEndHour(), '13:30:00');
     }
 
     public function testCanBeDeleted()
     {
-        $subject = clone self::$exampleSubject;
-        self::$subjectDAO->add($subject);
-        self::$subjectDAO->delete("id", 1);
+        $schedule = clone self::$exampleSchedule;
+        self::$scheduleDAO->add($schedule);
+        self::$scheduleDAO->delete("id", 1);
 
         $this->expectException(DAOException::class);
-        $subjectCreated = self::$subjectDAO->show("id", 1);
+        $scheduleCreated = self::$scheduleDAO->show("id", 1);
     }
 
     public function testCanShowNone()
     {
-        $subjectCreated = self::$subjectDAO->showAll();
-        $this->assertEmpty($subjectCreated);
+        $scheduleCreated = self::$scheduleDAO->showAll();
+        $this->assertEmpty($scheduleCreated);
     }
 
     public function testCanShowSeveral()
     {
-        $subject1 = clone self::$exampleSubject;
-        $subject1->setId(2);
-        $subject1->setCode(188002);
-        $subject2 = clone self::$exampleSubject;
-        $subject2->setId(3);
-        $subject2->setCode(188003);
-        $subject3 = clone self::$exampleSubject;
-        $subject3->setId(4);
-        $subject3->setCode(188004);
+        $schedule1 = clone self::$exampleSchedule;
+        $schedule1->setId(2);
+        $schedule1->setEndHour('13:30:00');
+        $schedule2 = clone self::$exampleSchedule;
+        $schedule2->setId(3);
+        $schedule2->setEndHour('14:30:00');
+        $schedule3 = clone self::$exampleSchedule;
+        $schedule3->setId(4);
+        $schedule3->setEndHour('13:40:00');
 
 
-        self::$subjectDAO->add($subject1);
-        self::$subjectDAO->add($subject2);
-        self::$subjectDAO->add($subject3);
+        self::$scheduleDAO->add($schedule1);
+        self::$scheduleDAO->add($schedule2);
+        self::$scheduleDAO->add($schedule3);
 
-        $subjectsCreated = self::$subjectDAO->showAll();
+        $schedulesCreated = self::$scheduleDAO->showAll();
 
-        $this->assertTrue(count($subjectsCreated) == 3);
+        $this->assertTrue(count($schedulesCreated) == 3);
     }
 }

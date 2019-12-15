@@ -268,6 +268,7 @@ CREATE TABLE `SUBJECT` (
   `students` int(3) COLLATE latin1_spanish_ci NOT NULL,
   `degree_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
   `teacher_id` int(8) COLLATE latin1_spanish_ci NULL,
+  `acronym` varchar(8) COLLATE latin1_spanish_ci NOT NULL,
   PRIMARY KEY(`id`),
   FOREIGN KEY (`degree_id`)
 	REFERENCES `DEGREE`(`id`),
@@ -312,11 +313,14 @@ CREATE TABLE `TUTORIAL` (
 -- --------------------------------------------------------
 -- --------------------------------------------------------
 CREATE TABLE `SCHEDULE` (
-  `IdSchedule` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
+  `id` int(8) COLLATE latin1_spanish_ci NOT NULL AUTO_INCREMENT,
   `space_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
   `teacher_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
   `subject_group_id` int(8) COLLATE latin1_spanish_ci NOT NULL,
-  PRIMARY KEY(`IdSchedule`, `space_id`, `teacher_id`, `subject_group_id`),
+  `start_hour` time COLLATE latin1_spanish_ci NOT NULL,
+  `end_hour` time COLLATE latin1_spanish_ci NOT NULL,
+  `day` date COLLATE latin1_spanish_ci NOT NULL,
+  PRIMARY KEY(`id`, `space_id`, `teacher_id`, `subject_group_id`),
   FOREIGN KEY (`space_id`)
 	REFERENCES `SPACE`(`id`),
   FOREIGN KEY (`teacher_id`)
@@ -324,6 +328,7 @@ CREATE TABLE `SCHEDULE` (
   FOREIGN KEY (`subject_group_id`)
 	REFERENCES `SUBJECT_GROUP`(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_spanish_ci;
+ALTER TABLE `SCHEDULE` ADD UNIQUE KEY `uidx` (`subject_group_id`, `day`, `start_hour`, `end_hour`);
 
 -- --------------------------------------------------------
 -- --------------------------------------------------------

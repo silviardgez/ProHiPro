@@ -20,21 +20,22 @@ class Subject
     private $students;
     private $degree;
     private $teacher;
+    private $acronym;
 
     public function __construct($id = NULL, $code = NULL, $content = NULL, $type = NULL, $department = NULL, $area = NULL, $course = NULL,
                                 $quarter = NULL, $credits = NULL, $newRegistration = NULL, $repeaters = NULL, $effectiveStudents = NULL, $enrolledHours = NULL,
-                                $taughtHours = NULL, $hours = NULL, $students = NULL, $degree = NULL, $teacher = NULL)
+                                $taughtHours = NULL, $hours = NULL, $students = NULL, $degree = NULL, $teacher = NULL, $acronym = NULL)
     {
         if (!empty($id)) {
             $this->constructEntity($id, $code, $content, $type, $department, $area, $course, $quarter, $credits,
                 $newRegistration, $repeaters, $effectiveStudents, $enrolledHours, $taughtHours,
-                $hours, $students, $degree, $teacher);
+                $hours, $students, $degree, $teacher, $acronym);
         }
     }
 
     public function constructEntity($id = NULL, $code = NULL, $content = NULL, $type = NULL, $department = NULL, $area = NULL, $course = NULL,
                                     $quarter = NULL, $credits = NULL, $newRegistration = NULL, $repeaters = NULL, $effectiveStudents = NULL,
-                                    $enrolledHours = NULL, $taughtHours = NULL, $hours = NULL, $students = NULL, $degree = NULL, $teacher = NULL)
+                                    $enrolledHours = NULL, $taughtHours = NULL, $hours = NULL, $students = NULL, $degree = NULL, $teacher = NULL, $acronym = NULL)
     {
 
         $this->setId($id);
@@ -55,6 +56,7 @@ class Subject
         $this->setStudents($students);
         $this->setDegree($degree);
         $this->setTeacher($teacher);
+        $this->setAcronym($acronym, NULL);
     }
 
     public function getId()
@@ -85,6 +87,7 @@ class Subject
     public function setContent($content)
     {
         $this->content = $content;
+        $this->setAcronym(NULL, $content);
     }
 
     public function getType()
@@ -239,6 +242,35 @@ class Subject
         } else {
             $this->teacher = $teacher;
         }
+    }
+
+    public function getAcronym()
+    {
+        return $this->acronym;
+    }
+
+    public function setAcronym($acronym, $subjectName)
+    {
+        if($acronym !== NULL) {
+            $this->acronym = $acronym;
+        } else {
+            $this->acronym = $this->acronym($subjectName);
+        }
+    }
+
+    private function acronym($longName)
+    {
+        $letters=array();
+        $words=explode(' ', $longName);
+        foreach($words as $word)
+        {
+            if(strlen($word) > 2 && $word !== "del") {
+                $word = (substr($word, 0, 1));
+                array_push($letters, $word);
+            }
+        }
+        $shortName = strtoupper(implode($letters));
+        return $shortName;
     }
 
     public static function expose()

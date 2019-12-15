@@ -59,14 +59,19 @@ class SubjectShowAllView
                     <thead>
                     <tr>
                         <th><label data-translate="Código"></label></th>
+                        <th><label data-translate="Acrónimo"></label></th>
                         <th><label data-translate="Contenido"></label></th>
                         <th><label data-translate="Tipo"></label></th>
-                        <th><label data-translate="Área"></label></th>
                         <th><label data-translate="Curso"></label></th>
                         <th><label data-translate="Cuatrimestre"></label></th>
                         <th><label data-translate="Créditos"></label></th>
                         <th><label data-translate="Titulación"></label></th>
                         <th><label data-translate="Profesor responsable"></label></th>
+                        <?php
+							if (HavePermission("Schedule", "SHOWALL")):
+						?>
+                        <th><label data-translate="Horarios"></label></th>
+                        <?php endif; ?>
                         <th class="actions-row"><label data-translate="Acciones"></label></th>
                     </tr>
                     </thead>
@@ -75,9 +80,9 @@ class SubjectShowAllView
                     <?php foreach ($this->subjects as $subject): ?>
                         <tr>
                             <td><?php echo $subject->getCode() ;?></td>
+                            <td><?php echo $subject->getAcronym(); ?></td>
                             <td><?php echo $subject->getContent() ;?></td>
                             <td><?php echo $subject->getType() ;?></td>
-                            <td><?php echo $subject->getArea() ;?></td>
                             <td><?php echo $subject->getCourse() ;?></td>
                             <td><?php echo $subject->getQuarter() ;?></td>
                             <td><?php echo $subject->getCredits() ;?></td>
@@ -88,7 +93,13 @@ class SubjectShowAllView
                             <?php else:?>
                                 <td data-translate="No asignado"></td>
                             <?php endif; ?>
-                            <td class="row">
+                            <?php
+							    if (HavePermission("Schedule", "SHOWALL")):
+						    ?>
+                            <td class="btn-schedule"><a href="../Controllers/ScheduleController.php?subject=<?php echo $subject->getId() ?>">
+                                    <i class="fas fa-calendar-alt"></i></a></td>
+                            <?php endif; ?>
+                            <td class="row btn-subject-actions">
                                 <?php if (HavePermission("Subject", "SHOWCURRENT")) { ?>
                                     <a href="../Controllers/SubjectController.php?action=show&id=<?php echo $subject->getId() ?>">
                                         <span data-feather="eye"></span></a>
