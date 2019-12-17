@@ -302,17 +302,17 @@
                             </li>
 						<?php } ?>
 						<?php
-							if (HavePermission("Report", "SHOWALL")) {
+							//if (HavePermission("Report", "SHOWALL")) {
 						?>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="../Controllers/ReportController.php">
                                     <span class="fas fa-file-alt"></span>
                                     <p data-translate="Informes"></p>
                                 </a>
                             </li>
 						<?php } ?>
                         </ul>
-						<?php } ?>
+						<?php //} ?>
                     </div>
                 </nav>
             </div>
