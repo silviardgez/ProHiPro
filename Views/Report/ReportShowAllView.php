@@ -91,7 +91,7 @@ class ReportShowAllView
                 <?php endif; ?>
 
                 <a class="btn btn-primary button-specific-search" role="button"
-                   href="../Controllers/ReportController.php?action=downloadCSV">
+                   href="../Functions/ExportCSV.php">
                     <span data-feather="search"></span>
                     <p class="btn-show-view" data-translate="Descargar csv"></p>
                 </a>
