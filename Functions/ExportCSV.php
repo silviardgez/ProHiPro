@@ -1,10 +1,9 @@
 <?php
+include '../Models/User/User.php';
 
-array_to_csv_download(array(
-    array(1,2,3,4), // this array is going to be the first row
-    array(1,2,3,4)), // this array is going to be the second row
-    "numbers.csv"
-);
+$data =unserialize(base64_decode($_POST["data"]));
+
+array_to_csv_download($data,"numbers.csv");
 
 
 function array_to_csv_download($array, $filename = "export.csv", $delimiter=";") {
@@ -13,16 +12,13 @@ function array_to_csv_download($array, $filename = "export.csv", $delimiter=";")
     // loop over the input array
     foreach ($array as $line) {
         // generate csv lines from the inner arrays
-        fputcsv($f, $line, $delimiter);
+        $set=[$line->getName(),$line->getSurname()];
+        fputcsv($f, $set, $delimiter);
     }
-    // reset the file pointer to the start of the file
-    fseek($f, 0);
     // tell the browser it's going to be a csv file
     header('Content-Type: application/csv');
     // tell the browser we want to save it instead of displaying it
     header('Content-Disposition: attachment; filename="'.$filename.'";');
-    // make php send the generated csv lines to the browser
-    echo fpassthru($f);
     fclose($f);
     exit;
 }

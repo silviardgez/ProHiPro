@@ -1,5 +1,6 @@
 <?php
 include_once '../Functions/HavePermission.php';
+//include_once '../Functions/ExportCSV.php';
 
 class ReportShowAllView
 {
@@ -90,11 +91,11 @@ class ReportShowAllView
                     <p data-translate="No se ha obtenido ningún usuario">.</p>
                 <?php endif; ?>
 
-                <a class="btn btn-primary button-specific-search" role="button"
-                   href="../Functions/ExportCSV.php">
-                    <span data-feather="search"></span>
-                    <p class="btn-show-view" data-translate="Descargar csv"></p>
-                </a>
+                <form class="row" action='../Functions/ExportCSV.php' method='POST'>
+                    <input type="hidden" name="data" value="<?php echo base64_encode(serialize($this->users))?>"/>
+                    <button name="submit" type="submit" class="btn btn-primary" data-translate="Descargar csv"></button>
+                </form>
+
 
                 <?php new PaginationView($this->itemsPerPage, $this->currentPage, $this->totalUsers,
                     "User") ?>
