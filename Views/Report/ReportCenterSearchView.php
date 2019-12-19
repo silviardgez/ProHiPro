@@ -20,7 +20,7 @@ class ReportCenterSearchView {
             <form id="universitySearchForm" action='../Controllers/ReportController.php?action=search' method='POST'">
                 <div class="form-group">
                     <label for="academic_course_id" data-translate="Universidad"></label>
-                    <select class="form-control" id="academic_course_id" name="academic_course_id"?>
+                    <select class="form-control" id="university" name="university"?>
                         <option data-translate="Introducir universidad" value=""></option>
                         <?php foreach ($this->universities as $university): ?>
                             <option value="<?php echo $university->getId() ?>"><?php echo $university->getName() ?></option>
