@@ -28,8 +28,8 @@ class ReportCenterShowAllView
                     <thead>
                     <tr>
                         <th><label data-translate="Nombre"></label></th>
-                        <th><label data-translate="Curso académico"></label></th>
-                        <th><label data-translate="Responsable"></label></th>
+                        <th><label data-translate="Universidad"></label></th>
+                        <th><label data-translate="Edificio"></label></th>
                     </tr>
                     </thead>
                     <?php if (!empty($this->universities)): ?>
@@ -37,8 +37,8 @@ class ReportCenterShowAllView
                     <?php foreach ($this->universities as $university): ?>
                         <tr>
                             <td><?php echo $university->getName() ;?></td>
-                            <td><?php echo $university->getAcademicCourse()->getAcademicCourseAbbr() ;?></td>
-                            <td><?php echo $university->getUser()->getName() . " " . $university->getUser()->getSurname() ;?></td>
+                            <td><?php echo $university->getUniversity() ;?></td>
+                            <td><?php echo $university->getBuilding() ;?></td>
                         </tr>
                     <?php endforeach; ?>
                     </tbody>
