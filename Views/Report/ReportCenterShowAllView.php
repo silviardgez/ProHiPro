@@ -4,22 +4,10 @@ include_once '../Functions/HavePermission.php';
 class ReportCenterShowAllView
 {
     private $universities;
-    private $itemsPerPage;
-    private $currentPage;
-    private $totalUniversities;
-    private $totalPages;
-    private $stringToSearch;
-    private $searching;
 
-    function __construct($universitiesData, $itemsPerPage = NULL, $currentPage = NULL, $totalUniversities = NULL, $toSearch = NULL, $searching = False)
+    function __construct($universitiesData)
     {
         $this->universities = $universitiesData;
-        $this->itemsPerPage = $itemsPerPage;
-        $this->currentPage = $currentPage;
-        $this->totalUniversities = $totalUniversities;
-        $this->totalPages = ceil($totalUniversities / $itemsPerPage);
-        $this->stringToSearch = $toSearch;
-        $this->searching = $searching;
         $this->render();
     }
 
@@ -39,19 +27,6 @@ class ReportCenterShowAllView
                     <input type="text" class="form-control" id="search" name="search" data-translate="Texto a buscar">
                     <button name="submit" type="submit" class="btn btn-primary" data-translate="Buscar"></button>
                 </form>
-
-                <?php if ($this->searching): ?>
-                    <a class="btn btn-primary" role="button" href="../Controllers/UniversityController.php">
-                        <p data-translate="Volver"></p>
-                    </a>
-                <?php else:
-                    if (HavePermission("University", "ADD")): ?>
-                        <a class="btn btn-success" role="button"
-                           href="../Controllers/UniversityController.php?action=add">
-                            <span data-feather="plus"></span>
-                            <p data-translate="Añadir universidad"></p>
-                        </a>
-                    <?php endif; endif; ?>
 
             </div>
             <div class="table-responsive">
