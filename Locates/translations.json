@@ -2250,6 +2250,10 @@
   "Seleccionar entidad": {
     "en": "Select entity",
     "gl": "Seleccionar entidade"
+  },
+  "No se ha obtenido ningun resultado": {
+    "en": "No result has been obtained.",
+    "gl": "Non se obtivo ningún resultado"
   }
 }
 

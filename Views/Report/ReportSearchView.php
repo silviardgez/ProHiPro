@@ -19,6 +19,7 @@ class ReportSearchView {
                     <label for="login" data-translate="Seleccionar entidad""></label>
                     <select class="form-control" id="entity" name="entity">
                         <option value="center" data-translate="Centro"></option>
+                        <option value="degree" data-translate="Titulación"></option>
                     </select>
                 </div>
                 <button name="submit" type="submit" class="btn btn-primary" data-translate="Enviar"></button>
