@@ -38,6 +38,7 @@ $centerDAO = new CenterDAO();
 
 //Data required
 $universityData = $universityDAO->showAll();
+$centerData = $centerDAO->showAll();
 
 $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "";
 switch ($action) {
@@ -70,7 +71,7 @@ switch ($action) {
 
                 case "degree":
                     if (!isset($_POST["university"])) {
-                        new ReportDegreeSearchView($universityData);
+                        new ReportDegreeSearchView($universityData, $centerData);
                     } else {
                         try {
                             $sql = "SELECT CENTER.* FROM CENTER";
