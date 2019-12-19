@@ -2242,6 +2242,14 @@
   "Editar horario '%c'": {
     "en": "Edit schedule '%c'",
     "gl": "Editar horario '%c'"
+  },
+  "Generación de informes": {
+    "en": "Reports generation",
+    "gl": "Xeración de informes"
+  },
+  "Seleccionar entidad": {
+    "en": "Select entity",
+    "gl": "Seleccionar entidade"
   }
 }
 
