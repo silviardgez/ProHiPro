@@ -26,6 +26,7 @@ class ReportCenterSearchView {
                             <option value="<?php echo $university->getId() ?>"><?php echo $university->getName() ?></option>
                         <?php endforeach;?>
                     </select>
+                    <input type="hidden" id="entity" name='entity' value="center"/>
                 </div>
                 <button name="submit" type="submit" class="btn btn-primary" data-translate="Enviar"></button>
             </form>

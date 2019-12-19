@@ -67,7 +67,7 @@ class DegreeDAO
         $this->defaultDAO->checkDependencies("degree", $value);
     }
 
-    private function getDegreesFromDB($degreesDB)
+    public function getDegreesFromDB($degreesDB)
     {
         $degrees = array();
         foreach ($degreesDB as $degree) {

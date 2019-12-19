@@ -1,5 +1,5 @@
 <?php
-class ReporDegreeSearchView {
+class ReportDegreeSearchView {
     private $universities;
     private $centers;
 

@@ -61,7 +61,7 @@ class CenterDAO
         $this->defaultDAO->checkDependencies("center", $value);
     }
 
-    private function getCentersFromDB($centersDB) {
+     public function getCentersFromDB($centersDB) {
         $centers = array();
         foreach ($centersDB as $center) {
             $university = $this->universityDAO->show("id", $center["university_id"]);
