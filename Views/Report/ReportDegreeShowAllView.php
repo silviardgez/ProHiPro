@@ -40,7 +40,7 @@ class ReportDegreeShowAllView
                     <?php foreach ($this->universities as $university): ?>
                         <tr>
                             <td><?php echo $university->getName() ;?></td>
-                            <td><?php echo $university->getCenter();?></td>
+                            <td><?php echo $university->getCenter()->getName();?></td>
                             <td><?php echo $university->getCapacity() ;?></td>
                             <td><?php echo $university->getDescription() ;?></td>
                             <td><?php echo $university->getCredits() ;?></td>
@@ -55,7 +55,7 @@ class ReportDegreeShowAllView
 
                 <form class="row" action='../Functions/ExportCSV.php' method='POST'>
                     <input type="hidden" name="data" value="<?php echo base64_encode(serialize($this->universities))?>"/>
-                    <button name="submit" type="submit" class="btn btn-primary" data-translate="Descargar csv"></button>
+                    <button name="submit" type="submit" class="btn btn-primary" data-translate="Descargar CSV"></button>
                 </form>
 
             </div>
