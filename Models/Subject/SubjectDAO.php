@@ -76,7 +76,7 @@ class SubjectDAO
         $this->defaultDAO->checkDependencies("subject", $value);
     }
 
-    private function getSubjectsFromDB($subjects_db)
+    public function getSubjectsFromDB($subjects_db)
     {
         $subjects = array();
         foreach ($subjects_db as $subject) {

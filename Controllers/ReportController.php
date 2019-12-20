@@ -11,6 +11,8 @@ include_once '../Models/Common/DAOException.php';
 include_once '../Models/University/UniversityDAO.php';
 include_once '../Models/Center/CenterDAO.php';
 include_once '../Models/Degree/DegreeDAO.php';
+include_once '../Models/Subject/SubjectDAO.php';
+include_once '../Models/Department/DepartmentDAO.php';
 include_once '../Views/Common/Head.php';
 include_once '../Views/Common/DefaultView.php';
 include_once '../Views/Report/ReportShowAllView.php';
@@ -37,10 +39,13 @@ include_once '../Functions/GetReportResults.php';
 $universityDAO = new UniversityDAO();
 $centerDAO = new CenterDAO();
 $degreeDAO = new DegreeDAO();
-
+$deparmentDAO = new DepartmentDAO();
+$subjectDAO = new SubjectDAO();
 //Data required
 $universityData = $universityDAO->showAll();
 $centerData = $centerDAO->showAll();
+$degreeData = $degreeDAO->showAll();
+$departmentData = $deparmentDAO->showAll();
 
 $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "";
 switch ($action) {
@@ -62,7 +67,6 @@ switch ($action) {
                             $reportDump = returnData($sql);
                             $centers = $centerDAO->getCentersFromDB($reportDump);
                             new ReportCenterShowAllView($centers);
-                            goToShowAllAndShowSuccess("Departamento añadido correctamente.");
                         } catch (DAOException $e) {
                             goToShowAllAndShowError($e->getMessage());
                         } catch (ValidationException $ve) {
@@ -80,20 +84,74 @@ switch ($action) {
                             $universityId = $_POST["university"];
                             $centerId = $_POST["center"];
                             if ($universityId != "" and $centerId == "") {
-                                $sql .= ", UNIVERSITY u, CENTER c WHERE d.center_id=c.id AND c.university_id=" . $universityId;
+                                $sql .= ", CENTER c WHERE d.center_id=c.id AND c.university_id=" . $universityId;
                             } elseif ($universityId != "" and $centerId != "") {
-                                $sql .= ", UNIVERSITY u, CENTER c WHERE d.center_id=".$centerId." AND c.university_id=" . $universityId;
+                                $sql .= ", CENTER c WHERE d.center_id=" . $centerId . " AND c.university_id=" . $universityId;
                             } elseif ($universityId == "" and $centerId != "") {
-                                $sql .= " WHERE d.center_id=".$centerId;
+                                $sql .= " WHERE d.center_id=" . $centerId;
                             }
-
-                            print($sql);
 
                             $reportDump = returnData($sql . ";");
                             $degrees = $degreeDAO->getDegreesFromDB($reportDump);
 
                             new ReportDegreeShowAllView($degrees);
-                            goToShowAllAndShowSuccess("Departamento añadido correctamente.");
+                        } catch (DAOException $e) {
+                            goToShowAllAndShowError($e->getMessage());
+                        } catch (ValidationException $ve) {
+                            goToShowAllAndShowError($ve->getMessage());
+                        }
+                    }
+                    break;
+
+                case "subject":
+                    if (!isset($_POST["degree"])) {
+                        new ReportSubjectSearchView($degreeData, $departmentData);
+                    } else {
+                        try {
+                            $sql = "SELECT s.* FROM Subject s";
+                            $degreeId = $_POST["degree"];
+                            $departmentId = $_POST["department"];
+                            $type = $_POST["type"];
+                            $quarter = $_POST["quarter"];
+                            $course = $_POST["course"];
+
+                            $is_first_condition = true;
+
+                            if ($departmentId != "" and $degreeId == "") {
+                                $sql .= ", DEPARTMENT dep, DEGREE d WHERE s.degree_id=d.id AND d.department_id=" . $departmentId;
+                                $is_first_condition = false;
+                            } elseif ($departmentId != "" and $degreeId != "") {
+                                $sql .= ", DEPARTMENT dep, DEGREE d WHERE s.degree_id=" . $degreeId . " AND d.department_id=" . $departmentId;
+                                $is_first_condition = false;
+                            } elseif ($departmentId == "" and $degreeId != "") {
+                                $sql .= " WHERE s.degree_id=" . $degreeId;
+                                $is_first_condition = false;
+                            }
+
+                            if($type != "" and $is_first_condition) {
+                                $sql .= " WHERE s.type=" . $type;
+                                $is_first_condition = false;
+                            } elseif($type != "") {
+                                $sql .= " AND s.type=" . $type;
+                            }
+                            if($quarter != "" and $is_first_condition) {
+                                $sql .= " WHERE s.quarter=" . $quarter;
+                                $is_first_condition = false;
+                            } elseif($quarter != "") {
+                                $sql .= " AND s.quarter=" . $quarter;
+                            }
+                            if($course != "" and $is_first_condition) {
+                                $sql .= " WHERE s.course=" . $course;
+                            } elseif($course != "") {
+                                $sql .= " AND s.course=" . $course;
+                            }
+
+                            print($sql);
+
+                            $reportDump = returnData($sql . ";");
+                            $subjects = $subjectDAO->getSubjectsFromDB($reportDump);
+
+                            new ReportSubjectSearchView($subjects);
                         } catch (DAOException $e) {
                             goToShowAllAndShowError($e->getMessage());
                         } catch (ValidationException $ve) {
