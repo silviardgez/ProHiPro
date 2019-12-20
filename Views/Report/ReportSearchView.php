@@ -20,6 +20,7 @@ class ReportSearchView {
                     <select class="form-control" id="entity" name="entity">
                         <option value="center" data-translate="Centro"></option>
                         <option value="degree" data-translate="Titulación"></option>
+                        <option value="subject" data-translate="Asignatura"></option>
                     </select>
                 </div>
                 <button name="submit" type="submit" class="btn btn-primary" data-translate="Enviar"></button>

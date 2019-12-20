@@ -38,6 +38,7 @@ class ReportSubjectSearchView
             <div class="form-group">
                 <label for="department_id" data-translate="Departamento"></label>
                 <select class="form-control" id="department" name="department" ?>
+                    <option data-translate="Introducir departamento" value=""></option>
                     <?php foreach ($this->departments as $department): ?>
                         <option value="<?php echo $department->getId() ?>">
                             <?php echo $department->getName();?></option>
@@ -47,17 +48,17 @@ class ReportSubjectSearchView
             <div id="type-div" class="form-group">
                 <label for="type" data-translate="Tipo"></label>
                 <input type="text" class="form-control" id="type" name="type" data-translate="Introducir tipo"
-                       required maxlength="2" oninput="checkTypeSubject(this)">
+                       maxlength="2" oninput="checkTypeSubject(this)">
             </div>
             <div id="course-div" class="form-group">
                 <label for="course" data-translate="Curso"></label>
                 <input type="text" class="form-control" id="course" name="course" data-translate="Introducir curso"
-                       required maxlength="10" oninput="checkCourseSubject(this)">
+                       maxlength="10" oninput="checkCourseSubject(this)">
             </div>
             <div id="quarter-div" class="form-group">
                 <label for="quarter" data-translate="Cuatrimestre"></label>
                 <input type="text" class="form-control" id="quarter" name="quarter" data-translate="Introducir cuatrimestre"
-                       required maxlength="3" oninput="checkQuarterSubject(this)">
+                       maxlength="3" oninput="checkQuarterSubject(this)">
             </div>
             <input type="hidden" id="entity" name="entity" value="subject"/>
             <button name="submit" type="submit" class="btn btn-primary" data-translate="Enviar"></button>

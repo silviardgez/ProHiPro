@@ -21,6 +21,8 @@ include_once '../Views/Report/ReportCenterSearchView.php';
 include_once '../Views/Report/ReportCenterShowAllView.php';
 include_once '../Views/Report/ReportDegreeSearchView.php';
 include_once '../Views/Report/ReportDegreeShowAllView.php';
+include_once '../Views/Report/ReportSubjectSearchView.php';
+include_once '../Views/Report/ReportSubjectShowAllView.php';
 include_once '../Views/User/UserShowAllView.php';
 include_once '../Views/User/UserAddView.php';
 include_once '../Views/User/UserShowView.php';
@@ -39,13 +41,13 @@ include_once '../Functions/GetReportResults.php';
 $universityDAO = new UniversityDAO();
 $centerDAO = new CenterDAO();
 $degreeDAO = new DegreeDAO();
-$deparmentDAO = new DepartmentDAO();
+$departmentDAO = new DepartmentDAO();
 $subjectDAO = new SubjectDAO();
 //Data required
 $universityData = $universityDAO->showAll();
 $centerData = $centerDAO->showAll();
 $degreeData = $degreeDAO->showAll();
-$departmentData = $deparmentDAO->showAll();
+$departmentData = $departmentDAO->showAll();
 
 $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "";
 switch ($action) {
@@ -108,7 +110,7 @@ switch ($action) {
                         new ReportSubjectSearchView($degreeData, $departmentData);
                     } else {
                         try {
-                            $sql = "SELECT s.* FROM Subject s";
+                            $sql = "SELECT s.* FROM SUBJECT s";
                             $degreeId = $_POST["degree"];
                             $departmentId = $_POST["department"];
                             $type = $_POST["type"];
@@ -149,9 +151,12 @@ switch ($action) {
                             print($sql);
 
                             $reportDump = returnData($sql . ";");
+
+                            print($reportDump);
+
                             $subjects = $subjectDAO->getSubjectsFromDB($reportDump);
 
-                            new ReportSubjectSearchView($subjects);
+                            new ReportSubjectShowAllView($subjects);
                         } catch (DAOException $e) {
                             goToShowAllAndShowError($e->getMessage());
                         } catch (ValidationException $ve) {

@@ -1,7 +1,7 @@
 <?php
 include_once '../Functions/HavePermission.php';
 
-class SubjectShowAllView
+class ReportSubjectShowAllView
 {
     private $subjects;
 
