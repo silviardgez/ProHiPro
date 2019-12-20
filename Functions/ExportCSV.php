@@ -2,7 +2,7 @@
 include_once '../Models/User/User.php';
 include_once '../Models/University/University.php';
 
-if(!isset($_POST['data'])) {
+if(isset($_POST['data'])) {
     $data = unserialize(base64_decode($_POST["data"]));
     array_to_csv_download($data, "numbers.csv");
 }
