@@ -10,6 +10,7 @@ include_once '../Models/User/UserDAO.php';
 include_once '../Models/Common/DAOException.php';
 include_once '../Models/University/UniversityDAO.php';
 include_once '../Models/Center/CenterDAO.php';
+include_once '../Models/Degree/DegreeDAO.php';
 include_once '../Views/Common/Head.php';
 include_once '../Views/Common/DefaultView.php';
 include_once '../Views/Report/ReportShowAllView.php';
@@ -35,6 +36,7 @@ include_once '../Functions/GetReportResults.php';
 //DAOS
 $universityDAO = new UniversityDAO();
 $centerDAO = new CenterDAO();
+$degreeDAO = new DegreeDAO();
 
 //Data required
 $universityData = $universityDAO->showAll();
@@ -46,7 +48,7 @@ switch ($action) {
         if (!isset($_POST["entity"])) {
             new ReportSearchView();
         } else {
-            switch($_POST["entity"]) {
+            switch ($_POST["entity"]) {
                 case "center":
                     if (!isset($_POST["university"])) {
                         new ReportCenterSearchView($universityData);
@@ -54,8 +56,8 @@ switch ($action) {
                         try {
                             $sql = "SELECT CENTER.* FROM CENTER";
                             $universityId = $_POST["university"];
-                            if($universityId != NULL){
-                                $sql = $sql . ", UNIVERSITY WHERE UNIVERSITY.id =" . $universityId . ";";
+                            if ($universityId != "") {
+                                $sql .= ", UNIVERSITY WHERE UNIVERSITY.id =" . $universityId . ";";
                             }
                             $reportDump = returnData($sql);
                             $centers = $centerDAO->getCentersFromDB($reportDump);
@@ -74,14 +76,30 @@ switch ($action) {
                         new ReportDegreeSearchView($universityData, $centerData);
                     } else {
                         try {
-                            $sql = "SELECT CENTER.* FROM CENTER";
+                            $sql = "SELECT DEGREE.* FROM DEGREE";
                             $universityId = $_POST["university"];
-                            if($universityId != NULL){
-                                $sql = $sql . ", UNIVERSITY WHERE UNIVERSITY.id =" . $universityId . ";";
+                            $centerId = $_POST["center"];
+                            if ($universityId != "") {
+                                $sql .=  ", UNIVERSITY";
                             }
-                            $reportDump = returnData($sql);
-                            $centers = $centerDAO->getCentersFromDB($reportDump);
-                            new ReportDegreeShowAllView($centers);
+                            if ($centerId != "") {
+                                $sql .=  ", CENTER";
+                            }
+                            if($universityId != "" or $centerId != ""){
+                                $sql .=  " WHERE";
+                            }
+                            if ($universityId != "") {
+                                $sql .=  " UNIVERSITY.id =" . $universityId;
+                            }
+                            if ($centerId != "") {
+                                if($universityId != "") {
+                                    $sql .=  " AND";
+                                }
+                                $sql .=  " CENTER.id =" . $centerId;
+                            }
+                            $reportDump = returnData($sql.";");
+                            $degrees = $degreeDAO->getDegreesFromDB($reportDump);
+                            new ReportDegreeShowAllView($degrees);
                             goToShowAllAndShowSuccess("Departamento añadido correctamente.");
                         } catch (DAOException $e) {
                             goToShowAllAndShowError($e->getMessage());
@@ -96,7 +114,7 @@ switch ($action) {
                     break;
             }
         }
-    
+
         break;
     default:
         showAll();
