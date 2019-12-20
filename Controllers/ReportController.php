@@ -134,7 +134,7 @@ switch ($action) {
                                 $sql .= " WHERE s.type='" . $type . "'";
                                 $is_first_condition = false;
                             } elseif ($type != "") {
-                                $sql .= " AND s.type=" . $type;
+                                $sql .= " AND s.type='" . $type . "'";
                             }
                             if ($quarter != "" and $is_first_condition) {
                                 $sql .= " WHERE s.quarter=" . $quarter;
@@ -148,7 +148,9 @@ switch ($action) {
                                 $sql .= " AND s.course=" . $course;
                             }
 
+
                             $reportDump = returnData($sql . ";");
+
 
                             $subjects = $subjectDAO->getSubjectsFromDB($reportDump);
 
