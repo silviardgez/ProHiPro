@@ -120,31 +120,31 @@ switch ($action) {
                             $is_first_condition = true;
 
                             if ($departmentId != "" and $degreeId == "") {
-                                $sql .= ", DEPARTMENT dep, DEGREE d WHERE s.degree_id=d.id AND d.department_id=" . $departmentId;
+                                $sql .= ", DEGREE d WHERE s.degree_id=d.id AND s.department_id=" . $departmentId;
                                 $is_first_condition = false;
                             } elseif ($departmentId != "" and $degreeId != "") {
-                                $sql .= ", DEPARTMENT dep, DEGREE d WHERE s.degree_id=" . $degreeId . " AND d.department_id=" . $departmentId;
+                                $sql .= " WHERE s.degree_id=" . $degreeId . " AND s.department_id=" . $departmentId;
                                 $is_first_condition = false;
                             } elseif ($departmentId == "" and $degreeId != "") {
                                 $sql .= " WHERE s.degree_id=" . $degreeId;
                                 $is_first_condition = false;
                             }
 
-                            if($type != "" and $is_first_condition) {
-                                $sql .= " WHERE s.type=" . $type;
+                            if ($type != "" and $is_first_condition) {
+                                $sql .= " WHERE s.type='" . $type . "'";
                                 $is_first_condition = false;
-                            } elseif($type != "") {
+                            } elseif ($type != "") {
                                 $sql .= " AND s.type=" . $type;
                             }
-                            if($quarter != "" and $is_first_condition) {
+                            if ($quarter != "" and $is_first_condition) {
                                 $sql .= " WHERE s.quarter=" . $quarter;
                                 $is_first_condition = false;
-                            } elseif($quarter != "") {
+                            } elseif ($quarter != "") {
                                 $sql .= " AND s.quarter=" . $quarter;
                             }
-                            if($course != "" and $is_first_condition) {
+                            if ($course != "" and $is_first_condition) {
                                 $sql .= " WHERE s.course=" . $course;
-                            } elseif($course != "") {
+                            } elseif ($course != "") {
                                 $sql .= " AND s.course=" . $course;
                             }
 
