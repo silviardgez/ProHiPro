@@ -18,14 +18,14 @@ function array_to_csv_download($array, $filename = "export.csv", $delimiter=";")
                 $set=["Id","Name","University","Building"];
                 fputcsv($f, $set, $delimiter);
             }
-            $set = [$line->getId(),$line->getName(),$line->getUniversity(),$line->getBuilding()];
+            $set = [$line->getId(),$line->getName(),$line->getUniversity()->getName(),$line->getBuilding()->getName()];
         }
         elseif ($entity=="Degree"){
             if ($first){
                 $set=["Id","Name","Center","Capacity","Description","Credits"];
                 fputcsv($f, $set, $delimiter);
             }
-            $set = [$line->getId(),$line->getName(),$line->getCenter(),$line->getCapacity(),$line->getDescription(),$line->getCredits()];
+            $set = [$line->getId(),$line->getName(),$line->getCenter()->getName(),$line->getCapacity(),$line->getDescription(),$line->getCredits()];
         }
         // generate csv lines from the inner arrays
 //        $set=[$line->getName(),$line->getSurname()];

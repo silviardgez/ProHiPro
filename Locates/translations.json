@@ -2254,6 +2254,10 @@
   "No se ha obtenido ningun resultado": {
     "en": "No result has been obtained.",
     "gl": "Non se obtivo ningún resultado"
+  },
+  "Descargar CSV": {
+    "en": "Download CSV",
+    "gl": "Descargar CSV"
   }
 }
 
