@@ -148,11 +148,7 @@ switch ($action) {
                                 $sql .= " AND s.course=" . $course;
                             }
 
-                            print($sql);
-
                             $reportDump = returnData($sql . ";");
-
-                            print($reportDump);
 
                             $subjects = $subjectDAO->getSubjectsFromDB($reportDump);
 
