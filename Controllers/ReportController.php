@@ -76,29 +76,22 @@ switch ($action) {
                         new ReportDegreeSearchView($universityData, $centerData);
                     } else {
                         try {
-                            $sql = "SELECT DEGREE.* FROM DEGREE";
+                            $sql = "SELECT d.* FROM DEGREE d";
                             $universityId = $_POST["university"];
                             $centerId = $_POST["center"];
-                            if ($universityId != "") {
-                                $sql .=  ", UNIVERSITY";
+                            if ($universityId != "" and $centerId == "") {
+                                $sql .= ", UNIVERSITY u, CENTER c WHERE d.center_id=c.id AND c.university_id=" . $universityId;
+                            } elseif ($universityId != "" and $centerId != "") {
+                                $sql .= ", UNIVERSITY u, CENTER c WHERE d.center_id=".$centerId." AND c.university_id=" . $universityId;
+                            } elseif ($universityId == "" and $centerId != "") {
+                                $sql .= " WHERE d.center_id=".$centerId;
                             }
-                            if ($centerId != "") {
-                                $sql .=  ", CENTER";
-                            }
-                            if($universityId != "" or $centerId != ""){
-                                $sql .=  " WHERE";
-                            }
-                            if ($universityId != "") {
-                                $sql .=  " UNIVERSITY.id =" . $universityId;
-                            }
-                            if ($centerId != "") {
-                                if($universityId != "") {
-                                    $sql .=  " AND";
-                                }
-                                $sql .=  " CENTER.id =" . $centerId;
-                            }
-                            $reportDump = returnData($sql.";");
+
+                            print($sql);
+
+                            $reportDump = returnData($sql . ";");
                             $degrees = $degreeDAO->getDegreesFromDB($reportDump);
+
                             new ReportDegreeShowAllView($degrees);
                             goToShowAllAndShowSuccess("Departamento añadido correctamente.");
                         } catch (DAOException $e) {
